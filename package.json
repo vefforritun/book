@@ -1,0 +1,27 @@
+{
+  "name": "book",
+  "version": "1.0.0",
+  "description": "Drög þessi eru skrifuð eftir nokkur ár af kennslu vefforritunar í HÍ.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vefforritun/book.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vefforritun/book/issues"
+  },
+  "homepage": "https://github.com/vefforritun/book#readme",
+  "devDependencies": {
+    "gray-matter": "^4.0.2",
+    "highlight.js": "^10.1.1",
+    "image-size": "^0.8.3",
+    "marked": "^1.1.0",
+    "prettier": "2.0.5"
+  }
+}

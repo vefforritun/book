@@ -7,3 +7,9 @@ Drög þessi eru skrifuð eftir nokkur ár af kennslu vefforritunar í HÍ.
 * [Kafli 2: CSS](chapters/02.css.md)
 
 Efni þetta hefur ekki fengið tæknilegan yfirlestur. Myndir eru héðan og þaðan, og þarf að geta heimilda fyrir þær.
+
+## Verkefnalisti
+
+* Tenglar með mynd búa til brotið HTML
+* Athuga allan lita contrast
+* Stuðningur við Markdown footnotes

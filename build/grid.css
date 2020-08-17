@@ -1,0 +1,40 @@
+
+:root {
+  --offset: 0;
+
+  --background-width: calc(100% + var(--gutter));
+  --background-columns: repeating-linear-gradient(
+    to right,
+    var(--color),
+    var(--color) var(--column-width),
+    transparent var(--column-width),
+    transparent var(--repeating-width)
+  );
+  --background-baseline: repeating-linear-gradient(
+    to bottom,
+    var(--color),
+    var(--color) 1px,
+    transparent 1px,
+    transparent var(--baseline)
+  );
+}
+
+html {
+  position: relative;
+}
+
+html::before {
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  margin-right: auto;
+  margin-left: auto;
+  width: calc(100% - (2 * var(--offset)));
+  max-width: calc(var(--baseline) * var(--max-width-rem-unitless));
+  min-height: 100vh;
+  content: '';
+  background-image: var(--background-columns), var(--background-baseline);
+  background-size: var(--background-width) 100%;
+  background-position: 0 var(--baseline-offset);
+  z-index: 1000;
+  pointer-events: none;
+}

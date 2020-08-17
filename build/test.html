@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="is">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CSS</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="xgrid.css" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <article>
+        <div class="paragraphs">
+          <p><strong>bold</strong> texti er&nbsp;bold.</p>
+        </div>
+        <hr />
+        <div class="paragraphs">
+          <p><em>italic</em> er&nbsp;italic.</p>
+          <p>0123456789</p>
+        </div>
+        <hr />
+        <div class="paragraphs">
+          <p>
+            Á meðan Þessar hugmyndir, ásamt mörgum öðrum, höfðu mikil áhrif á
+            þróun upplýsingatækninnar. Ted Nelson skilgreindi árið 1963
+            hugtakið&nbsp;<em>HyperText</em>: texti á stafrænu formi sem
+            inniheldur vísanir þ.a. lesandi getur strax fengið aðgang að þeim.
+            Textinn er ekki lengur fastur, heldur teygir hann anga sína út og
+            leyfir lesandanum að stýra sinni eigin leið í gegnum hann. „Veldu
+            þitt eigið ævintýri“ bækur útfæra svipað hugtak á
+            hliðstæðan&nbsp;máta.
+          </p>
+          <p>Hér er inline&nbsp;<code>inline code</code> code.</p>
+        </div>
+        <h1 id="2">
+          <span>
+            <a href="#2">
+              2
+            </a>
+          </span>
+          CSS
+        </h1>
+
+        <h2 id="2.1">
+          <span>
+            <a href="#2.1">
+              2.1
+            </a>
+          </span>
+          Hvað er&nbsp;CSS?
+        </h2>
+
+        <h3 id="2.1.1">
+          <span>
+            <a href="#2.1.1">
+              2.1.1
+            </a>
+          </span>
+          Þriðja fyrirsögnin með { } táknum&nbsp;HALLÓ
+        </h3>
+
+        <h3 id="2.1.2">
+          <span>
+            <a href="#2.1.2">
+              2.1.2
+            </a>
+          </span>
+          Þriðja&nbsp;þriðja
+        </h3>
+        <div class="code code-text">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td><pre>QWERTYUIOPÐASDFGHJKLÆZXCVBNMÁÉÍÓ</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td><pre>qwertyuiopðasdfghjklæzxcvbnmáéíó</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td><pre>1234567890</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td><pre>,.!&quot;#$%&amp;/()==\–&lt;&gt;</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td><pre>{ } &gt;= &lt;= == === != = - – — „ “ ! ?</pre></td>
+            </tr>
+          </table>
+        </div>
+
+        <h2 id="2.2">
+          <span>
+            <a href="#2.2">
+              2.2
+            </a>
+          </span>
+          ÞÆÖÁÉÍÚ Halló þetta er löng fyrirsögn
+          með&nbsp;lönguorðisem&shy;brotnarmeðshy
+        </h2>
+
+        <h2 id="2.3">
+          <span>
+            <a href="#2.3">
+              2.3
+            </a>
+          </span>
+          1.2 Markup&nbsp;mál
+        </h2>
+        <div class="paragraphs">
+          <p>
+            Við höfum mál sem skilgreinir snið&nbsp;(<em>markup</em>) á
+            textanum. Hægt er að skipta þessum málum í almenna&nbsp;flokka:
+          </p>
+        </div>
+        <ul>
+          <li>
+            <em>Létt</em> (<em>Lightweight</em>) – einföld setningarfræði er
+            notuð til að leyfa aðskilnað á ýmsum grunnhugmyndum texta án þess að
+            draga úr læsileika textans, t.d. útbúa fyrirsagnir eða feitletra orð
+            t.d.&nbsp;Markdown
+          </li>
+          <li>
+            <em>Procedural</em> – snið er innifalið í texta sem leiðbeiningar um
+            sértækar aðgerðir á textanum, t.d. að gera orð feitletrað. Dæmi væru
+            PostScript og&nbsp;LaTex
+          </li>
+          <li>
+            <em>Presentational</em> –&nbsp;<a
+              href="https://en.wikipedia.org/wiki/WYSIWYG"
+              ><em>WYSIWYG</em></a
+            >
+            (What You See Is What You Get) ritlar, sniðið er falið fyrir
+            notendum í formi skjals, t.d.&nbsp;Word
+          </li>
+          <li>
+            <em>Descriptive</em> – snið gefur texta merkingu sem er&nbsp;<em
+              >óháð</em
+            >
+            birtingu þess, notast er við&nbsp;<em>merkingarfræðilegt</em>
+            (semantic) snið. Leitast er eftir að lýsa eðli textans en
+            ekki&nbsp;<strong>útliti</strong> hans
+          </li>
+        </ul>
+
+        <h3 id="2.3.1">
+          <span>
+            <a href="#2.3.1">
+              2.3.1
+            </a>
+          </span>
+          zxcv
+        </h3>
+
+        <h2 id="2.4">
+          <span>
+            <a href="#2.4">
+              2.4
+            </a>
+          </span>
+          234
+        </h2>
+        <div class="paragraphs">
+          <p>
+            Þegar við höfum skrifað efnið okkar í afskaplega fínu HTML skjali,
+            merkingarbæru og aðgengilegu, langar okkur að ljá það lífi með
+            útliti. Þar sem HTML er&nbsp;<em>descriptive</em> markup mál er því
+            ekki ætlað að tjá útlit en þar kemur CSS inn í&nbsp;myndina.
+          </p>
+          <p>
+            CSS stendur fyrir&nbsp;<a
+              href="http://en.wikipedia.org/wiki/Cascading_Style_Sheets"
+              ><em>Cascading Style&nbsp;Sheets</em></a
+            >
+            og er&nbsp;<em>style sheet&nbsp;language</em> sem lýsir framsetningu
+            á skjali skrifuðu í markup máli, t.d. HTML, XHTML, XML og SVG. CSS
+            kom fyrst fram á sjónarsviðið árið 1994 þegar&nbsp;<a
+              href="https://www.w3.org/People/howcome/p/cascade.html"
+              >Håkon Wium Lie lagði til&nbsp;<em
+                >Cascading HTML style&nbsp;sheets</em
+              ></a
+            >. Í tillögunni er farið yfir hvernig vafrinn stjórni að mestu allri
+            birtingu og „the author of HTML documents has no influence over the
+            presentation“, sem var vissulega rétt, fyrir tíma CSS var engin leið
+            til að breyta litum á&nbsp;tenglum!
+          </p>
+        </div>
+        <blockquote>
+          <p>
+            You don&#39;t need to be a programmer or a CS major to understand
+            the CSS specifications. You don&#39;t need to be over 18 or have a
+            Bachelor&#39;s degree. You just need to be very pedantic, very
+            persistent, and very&nbsp;thorough.”
+          </p>
+          <p>
+            “You don&#39;t need to be a programmer or a CS major to understand
+            the CSS specifications. You don&#39;t need to be over 18 or have a
+            Bachelor&#39;s degree. You just need to be
+            very&nbsp;<code>pedantic</code>, very persistent, and very
+            thorough.” –&nbsp;<a href="http://www.w3.org/Style/CSS/read"
+              >Understanding the CSS&nbsp;Specifications</a
+            >
+          </p>
+        </blockquote>
+
+        <div class="code code-html">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-meta">&lt;!doctype <span class="hljs-meta-keyword">html</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre><span class="hljs-comment">&lt;!--</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre><span class="hljs-comment">  HTML COMMENT!</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td>
+                <pre><span class="hljs-comment">--&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;is&quot;</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="6"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="7"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="8"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>CSS<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="9"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;styles.css&quot;</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="10"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css"></span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="11"></td>
+              <td>
+                <pre><span class="css">    <span class="hljs-selector-tag">p</span></span> {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="12"></td>
+              <td>
+                <pre>      <span class="hljs-attribute">font-size</span>: <span class="hljs-number">2em</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="13"></td>
+              <td><pre>    }</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="14"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="15"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="16"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="17"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Halló, <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;text-decoration: italic;&quot;</span>&gt;</span>heimur<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="18"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>asdfasdfasdfasdfSHY<span class="hljs-symbol">&amp;shy;</span>asdf<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="19"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="20"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></pre>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <p>
+            Þó svo að það væri ekki hægt að breyta litum á tenglum lét fólk það
+            ekki stoppa sig í að nýta það sem í boði var til að lífga upp á
+            vefsíður. Töflur og gegnsæjar gif myndir tröllriðu öllu eftir
+            að&nbsp;<a href="https://www.killersites.com/killerSites/core.html"
+              ><em>Creating Killer&nbsp;Websites</em></a
+            >
+            kom út og fólk gat loksins tjáð sig á vefnum
+            með&nbsp;<em>hönnun</em>.
+          </p>
+
+          <figure>
+            <div class="image">
+              <div class="img">
+                <img
+                  alt="Skjáskot af strik.is frá því í maí 2000"
+                  src="../img/strik-2000.jpg"
+                  width="1325"
+                  height="1082"
+                  loading="lazy"
+                />
+              </div>
+              <div class="ratio" style="padding-top: 81.660377%;"></div>
+            </div>
+
+            <figcaption>
+              <p>
+                strik.is hannaður með töflum maí 2000, fyrsti vefur til að
+                hljóta hin íslensku vefverðlaun.
+              </p>
+              <footer>
+                Skjáskot frá Wayback Machine:
+                <a
+                  href="https://web.archive.org/web/20000520102751/http://www.strik.is:80/"
+                  >https://web.archive.org/web/20000520102751/http://www.strik.is:80/</a
+                >
+              </footer>
+            </figcaption>
+          </figure>
+          <p>
+            Í dæminu að ofan eru allar þrjár leiðirnar notaðar en hreinlegri og
+            betri lausn er að geyma allar þessar upplýsingar um útlit
+            í&nbsp;CSS:
+          </p>
+        </div>
+        <hr />
+
+        <h2 id="2.5">
+          <span>
+            <a href="#2.5">
+              2.5
+            </a>
+          </span>
+          1.8 Annað&nbsp;vafrastríðið
+        </h2>
+        <div class="paragraphs">
+          <p>
+            Eftir að hætt var að gera vefi með töflum kom nokkur ládeyða yfir
+            vafraframleiðendur og varð hún svo mikil að Microsoft tilkynnti árið
+            2003 að IE6SP1 yrði seinasti vafrinn þeirra. Það ásamt því að
+            hugtakið&nbsp;<a href="https://en.wikipedia.org/wiki/Web_2.0"
+              ><em>Web&nbsp;2.0</em> var gert vinsælt af Tim&nbsp;O‘Reilly</a
+            >
+            hleypti nýju lífi í markaðinn um 2004.&nbsp;<a
+              href="http://donmelton.com/2013/01/10/safari-is-released-to-the-world/"
+              >Apple gaf út Safari fyrir Mac&nbsp;OSX</a
+            >, byggðan á&nbsp;<a href="http://lists.kde.org/?m=104197092318639"
+              >KTHML</a
+            >
+            árið 2003. WebKit, vélin sem keyrir áfram Safari, var árið 2005 gerð
+            open source af&nbsp;Apple.
+          </p>
+        </div>
+        <hr />
+        <div class="paragraphs">
+          <p>
+            Fyrsta alvöru vefþróunartólið,&nbsp;<a
+              href="http://en.wikipedia.org/wiki/Firebug_(software)"
+              >Firebug</a
+            >
+            fyrir Firefox, kom út árið 2006 og gjörbreytti því hvernig vefir
+            voru unnir. Í fyrsta skipti var hægt að breyta á einfaldan hátt,
+            beint í vafranum, hvernig vefir höguðu sér. IE 7.0 kom einnig út
+            árið 2006, fimm árum eftir IE&nbsp;6.0.
+          </p>
+          <p>
+            <a
+              href="../img/Usage_share_of_web_browsers.png"
+              title="Hlutdeild vafra 2009-2015. Mynd: http://en.wikipedia.org/wiki/File:Usage_share_of_web_browsers_(Source_StatCounter).svg"
+              >Hlutdeild vafra&nbsp;2009-2015.</a
+            >
+          </p>
+          <p>
+            Með tilkomu iPhone árið 2007 og útgáfu Safari 3.0 á Mac OSX, Windows
+            og iOS, varð vefurinn í fyrsta skipti fyrir alvöru aðgengilegur í
+            símum í almennilegum vafra. Tilraunir til að gera sérstakar vefsíður
+            fyrir iPhone byrjuðu snemma, sérstaklega í ljósi þess að ekki var
+            strax hægt að búa til öpp fyrir&nbsp;iOS.
+          </p>
+          <p>
+            Google gaf út Chrome vafrann árið 2008, byggðum á Chromium, open
+            source vafra. Chromium var síðan aftur byggður á WebKit.&nbsp;<a
+              href="https://blog.chromium.org/2013/04/blink-rendering-engine-for-chromium.html"
+              >Árið 2013 var Webkit verkefnið&nbsp;<em>forkað</em></a
+            >
+            og til varð ný vafravél,&nbsp;<a
+              href="https://www.chromium.org/blink"
+              ><em>Blink</em></a
+            >
+            sem Chrome notar í&nbsp;dag.
+          </p>
+          <p>
+            Eitt af því sem hamlaði verulega útbreiðslu nýrrar virkni í vöfrum á
+            fyrstu árum vefsins var það að stanslaust þurfti að sækja nýjar
+            útgáfur af vöfrum. Það gat valdið því að fólk keyrði óuppfærðan
+            vafra í mörg ár og notaði hann til að sinna öllu því sem það þurfti
+            á vefnum, sem aftur gerði það að verkum að flestir stærri vefir urðu
+            að styðja gamla vafra lengur en æskilegt hefði verið. Í dag er þetta
+            minna vandamál þar sem allir vafrar dreifa uppfærslum mjög ört og (í
+            flestum tilfellum) án þess að brjóta neitt á milli
+            uppfærsla.&nbsp;<a
+              href="https://blog.codinghorror.com/the-infinite-version/"
+              >Chrome var fyrsti vafrinn til að gera&nbsp;þetta</a
+            >
+            og er í dag hægt að&nbsp;<a
+              href="https://www.google.com/chrome/browser/canary.html"
+              >sækja&nbsp;<em>Chrome&nbsp;Canary</em></a
+            >
+            sem er útgáfan af Chrome með því allra nýjasta, uppfærð daglega með
+            nýjasta&nbsp;buildi.
+          </p>
+          <p>
+            Ættartré þeirra vafra sem við notum í dag er orðið frekar flókið og
+            margþætt, en hægt er að skoða það á&nbsp;<a
+              href="http://www.evolutionoftheweb.com/"
+              >evolution of the&nbsp;web</a
+            >.
+          </p>
+          <p>Listi af&nbsp;atriðum:</p>
+        </div>
+        <ul>
+          <li><input disabled="" type="checkbox" /> A</li>
+          <li><input disabled="" type="checkbox" /> B</li>
+          <li><input checked="" disabled="" type="checkbox" /> C</li>
+        </ul>
+        <div class="paragraphs">
+          <p><del>Ég er hættur við&nbsp;þetta</del></p>
+        </div>
+        <div class="code code-css">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-selector-tag">img</span> {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre>  <span class="hljs-comment">/*</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre><span class="hljs-comment">  mynd skalast þ.a. hún fylli alltaf upp í</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td>
+                <pre><span class="hljs-comment">  lárétt pláss í foreldri</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td>
+                <pre><span class="hljs-comment">  */</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="6"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">max-width</span>: <span class="hljs-number">100%</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="7"></td>
+              <td><pre>}</pre></td>
+            </tr>
+          </table>
+        </div>
+        <div class="code code-javascript">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span> </span>{</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre>  <span class="hljs-keyword">var</span> i = <span class="hljs-number">1</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td>
+                <pre>  <span class="hljs-keyword">return</span> i + <span class="hljs-number">2</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td><pre>}</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="6"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="7"></td>
+              <td>
+                <pre><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Reporter</span> </span>{</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="8"></td>
+              <td>
+                <pre>  <span class="hljs-keyword">constructor</span>({ silent = <span class="hljs-literal">false</span>, verbose = <span class="hljs-literal">false</span> } = {}) {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="9"></td>
+              <td>
+                <pre>    <span class="hljs-built_in">this</span>.silent = silent;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="10"></td>
+              <td>
+                <pre>    <span class="hljs-built_in">this</span>.isVerbose = verbose;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="11"></td>
+              <td><pre>  }</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="12"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="13"></td>
+              <td><pre>  error(...m) {</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="14"></td>
+              <td>
+                <pre>    <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">this</span>.silent) {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="15"></td>
+              <td>
+                <pre>      <span class="hljs-built_in">console</span>.error(...m);</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="16"></td>
+              <td><pre>    }</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="17"></td>
+              <td><pre>  }</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="18"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="19"></td>
+              <td><pre>  warn(...m) {</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="20"></td>
+              <td>
+                <pre>    <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">this</span>.silent) {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="21"></td>
+              <td>
+                <pre>      <span class="hljs-built_in">console</span>.warn(...m);</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="22"></td>
+              <td><pre>    }</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="23"></td>
+              <td><pre>  }</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="24"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="25"></td>
+              <td><pre>  verbose(...m) {</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="26"></td>
+              <td>
+                <pre>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.isVerbose) {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="27"></td>
+              <td>
+                <pre>      <span class="hljs-built_in">console</span>.info(...m);</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="28"></td>
+              <td><pre>    }</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="29"></td>
+              <td><pre>  }</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="30"></td>
+              <td><pre>}</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="31"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="32"></td>
+              <td>
+                <pre><span class="hljs-keyword">const</span> fileContent = <span class="hljs-keyword">await</span> readFileAsync(file);</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="33"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="34"></td>
+              <td>
+                <pre><span class="hljs-keyword">const</span> {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="35"></td>
+              <td><pre>  content,</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="36"></td>
+              <td>
+                <pre>  <span class="hljs-attr">data</span>: {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="37"></td>
+              <td>
+                <pre>    title = <span class="hljs-string">&#x27;&#x27;</span>,</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="38"></td>
+              <td>
+                <pre>    <span class="hljs-attr">chapter</span>: metaChapter = <span class="hljs-number">0</span>,</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="39"></td>
+              <td><pre>  } = {},</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="40"></td>
+              <td><pre>} = graymatter(fileContent);</pre></td>
+            </tr>
+          </table>
+        </div>
+
+        <h3 id="2.5.1">
+          <span>
+            <a href="#2.5.1">
+              2.5.1
+            </a>
+          </span>
+          2.26.1&nbsp;Sass
+        </h3>
+        <div class="paragraphs">
+          <p>
+            Sass er töluvert mikið notað og hefur þýðendur í mörgum umhverfum.
+            Eldri útgáfa af málinu notaði&nbsp;<code>.sass</code> endingu á
+            skjölum en nýrri („sassy CSS“) notar&nbsp;<code>.scss</code>.
+          </p>
+          <p>
+            Sass útfærir breytur með&nbsp;<code>$</code> fyrir framan eigindi og
+            leyfir okkur að nota á öðrum stöðum með virkjum
+            og&nbsp;hjálparföllum:
+          </p>
+        </div>
+        <div class="code code-scss">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-comment">// svona komment virka</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre><span class="hljs-variable">$blue</span>: <span class="hljs-number">#3bbfce</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre><span class="hljs-variable">$margin</span>: <span class="hljs-number">16px</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td>
+                <pre><span class="hljs-selector-class">.box</span> {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="6"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">margin</span>: <span class="hljs-variable">$margin</span> / <span class="hljs-number">2</span>; <span class="hljs-comment">// eigum við breytu með virkja</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="7"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">background-color</span>: <span class="hljs-variable">$blue</span> * <span class="hljs-number">2</span>; <span class="hljs-comment">// líka fyrir liti!</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="8"></td>
+              <td><pre>}</pre></td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs"><p>sem er þýtt yfir&nbsp;í:</p></div>
+        <div class="code code-css">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-selector-class">.box</span> {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">margin</span>: <span class="hljs-number">8px</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#76ffff</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td><pre>}</pre></td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <p>
+            Bakendi (e. back-end eða server-side) er sá partur vefsins sem er
+            sendur yfir HTTP til framenda. Bakendinn samanstendur yfirleitt af
+            vefþjón, forriti sem útbýr framenda og einhverri gagnageymslu (t.d.
+            gagnagrunnur). Vefþjónar geta stutt margskonar forritunarmál (t.d.
+            C# eða Python) og forritunarumhverfi (t.d. .NET eða&nbsp;Django).
+          </p>
+
+          <figure>
+            <div class="image no-caption">
+              <div class="img">
+                <img
+                  alt="Samskipti milli bakenda og framenda fara fram í gegnum HTTP."
+                  src="../img/framendibakendi.svg"
+                  width="505"
+                  height="150"
+                  loading="lazy"
+                />
+              </div>
+              <div class="ratio" style="padding-top: 29.70297%;"></div>
+            </div>
+          </figure>
+          <p>
+            Stundum er talað um full stack forritun en það er þegar forritari er
+            fær í bæði framenda og bakenda&nbsp;forritun.
+          </p>
+        </div>
+      </article>
+      <footer>
+        <hr />
+      </footer>
+    </main>
+  </body>
+</html>
