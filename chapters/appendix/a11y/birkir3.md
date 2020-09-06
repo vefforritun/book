@@ -1,4 +1,10 @@
-# Ísland er eftirbátur í aðgengi að upplýsingatækni
+---
+title: "Ísland er eftirbátur í aðgengi að upplýsingatækni"
+chapter: 3
+version: Greinin birtist fyrst á vef Advania (https://www.advania.is/um-advania/markadsmal/blogg/blogg/2013/03/20/Gott-adgengi-gerir-kraftaverk-thess-vegna-er-eg-rafviti/) í ágúst 2014. Afritað með leyfi höfunds.
+previous: \[Gott aðgengi er góður bissness](./birkir2.html)
+next: \[Öflugt og einfalt regluverk tryggir aðgengi að upplýsingatækni](./birkir4.html)
+---
 
 Það þýðir ekkert að fara Hægt og hljótt í aðgengisumræðuna. Best að halda áfram með látum þar sem frá var horfið. Ég var búinn að fjalla um að gott aðgengi er góður bissness en þeirri grein var ætlað að vera gulrótin en nú er kominn tími á það sem kalla mætti prikið. Ég vona samt að Þú og þeir hafi ekki gleymt aðgengismálunum í fjarveru minni, en ég á líf og undanfarið ár hef ég staðið í stórræðum í verkefnum sem tengjast aðgengismálum:
 
@@ -37,10 +43,4 @@ Markmið með góðu aðgengi er að veita fólki tækifæri til þess að láta
 
 Þrátt fyrir [stefnuyfirlýsingar sem hljóma vel](http://www.innanrikisraduneyti.is/frettir/nr/28242) hefur aðgengi vefsvæða opinberra stofnanna á Íslandi ekki batnað mikið á síðustu árum og er almennt talsvert langt frá þeim markmiðum sem stefnt er að. Af þeim hundruðum milljóna króna sem ríkið [hyggst setja í uppbyggingu upplýsingatæknisamfélags á næstu þremur árum](http://www.innanrikisraduneyti.is/frettir/nr/28242) fara að óbreyttu heilar núll krónur í að bæta aðgengi fólks með fötlun að upplýsingatækninni. Gleymum því ekki að um 10 til 15% þjóðarinnar gæti hagnast á því, og sá hópur fer stækkandi með hækkandi meðalaldri. Aðgengismálum á Íslandi er því miður ekki gert nógu hátt undir höfði en ef dæma má af rannsóknum og reynslu nágrannaþjóða okkar má búast við því að breytingar séu í vændum. Það er því  mikilvægt fyrir þá sem þróa vef-og hugbúnaðarlausnir fyrir opinbera geirann að skoða þessi mál gaumgæfilega og byrja strax í dag.
 
-05.08.2014 14:29
-
-Birkir Rúnar Gunnarsson
-
----
-
-Greinin birtist fyrst á [vef Advania](https://www.advania.is/um-advania/markadsmal/blogg/blogg/2014/08/05/Island-er-eftirbatur-i-adgengi-ad-upplysingataekni/). Afritað með leyfi höfunds.
+—Birkir Rúnar Gunnarsson

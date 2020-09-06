@@ -4,7 +4,7 @@
   "description": "Drög þessi eru skrifuð eftir nokkur ár af kennslu vefforritunar í HÍ.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "generate": "node src/generate.js"
   },
   "repository": {
     "type": "git",

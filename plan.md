@@ -58,6 +58,3 @@
 * Viðaukar
   * Git
   * a11y greinar Birkis
-
-
-[Quantum Up Close: What is a browser engine?](https://hacks.mozilla.org/2017/05/quantum-up-close-what-is-a-browser-engine/)

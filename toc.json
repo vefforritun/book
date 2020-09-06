@@ -1,7 +1,8 @@
 {
   "chapters": [
-    "./chapters/00.inngangur.md",
 
-    "./chapters/test.md"
+    "./chapters/06.css.md",
+    "./chapters/07.css-malfraedi.md",
+    "./chapters/08.box-model.md"
   ]
 }

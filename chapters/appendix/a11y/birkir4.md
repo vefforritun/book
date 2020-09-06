@@ -1,4 +1,10 @@
-# Öflugt og einfalt regluverk tryggir aðgengi að upplýsingatækni
+---
+title: "Öflugt og einfalt regluverk tryggir aðgengi að upplýsingatækni"
+chapter: 4
+version: Greinin birtist fyrst á vef Advania (https://www.advania.is/um-advania/markadsmal/blogg/blogg/2014/08/26/Oflugt-og-einfalt-regluverk-tryggir-adgengi-ad-upplysingataekni/) í ágúst 2014. Afritað með leyfi höfunds.
+previous: \[Ísland er eftirbátur í aðgengi að upplýsingatækni](./birkir3.html)
+next: \[Aðgengi](./04.adgengi.html)
+---
 
 Í síðustu færslu var farið yfir mannréttindi, samfélagslega ábyrgð og ávinning af góðu aðgengi að hugbúnaði og vefjum. Hér verður farið yfir nauðsyn þess að setja lög um aðgengi hér á landi og fjallað um hvað við getum lært af öðrum þjóðum.
 
@@ -47,10 +53,5 @@ Tilskipunin tekur í fyrsta lagi gildi eftir 2 til 3 ár. Síðan fá hagsmunaa�
 
 Í síðustu færslunni um þessi mál í bili mun ég fjalla um af hverju fólk hræðist aðgengi, hvað gera þarf til að einfalda aðgengisfræðslu og prófanir. Einnig mun ég benda á nokkur einföld atriði sem hafa ber í huga í hönnun vefsvæða.
 
-26.08.2014 21:28
+—Birkir Rúnar Gunnarsson
 
-Birkir Rúnar Gunnarsson
-
----
-
-Greinin birtist fyrst á [vef Advania](https://www.advania.is/um-advania/markadsmal/blogg/blogg/2014/08/26/Oflugt-og-einfalt-regluverk-tryggir-adgengi-ad-upplysingataekni/). Afritað með leyfi höfunds.

@@ -37,6 +37,7 @@
 }
 
 /**
+Halló ferðalangur! Hér er allt í vinnslu.
 
 Baseline 8px to 16px
 Base size 16 (1rem)
@@ -87,6 +88,7 @@ Lita contrast, viljum min 4.5:1
   --color-block-background: #EEFFEE;
   --color-main: var(--color-almost-black);
   --color-accent-subtle: #70695B;
+  --color-accent-subtle-background: #eeeeee;
 
   --color-generic-background: #e6e6e6;
   --color-html-background: #fcede8;
@@ -145,20 +147,18 @@ main {
   align-items: stretch;
   justify-content: flex-start;
 
-  padding: 10rem 0;
+  padding: 6rem 0;
 }
 
 article {
   flex: none;
   align-self: stretch;
 
+  margin-bottom: 2rem;
   margin-left: var(--column-one-percentage);
 
-  xpadding-left: calc(var(--gutter) / 2);
-  xpadding-right: calc(var(--gutter) / 2);
-
   width: calc((var(--columns) - 2) / var(--columns) * 100%);
-  max-width: 100%;;
+  max-width: 100%;
 }
 
 /**
@@ -166,13 +166,117 @@ article {
  * þegar breidd vafra er >1520 og 1rem=24px
  */
 
+header {
+  margin-left: var(--column-one-percentage);
+  margin-right: var(--column-one-percentage);
+}
+
+nav {
+  font-size: 0.75rem;
+  line-height: 1.3333333333;
+  margin-bottom: 2rem;
+}
+
+nav p {
+  font-size: inherit;
+  line-height: inherit;
+}
+
+nav ul {
+  display: grid;
+  grid-template-columns: repeat(var(--columns), 1fr);
+  grid-gap: var(--gutter);
+
+  list-style: none;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+nav ul li {
+  position: relative;
+  margin-bottom: 0;
+}
+
+nav ul li.prev {
+  grid-column-start: 2;
+  grid-column-end: 5;
+}
+
+nav ul li.index {
+  text-align: center;
+  grid-column-start: 5;
+  grid-column-end: 9;
+}
+
+nav ul li.next {
+  text-align: right;
+  grid-column-start: 9;
+  grid-column-end: 12;
+}
+
+nav ul li.prev a::before,
+nav ul li.next a::before,
+nav ul li.index a::before  {
+  display: block;
+
+  font-size: inherit;
+  line-height: inherit;
+  color: var(--color-accent-subtle);
+}
+
+nav ul li.prev a::before {
+  content: 'Áður: ';
+}
+
+nav ul li.index a::before {
+  content: '☝︎';
+}
+
+nav ul li.next a::before {
+  content: 'Næst: ';
+}
+
+nav ul li:empty a::before {
+  content: ' ' !important;
+}
+
+@media (min-width: 1024px) {
+  nav {
+    margin-bottom: 0;
+  }
+
+  nav ul li.prev a::before,
+  nav ul li.index a::before,
+  nav ul li.next a::before {
+    position: absolute;
+    width: calc(1 * var(--gutter));
+  }
+
+  nav ul li.prev a::before {
+    content: '☜';
+    text-align: right;
+    left: calc(-2 * var(--gutter));
+  }
+
+  nav ul li.index a::before {
+    content: '☝︎';
+    left: calc(-1 * var(--gutter));
+  }
+
+  nav ul li.next a::before {
+    content: '☞';
+    right: calc(-1 * var(--gutter));
+  }
+}
+
+
 h1 {
   font-family: var(--font-monospaced, monospace);
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   position: relative;
-  font-size: 2rem; /* 2*24=48 */
+  font-size: 3rem; /* 2*24=48 */
   font-weight: 500;
-  line-height: 1.5; /* Tökum 3 línur, (3*24)/48=1,5 */
+  xline-height: 2; /* Tökum 3 línur, (3*24)/48=1,5 */
 }
 
 h2 {
@@ -186,7 +290,6 @@ h2 {
 
 h3 {
   font-family: 'Fira Mono', monospace;
-  margin-bottom: 1rem;
   position: relative;
   font-size: 1rem; /* 24 */
   font-weight: 500;
@@ -258,8 +361,12 @@ p {
   margin-bottom: 0em;
 }
 
-p code {
+p code,
+li code,
+blockquote code {
   font-family: var(--font-monospaced);
+  white-space: pre;
+  background: var(--color-accent-subtle-background);
 
   /* match monospaced to serif */
   font-size: 0.7916666667rem; /* 19/24 */
@@ -378,9 +485,16 @@ table.code-table .line-number {
 
 figure {
   display: flex;
+  flex-direction: column;
   margin-bottom: 2rem;
   width: calc(20/24 * var(--max-width-rem) - var(--gutter) / 2);
   max-width: 100%;
+}
+
+@media (min-width: 600px) {
+  figure {
+    flex-direction: row;
+  }
 }
 
 figure .image {
@@ -388,7 +502,16 @@ figure .image {
   width: 100%;
   width: calc(12/24 * var(--max-width-rem) - var(--gutter) / 2);
 
-  margin-right: 1rem;
+  max-width: 100%;
+
+  margin-right: var(--gutter);
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 600px) {
+  figure .image {
+    margin-bottom: 0;
+  }
 }
 
 figure .image.no-caption {
@@ -399,12 +522,18 @@ figure .image.small {
   width: calc(8/24 * var(--max-width-rem) - var(--gutter) / 2);
 }
 
-figure .img {
+figure .img,
+figure iframe {
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
+}
+
+figure iframe {
+  width: 100%;
+  height: 100%;
 }
 
 figure img {
@@ -431,6 +560,12 @@ figcaption footer {
   font-style: italic;
 }
 
+.paragraphs figure {
+  margin-top: 2rem;
+}
+
+/* quotes */
+
 blockquote {
   font-size: 1rem;
   margin-bottom: 2rem;
@@ -445,13 +580,19 @@ blockquote::before {
   width: 16.666667%; /* 4 col offset, 4/24=0,1666666667 */
 
   position: absolute;
-  left: calc(-16.666667% - 1rem);
+  left: calc(-16.666667%);
 
   /* TODO give more TLC */
   font-size: 4rem;
   line-height: 0.1;
   opacity: 0.5;
   text-align: right;
+}
+
+@media (min-width: 550px) {
+  blockquote::before {
+    left: calc(-16.666667% - 1rem);
+  }
 }
 
 blockquote > p:last-of-type::after,
@@ -478,6 +619,17 @@ ul {
   margin-bottom: 2rem;
 }
 
+ol {
+  list-style: decimal-leading-zero;
+  font-size: 1rem;
+  line-height: 2;
+  margin-bottom: 2rem;
+}
+
+li {
+  margin-bottom: 0.5rem;
+}
+
 hr {
   position: relative;
   margin-bottom: 2rem;
@@ -497,12 +649,25 @@ hr::after {
   text-align: center;
 }
 
+.version {
+  margin-left: var(--column-one-percentage);
+  margin-right: var(--column-one-percentage);
+  font-size: 0.6666666667rem;
+  line-height: 1.5rem;
+}
+
 @media print {
-  body, main, article {
+  body, header, main, article, .code {
     margin: 0;
     padding: 0;
     width: 100%;
     max-width: initial;
+  }
+
+  body {
+    font-size: 14px;
+    margin: 1rem;
+    width: 90%;
   }
 
   main {
@@ -510,6 +675,7 @@ hr::after {
   }
 
   h1 {
+    font-size: 2rem;
     margin-bottom: 1rem;
   }
 
@@ -534,20 +700,36 @@ hr::after {
     margin-bottom: 1rem;
   }
 
+  .code {
+    font-size: 1rem;
+  }
+
   blockquote {
     max-width: initial;
     width: 100%;
+  }
+
+  blockquote::before {
+    content: none;
   }
 
   blockquote > p:first-of-type::before {
     content: "„";
   }
 
-  a::after{
+  p a::after {
     content: " (" attr(href) ") " !important;
     position: static !important;
     opacity: 1 !important;
     background: 0 !important;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  nav {
+    display: none;
   }
 }
 

@@ -1,4 +1,10 @@
-# Gott aðgengi gerir kraftaverk – þess vegna er ég rafviti
+---
+title: "Gott aðgengi gerir kraftaverk – þess vegna er ég rafviti"
+chapter: 1
+version: Greinin birtist fyrst á vef Advania (https://www.advania.is/um-advania/markadsmal/blogg/blogg/2013/03/20/Gott-adgengi-gerir-kraftaverk-thess-vegna-er-eg-rafviti/) í mars 2013. Afritað með leyfi höfunds.
+previous: \[Aðgengi](./04.adgengi.html)
+next: \[Gott aðgengi er góður bissness](./birkir2.html)
+---
 
 Nú er aðgengisátak í gangi víða um heim. Reglugerðir sem kveða á um lámarksaðgengi að vefsíðum og annarri rafrænni þjónustu eru í vinnslu eða hafa þegar tekið gildi. Mikil vinna er lögð í að staðla aðgengi, fella aðgengis- og stoðtækni í snjallsíma og spjaldtölvur og aðra þá tækni sem getur tryggt okkur öllum aðgang að frægð og frama, skemmtun, vinnu, leik og menntun. Mig langar samt sem áður að nálgast viðfangsefnið á persónulegri hátt en oftast er gert og geyma til síðari tíma umfjöllun um tæknileg atriði rafrænna aðgengismála.
 
@@ -46,10 +52,4 @@ Bætt aðgengi að tækifærum getur stórminnkað hóp öryrkja, gert öldruðu
 
 Ég hef lagt hart að mér að læra um aðgengisstaðla, skoðað aðgengislausnir, þróað vefsíðuhluti, Javascriptur, JQuery hluti og margt annað. Nú tel ég mig loks hafa nægjanlega reynslu og þekkingu til að veita þeim sem hafa áhuga á aðgengismálum sérfræðiráðgjöf varðandi aðgengisprófanir, lagfæringar og úrbætur. Talandi um draumastarfið!
 
-20.03.2013 09:15
-
-Birkir Rúnar Gunnarsson
-
----
-
-Greinin birtist fyrst á [vef Advania](https://www.advania.is/um-advania/markadsmal/blogg/blogg/2013/03/20/Gott-adgengi-gerir-kraftaverk-thess-vegna-er-eg-rafviti/). Afritað með leyfi höfunds.
+—Birkir Rúnar Gunnarsson

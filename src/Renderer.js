@@ -6,8 +6,7 @@ const sizeOfImage = require('image-size');
 
 hljs.configure({
   tabReplace: '\t',
-
-})
+});
 
 function autolink(s) {
   const pattern = /(^|[\s\n]|<[A-Za-z]*\/?>)((?:https?|ftp):\/\/[\-A-Z0-9+\u0026\u2019@#\/%?=()~_|!:,.;]*[\-A-Z0-9+\u0026@#\/%=~()_|])/gi;
@@ -19,15 +18,19 @@ const blockLevelTokens = ['heading', 'html', 'table', 'code', 'hr', 'list', 'blo
 
 const abbreviations = {
   'TCP': 'Transmission Control Protocol',
-  'SMTP': '',
-  'FTP': '',
+  'SMTP': 'Simple Mail Transfer Protocol',
+  'FTP': 'File Transfer Protocol',
   'URL': 'Uniform Resource Locator',
   'HTTP': 'HyperText Transfer Protocol',
+  'IPv6': 'Internet Protocol, version 6',
+  'IPv4': 'Internet Protocol, version 4',
   'IP': 'Internet Protocol',
   'DNS': 'Domain Name System',
   'HTML': 'HyperText Markup Language',
   'CSS': 'Cascading Style Sheets',
   'WYSIWYG': 'What You See Is What You Get',
+  'CLI': 'Command Line Interface',
+  'DOM': '',
 };
 
 function isBlockToken(token) {
@@ -48,6 +51,32 @@ module.exports = class Renderer {
   lastToken = '';
   lastBlockToken = '';
   openParagraphsDiv = false;
+
+  isEmbeddable(href, text) {
+    return href.indexOf('youtube.com') >= 0;
+  }
+
+  embeddableContent(href) {
+    const match = href.match(/.*(?:youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=)([^#\&\?]*).*/);
+
+    let id = null;
+
+    if (match && match.length > 0) {
+      id = match[1];
+    }
+
+    return `
+      <div class="iframe">
+        <iframe
+          src="https://www.youtube.com/embed/${id}"
+          frameborder="0"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+        <div class="ratio" style="padding-top: 56.25%;"></div>
+      </div>
+    `;
+  }
 
   beforeRender(token, level = undefined) {
     if (token === 'heading') {
@@ -79,7 +108,12 @@ module.exports = class Renderer {
       return '<div class="paragraphs">';
     }
 
-    if (lastBlockToken === 'paragraph' && token !== 'paragraph' && isBlockToken(token) && this.openParagraphsDiv) {
+    if (
+      //lastBlockToken === 'paragraph' &&
+      token !== 'paragraph' &&
+      isBlockToken(token) &&
+      this.openParagraphsDiv)
+    {
       this.openParagraphsDiv = false;
 
       return '</div>';
@@ -203,7 +237,7 @@ module.exports = class Renderer {
     return `${prefix}<hr>`;
   }
 
-  list(body, ordered, start) {
+  list(body, ordered, start, foo) {
     const prefix = this.beforeRender('list');
 
     const type = ordered ? 'ol' : 'ul',
@@ -252,9 +286,7 @@ module.exports = class Renderer {
       ${prefix}
       <h${level} id="${currentLevel}" >
         <span>
-          <a href="#${currentLevel}">
-            ${currentLevel}
-          </a>
+          <a href="#${currentLevel}">${currentLevel}</a>
         </span>
         ${text}
       </h${level}>`;
@@ -263,15 +295,18 @@ module.exports = class Renderer {
   image(href, title = '', text) {
     const prefix = this.beforeRender('image');
     const imagedir = path.join(this.basedir, href);
+    const isEmbed = this.isEmbeddable(href);
 
     let size = null;
     let imgSize = '';
     let imgRatio = '';
 
-    try {
-      size = sizeOfImage(imagedir);
-    } catch (e) {
-      this.reporter.warn(`Unable to read size of "${href}"`)
+    if (!isEmbed) {
+      try {
+        size = sizeOfImage(imagedir);
+      } catch (e) {
+        this.reporter.warn(`Unable to read size of "${href}"`)
+      }
     }
 
     if (size && size.height && size.width) {
@@ -303,11 +338,17 @@ module.exports = class Renderer {
       size && size.width <= 400 ? ' small' : null,
     ].filter(Boolean);
 
+    let content = `<div class="img"><img alt="${text || ''}" src="${href}"${imgSize}></div>`;
+
+    if (isEmbed) {
+      content = this.embeddableContent(href);
+    }
+
     return `
       ${prefix}
       <figure>
         <div class="image${imageExtraClass.join()}">
-          <div class="img"><img alt="${text || ''}" src="${href}"${imgSize}></div>
+          ${content}
           ${imgRatio}
         </div>
         ${caption}
@@ -349,17 +390,24 @@ module.exports = class Renderer {
     if (lastSpace > 0) {
       text = `${text.substring(0, lastSpace)}&nbsp;${text.substring(lastSpace + 1, text.length)}`;
     }
-/*
+
+    /*
     for (const abbr in abbreviations) {
       const replacement = `<abbr title="${abbreviations[abbr]}">${abbr}</abbr>`;
       text = text.replace(new RegExp(`${abbr}`, 'g'), replacement);
-    }*/
+    }
+    */
 
     return prefix + text;
   }
 
   link(href, title, text) {
     const prefix = this.beforeRender('link');
+
+    if ((text || '').indexOf('iframe') >= 0) {
+      return prefix + text;
+    }
+
     href = cleanUrl(this.options.sanitize, this.options.baseUrl, href);
     if (href === null) {
       return prefix + text;

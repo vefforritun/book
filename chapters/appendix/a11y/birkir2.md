@@ -1,4 +1,10 @@
-# Gott aðgengi er góður bissness
+---
+title: "Gott aðgengi er góður bissness"
+chapter: 2
+version: Greinin birtist fyrst á vef Advania (https://www.advania.is/um-advania/markadsmal/blogg/blogg/2013/04/30/Gott-adgengi-er-godur-bissness/) í apríl 2013. Afritað með leyfi höfunds.
+previous: \[Gott aðgengi gerir kraftaverk – þess vegna er ég rafviti](./birkir1.html)
+next: \[Ísland er eftirbátur í aðgengi að upplýsingatækni](./birkir3.html)
+---
 
 Í síðasta bloggi um aðgengismál fjallaði ég um mikilvægi þess að aðgengi að rafrænum upplýsingum og tækni sé í lagi. Hér bendi ég á viðskiptalegar ástæður góðs aðgengis og þann risastóra markað sem gott aðgengi getur opnað fyrirtækjum.
 
@@ -66,10 +72,4 @@ Rannsóknir benda til þess að það sé árangursríkt að bæta aðgengi að 
 
 Ekki er hægt að lofa gulli og grænum skógum ef aðgengið er í lagi, en það hlýtur að vera spennandi að átta sig á að allt að fimmtungur samfélagsins bíður spenntur eftir að komast inn í vefheiminn ykkar, svo ekki sé minnst á betri vef fyrir snjallsímanotendur, betra aðgengi leitarvéla og almennt betri upplifun fyrir alla ykkar notendur og viðskiptavini.
 
-30.04.2013 10:41
-
-Birkir Rúnar Gunnarsson
-
----
-
-Greinin birtist fyrst á [vef Advania](https://www.advania.is/um-advania/markadsmal/blogg/blogg/2013/04/30/Gott-adgengi-er-godur-bissness/). Afritað með leyfi höfunds.
+—Birkir Rúnar Gunnarsson

@@ -1,0 +1,1751 @@
+<!DOCTYPE html>
+<!--
+Velkominn ferðalangur, bakvið tjöldin, í uppsprettuna.
+Þetta HTML er sjálfkrafa útbúið út frá Markdown skjölum.
+Sjá nánar:
+https://github.com/vefforritun/book
+-->
+<html lang="is">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vefforitun—Kafli 3: HTML Element</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Kafli 3: HTML Element</h1>
+      </header>
+
+      <article>
+        <div class="paragraphs">
+          <p>
+            HTML5 staðalinn skilgreinir lögleg element og gefur þeim merkingu
+            (e. semantics). Vafrar og önnur forrit sem birta HTML nota þennan
+            staðal og skilgreiningar til þess að birta HTML skjöl. Elementum er
+            gróflega skipt í hópa eftir notkun, þar sem hvert element getur
+            verið í núll eða fleiri&nbsp;hópum:
+          </p>
+        </div>
+        <ul>
+          <li>Metadata –&nbsp;lýsigögn</li>
+          <li>Flow –&nbsp;flæði</li>
+          <li>Sectioning – kaflar og&nbsp;svæði</li>
+          <li>Heading –&nbsp;fyrirsagnir</li>
+          <li>Phrasing –&nbsp;orðalag</li>
+          <li>Embedded –&nbsp;innfellt</li>
+          <li>Interactive –&nbsp;gagnvirkt</li>
+        </ul>
+        <div class="paragraphs">
+          <p>
+            Þegar við skrifum HTML eru þetta elmentin sem við skoðum m.t.t.
+            merkingarfræði áður en við grípum eitthvað almennt. Til að aðstoða
+            við leit er gott að nota&nbsp;<a
+              href="https://html.spec.whatwg.org/multipage/dom.html#kinds-of-content"
+              >skilgreiningar&nbsp;W3C</a
+            >,&nbsp;<a href="https://html5doctor.com/element-index/"
+              >„HTML5 Element Index“ frá HTML5&nbsp;Doctor</a
+            >,&nbsp;<a
+              href="https://developer.mozilla.org/en/docs/Web/HTML/Element"
+              >„HTML element reference“ frá&nbsp;MDN</a
+            >
+            eða&nbsp;<a href="https://w3c.github.io/elements-of-html/"
+              >„The Elements of HTML“ frá&nbsp;W3C</a
+            >.
+          </p>
+        </div>
+        <h2 id="3.1">
+          <span>
+            <a href="#3.1">3.1</a>
+          </span>
+          Element&nbsp;hópar
+        </h2>
+
+        <h3 id="3.1.1">
+          <span>
+            <a href="#3.1.1">3.1.1</a>
+          </span>
+          Metadata –&nbsp;lýsigögn
+        </h3>
+        <div class="paragraphs">
+          <p>
+            Lýsigögn eru gögn sem skilgreina hvernig efni vefsíðu eigi að
+            birtast, tengir önnur gögn við hana (t.d. CSS skjöl) eða skilgreina
+            stöðu síðu í hópi síðna. Þessi gögn eru ekki birt notanda beint í
+            vafraglugganum. Lýsigögn eru oftast skilgreind
+            í&nbsp;<code>&lt;head&gt;</code>.
+          </p>
+          <p>
+            Til að mynda tengingu við önnur gögn notum
+            við&nbsp;<code>&lt;link&gt;</code>. Ef&nbsp;<code>rel</code>
+            attribute er sett þá einskorðast&nbsp;<code>&lt;link&gt;</code>
+            við&nbsp;<code>&lt;head&gt;</code>,&nbsp;t.d.
+          </p>
+        </div>
+        <ul>
+          <li>
+            <code>rel=&quot;stylesheet&quot;</code> skilgreinir CSS skrá sem
+            sækja skal og&nbsp;birta.
+          </li>
+          <li>
+            <code>rel=&quot;next&quot;</code> skilgreinir hvaða skjal sé næst í
+            röðinni, vafrar geta notað þetta sem tillögu að því að sækja það
+            skjal áður en notandi biður um það og þannig flýtt&nbsp;fyrir.
+          </li>
+          <li>
+            <code>rel=&quot;prefetch&quot;</code> stingur upp á við vafra að
+            sækja gögn á meðan HTML þáttun fer fram.&nbsp;
+          </li>
+          <li>
+            <code>rel=&quot;preload&quot;</code> skilgreinir að merkt
+            gagn&nbsp;<em>verði</em> að vera sótt sem fyrst, gerð gagnsins er
+            skilgreint með&nbsp;<code>as</code> attribute. Með því getum við
+            t.d. skipað vafra að sækja letur sem notað er sem fyrst og þannig
+            látið það birtast fyrr en seinna (annars væri letrið sótt eftir
+            CSS&nbsp;þáttun.)
+          </li>
+        </ul>
+        <div class="paragraphs">
+          <p>
+            Hægt er að setja inn skrá í rót vefsvæðis sem heitir&nbsp;<code
+              >favicon.ico</code
+            >
+            eða sem&nbsp;<code
+              >&lt;link rel=&quot;shortcut icon&quot;
+              href=&quot;/icon.png&quot;&gt;</code
+            >
+            til þess að fá fram þetta litla táknmynd sem situr yfirleitt vinsta
+            megin í stikunni í vöfrum. Ástæðan fyrir þessu má rekja allt aftur
+            til 1999 þegar þessari virkni var&nbsp;<a
+              href="http://thehistoryoftheweb.com/how-we-got-the-favicon/"
+              >hálfpartinn laumað inn í Internet Explorer&nbsp;5</a
+            >.
+          </p>
+          <p>
+            Fyrir almenn lýsigögn notum við&nbsp;<code>&lt;meta&gt;</code>. Við
+            höfum séð hvernig það er notað til að skilgreina stafasett. Við
+            getum líka sett inn önnur gögn en þá skilgreinum við bæði&nbsp;<code
+              >name</code
+            >
+            og&nbsp;<code>content</code> attribute. T.d. fyrir&nbsp;<code
+              >author</code
+            >
+            sem skilgreinir höfund síðu,&nbsp;<code>description</code> sem
+            skilgreinir almenna lýsingu eða&nbsp;<code>generator</code> sem
+            skilgreinir tól sem útbjó&nbsp;síðuna.
+          </p>
+          <p>
+            Til að vísa í JavaScript notum við&nbsp;<code>&lt;script&gt;</code>
+            sem annaðhvort inniheldur kóða og vísun í JavaScript skjal sem
+            inniheldur kóðann okkar. Ef við höfum texta innan elements verður sá
+            kóði keyrður þegar þáttari kemur að því. Ef&nbsp;<code>src</code>
+            attribute er skilgreint þá verður skjal sem vísað er í sótt, þáttað
+            og túlkað (kóðinn keyrður) áður en haldið er áfram, það er vegna
+            þess að JavaScript kóði gæti skrifað út HTML. Það er óæskilegt, en
+            möguleiki, svo vafrinn verður að bíða með HTML þáttun. Af þessari
+            ástæðu er&nbsp;<code>&lt;script&gt;</code> oft sett á undan lokatagi
+            fyrir&nbsp;<code>&lt;body&gt;</code>, þá getur vafri birt notanda
+            gögn áður en JavaScript er túlkað. Af sögulegum ástæðum getum við
+            ekki sjálflokað (e. self-closing)&nbsp;<code>&lt;script&gt;</code>
+            elementi, við verðum alltaf að loka með endatagi.&nbsp;
+          </p>
+          <p>Dæmi sem nýtir öll lýsigögn sem minnst er&nbsp;á:</p>
+        </div>
+        <div class="code code-html">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-meta">&lt;!doctype <span class="hljs-meta-keyword">html</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;is&quot;</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;author&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;NN&quot;</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="6"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;description&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;Dæmi um lýsigögn&quot;</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="7"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;styles.css&quot;</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="8"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;preload&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;font.woff2&quot;</span> <span class="hljs-attr">as</span>=<span class="hljs-string">&quot;font&quot;</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="9"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;shortcut icon&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;icon.png&quot;</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="10"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Halló heimur<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="11"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="12"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="13"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Hæ!<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="14"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;scripts.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="15"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="16"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></pre>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <h3 id="3.1.2">
+          <span>
+            <a href="#3.1.2">3.1.2</a>
+          </span>
+          Flow –&nbsp;flæði
+        </h3>
+        <div class="paragraphs">
+          <p>
+            Flest element sem við notum í meginmáli
+            vefs,&nbsp;<code>&lt;body&gt;</code>, eru&nbsp;<em>flæði</em>
+            element.
+          </p>
+          <p>
+            Nokkur element eru skilgreind sem flæði element og&nbsp;<em
+              >greinilegt</em
+            >
+            efni (e. palpable content) en fellur ekki í aðra flokka. Þessi
+            element innihalda önnur element sem annaðhvort flæði- eða orðalags
+            element. Helstu dæmi um þetta&nbsp;eru:
+          </p>
+        </div>
+        <ul>
+          <li>
+            <code>&lt;main&gt;</code> sem skilgreinir megin efni vefs, þetta
+            element ætti aðeins að koma fyrir einu sinni per&nbsp;vefsíðu.
+          </li>
+          <li>
+            <code>&lt;header&gt;</code> skilgreinir hóp af efni sem kynnir eða
+            veitir leiðsögn um&nbsp;efni
+          </li>
+          <li>
+            <code>&lt;footer&gt;</code> skilgreinir efni um það element sem það
+            er innihaldið í, tilgreinir t.d. höfund, tengt efni&nbsp;o.þ.h.
+          </li>
+          <li>
+            <code>&lt;pre&gt;</code>,&nbsp;<em>preformatted</em>, texti
+            innan&nbsp;<code>&lt;pre&gt;</code> er óstílaður af vafra og
+            viðheldur bilum og&nbsp;línubilum
+          </li>
+          <li>Töflur og listar, sjá nánar að&nbsp;neðan</li>
+        </ul>
+        <div class="paragraphs">
+          <p>
+            Annað element sem fellur undir greinilegt efni
+            er&nbsp;<code>&lt;div&gt;</code>. Þetta element hefur enga eiginlega
+            merkingu, merking þess er skilgreint af því sem það inniheldur. Oft
+            á tíðum grípum við til&nbsp;<code>&lt;div&gt;</code> þegar við
+            hugsum ekki til enda hvaða og hverskonar efni við erum að merkja,
+            oft eru önnur element sem henta&nbsp;betur.
+          </p>
+        </div>
+        <blockquote>
+          <p>
+            Authors are strongly encouraged to view the&nbsp;<code>div</code>
+            element as an element of last resort, for when no other element is
+            suitable. Use of more appropriate elements instead of the&nbsp;<code
+              >div</code
+            >
+            element leads to better accessibility for readers and easier
+            maintainability for authors.
+          </p>
+          <footer>
+            —&nbsp;<a
+              href="https://html.spec.whatwg.org/multipage/grouping-content.html#the-div-element"
+              >Grouping content: The div&nbsp;element</a
+            >
+          </footer>
+        </blockquote>
+
+        <h3 id="3.1.3">
+          <span>
+            <a href="#3.1.3">3.1.3</a>
+          </span>
+          Sectioning – kaflar og&nbsp;svæði
+        </h3>
+        <div class="paragraphs">
+          <p>
+            Við uppbyggingu á vef er æskilegt að skipta honum upp í kafla og
+            svæði eftir efnistökum. Kafla og svæða element hjálpa okkur við
+            það.&nbsp;
+          </p>
+          <p>
+            Til að skilgreina sjálfstætt efnisatriði innan síðu notum
+            við&nbsp;<code>&lt;article&gt;</code>. Þetta getur átt við grein,
+            athugasemd, eða sjálfstæð virkni innan síðu. Hvert og
+            eitt&nbsp;<code>&lt;article&gt;</code> element getur
+            innihaldið&nbsp;<code>&lt;header&gt;</code> og&nbsp;<code
+              >&lt;footer&gt;</code
+            >
+            element til að skilgreina fyrirsagnir og&nbsp;aukagögn.
+          </p>
+          <p>
+            Ef við höfum efni sem er að einhverju leiti skylt meginmáli en á þó
+            ekki við í því, getum við notað&nbsp;<code>&lt;aside&gt;</code> til
+            að draga það fram. Þetta gæti verið auglýsing sem fylgir efninu,
+            leiðarvísi um efni greinar eða útdregin tilvitnun (e.
+            pull&nbsp;quote).
+          </p>
+          <p>
+            Fyrir leiðarvísi á vef, eða innan síðu notum
+            við&nbsp;<code>&lt;nav&gt;</code>. Innan þess er yfirleitt
+            notaður&nbsp;<code>&lt;ul&gt;</code> listi (af óröðuðum
+            efnisatriðum) til þess að setja fram sjálft&nbsp;efnið.
+          </p>
+          <p>
+            Fyrir kafla innan skjals eða síðu notum
+            við&nbsp;<code>&lt;section&gt;</code>, það er yfirleitt notað til að
+            hópa saman efni undir&nbsp;fyrirsögn.
+          </p>
+          <p>
+            Áður fyrr voru&nbsp;<code>&lt;div&gt;</code> mikið notuð til að
+            útbúa þessa skiptingu,&nbsp;t.d.
+          </p>
+        </div>
+        <div class="code code-html">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;main&quot;</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;header&quot;</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td>
+                <pre>      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;nav&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="6"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;article&quot;</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="7"></td>
+              <td>
+                <pre>      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;section&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="8"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="9"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;footer&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="10"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="11"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></pre>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <p>en í dag getum við notað merkingarfræðilegri&nbsp;element:</p>
+        </div>
+        <div class="code code-html">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;<span class="hljs-name">main</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;<span class="hljs-name">header</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td>
+                <pre>      <span class="hljs-tag">&lt;<span class="hljs-name">nav</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">nav</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="6"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;<span class="hljs-name">article</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="7"></td>
+              <td>
+                <pre>      <span class="hljs-tag">&lt;<span class="hljs-name">section</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="8"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;/<span class="hljs-name">article</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="9"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;<span class="hljs-name">footer</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">footer</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="10"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;/<span class="hljs-name">main</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="11"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></pre>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <h3 id="3.1.4">
+          <span>
+            <a href="#3.1.4">3.1.4</a>
+          </span>
+          Heading –&nbsp;fyrirsagnir
+        </h3>
+        <div class="paragraphs">
+          <p>
+            Fyrir þau svæði og þá kafla sem við skilgreinum er æskilegt að setja
+            fyrirsagnir eins og þarf. Í HTML eru fyrirsagnir skilgreindar
+            frá&nbsp;<code>&lt;h1&gt;</code> til&nbsp;<code>&lt;h6&gt;</code>, í
+            minnkandi mikilvægisröð. Út frá þessu er hægt að skilgreina&nbsp;<em
+              >útlínu</em
+            >
+            fyrir vefinn okkar sem hægt væri að horfa á eins og
+            t.d.&nbsp;efnisyfirlit.
+          </p>
+          <p>
+            Merkingarfræðilega hefur&nbsp;<code>&lt;h1&gt;</code> mesta vægið og
+            skilgreinir aðalumfjöllunarefni vefs og ætti aðeins að nota einu
+            sinni per vefsíðu. Þetta getur skipt máli fyrir lesvafra og vélar
+            sem lesa vefina okkar. Þegar við byggum efni á vef ættum við að
+            skilgreina fyrirsagnir í röð og passa að&nbsp;<em>göt</em> myndist
+            ekki þar sem hoppað er yfir fyrirsögn, t.d. frá&nbsp;<code
+              >&lt;h1&gt;</code
+            >
+            í&nbsp;<code>&lt;h3&gt;</code>.
+          </p>
+        </div>
+        <div class="code code-html">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;<span class="hljs-name">main</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;<span class="hljs-name">article</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Aðalfyrirsögn, kemur fyrir einusinni<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;<span class="hljs-name">section</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td>
+                <pre>      <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>Kaflaheiti<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="6"></td>
+              <td>
+                <pre>      <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>Millifyrirsögn<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="7"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="8"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;<span class="hljs-name">section</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="9"></td>
+              <td>
+                <pre>      <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>Ónei, ég ætti að vera h2<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="10"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="11"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;/<span class="hljs-name">article</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="12"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;/<span class="hljs-name">main</span>&gt;</span></pre>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <h3 id="3.1.5">
+          <span>
+            <a href="#3.1.5">3.1.5</a>
+          </span>
+          Phrasing –&nbsp;orðalag
+        </h3>
+        <div class="paragraphs">
+          <p>
+            Texti vefsíðunnar samanstendur af orðalags elementum. Saman renna
+            elementin í setningar sem hafa mismikið af innri elementum, allt frá
+            málsgreinum sem aðeins inniheldur í texta yfir í málsgreinar sem
+            hafa orð og setningar með auknu væg og vísanir í annað&nbsp;efni.
+          </p>
+          <p>Helstu orðalags element sem við notum&nbsp;eru:</p>
+        </div>
+        <ul>
+          <li>
+            <code>&lt;p&gt;</code>, málsgrein, skilgreinir í flestum
+            tilfellum&nbsp;texta
+          </li>
+          <li><code>&lt;em&gt;</code>, leggur áherslu á&nbsp;texta</li>
+          <li><code>&lt;strong&gt;</code>, gefur texta mikið auka&nbsp;vægi</li>
+          <li>
+            <code>&lt;span&gt;</code>, merkir ekkert í sjálfu sér og er
+            skilgreint af börnum sínum, svipar til&nbsp;<code>&lt;div&gt;</code>
+          </li>
+          <li>
+            <code>&lt;code&gt;</code>, merkir forritunarkóða, bæði brot og heilu
+            forritin, þá oftast innan&nbsp;<code>&lt;pre&gt;</code>
+          </li>
+          <li>
+            <code>&lt;br&gt;</code>, línubil sem bera merkingu, t.d. í ljóðum.
+            Ættum ekki að nota til að mynda sýnileg bil á milli texta, til þess
+            notum við&nbsp;<code>&lt;p&gt;</code>, eða bil sem eru útlitslegs
+            eðlis, til þess er&nbsp;CSS.
+          </li>
+          <li>
+            <em>Texti</em>, texti án merkingar innan elementa, t.d.&nbsp;<code
+              >&lt;body&gt;halló&lt;/body&gt;</code
+            >
+          </li>
+        </ul>
+        <div class="paragraphs"><p>Önnur sem við notum&nbsp;minna:</p></div>
+        <ul>
+          <li>
+            <code>&lt;b&gt;</code>, þýddi áður fyrr bold en hefur verið
+            endurskilgreint til að draga athygli að texta án þess að gefa honum
+            aukið&nbsp;vægi
+          </li>
+          <li>
+            <code>&lt;i&gt;</code>, þýddi áður fyrr italic en hefur verið
+            endurskilgreint til að skilgreina texta „í annari rödd“ eða til að
+            merkja texta í öðru&nbsp;máli
+          </li>
+        </ul>
+
+        <h3 id="3.1.6">
+          <span>
+            <a href="#3.1.6">3.1.6</a>
+          </span>
+          Embedded –&nbsp;innfellt
+        </h3>
+        <div class="paragraphs">
+          <p>
+            Þegar við bætum við efni sem kemur annarsstaðar frá, t.d. myndir eða
+            vídeó, þá notum við innfelld (e. embedded) element, endanlegur listi
+            af þeim (í ágúst 2020)&nbsp;er:
+          </p>
+        </div>
+        <ul>
+          <li>
+            <code>&lt;audio&gt;</code>, fyrir hljóð eða hljóðstraum sem vísað er
+            í með&nbsp;<code>src</code> attribute. Efni innan elements er ekki
+            birt nema vafri eða tæki styðji
+            ekki&nbsp;<code>&lt;audio&gt;</code>.
+          </li>
+          <li>
+            <code>&lt;canvas&gt;</code>, skilgreinir stað þar sem JavaScript
+            forrit geta birt myndrænt efni, t.d. myndir, gröf, leiki eða
+            þrívítt&nbsp;efni.
+          </li>
+          <li>
+            <code>&lt;embed&gt;</code>, fellir inn efni sem yfirleitt er ekki
+            „vef“ efni, t.d. úr öðrum forritum eins og Java. Lítið&nbsp;notað.
+          </li>
+          <li>
+            <code>&lt;iframe&gt;</code>, fellir inn aðra vefsíðu eða vef, vísað
+            í með&nbsp;<code>src</code> attribute, innan núverandi&nbsp;síðu.
+          </li>
+          <li>
+            <code>&lt;img&gt;</code> bætir mynd við, vísað í með&nbsp;<code
+              >src</code
+            >
+            attribute.
+          </li>
+          <li>
+            <code>&lt;math&gt;</code>, bætir við&nbsp;<code>MathML</code>
+            formúlum. Mismunandi stuðningur er meðal vafra, t.d. styður Firefox
+            flest alla virkni á meðan Chrome styður ekkert (í ágúst&nbsp;2020).
+          </li>
+          <li>
+            <code>&lt;object&gt;</code> bætir við utanaðkomandi auðlind, sem
+            gæti verið meðhöndluð af vafra ef þekkt eða sem plugin (t.d. Flash).
+            Svipar til&nbsp;<code>&lt;embed&gt;</code> og er lítið&nbsp;notað.
+          </li>
+          <li>
+            <code>&lt;picture&gt;</code>, leyfir ítarlegri stjórn yfir því
+            hvernig mynd er felld inn í síðu, getur birt mismunandi myndir eftir
+            því hve stór skjár er o.þ.h. Þarf alltaf að skilgreina nákvæmlega
+            eitt&nbsp;<code>&lt;img&gt;</code> element sem sér um birtingu
+            á&nbsp;myndinni.
+          </li>
+          <li>
+            <code>&lt;svg&gt;</code>, bætir við SVG (Scalable Vector Graphic)
+            mynd. SVG er myndbirtingaform fyrir skalanlegar myndir (breidd og
+            hæð skipta ekki máli) skilgreint með&nbsp;XML.
+          </li>
+          <li>
+            <code>&lt;video&gt;</code> bætir myndbandi við. Efni innan elements
+            er ekki birt nema vafri eða tæki styðji
+            ekki&nbsp;<code>&lt;video&gt;</code>.
+          </li>
+        </ul>
+        <div class="paragraphs">
+          <p>
+            Fyrir&nbsp;<code>&lt;audio&gt;</code>,&nbsp;<code
+              >&lt;video&gt;</code
+            >
+            og&nbsp;<code>&lt;picture&gt;</code> er hægt að vísa í fleiri
+            en&nbsp;<em>auðlind</em> (e. resource). T.d. mismunandi kóðaðar
+            vídeó skrár&nbsp;(<code>.mov</code>,&nbsp;<code>.webm</code>
+            eða&nbsp;<code>.mp4</code>) eða mismunandi myndir
+            fyrir&nbsp;<code>&lt;picture&gt;</code>.
+          </p>
+        </div>
+        <h3 id="3.1.7">
+          <span>
+            <a href="#3.1.7">3.1.7</a>
+          </span>
+          Interactive –&nbsp;gagnvirkt
+        </h3>
+        <div class="paragraphs">
+          <p>
+            Sum element eru, eða geta verið, gagnvirk fyrir notanda,&nbsp;t.d.:
+          </p>
+        </div>
+        <ul>
+          <li>
+            <code>&lt;a&gt;</code> (anchor) með&nbsp;<code>href</code> attribute
+            tengir vefi saman, er tengill (e. hyperlink) og grunnurinn að
+            útfærslu&nbsp;<em>HyperText</em>. Hægt er að nota&nbsp;<code
+              >target=&quot;_blank&quot;</code
+            >
+            global attribute til þess að láta tengil opnast í nýjum glugga. Ef
+            við höfum&nbsp;<code>download</code> attribute á tengli mun notanda
+            vera boðið að hlaða efni niður í stað að vafri fari að&nbsp;því.
+          </li>
+          <li>
+            <code>&lt;audio&gt;</code> og&nbsp;<code>&lt;video&gt;</code> geta
+            skilgreint stýri attribute og eru þá gagnvirk (spila,
+            stoppa&nbsp;o.s.fr.)
+          </li>
+          <li>
+            <code>&lt;input&gt;</code> taka við gögnum frá notenda, sérstaklega
+            í formum, sjá nánar að&nbsp;neðan.
+          </li>
+        </ul>
+        <div class="paragraphs">
+          <p>
+            Þau attribute sem við getum sett á&nbsp;<code>&lt;audio&gt;</code>
+            og&nbsp;<code>&lt;video&gt;</code> eru&nbsp;t.d.
+          </p>
+        </div>
+        <ul>
+          <li>
+            <code>autoplay</code> ef við viljum byrja að spila efni strax og
+            búið er að hlaða því&nbsp;inn
+          </li>
+          <li>
+            <code>loop</code> ef byrja á samstundis aftur að spila efni eftir að
+            það&nbsp;klárast
+          </li>
+          <li>
+            <code>muted</code> ef notandi þarf að kveikja á hljóði, á vel við ef
+            við ætlum að nýta&nbsp;<code>autoplay</code>
+          </li>
+          <li>
+            <code>controls</code> ef við viljum sýna sjálfgefnu stýringar sem
+            vafri býður upp. Þessar stýringar eru mismunandi eftir&nbsp;vöfrum
+          </li>
+        </ul>
+        <hr />
+
+        <h2 id="3.2">
+          <span>
+            <a href="#3.2">3.2</a>
+          </span>
+          Listar
+        </h2>
+        <div class="paragraphs">
+          <p>
+            Nokkur element skilgreina lista af efni og eru flæði (e. flow) og
+            greinileg element (e.&nbsp;palpable).
+          </p>
+          <p>
+            Til að lýsa röðuðum lista (e. ordered list) af efni notum
+            við&nbsp;<code>&lt;ol&gt;</code>. Ef&nbsp;<code>reversed</code>
+            attribute er skilgreint á listanum eru atriði í lækkandi röð, annars
+            í hækkandi röð. Til að tilgreina annað byrjunargildi en&nbsp;<code
+              >1</code
+            >
+            getum við skilgreint heiltölugildi í&nbsp;<code>value</code>
+            attributeinu.
+          </p>
+          <p>
+            Til að breyta birtingu á merki getum við sett&nbsp;<code>type</code>
+            attribute, sem t.d.&nbsp;<code>decimal</code>
+            (sjálfgefið),&nbsp;<code>lower-alpha</code>
+            (a-z),&nbsp;<code>upper-alpha</code>(A-Z),&nbsp;<code
+              >lower-roman</code
+            >
+            (i-x), eða&nbsp;<code>upper-roman</code> (I-X). Einnig er hægt að
+            breyta merkinu með&nbsp;CSS.
+          </p>
+        </div>
+        <div class="code code-html">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;<span class="hljs-name">ol</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Læra vefforritun<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>???<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;99&quot;</span>&gt;</span>Gróði!<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;/<span class="hljs-name">ol</span>&gt;</span></pre>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <p>
+            Fyrir óraðaða (e. unordered list) lista af efni notum
+            við&nbsp;<code>&lt;ul&gt;</code>. Litið er svo á að breyting á röð
+            barna skipti engu máli fyrir málfræðilega merkingu&nbsp;listans.
+          </p>
+          <p>
+            Til að merkja atriði í&nbsp;<code>&lt;ol&gt;</code> eða&nbsp;<code
+              >&lt;ul&gt;</code
+            >
+            listum notum við&nbsp;<code>&lt;li&gt;</code> elementið. Ef það er
+            innan&nbsp;<code>&lt;ol&gt;</code> lista og þarf að skilgreina númer
+            sitt notum við&nbsp;<code>value</code> attribute
+            með&nbsp;heiltölugildi.
+          </p>
+          <p>
+            Oftast
+            er&nbsp;<code>&lt;nav&gt;</code>,&nbsp;<code>&lt;ul&gt;</code>,&nbsp;<code>&lt;li&gt;</code>,
+            og&nbsp;<code>&lt;a&gt;</code> notað saman til að
+            útbúa&nbsp;valmynd:
+          </p>
+        </div>
+        <div class="code code-html">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;<span class="hljs-name">nav</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;/&quot;</span>&gt;</span>Forsíða<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;/about&quot;</span>&gt;</span>Um<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="6"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;/<span class="hljs-name">nav</span>&gt;</span></pre>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <p>
+            Fyrir nafngildis (e. name value) lista notum við&nbsp;<code
+              >&lt;dl&gt;</code
+            >
+            (description list). Við skilgreinum eitt eða fleiri nöfn
+            með&nbsp;<code>&lt;dt&gt;</code> (term) og fylgjum því á eftir með
+            einu eða fleiri gildum&nbsp;<code>&lt;dd&gt;</code> (definition).
+            Þetta getum við notað til að merkja t.d. t.d. skilgreiningar,
+            spurningar &amp; svör, eða&nbsp;atriðaskrá.
+          </p>
+        </div>
+        <div class="code code-html">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;<span class="hljs-name">dl</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;<span class="hljs-name">dt</span>&gt;</span>HTML<span class="hljs-tag">&lt;/<span class="hljs-name">dt</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;<span class="hljs-name">dd</span>&gt;</span>HyperText Markup Language<span class="hljs-tag">&lt;/<span class="hljs-name">dd</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;<span class="hljs-name">dd</span>&gt;</span>Búið til af Tim Berners-Lee<span class="hljs-tag">&lt;/<span class="hljs-name">dd</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;/<span class="hljs-name">dl</span>&gt;</span></pre>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <h2 id="3.3">
+          <span>
+            <a href="#3.3">3.3</a>
+          </span>
+          Töflur
+        </h2>
+        <div class="paragraphs">
+          <p>
+            Að vinna með töfluleg gögn krefst aðeins flóknari uppsetningar en á
+            öðrum gögnum í HTML. Skilgreina þarf töflu, dálka, raði, gagnareiti
+            (e. cell) og hugsanlega fót eða samantekt. Mælst er til að hafa
+            lýsingu á töflum til að auðvelda lestur&nbsp;gagnanna.
+          </p>
+        </div>
+        <ul>
+          <li>
+            <code>&lt;table&gt;</code> skilgreinir töflu af gögnum í fleiri en
+            einni&nbsp;vídd.
+          </li>
+          <li>
+            <code>&lt;caption&gt;</code> lýsir gögnum í töflu og samhengi
+            þeirra, getur auðveldað töluvert að lesa úr&nbsp;gögnum.
+          </li>
+          <li>
+            <code>&lt;thead&gt;</code> hópar saman röðum sem skilgreina
+            fyrirsagnir dálka í&nbsp;töflu.
+          </li>
+          <li>
+            <code>&lt;tbody&gt;</code> hópar saman röðum sem skilgreina
+            meginmál&nbsp;töflu.
+          </li>
+          <li>
+            <code>&lt;tfoot&gt;</code> hópar saman röðum sem skilgreina „fót“
+            töflu, samantekt, t.d.&nbsp;samtölur.
+          </li>
+          <li><code>&lt;tr&gt;</code> skilgreinir röð í&nbsp;töflu.</li>
+          <li>
+            <code>&lt;th&gt;</code> skilgreinir gagnareit sem er fyrirsögn,
+            annaðhvort í röð (þá í byjun&nbsp;<code>&lt;tr&gt;</code>) eða dálks
+            (þá í röð af fyrirsögnum innan&nbsp;<code>&lt;thead&gt;</code>. Ef
+            element á við röð skilgreinum
+            við&nbsp;<code>scope=&quot;row&quot;</code>,
+            annars&nbsp;<code>scope=&quot;col&quot;</code>.
+          </li>
+          <li>
+            <code>&lt;td&gt;</code> skilgreinir gagnareit í röð og&nbsp;dálk.
+          </li>
+        </ul>
+        <div class="paragraphs">
+          <p>
+            Fyrir bæði&nbsp;<code>&lt;th&gt;</code> og&nbsp;<code
+              >&lt;td&gt;</code
+            >
+            getum við skilgreint að gagnareiturinn nái yfir marga dálka eða
+            margar&nbsp;raðir:
+          </p>
+        </div>
+        <ul>
+          <li>
+            <code>colspan</code> á&nbsp;<code>&lt;th&gt;</code> og&nbsp;<code
+              >&lt;td&gt;</code
+            >
+            — tala, stærri en 0 sem skilgreinir hversu marga dálka
+            reitur&nbsp;nær
+          </li>
+          <li>
+            <code>rowspan</code> á&nbsp;<code>&lt;th&gt;</code> og&nbsp;<code
+              >&lt;td&gt;</code
+            >
+            — tala, stærri en 0 sem skilgreinir hversu margar raðir
+            reitur&nbsp;nær
+          </li>
+        </ul>
+
+        <div class="code code-html">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;<span class="hljs-name">table</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;<span class="hljs-name">caption</span>&gt;</span>Reikningur fyrir kaupum.<span class="hljs-tag">&lt;/<span class="hljs-name">caption</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;<span class="hljs-name">thead</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td>
+                <pre>      <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">&quot;col&quot;</span>&gt;</span>Vara<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="6"></td>
+              <td>
+                <pre>      <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">&quot;col&quot;</span>&gt;</span>Lýsing<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="7"></td>
+              <td>
+                <pre>      <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">&quot;col&quot;</span>&gt;</span>Verð<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="8"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="9"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;/<span class="hljs-name">thead</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="10"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;<span class="hljs-name">tbody</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="11"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="12"></td>
+              <td>
+                <pre>      <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">&quot;row&quot;</span>&gt;</span>Sími<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="13"></td>
+              <td>
+                <pre>      <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>Frábær sími!<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="14"></td>
+              <td>
+                <pre>      <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>150.000 kr.-<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="15"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="16"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="17"></td>
+              <td>
+                <pre>      <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">&quot;row&quot;</span>&gt;</span>Tölva<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="18"></td>
+              <td>
+                <pre>      <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>Geggjuð<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="19"></td>
+              <td>
+                <pre>      <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>100.000 kr.-<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="20"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="21"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;/<span class="hljs-name">tbody</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="22"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;<span class="hljs-name">tfoot</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="23"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="24"></td>
+              <td>
+                <pre>      <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">colspan</span>=<span class="hljs-string">&quot;2&quot;</span>&gt;</span>Samtals<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="25"></td>
+              <td>
+                <pre>      <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>250.000 kr.-<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="26"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="27"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;/<span class="hljs-name">tfoot</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="28"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span></pre>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <h2 id="3.4">
+          <span>
+            <a href="#3.4">3.4</a>
+          </span>
+          Form
+        </h2>
+        <div class="paragraphs">
+          <p>
+            Þegar við viljum fá upplýsingar frá notanda notum við yfirleitt
+            form. Þau leyfa okkur að skilgreina mismunandi tegundir af leiðum
+            til að skrá gögn ásamt aðferðum til að sannreyna þau að einhverju
+            leyti áður en þau eru&nbsp;send.
+          </p>
+          <p>
+            Til að skilgreina form notum við&nbsp;<code>&lt;form&gt;</code> sem
+            skilgreinir safn af elementum sem safna gögnum sem hægt er að vinna
+            með og senda á bakenda til&nbsp;úrvinnslu.
+          </p>
+          <p>
+            Hvernig gögnin eru send er skilgreint með&nbsp;<code>method</code>
+            sem er annað hvort&nbsp;<code>get</code> eða&nbsp;<code>post</code>
+            eftir því hvaða HTTP „sögn“ við viljum nota (sjá HTTP). Ef við
+            notum&nbsp;<code>get</code> eru allar breytur og gögn sett í
+            query-streng, annars eru þau kóðuð skv. skilgreindu&nbsp;<code
+              >enctype</code
+            >
+            þegar þau eru send á bakenda. Þumalputtan varðandi hvort við
+            notum&nbsp;er:
+          </p>
+        </div>
+        <ul>
+          <li>
+            <code>get</code> ef niðurstaða þess að senda formið ætti að vera
+            aðgengileg sérstaklega, t.d. ef við framkvæmum leit
+            með&nbsp;<code>get</code>, þá verður leitarstrengur aðgengilegur
+            (t.d.&nbsp;<code>/search?query=efni</code>)
+          </li>
+          <li>
+            <code>post</code> ef gögnin ættu ekki að vera aðgengileg eftir að
+            þau eru send, t.d. skráningar form eða&nbsp;innskráningform.
+          </li>
+        </ul>
+        <div class="paragraphs">
+          <p>
+            Hvert gögnin fara er skilgreint með&nbsp;<code>action</code> sem er
+            URL. Hvernig gögnin eru kóðuð þegar um&nbsp;<code
+              >method=&quot;post&quot;</code
+            >
+            er notað, skilgreinum við með&nbsp;<code>enctype</code>:
+          </p>
+        </div>
+        <ul>
+          <li>
+            <code>application/x-www-form-urlencoded</code> er sjálfgefið en þá
+            eru gögn&nbsp;<em>URL&nbsp;enkóðuð</em>.
+          </li>
+          <li>
+            <code>text/plain</code>, ekki er átt við gögnin, þau eru sett
+            sem&nbsp;<code>key=value</code> með&nbsp;<code>\n</code> á
+            milli&nbsp;reita
+          </li>
+          <li>
+            <code>multipart/form-data</code>, gögnum er&nbsp;<em>streymt</em>
+            yfir með&nbsp;<em>boundaries</em>, notum þegar við höfum&nbsp;<code
+              >&lt;input type=&quot;file&quot;&gt;</code
+            >
+            element og ætlum að taka við skrám frá&nbsp;notanda.
+          </li>
+        </ul>
+
+        <h3 id="3.4.1">
+          <span>
+            <a href="#3.4.1">3.4.1</a>
+          </span>
+          Að taka við gögnum frá&nbsp;notanda
+        </h3>
+        <div class="paragraphs">
+          <p>
+            Til að taka við gögnum notum við&nbsp;<code>&lt;input&gt;</code> sem
+            er gagna reitur sem leyfir notanda að slá inn eða eiga við gögn,
+            hefur nokkur&nbsp;<code>attribute</code>,&nbsp;t.d.:
+          </p>
+        </div>
+        <ul>
+          <li>
+            <code>disabled</code> hvort hægt sé að skrá gögn eða&nbsp;ekki.
+          </li>
+          <li>
+            <code>name</code> sem segir til um hvað þessi reitur heitir, mætti
+            hugsa sem breytunafn, notum á bakenda til að ná í gögn
+            frá&nbsp;notanda.
+          </li>
+          <li>
+            <code>pattern</code> er regluleg segð (e. regular expression) sem
+            skilgreinir hvernig gildi skuli&nbsp;formað.
+          </li>
+          <li>
+            <code>placeholder</code> fyrir texta sem er til staðar þar til
+            eitthvað er slegið&nbsp;inn.
+          </li>
+          <li>
+            <code>required</code> ef innsláttar krafist. Þetta er þó ekki öruggt
+            og nægileg vörn gegn því að notandi sendi inn eitthvað óæskilegt.
+            Það er auðvelt að breyta þessu með „dev&nbsp;tools“.
+          </li>
+          <li>
+            <code>type</code> sem skilgreinir hvernig reitur þetta&nbsp;er.
+          </li>
+          <li>
+            <code>value</code> ef reiturinn á að innihalda gildi í&nbsp;byrjun.
+          </li>
+        </ul>
+        <div class="paragraphs">
+          <p>
+            Fyrir&nbsp;<code>type</code> höfum við eftirfarandi gildi (ekki
+            tæmandi&nbsp;listi):
+          </p>
+        </div>
+        <ul>
+          <li><code>text</code> fyrir einfaldan&nbsp;texta.</li>
+          <li>
+            <code>password</code> fyrir reit sem sýnir ekki textann sem hefur
+            verið sleginn&nbsp;inn.
+          </li>
+          <li>
+            <code>radio</code> reitur, aðeins hægt að velja eitt gildi úr
+            tæmandi lista, þar sem hvert gildi hefur
+            sama&nbsp;<code>name</code>, sjá dæmi að&nbsp;neðan.
+          </li>
+          <li>
+            <code>checkbox</code> fyrir reit sem er annaðhvort af eða á,
+            fyrir&nbsp;<code>boolean</code> gildi.
+          </li>
+          <li>
+            <code>file</code> fyrir reit sem býður upp á að velja skrá sem skal
+            senda á&nbsp;vefþjón.
+          </li>
+          <li>
+            <code>submit</code> til að senda formið á skilgreint&nbsp;<code
+              >action</code
+            >
+            með&nbsp;<code>method</code>, einnig hægt að nota&nbsp;<code
+              >&lt;button&gt;</code
+            >
+            innan&nbsp;<code>&lt;form&gt;</code>.
+          </li>
+        </ul>
+        <div class="paragraphs">
+          <p>
+            Aðrar týpur eru
+            t.d.&nbsp;<code>search</code>,&nbsp;<code>email</code>,&nbsp;<code>url</code>,&nbsp;<code>tel</code>,&nbsp;<code>range</code>,&nbsp;<code
+              >date</code
+            >
+            o.fl. sem vafri mun nýta til að bjóða upp á viðeigandi viðmót fyrir
+            innslátt, eða ef það er ekki stutt, birta eins og um&nbsp;<code
+              >text</code
+            >
+            væri að&nbsp;ræða.
+          </p>
+          <p>
+            Ef við viljum taka við mörgum línum af texta notum
+            við&nbsp;<code>&lt;textarea&gt;</code>.&nbsp;<code>cols</code>
+            skilgreinir fjölda stafa per línu,&nbsp;<code>rows</code> fjölda
+            lína sem skal sýna. Öll börn innan&nbsp;<code
+              >&lt;textarea&gt;</code
+            >
+            birtast sem breytanlegur texti, þar með talið allt&nbsp;HTML.
+          </p>
+          <p>
+            Til þess að útbúa fellilista (e. drop-down list) notum
+            við&nbsp;<code>&lt;select&gt;</code>. Hvert gildi sem hægt er að
+            velja er skilgreint í&nbsp;<code>&lt;option&gt;</code> elementi sem
+            er barn&nbsp;<code>&lt;select&gt;</code>. Ef hægt á að vera að velja
+            fleiri en eitt atriði úr listanum er&nbsp;<code>multiple</code>
+            attribute&nbsp;notað.
+          </p>
+          <p>
+            Til að merkja reiti notum við&nbsp;<code>&lt;label&gt;</code> sem
+            merkir heiti
+            við&nbsp;<code>&lt;input&gt;</code>,&nbsp;<code>&lt;select&gt;</code>,&nbsp;<code
+              >&lt;textarea&gt;</code
+            >
+            eða aðra reiti. Ef&nbsp;<code>&lt;label&gt;</code> element
+            inniheldur viðeigandi element er nóg að velja/smella heitið til að
+            færa&nbsp;<em>fókus</em> í innsetningu. Ef element eru aðskilin
+            notum við&nbsp;<code>for</code> attribute á&nbsp;<code
+              >&lt;label&gt;</code
+            >
+            þar sem gildið er&nbsp;<code>id</code>
+            á&nbsp;<code>&lt;input&gt;</code>,&nbsp;<code
+              >&lt;textarea&gt;</code
+            >
+            eða&nbsp;<code>&lt;select&gt;</code> elementi. Við
+            ættum&nbsp;<strong>alltaf</strong> að skilgreina&nbsp;<code
+              >&lt;label&gt;</code
+            >
+            þegar við vinnum með form til að auka aðgengi&nbsp;þeirra.
+          </p>
+          <p>
+            Fyrir flóknari form getum við notað&nbsp;<code
+              >&lt;fieldset&gt;</code
+            >
+            til að hópa hluta forms saman, t.d. fyrir persónuupplýsingar. Fyrir
+            hvert&nbsp;<code>&lt;fieldset&gt;</code> getum við skilgreint
+            fyrirsögn með&nbsp;<code>&lt;legend&gt;</code>, vafrar hafa
+            sjálfgefna birtingu á því hvernig þetta er birt en við getum breytt
+            því með&nbsp;CSS.
+          </p>
+          <p>
+            Oftast höfum við a.m.k. einn takka í formunum okkar, takka sem
+            sendir gögnin áfram, til þess notum
+            við&nbsp;<code>&lt;button&gt;</code>. Einnig er hægt að
+            skilgreina&nbsp;<code>type=&quot;rest&quot;</code> til að útbúa
+            takka sem endurstillir form, færir alla reiti í&nbsp;upphafsstöðu.
+          </p>
+        </div>
+        <div class="code code-html">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&quot;/skraning&quot;</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;post&quot;</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;<span class="hljs-name">fieldset</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;<span class="hljs-name">legend</span>&gt;</span>Persónuupplýsingar<span class="hljs-tag">&lt;/<span class="hljs-name">legend</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td><pre>      Nafn:</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="6"></td>
+              <td>
+                <pre>      <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;name&quot;</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="7"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="8"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="9"></td>
+              <td><pre>      Sími:</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="10"></td>
+              <td>
+                <pre>      <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;phone&quot;</span>  <span class="hljs-attr">placeholder</span>=<span class="hljs-string">&quot;000-0000&quot;</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="11"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="12"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="13"></td>
+              <td>
+                <pre>      <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;comment&quot;</span>&gt;</span>Athugasemdir:<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="14"></td>
+              <td>
+                <pre>      <span class="hljs-tag">&lt;<span class="hljs-name">textarea</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;comment&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;comment&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">textarea</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="15"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="16"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;/<span class="hljs-name">fieldset</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="17"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;<span class="hljs-name">fieldset</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="18"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;<span class="hljs-name">legend</span>&gt;</span>Uppáhalds litur<span class="hljs-tag">&lt;/<span class="hljs-name">legend</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="19"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;color&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;radio&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;red&quot;</span>&gt;</span> Rauður<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="20"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;color&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;radio&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;green&quot;</span>&gt;</span> Grænn<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="21"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;/<span class="hljs-name">fieldset</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="22"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="23"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;reset&quot;</span>&gt;</span>Byrja upp á nýtt<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="24"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;<span class="hljs-name">button</span>&gt;</span>Senda<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="25"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span></pre>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <h2 id="3.5">
+          <span>
+            <a href="#3.5">3.5</a>
+          </span>
+          Merkingarfræði
+        </h2>
+        <div class="paragraphs">
+          <p>
+            Merkingarfræðilegt HTML er þegar við nýtum skilgreinda merkingu
+            þeirra elementa sem til eru í stað þess að nota element sem láta
+            efnið okkar líta „rétt“ út. T.d. væri ekki æskilegt að
+            nota&nbsp;<code>&lt;strong&gt;</code> til að láta texta&nbsp;<em
+              >líta út&nbsp;fyrir</em
+            >
+            að vera fyrirsögn, við notum&nbsp;<code>&lt;h3&gt;</code>
+            eða&nbsp;álíka.
+          </p>
+          <p>
+            Það er sterklega mælst til þess að markup í HTML skjali sé aðeins
+            notað til að tjá merkingu en ekki framsetningu. Framsetningu á
+            gögnum er stýrt með CSS og fáum við því hreina skiptingu á milli
+            efnis og útlits. Mörg element eru til sem skilgreina merkingu en
+            annars er hægt að nota attributes (sér í lagi&nbsp;<code
+              >class</code
+            >
+            sem tengist beint yfir í CSS) til að ljá þeim frekari&nbsp;merkingu.
+          </p>
+          <p>
+            Með því skilja á milli merkingar og útlits er auðveldara að breyta
+            öðru án þess að hafa áhrif á hitt. Þetta getur einfaldað okkur
+            viðhald og gert breytingar ódýrari en þær annars gætu verið.
+            Merkingarfræði getur líka aukið aðgengi að vefnum okkar, bæði fyrir
+            einstaklinga sem nota lesvafra eða álíka og einnig fyrir&nbsp;<em
+              >vélar</em
+            >
+            sem heimsækja vefinn okkar. Þessar vélar skoða vefinn okkar og draga
+            ályktanir um efnið út frá því hvaða element eru notuð. T.d.
+            Googlebot, Pocket eða Instapaper. Vafrinn sem túlkar efnið gæti líka
+            nýtt merkingarfræði okkar til að birta efnið á nytsamlegan hátt sem
+            höfundi hefði ekki dottið í hug. Að lokum notum við
+            merkingarfræðilegt HTML því það er&nbsp;<em>snyrtilegra</em>
+            og&nbsp;<em>faglegra</em>.
+          </p>
+          <p>
+            Áður fyrr þegar við höfðum ekki HTML og CSS, var merkingu og
+            framsetningu blandað óhikað saman. Töflur ásamt
+            ósýnilegum&nbsp;<code>1x1</code>
+            myndum&nbsp;(<em>spacer&nbsp;gifs</em>) voru notaðar til að stýra
+            útliti,&nbsp;<code>&lt;FONT&gt;</code> elementið var eina leiðin til
+            að stýra stærð og lit á letri, t.d. með&nbsp;<code
+              >&lt;FONT size=&quot;12&quot; color=&quot;red&quot;
+              face=&quot;Comic Sans MS&quot;&gt;Halló heimur!&lt;/FONT&gt;</code
+            >
+            sem gerði það að verkum að við fastsettum birtingu&nbsp;<em
+              >í merkingu&nbsp;skjals</em
+            >
+            þegar hún ætti að vera&nbsp;óháð.
+          </p>
+          <p>
+            Í dag er búið að fjarlægja öll þau element sem breyttu útliti vefs,
+            eins og&nbsp;<code>&lt;center&gt;</code>
+            og&nbsp;<code>&lt;font&gt;</code>. Einnig er búið að fjarlægja
+            attribute af sama meiði, t.d.&nbsp;<code>align</code>,&nbsp;<code
+              >background</code
+            >
+            og&nbsp;<code>bgcolor</code>.
+          </p>
+          <p>
+            Þegar við skrifum HTML, þá skrifum við þannig að það beri merkingu.
+            Við stýrum framsetningu með CSS og reynum eins og við getum að
+            viðhalda hreinni skiptingu milli efnis og&nbsp;útlits.
+          </p>
+        </div>
+        <h3 id="3.5.1">
+          <span>
+            <a href="#3.5.1">3.5.1</a>
+          </span>
+          Merkingarfræðileg&nbsp;siðvendni
+        </h3>
+        <div class="paragraphs">
+          <p>
+            Elementin&nbsp;<code>&lt;div&gt;</code> og&nbsp;<code
+              >&lt;span&gt;</code
+            >
+            bera í eðli sínu ekki neina merkingu, þau hópa efni saman og draga
+            merkingu sína frá börnum sínum. Þó svo að þessi element beri enga
+            merkingu notum við þau samt. Við höfum í huga að merkingarfræði
+            skiptir máli og reynum að finna element sem passar við efnið okkar,
+            en eyðum ekki of löngum tíma í að finna hið eina rétta element,
+            notum&nbsp;<code>&lt;div&gt;</code> ef svo ber við, við&nbsp;
+          </p>
+        </div>
+        <h2 id="3.6">
+          <span>
+            <a href="#3.6">3.6</a>
+          </span>
+          Framtíðin fyrir&nbsp;HTML
+        </h2>
+        <div class="paragraphs">
+          <p>
+            Vefurinn er rétt að byrja en hefur samt nú þegar breytt svo miklu.
+            Við sem vinnum við hann munum halda áfram að sjá breytingar, bæði í
+            því hvernig hann breytir þjóðfélaginu okkur og hvernig tæknin smám
+            saman breytist. Vafrar munu halda áfram að batna, möguleikar til að
+            birta flóknari og flóknari hluti mun aukast, þrívíð grafík
+            með&nbsp;<a
+              href="https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API"
+              >WebGL</a
+            >, sýndarveruleiki með&nbsp;<a href="https://webvr.info/">WebVR</a>
+            og eitthvað sem okkur hefur ekki ennþá dreymt&nbsp;um.
+          </p>
+        </div>
+        <blockquote>
+          <p>
+            The web we have right now is beautiful. It shatters the tyranny of
+            distance. It opens the libraries of the world to you. It gives you a
+            way to bear witness to people half a world away, in your own words.
+            It is full of cats. We built it by accident, yet already we&#39;re
+            taking it for granted. We should fight to keep&nbsp;it!
+          </p>
+          <footer>
+            — Maciej Cegłowski:&nbsp;<a
+              href="http://idlewords.com/talks/web_design_first_100_years.htm"
+              >Web Design: The First 100&nbsp;Years</a
+            >
+          </footer>
+        </blockquote>
+      </article>
+
+      <footer>
+        <nav>
+          <ul>
+            <li class="prev">
+              <p><a href="./01.html.html">Að skrifa&nbsp;HTML</a></p>
+            </li>
+            <li class="index"><a href="/">Efnisyfirlit</a></li>
+            <li class="next">
+              <p><a href="./04.adgengi.html">Aðgengi</a></p>
+            </li>
+          </ul>
+        </nav>
+        <hr />
+        <div class="version">Útgáfa 0.3, ágúst 2020</div>
+      </footer>
+    </main>
+  </body>
+</html>

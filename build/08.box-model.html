@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<!--
+Velkominn ferðalangur, bakvið tjöldin, í uppsprettuna.
+Þetta HTML er sjálfkrafa útbúið út frá Markdown skjölum.
+Sjá nánar:
+https://github.com/vefforritun/book
+-->
+<html lang="is">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vefforitun—Kafli 8: Box model</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Kafli 8: Box model</h1>
+      </header>
+
+      <article>
+        <h2 id="8.1">
+          <span>
+            <a href="#8.1">8.1</a>
+          </span>
+          Box&nbsp;model
+        </h2>
+        <div class="paragraphs">
+          <p>
+            Box módelið lýsir því hvernig rétthyrnd box fyrir element
+            eru&nbsp;mynduð.
+          </p>
+
+          <figure>
+            <div class="image">
+              <div class="img">
+                <img
+                  alt="Útskýringar mynd af box modelinu sem ferningar innan ferninga. Fyrst er margin, fyrir innan það border, síðan padding og loks efnið."
+                  src="../img/boxmodel.png"
+                  width="541"
+                  height="439"
+                  loading="lazy"
+                />
+              </div>
+              <div class="ratio" style="padding-top: 81.146026%;"></div>
+            </div>
+
+            <figcaption>
+              <p>Útskýringar mynd af box modelinu.</p>
+              <footer>
+                Mynd frá Wikimedia:
+                <a
+                  href="https://commons.wikimedia.org/wiki/File:Boxmodell-detail.png"
+                  >https://commons.wikimedia.org/wiki/File:Boxmodell-detail.png</a
+                >
+              </footer>
+            </figcaption>
+          </figure>
+        </div>
+        <h3 id="8.1.1">
+          <span>
+            <a href="#8.1.1">8.1.1</a>
+          </span>
+          Margin
+        </h3>
+        <div class="paragraphs">
+          <p>
+            Margin er ysta lag boxsins og getum við skilgreint lengd í hverja
+            átt
+            með&nbsp;<code>margin-top</code>,&nbsp;<code>margin-right</code>,&nbsp;<code
+              >margin-bottom</code
+            >
+            og&nbsp;<code>margin-left</code>. Lengd getur verið skilgreind sem
+            neikvæð tala en þá er box&nbsp;<em>dregið</em> í viðkomandi átt um
+            töluna. Litur á boxi er ekki settur á margin svæði box, það
+            „hleypir“ lit þess sem er bakvið það í&nbsp;gegn.
+          </p>
+          <p>
+            Ef&nbsp;<code>auto</code> er skilgreint fyrir vinstri og hægri
+            hliðar er box miðjað innan foreldri síns, vafri reiknar sjálfkrafa
+            hve mikið margin á að vera vinstra og hægra megin.&nbsp;<em
+              >Shorthand</em
+            >
+            skilgreining á margin&nbsp;er:
+          </p>
+        </div>
+        <div class="code code-css">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-selector-tag">margin</span>: 1<span class="hljs-selector-tag">em</span>;           <span class="hljs-comment">/* margin: allar hliðar; */</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre><span class="hljs-selector-tag">margin</span>: 1<span class="hljs-selector-tag">em</span> 0;         <span class="hljs-comment">/* margin: top&amp;bottom right&amp;left; */</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre><span class="hljs-selector-tag">margin</span>: 0 1<span class="hljs-selector-tag">em</span> 2<span class="hljs-selector-tag">em</span>;     <span class="hljs-comment">/* margin: top right&amp;left bottom; */</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td>
+                <pre><span class="hljs-selector-tag">margin</span>: 0 1<span class="hljs-selector-tag">em</span> 2<span class="hljs-selector-tag">em</span> 3<span class="hljs-selector-tag">em</span>; <span class="hljs-comment">/* margin: top right bot left; */</span></pre>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <p>
+            Þar sem margin er ysta lag boxisns geta lóðrétt margin tveggja eða
+            fleiri boxa í röð geta fallið saman og er það
+            kallað&nbsp;<em>collapsing&nbsp;margin</em>. Einnig getur það gerst
+            fyrir box innan í boxi. Getur oft komið á óvart en getur líka verið
+            gagnlegt. Nokkuð&nbsp;<a
+              href="http://www.w3.org/TR/CSS2/box.html#collapsing-margins"
+              >flóknar&nbsp;reglur</a
+            >
+            segja til um hvenær og hvernig það&nbsp;gerist.
+          </p>
+        </div>
+        <div class="code code-html">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Fyrsta málsgrein.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;more&quot;</span>&gt;</span>Önnur málsgrein.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Þriðja málsgrein.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></pre>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="code code-css">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-selector-tag">p</span> { <span class="hljs-attribute">margin</span>: <span class="hljs-number">50px</span>; }</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre><span class="hljs-comment">/*</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre><span class="hljs-comment">á milli tveggja p er aðeins 50px margin</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td>
+                <pre><span class="hljs-comment">ekki 50px+50px þar sem þau falla saman</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td>
+                <pre><span class="hljs-comment">*/</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="6"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="7"></td>
+              <td>
+                <pre><span class="hljs-selector-tag">p</span><span class="hljs-selector-class">.more</span> { <span class="hljs-attribute">margin-bottom</span>: <span class="hljs-number">100px</span>; }</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="8"></td>
+              <td>
+                <pre><span class="hljs-comment">/*</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="9"></td>
+              <td>
+                <pre><span class="hljs-comment">milli p.more og næsta p er 100px margin ekki 100px + 50px</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="10"></td>
+              <td>
+                <pre><span class="hljs-comment">einnig vegna þess að margin falla saman</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="11"></td>
+              <td>
+                <pre><span class="hljs-comment">*/</span></pre>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs"><p>xxx&nbsp;skjáskot</p></div>
+        <h3 id="8.1.2">
+          <span>
+            <a href="#8.1.2">8.1.2</a>
+          </span>
+          Border
+        </h3>
+        <div class="paragraphs">
+          <p>
+            Border er næst ystalag boxins og teiknar jaðar utan um það. Hægt er
+            að&nbsp;skilgreina:
+          </p>
+        </div>
+        <ul>
+          <li>
+            þykkt (width) sem jákvætt tölulegt gildi með&nbsp;<code
+              >border-width</code
+            >
+          </li>
+          <li>
+            stíl (style) með lykilorðum, t.d.&nbsp;<code>solid</code>
+            (lína),&nbsp;<code>dotted</code> (teiknaður jaðar er röð af
+            punktum),&nbsp;<code>double</code> (tvær línur með bili á milli,
+            summa alls er jafn þykkt) með&nbsp;<code>border-style</code>
+          </li>
+          <li>lit (color) sem litagildi með&nbsp;<code>border-color</code></li>
+        </ul>
+        <div class="paragraphs">
+          <p>
+            Fyrir hverja átt er hægt að skilgreina hvert gildi,
+            t.d.&nbsp;<code>border-top-width</code>. Eða notað&nbsp;<code
+              >border</code
+            >
+            shorthand sem skilgreinir allt fyrir allar hliðar eða per hlið með
+            t.d.&nbsp;<code>border-top</code>.
+          </p>
+        </div>
+        <div class="code code-css">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-selector-tag">border</span>: 1<span class="hljs-selector-tag">px</span> <span class="hljs-selector-tag">solid</span> <span class="hljs-selector-id">#000</span>;    <span class="hljs-comment">/* svört 1px lína allt um kring */</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre><span class="hljs-selector-tag">border-top</span>: 0;             <span class="hljs-comment">/* nema engin lína efst */</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre><span class="hljs-selector-tag">border-bottom-width</span>: 3<span class="hljs-selector-tag">px</span>;  <span class="hljs-comment">/* og 3px þykk í botninum */</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td>
+                <pre><span class="hljs-selector-tag">border-left-style</span>: <span class="hljs-selector-tag">dotted</span>; <span class="hljs-comment">/* og punktar til vinstri */</span></pre>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <h3 id="8.1.3">
+          <span>
+            <a href="#8.1.3">8.1.3</a>
+          </span>
+          Padding
+        </h3>
+        <div class="paragraphs">
+          <p>
+            Næst innst í boxinu er&nbsp;<code>padding</code>. Það er skilgreint
+            eins og&nbsp;<code>margin</code>, einnig fyrir shorthand.
+            Munur&nbsp;er:
+          </p>
+        </div>
+        <ul>
+          <li>Padding getur ekki verið skilgreint með neikvæðu&nbsp;gildi.</li>
+          <li>Padding fær bakgrunnslit sem skilgreindur er á&nbsp;elementi.</li>
+        </ul>
+
+        <h3 id="8.1.4">
+          <span>
+            <a href="#8.1.4">8.1.4</a>
+          </span>
+          Efni
+        </h3>
+        <div class="paragraphs">
+          <p>
+            Við getum skilgreint breidd efnis með&nbsp;<code>width</code> og hæð
+            með&nbsp;<code>height</code>. Heildarstærð sem boxið tekur
+            er&nbsp;þá:
+          </p>
+        </div>
+        <div class="code code-text">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre>
+width = left margin + right margin + left border + right border +</pre
+                >
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre>        left padding + right padding + content width</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td>
+                <pre>
+height= top margin + bottom margin + top border + bottom border +</pre
+                >
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td>
+                <pre>        top padding + bottom padding + content height</pre>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <p>
+            Það getur leitt til vandræða þar sem útlit notar hlutfallslegar
+            stærðir og nákvæmar stærðir, t.d. ef við skilgreinum border
+            með&nbsp;<code>px</code> en viljum að boxið í heild sinni fylli
+            alveg upp í foreldri sitt með&nbsp;<code>100%</code>.
+          </p>
+          <p>
+            Að takmarka hæð á elementum er hættulegur leikur. Breidd á elementum
+            miðast alltaf við breidd á vafra (eða því tæki sem við erum að skoða
+            með) og því auðveldara að takmarka það og þá sérstaklega með
+            hlutfallslegum lengdum.&nbsp;<code>width: 100%;</code> á element
+            þýðir að það fyllir upp í lárétt pláss foreldris. Í flestum
+            tilfellum viljum við því takmarka breidd en láta hæðina flæða eftir
+            því sem efnið&nbsp;þarf.
+          </p>
+        </div>
+        <div class="code code-html">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre>
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend nunc</pre
+                >
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre>
+  non suscipit finibus. Proin non tincidunt nisl. Quisque lacus nibh, sodales</pre
+                >
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td><pre>  in felis aliquet, iaculis pellentesque sem.</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></pre>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="code code-css">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-selector-tag">p</span> {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#000</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">width</span>: <span class="hljs-number">10%</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td><pre>}</pre></td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <p>
+            Því minna pláss sem foreldri bíður upp á, því meiri líkur á að
+            textinn „flæði út úr“&nbsp;<code>p</code> elementi.
+          </p>
+        </div>
+        <h3 id="8.1.5">
+          <span>
+            <a href="#8.1.5">8.1.5</a>
+          </span>
+          Box&nbsp;sizing
+        </h3>
+        <div class="paragraphs">
+          <p>
+            CSS3 skilgreinir&nbsp;<a
+              href="https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing"
+              ><code>box-sizing</code></a
+            >
+            sem breytir því hvernig box modelið er&nbsp;reiknað
+          </p>
+        </div>
+        <ul>
+          <li>
+            <code>content-box</code> - sjálfgefið gildi, allt tekið með
+            í&nbsp;reikninginn
+          </li>
+          <li>
+            <code>border-box</code> - aðeins margin er tekið með
+            í&nbsp;reikninginn
+          </li>
+        </ul>
+
+        <h3 id="8.1.6">
+          <span>
+            <a href="#8.1.6">8.1.6</a>
+          </span>
+          Takmarkanir á hæð og&nbsp;breidd
+        </h3>
+        <div class="paragraphs">
+          <p>
+            Stundum viljum við að boxin okkar séu aldrei minni eða stærri en
+            ákveðið á hæð eða&nbsp;breidd
+          </p>
+        </div>
+        <ul>
+          <li>
+            <code>min/max-height: X;</code> takmarkar box þ.a. það sé aldrei
+            minna/stærra en&nbsp;X
+          </li>
+          <li>
+            <code>min/max-width: X;</code> takmarkar box þ.a. það sé aldrei
+            mjórra/breiðara en&nbsp;X
+          </li>
+        </ul>
+        <div class="paragraphs">
+          <p>
+            Þetta getur verið gott þegar við vinnum með hluti sem&nbsp;<em
+              >skalast</em
+            >
+            en við vitum að undir/yfir ákveðinni breidd verða þeir ljótir eða
+            ónothæfir, þá getum við skilgreint breidd þeirra í hlutfallslegri
+            stærð, t.d.&nbsp;<code>width: 100%;</code> en takmarkað þá
+            með&nbsp;<code>min-width</code> og&nbsp;<code>max-width</code>.
+          </p>
+        </div>
+        <div class="code code-html">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;box&quot;</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre>
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend nunc non suscipit finibus. Proin non tincidunt nisl. Quisque lacus nibh, sodales in felis aliquet, iaculis pellentesque sem. Maecenas elit orci, dictum at congue non, elementum sit amet magna. Aliquam erat volutpat. Aenean magna erat, faucibus eu hendrerit sed, pharetra sed mauris. Fusce et dui urna. Vivamus sollicitudin mollis rutrum. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus hendrerit volutpat erat a maximus. Sed pharetra dapibus sapien ac bibendum.</pre
+                >
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></pre>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="code code-css">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-selector-class">.box</span> {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">box-sizing</span>: border-box;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;     <span class="hljs-comment">/* fyllir upp í foreldri */</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">max-width</span>: <span class="hljs-number">40em</span>; <span class="hljs-comment">/* aldrei breiðari en um 40em, ca þ.a. við höfum 50-60 stafi í línu */</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="6"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">min-width</span>: <span class="hljs-number">20em</span>; <span class="hljs-comment">/* og aldrei minni en um 20em */</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="7"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="8"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">padding</span>: <span class="hljs-number">1em</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="9"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#000</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="10"></td>
+              <td><pre>}</pre></td>
+            </tr>
+          </table>
+        </div>
+
+        <h3 id="8.1.7">
+          <span>
+            <a href="#8.1.7">8.1.7</a>
+          </span>
+          Dæmi
+        </h3>
+        <div class="code code-html">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;outer-box&quot;</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;inner-box&quot;</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td><pre>    Efni í boxi</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="6"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="7"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;border-box&quot;</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="8"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;outer-box&quot;</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="9"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;inner-box&quot;</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="10"></td>
+              <td><pre>      Efni í boxi</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="11"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="12"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="13"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="14"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="15"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;fluid-box border-box&quot;</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="16"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;outer-box&quot;</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="17"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;inner-box&quot;</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="18"></td>
+              <td><pre>      Efni í boxi</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="19"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="20"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="21"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></pre>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="code code-css">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-comment">/* box model */</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre><span class="hljs-selector-class">.outer-box</span> {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">background</span>: <span class="hljs-number">#669</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid blue;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="6"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">padding</span>: <span class="hljs-number">10px</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="7"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="8"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="9"></td>
+              <td><pre>}</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="10"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="11"></td>
+              <td>
+                <pre><span class="hljs-comment">/* viljum box sem fyllir upp í foreldri sitt en hefur samt pláss */</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="12"></td>
+              <td>
+                <pre><span class="hljs-selector-class">.outer-box</span> <span class="hljs-selector-class">.inner-box</span> {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="13"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">background</span>: <span class="hljs-number">#fff</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="14"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>; <span class="hljs-comment">/* = 200px þar sem parent er 200px */</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="15"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="16"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">padding</span>: <span class="hljs-number">20px</span> <span class="hljs-number">30px</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="17"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">border</span>: <span class="hljs-number">2px</span> solid <span class="hljs-number">#000</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="18"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="19"></td>
+              <td>
+                <pre>  <span class="hljs-comment">/* heildarstærð á boxi er þá:</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="20"></td>
+              <td>
+                <pre><span class="hljs-comment">      width: 200px + 2*30px + 2*2px = 264px</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="21"></td>
+              <td>
+                <pre><span class="hljs-comment">      height: 100px + 2*20px + 2*2px = 144px</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="22"></td>
+              <td>
+                <pre><span class="hljs-comment">  */</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="23"></td>
+              <td><pre>}</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="24"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="25"></td>
+              <td>
+                <pre><span class="hljs-selector-class">.border-box</span> {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="26"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">margin-top</span>: <span class="hljs-number">100px</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="27"></td>
+              <td><pre>}</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="28"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="29"></td>
+              <td>
+                <pre><span class="hljs-comment">/*</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="30"></td>
+              <td>
+                <pre><span class="hljs-comment">ef við skilgreinum sem border-box er efnið aðlagað</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="31"></td>
+              <td>
+                <pre><span class="hljs-comment">þ.a. padding og border eru með í útreikingi á víddum</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="32"></td>
+              <td>
+                <pre><span class="hljs-comment">*/</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="33"></td>
+              <td>
+                <pre><span class="hljs-selector-class">.border-box</span> * {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="34"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">box-sizing</span>: border-box;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="35"></td>
+              <td><pre>}</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="36"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="37"></td>
+              <td>
+                <pre><span class="hljs-comment">/*</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="38"></td>
+              <td>
+                <pre><span class="hljs-comment">Með border-box getum við auðveldlega búið til box sem geta</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="39"></td>
+              <td>
+                <pre><span class="hljs-comment">komist fyrir og fyllt upp í foreldri sitt</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="40"></td>
+              <td>
+                <pre><span class="hljs-comment">*/</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="41"></td>
+              <td>
+                <pre><span class="hljs-selector-class">.fluid-box</span> &gt; <span class="hljs-selector-class">.outer-box</span> {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="42"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="43"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">min-width</span>: <span class="hljs-number">200px</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="44"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">max-width</span>: <span class="hljs-number">500px</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="45"></td>
+              <td><pre>}</pre></td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <p>
+            Þegar við byrjum að vinna með útlit í CSS er mjög gott að muna það
+            að&nbsp;<strong>lang flest í CSS er rétthyrnt&nbsp;box!</strong>
+          </p>
+        </div>
+      </article>
+
+      <footer>
+        <nav>
+          <ul>
+            <li class="prev">
+              <p><a href="./07.css-malfraedi.html">CSS&nbsp;málfræði</a></p>
+            </li>
+            <li class="index"><a href="/">Efnisyfirlit</a></li>
+            <li class="next"></li>
+          </ul>
+        </nav>
+        <hr />
+        <div class="version">Útgáfa 0.3, ágúst 2020</div>
+      </footer>
+    </main>
+  </body>
+</html>

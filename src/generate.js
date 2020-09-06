@@ -57,6 +57,18 @@ class Reporter {
 
 const reporter = new Reporter({silent, verbose});
 
+function makeNextPrevContent(content) {
+  if (!content) {
+    return '';
+  }
+
+  const replaced = content.replace(/\\\[/g, '[');
+
+  const output = marked(replaced).replace('<div class="paragraphs">', '');
+
+  return output;
+}
+
 async function processFile(file) {
   const extension = path.extname(file);
   const basename = path.basename(file, extension);
@@ -87,31 +99,48 @@ async function processFile(file) {
   });
 
   const html = renderer.postRender(marked(content.toString(encoding)));
+  const prevContent = makeNextPrevContent(previous);
+  const nextContent = makeNextPrevContent(next);
 
-  const prevContent = previous ? marked(previous) : '';
-  const nextContent = next ? marked(next) : '';
+  const nav = prevContent || nextContent ?
+    `<nav>
+      <ul>
+        <li class="prev">${prevContent}</li>
+        <li class="index"><a href="/">Efnisyfirlit</a></li>
+        <li class="next">${nextContent}</li>
+      </ul>
+    </nav>` : '';
 
   const outputContent = `<!doctype html>
+<!--
+Velkominn ferðalangur, bakvið tjöldin, í uppsprettuna.
+Þetta HTML er sjálfkrafa útbúið út frá Markdown skjölum.
+Sjá nánar:
+https://github.com/vefforritun/book
+-->
 <html lang="is">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>${title}</title>
+    <title>Vefforitun—${title}</title>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="reset.css"/>
-    <link rel="stylesheet" href="xgrid.css"/>
     <link rel="stylesheet" href="styles.css"/>
   </head>
   <body>
     <main>
+      <header>
+        <h1>${title}</h1>
+      </header>
+
       <article>
         ${html}
       </article>
+
       <footer>
-        ${prevContent}
-        ${nextContent}
+        ${nav}
         <hr>
-        ${version}
+        ${version ? `<div class="version">${version}</div>` : ''}
       </footer>
     </main>
   </body>
@@ -132,7 +161,7 @@ async function processFile(file) {
     prettyContent = prettier.format(prettyContent, prettierOptions);
     reporter.info(`Ran prettier for "${file}"`);
   } catch (e) {
-    reporter.error(`Unable to run prettier for "${file}"`);
+    reporter.error(`Unable to run prettier for "${file}"`, e.message);
   }
 
   return writeFileAsync(outputPath, prettyContent, { encoding });
