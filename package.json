@@ -1,0 +1,30 @@
+{
+  "name": "book",
+  "version": "1.0.0",
+  "description": "Bókin um vefforritun",
+  "main": "index.js",
+  "engines": {
+    "node": ">=14"
+  },
+  "scripts": {
+    "generate": "node src/generate.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vefforritun/book.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vefforritun/book/issues"
+  },
+  "homepage": "https://github.com/vefforritun/book#readme",
+  "devDependencies": {
+    "gray-matter": "^4.0.2",
+    "highlight.js": "^10.5.0",
+    "image-size": "^0.9.3",
+    "marked": "^1.2.7",
+    "prettier": "^2.2.1"
+  }
+}

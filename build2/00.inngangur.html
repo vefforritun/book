@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<!--
+  Velkominn ferðalangur, bakvið tjöldin, í uppsprettuna.
+  Þetta HTML er sjálfkrafa útbúið út frá Markdown skjölum.
+  Sjá nánar:
+  https://github.com/vefforritun/book
+  -->
+<html lang="is">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vefforitun—Kafli 0: Inngangur</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Kafli 0: Inngangur</h1>
+        <div class="reading-time">Um 17 mín lestur</div>
+      </header>
+
+      <article>
+        <h2 id="0.1">
+          <span>
+            <a href="#0.1">0.1</a>
+          </span>
+          Markmið
+        </h2>
+        <div class="paragraphs">
+          <p>
+            Bók þessi varð til eftir að höfundur hafði kennt vefforritun við HÍ
+            í nokkur ár án þess að hafa fundið hentuga kennslubók. Markmið
+            bókarinnar er að veita inngang að vefforritun án nokkurrar reynslu
+            af forritun ásamt því að fara yfir breiddina á því sem vefforritun
+            er. Eftir að hafa farið í gegnum efnið ætti viðkomandi að hafa
+            þekkingu til að byggja vef með HTML og CSS. Á þessum tíma eru ekki
+            planað fara yfir JavaScript, en áhugasömum má benda á
+            <a href="https://eloquentjavascript.net/"
+              >Eloquent&nbsp;JavaScript</a
+            >, fría bók um JavaScript&nbsp;forritun.
+          </p>
+          <p>
+            Verandi bók um vefforritun eru tenglar mikið notaðir til að vísa
+            fram og til baka og útum allt í ítarefni og þess háttar. Ekki er
+            þörf á að lesa allt ítarefni sem vísað er í, en það getur hjálpað
+            við að byggja upp dýpri skilning á efninu. Einnig er reynt eins og
+            hægt er að nota íslensk orð yfir hugtök þar sem þau eru til (stuðst
+            er við <a href="http://tos.sky.is/">tölvuorðasafnið</a>) eða
+            íslenskun&nbsp;höfundar.
+          </p>
+        </div>
+        <h2 id="0.2">
+          <span>
+            <a href="#0.2">0.2</a>
+          </span>
+          Hugtök
+        </h2>
+        <div class="paragraphs">
+          <p>
+            Þar sem þessi bók gerir ekki ráð fyrir neinni fyrri reynslu í
+            forritun er vert að fara lauslega yfir nokkur grunnhugtök áður en
+            lagt er í&nbsp;hann.
+          </p>
+        </div>
+        <h3 id="0.2.1">
+          <span>
+            <a href="#0.2.1">0.2.1</a>
+          </span>
+          Talnakerfi &amp;&nbsp;tölvur
+        </h3>
+        <div class="paragraphs">
+          <p>
+            Tölvur telja yfirleitt ekki með tíundarkerfi (e. decimal), kerfi sem
+            hefur <code>10</code> sem grunntölu, heldur oftast tvíundarkerfi (e.
+            binary) sem hefur grunntöluna 2. Þá eru aðeins <code>0</code> og
+            <code>1</code> notuð til að tákna tölur. Einfölduð ástæða fyrir
+            þessu er að þessi gildi tákna annað hvort <code>á</code> eða
+            <code>af</code> stöður sem hentar tölvum vel. Hver tala táknar veldi
+            af tveim: <code>0001</code> er <code>1</code>, <code>1000</code> er
+            <code>8</code> og <code>1000 0000</code> er <code>128</code>.
+          </p>
+          <p>
+            Einnig kemur fyrir að áttundakerfi (e. octal) og sextándakerfi (e.
+            hexadecimal, oft stytt í <em>hex</em>) séu notuð, þau virka á sama
+            grundvelli og að ofan. Áttundakerfi notar <code>0</code> til
+            <code>7</code> en sextándakerfi <code>0</code> til
+            <code>9</code> ásamt <code>a</code>, <code>b</code>, <code>c</code>,
+            <code>d</code>, <code>e</code> og <code>f</code> fyrir tölurnar 10
+            til&nbsp;15.
+          </p>
+          <p>
+            Til að tilgreina í hvaða talnakerfi tala er þegar um mörg talnakerfi
+            er að ræða er grunntalan skráð með niðurskrift, t.d.
+            <code>10₂</code> eða <code>1₁₀</code>.
+          </p>
+          <p>
+            Til þess að breyta tölu úr talnakerfi yfir í tíundarkerfi margföldum
+            við viðeigandi tölu með hækkandi veldi af grunntölunni frá vinstri
+            til hægri,&nbsp;t.d.
+          </p>
+        </div>
+        <div class="code code-txt">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td><pre>1011₂ = 2³ * 1 + 2² * 0 + 2¹ * 1 + 2⁰ * 1</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td><pre>      = 8 + 0 + 2 + 1</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td><pre>      = 11₁₀</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td><pre>bad₁₆ = 16² * 11 + 16¹ * 10 * 16⁰ * 13</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="6"></td>
+              <td><pre>      = 2816 + 160 + 13</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="7"></td>
+              <td><pre>      = 2989₁₀</pre></td>
+            </tr>
+          </table>
+        </div>
+
+        <h3 id="0.2.2">
+          <span>
+            <a href="#0.2.2">0.2.2</a>
+          </span>
+          Bitar &amp;&nbsp;bæti
+        </h3>
+        <div class="paragraphs">
+          <p>
+            Biti (e. bit, stytting á <em>binary&nbsp;digit</em>, eða réttara
+            sagt
+            <a href="https://en.wikipedia.org/wiki/Portmanteau"
+              ><em>portmanteau</em></a
+            >) er gildi sem tekur annaðhvort af eða á stöðu og er oftast táknað
+            með <code>0</code> eða <code>1</code>, <code>af</code> eða
+            <code>á</code>, <code>true</code> eða <code>false</code> o.s.fr.
+          </p>
+          <p>
+            Bæti (e. byte) er hópur af átta bitum sem getur túlkað
+            <code>2⁸ = 256</code> gildi. Fyrir stærð á hlutum í tölvum eru notuð
+            tvær mismunandi&nbsp;leiðir:
+          </p>
+        </div>
+        <ul>
+          <li>
+            Tíundartúlkun á bætum með
+            <a
+              href="https://en.wikipedia.org/wiki/International_System_of_Units"
+              >SI&nbsp;forskeyti</a
+            >, t.d. <code>1 kB = 1000 byte</code> (kilobyte) eða
+            <code>1 MB = 1000² byte</code> (megabyte)
+          </li>
+          <li>
+            Tvíundartúlkun á bætum með
+            <a href="https://en.wikipedia.org/wiki/ISO/IEC_80000"
+              >IEC&nbsp;forskeyti</a
+            >, t.d. <code>1 KiB = 1024 byte</code> (kibibyte) eða
+            <code>1 MiB = 1024² byte</code> (mebibyte)
+          </li>
+        </ul>
+        <div class="paragraphs">
+          <p>
+            Ástæður fyrir þessum mun eru líklega vegna þess að fólk sem vinnur
+            með <em>raunverulega</em> hluti (t.d. rafmagnsverkfræðingar sem
+            hanna vélbúnað) hugsa og vinna í tíundarkerfi en tölvunarfræðingar í
+            tvíundarkerfi. Þetta er líka ástæða þess að ef maður kaupir harðan
+            disk sem geymir <code>1 TB</code> af gögnum geymir hann í raun og
+            veru <code>1000⁴ byte</code> sem eru
+            <code>1000⁴/1024⁴ = 0,9095 TiB = 931,323 GiB</code>.
+          </p>
+        </div>
+        <h3 id="0.2.3">
+          <span>
+            <a href="#0.2.3">0.2.3</a>
+          </span>
+          GUI &amp;&nbsp;CLI
+        </h3>
+        <div class="paragraphs">
+          <p>
+            <a href="https://en.wikipedia.org/wiki/Graphical_user_interface"
+              >GUI (Graphical user&nbsp;interface)</a
+            >
+            forrit eru með notendaviðmóti með grafísku viðmóti, þ.e.a.s. við
+            sjáum uppsett viðmót með myndum, texta, litum o.þ.h. Við notum þessi
+            forrit yfirleitt með því að smella og skrifa inn texta. Dæmi um GUI
+            forrit sem við notum mikið í vefforritun er vafri
+            og&nbsp;textaritill.
+          </p>
+          <p>
+            <a href="https://en.wikipedia.org/wiki/Command-line_interface"
+              >CLI (Command-line&nbsp;interface)</a
+            >
+            forrit eru hinsvegar aðeins byggð á texta. Við skrifum inn texta í
+            <em>skel</em> (e. shell) og fáum til baka línur af texta. Engar
+            myndir eru notaðar (nema þær séu myndaðar með texta) eru notaðar en
+            litaður texti er möguleiki. Í Windows er hægt að nálgast innbyggða
+            skel með <code>cmd</code> eða <code>Terminal</code> á
+            Mac/Linux&nbsp;tölvum.
+          </p>
+        </div>
+        <hr />
+
+        <h2 id="0.3">
+          <span>
+            <a href="#0.3">0.3</a>
+          </span>
+          Internetið &amp;&nbsp;vefurinn
+        </h2>
+
+        <h3 id="0.3.1">
+          <span>
+            <a href="#0.3.1">0.3.1</a>
+          </span>
+          Internetið
+        </h3>
+        <div class="paragraphs">
+          <p>
+            <em>Internetið</em> er alþjóðlegt netkerfi sem samanstendur af
+            hundruðum milljóna tölva tengdra saman yfir tugþúsundir neta. Fyrir
+            samskipti er notaður hópur samskiptaregla sem flokkast&nbsp;í:
+          </p>
+        </div>
+        <ul>
+          <li>
+            <em>Tengi&nbsp;lag</em> (link layer), sem skilgreinir hvernig net
+            eru tengd saman og inniheldur vélbúnað og samskiptareglur sem eru
+            skilgreindar hér eru t.d. ethernet og&nbsp;WiFI.
+          </li>
+          <li>
+            <em>Internet&nbsp;lag</em>, sem skilgreinir hvernig gögn eru send á
+            milli neta, samskiptareglur sem eru skilgreind hér eru t.d.
+            IP&nbsp;tölur.
+          </li>
+          <li>
+            <em>Flutnings&nbsp;lag</em> (transport layer), sem skilgreinir
+            hvernig samskiptum milli tveggja tölva er hagað, t.d. með
+            <a
+              href="https://en.wikipedia.org/wiki/Transmission_Control_Protocol"
+              >TCP</a
+            >
+            eða
+            <a href="https://en.wikipedia.org/wiki/User_Datagram_Protocol"
+              >UDP</a
+            >.
+          </li>
+          <li>
+            <em>Forrita&nbsp;lag</em> (application layer), sem skilgreinir
+            ákveðna virkni fyrir endanotanda, t.d.
+            <a
+              href="https://en.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol"
+              >SMTP</a
+            >
+            fyrir tölvupóst, FTP fyrir skráaflutning eða HTTP fyrir&nbsp;vefinn.
+          </li>
+        </ul>
+
+        <h3 id="0.3.2">
+          <span>
+            <a href="#0.3.2">0.3.2</a>
+          </span>
+          IP&nbsp;tölur
+        </h3>
+        <div class="paragraphs">
+          <p>
+            <a href="https://en.wikipedia.org/wiki/IP_address">IP&nbsp;tölur</a>
+            eru notaðar til þess að aðgreina og staðsetja tæki tengd
+            internetinu. Fyrsta útgáfa þeirra eru IPv4 tölur, sem samanstanda af
+            fjórum tölum (hver tala tekur 2 bæti, frá <code>0–255</code>) sem
+            mynda 32 bita IP tölu. Þegar þetta er skrifað er t.d.
+            <code>130.208.165.186</code> IP talan fyrir vél sem hýsir vef
+            Háskóla&nbsp;Íslands.
+          </p>
+          <p>
+            Þar sem við eigum mun auðveldara með að muna nöfn en tölur er til
+            kerfi sem þýðir þarna á milli, það heitir
+            <em>Domain Name&nbsp;System</em> eða DNS. Vegna þessa getum við
+            slegið inn <code>hi.is</code> sem er lénsheiti (e. domain name) og
+            DNS þjónar á internetinu láta okkur vita hvaða IP tala á við
+            þann&nbsp;þjón.
+          </p>
+          <p>
+            Til þess að komast að því hvaða IP tölu ákveðið lén er með, og ef
+            við höfum aðgang að því, getum við notað <code>ping</code> CLI
+            forritið. Það sendir gögn frá tölvu á lén, ef þar á bakvið er tölva
+            fáum við að vita IP tölu hennar. Sú tölva mun senda okkur gögnin til
+            baka og <code>ping</code> forritið mun taka saman hversu langan tíma
+            það tók og hvort öll gögnin hafi komið til&nbsp;baka.
+          </p>
+        </div>
+        <div class="code code-bash">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td><pre>$ ping -c 4 hi.is</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td><pre>PING hi.is (130.208.165.186): 56 data bytes</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre>
+64 bytes from 130.208.165.186: icmp_seq=0 ttl=55 time=3.497 ms</pre
+                >
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td>
+                <pre>
+64 bytes from 130.208.165.186: icmp_seq=1 ttl=55 time=10.125 ms</pre
+                >
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td>
+                <pre>
+64 bytes from 130.208.165.186: icmp_seq=2 ttl=55 time=3.607 ms</pre
+                >
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="6"></td>
+              <td>
+                <pre>
+64 bytes from 130.208.165.186: icmp_seq=3 ttl=55 time=3.913 ms</pre
+                >
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="7"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="8"></td>
+              <td><pre>--- hi.is ping statistics ---</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="9"></td>
+              <td>
+                <pre>
+4 packets transmitted, 4 packets received, 0.0% packet loss</pre
+                >
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="10"></td>
+              <td>
+                <pre>
+round-trip min/avg/max/stddev = 3.497/5.285/10.125/2.798 ms</pre
+                >
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <p>
+            Þar sem IPv4 tölur geta aðeins túlkað
+            <code>2³² = 4.294.967.296</code> IP tölur er
+            <a href="https://en.wikipedia.org/wiki/IPv4_address_exhaustion"
+              >skortur á IP tölum í&nbsp;heiminum</a
+            >. Seinustu IP tölunum var ráðstafað í janúar 2011. Til þess að
+            komast hjá þessu eru einnig til IPv6 tölur sem geta túlkað
+            <code>2¹²⁸</code> IP tölur. IPv6 tölur eru túlkaðar með átta hópum
+            af fjórum sextándakerfis tölum með tvípunkt á milli. Dæmi um IPv6
+            tölu er <code>2001:0db8:85a3:0000:0000:8a2e:0370:7334</code>, en til
+            eru vel skilgreindar leiðir til að stytta þær, t.d. er
+            <code>2001:db8::8a2e:370:7334</code> stytting á fyrra dæmi. Í dag
+            eru bæði IPv4 og IPv6 tölur í notkun á&nbsp;internetinu.
+          </p>
+          <p>
+            Nokkrar IP tölur og hópar af
+            <a href="https://en.wikipedia.org/wiki/Reserved_IP_addresses"
+              >IP tölum eru&nbsp;fráteknar</a
+            >
+            og geta ekki verið notaðar á internetinu Dæmi um slíkar
+            tölur&nbsp;eru:
+          </p>
+        </div>
+        <ul>
+          <li>
+            <a href="https://en.wikipedia.org/wiki/0.0.0.0"
+              ><code>0.0.0.0</code></a
+            >
+            óskilgreind IP tala sem er hægt að nota á mismunandi vegu, t.d. til
+            að skilgreina allar leyfilegar IP&nbsp;tölur.
+          </li>
+          <li>
+            <a href="https://en.wikipedia.org/wiki/127.0.0.1"
+              ><code>127.0.0.1</code></a
+            >
+            til að túlka sjálft tækið sem unnið er á, einnig aðgengileg með
+            <code>localhost</code> DNS nafninu. Í IPv6 er
+            <code>::1</code> þessi&nbsp;tala.
+          </li>
+          <li>
+            <a href="https://en.wikipedia.org/wiki/Private_network"
+              ><code>192.168.0.0 – 192.168.0.255</code></a
+            >
+            fyrir einkanet, t.d. eru heimilisbeinar oftast með IP töluna
+            <code>192.168.1.1</code> og tæki á einkanetinu fá tölur í framhaldi
+            af því: <code>192.168.1.2</code> o.s.fr.
+          </li>
+        </ul>
+        <div class="paragraphs">
+          <p>
+            Ef við viljum eiga við hvernig tölvan okkar túlkar IP tölur og lén,
+            getum við yfirskrifað með <code>hosts</code> skrá&nbsp;(<code
+              >/etc/hosts</code
+            >
+            á mac og linux, <code>C:\Windows\System32\Drivers\etc\hosts</code>,
+            til að breyta þarf stjórnandaréttindi). Þessi skrá inniheldur möppun
+            á milli IP tölu og léns,&nbsp;t.d.:
+          </p>
+        </div>
+        <div class="code code-text">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td><pre>127.0.0.1  localhost</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td><pre>::1        localhost</pre></td>
+            </tr>
+          </table>
+        </div>
+
+        <h3 id="0.3.3">
+          <span>
+            <a href="#0.3.3">0.3.3</a>
+          </span>
+          Vefurinn
+        </h3>
+        <div class="paragraphs">
+          <p>
+            <em>Vefurinn</em> (e. World Wide Web) er aðgengilegur yfir
+            internetið og byggir á vefsíðum sem eiga sér ákveðið
+            <em>URL</em> (Uniform Resource Locator) sem staðsetur þær. Þær eru
+            sóttar yfir <em>HTTP</em>.
+          </p>
+        </div>
+        <h3 id="0.3.4">
+          <span>
+            <a href="#0.3.4">0.3.4</a>
+          </span>
+          Vefþjónn
+        </h3>
+        <div class="paragraphs">
+          <p>
+            Vefþjónn (e. web server) er tölva sem tengd er internetinu og getur
+            tekið við og svarað beiðnum sendum yfir <em>HTTP</em> á ákveðið
+            <em>URL</em>. Vefþjónar hafa <em>IP&nbsp;tölu</em> og geta átt sér
+            skilgreint lén, eða lénsnafn (e. domain name) sem er túlkað
+            með&nbsp;DNS.
+          </p>
+          <p>
+            Vefþjónar hafa „opin
+            <a href="https://en.wikipedia.org/wiki/Port_(computer_networking)"
+              >port</a
+            >“, tölulegt staðfang sem skilgreinir hvaða ferli (e. process) tekur
+            við beiðnum sem koma yfir net.
+            <a
+              href="https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers#Well-known_ports"
+              >Port <code>0–1023</code> eru vel&nbsp;skilgreind</a
+            >
+            og aðeins er hægt að „bindast þeim“ (tengja ferli við port) ef maður
+            er stjórnandi (eða
+            <a href="http://tos.sky.is/word/isl/4205/"><em>ofurpaur</em></a
+            >, e. superuser) á&nbsp;vefþjóni.
+          </p>
+          <p>Dæmi um vel skilgreind&nbsp;port:</p>
+        </div>
+        <ul>
+          <li><code>20</code> fyrir&nbsp;FTP</li>
+          <li><code>80</code> fyrir&nbsp;HTTP</li>
+          <li>
+            <code>443</code> fyrir HTTP yfir TLS/SSL (HTTPS), dulkóðuð
+            HTTP&nbsp;samskipti
+          </li>
+        </ul>
+        <div class="paragraphs">
+          <p>
+            Oftast þegar forritarar vinna á eigin tölvum með HTTP, er port valið
+            sem er utan vel skilgreindslista, t.d. <code>3000</code>, þá er hægt
+            að nálgast eigin tölvu með URLinu
+            <code>http://localhost:3000/</code>.
+          </p>
+        </div>
+        <h3 id="0.3.5">
+          <span>
+            <a href="#0.3.5">0.3.5</a>
+          </span>
+          HTTP
+        </h3>
+        <div class="paragraphs">
+          <p>
+            HTTP stendur fyrir <em>HyperText Transfer&nbsp;Protocol</em>,
+            samskiptareglur sem skilgreina hvernig dreift kerfi tölva vinnur
+            saman yfir vefinn og skiptist á gögnum með <em>hypertext</em>, sem
+            við munum læra meira um í samandi við&nbsp;HTML.
+          </p>
+          <p>
+            Fyrstu staðlar HTTP voru
+            <a
+              href="https://www.w3.org/Protocols/HTTP/1.0/draft-ietf-http-spec.html"
+              >HTTP&nbsp;1.0</a
+            >
+            og síðar
+            <a href="https://tools.ietf.org/html/rfc2068">HTTP&nbsp;1.1</a>, sem
+            var formlega staðlaði samskiptareglurnar. Í dag (águst 2020) er
+            <a href="https://en.wikipedia.org/wiki/HTTP/2">HTTP/2</a> notkun
+            <a href="https://w3techs.com/technologies/details/ce-http2"
+              >að nálgast&nbsp;50%</a
+            >
+            á vefnum og
+            <a href="https://en.wikipedia.org/wiki/HTTP/3"
+              >HTTP/3 er formlega í&nbsp;vinnslu</a
+            >.
+          </p>
+        </div>
+        <h3 id="0.3.6">
+          <span>
+            <a href="#0.3.6">0.3.6</a>
+          </span>
+          URL
+        </h3>
+        <div class="paragraphs">
+          <p>
+            URL staðsetja og skilgreina hvernig við sækjum vefsíður yfir HTTP.
+            Þau samanstanda&nbsp;af:
+          </p>
+        </div>
+        <ul>
+          <li>
+            Samskiptareglu (e. protocol), t.d. <code>http</code> eða
+            <code>ftp</code>, tvípunkti &amp; tveimur skástrikum (Tim
+            Berners-Lee
+            <a
+              href="https://en.wikipedia.org/wiki/URL#cite_ref-FOOTNOTEBerners-Lee2000_11-1"
+              >sá seinna eftir að hafa sett inn þessi tvö&nbsp;skástrik</a
+            >)
+          </li>
+          <li>Vefþjóni, venjulega sem lénsnafn eða IP&nbsp;tölu</li>
+          <li>Hugsanlega tvípunkti og&nbsp;port-númeri</li>
+          <li>Slóð á&nbsp;vefsíðu</li>
+          <li>
+            Hugsanlega „query-streng“, samansafn af aukaupplýsingum sem sendar
+            eru á&nbsp;vefsíðu
+          </li>
+          <li>
+            Hugsanlega „fragment identifier“, staðsetning innan&nbsp;vefsíðu
+          </li>
+        </ul>
+        <div class="paragraphs">
+          <p>
+            Dæmi um URL er
+            <code>http://example.org/example.html?start=true#kafli2</code> sem
+            sækir vefsíðuna <code>example.html</code> á vefþjóninn
+            <code>example.org</code> með <code>http</code>. Aukalega er
+            <code>start</code> breytan send með gildið <code>true</code>.
+            Vafrinn ætti að færa staðsetningu innan síðunnar að auðkenninu
+            <code>kafli2</code>.
+          </p>
+          <p>
+            Í HTTP staðlinum er talað um <code>URL</code> og <code>URI</code>.
+            Hvert um sig hefur nákvæma skilgreiningu, en munurinn er ekki
+            augljós.
+            <a href="https://url.spec.whatwg.org/#goals"
+              >Nýr, lifandi&nbsp;staðall</a
+            >, sameinar þessi tvö hugtök undir <code>URL</code>.
+          </p>
+        </div>
+        <h3 id="0.3.7">
+          <span>
+            <a href="#0.3.7">0.3.7</a>
+          </span>
+          Vefsíða
+        </h3>
+        <div class="paragraphs">
+          <p>
+            Vefsíða er sett saman með <em>HTML</em>, <em>CSS</em> og
+            <em>JavaScript</em> og kallast þessi samsetti hluti yfirleitt
+            <em>framendi</em> (e. front-end). Flóknari vefsíður hafa yfirleitt
+            einhvern <em>bakenda</em>. Smíði vefsíða er helsta viðfangsefni
+            þessarar&nbsp;bókar.
+          </p>
+        </div>
+        <h3 id="0.3.8">
+          <span>
+            <a href="#0.3.8">0.3.8</a>
+          </span>
+          Vafri
+        </h3>
+        <div class="paragraphs">
+          <p>
+            Vafri er forrit sem hefur það hlutverk að sækja vefi sem eiga sér
+            ákveðið <em>URL</em> yfir <em>HTTP</em> á <em>vefþjón</em>. Vafrinn
+            túlkar það <em>HTML</em>, <em>CSS</em> og <em>JavaScript</em> sem
+            vefsíðan inniheldur og birtir&nbsp;notanda.
+          </p>
+          <p>
+            Vafrar eru flókin forrit sem flestir hverjir geta túlkað miljarða
+            vefsíðna. Þeir birta á skjánum það sem höfundar þeirra ætluðu sér,
+            allt frá fyrstu árum vefsins í kringum 1990 og til þrívíðra leikja
+            sem gerðir eru í dag. Til að geta þetta eru <em>staðlar</em> sem
+            segja til um hvernig túlka eigi HTML, CSS og&nbsp;JavaScript.
+          </p>
+          <p>
+            Í anda þess hversu opinn vefurinn er höfum við í flestum vöfrum
+            tækifæri til þess að skoða úr hverju hann er smíðaður með því að
+            biðja vafrann um „view source“. Það að hafa aðgang að grunnkóða
+            allra vefja á sama tíma og þeir eru skoðaðir hafði mikil áhrif á það
+            hversu margir einstaklingar fóru að fikta og búa til sína
+            eigin&nbsp;vefi.
+          </p>
+        </div>
+        <h3 id="0.3.9">
+          <span>
+            <a href="#0.3.9">0.3.9</a>
+          </span>
+          Vefforrit
+        </h3>
+        <div class="paragraphs">
+          <p>
+            Vefforrit er ekki vel skilgreint hugtak, en það er yfirleitt notað
+            yfir forrit með ákveðið URL, aðgengilegt yfir vefinn, sem nýtir
+            veftækni (HTML, CSS og JavaScript) til þess að útbúa viðmótið sem
+            notandi&nbsp;sér.
+          </p>
+          <p>
+            Það að hafa URL er oft kallað helsti styrkleiki vefsins, en með þeim
+            hafa allir vefir ákveðna slóð sem við getum skoðað, deilt, leitað
+            eftir og nýtt án þess að nokkur miðstýring hafi eitthvað um það að
+            segja, ólíkt t.d. „app stores“ þar sem fyrirtæki sem fer með stjórn
+            segir af eða á um hvort dreifa megi hugbúnaði eða&nbsp;ekki.
+          </p>
+          <p>
+            Vegna þess hve útbreiddur vefurinn er hafa margir
+            <em>staðlar</em> verið útbúnir til að leysa hin ýmsu verkefni. Mörg
+            forrit—ekki bara vafrar—nýta þessa staðla til að útbúa viðmót. Í dag
+            er því hægt að nota vefforritun til að búa til forrit sem ekki bara
+            birtast í vöfrum, t.d. textaritla, tónlistarforrit, <em>öpp</em> og
+            ýmislegt&nbsp;fleira.
+          </p>
+        </div>
+        <h3 id="0.3.10">
+          <span>
+            <a href="#0.3.10">0.3.10</a>
+          </span>
+          <em>Framendi</em> og <em>Bakendi</em>
+        </h3>
+        <div class="paragraphs">
+          <p>
+            Framendi (e. front-end eða client-side) er eins og áður segir sá
+            partur vefsins sem notendur sjá og eiga við. Í grunninn er framendi
+            búinn til með HTML, CSS og JavaScript. Til þess að einfalda og flýta
+            fyrir smíðum á stærri og flóknari vefjum eru til margskonar
+            <em>framework</em> eða <em>libraries</em> sem hjálpa. Dæmi um þetta
+            sem eru vinsæl í dag eru React, Angular og Vue. Þó svo að þessi tól
+            geti hjálpað okkur, þurfum við alltaf að vita hvað gerist í grunninn
+            og því byrjum við á að læra HTML, CSS og JavaScript án
+            nokkura&nbsp;hjálpartækja.
+          </p>
+          <p>
+            Bakendi (e. back-end eða server-side) er sá partur vefsins sem er
+            sendur yfir HTTP til framenda. Bakendinn samanstendur yfirleitt af
+            vefþjóni, <em>forriti</em> sem útbýr framenda og einhverri
+            gagnageymslu (t.d. gagnagrunnur). Vefþjónar geta stutt margskonar
+            forritunarmál (t.d. C# eða Python) og forritunarumhverfi (t.d. .NET
+            eða&nbsp;Django).
+          </p>
+
+          <figure>
+            <div class="image">
+              <div class="img">
+                <img
+                  alt="Samskipti milli bakenda og framenda fara fram í gegnum HTTP."
+                  src="img/framendibakendi.svg"
+                  width="505"
+                  height="150"
+                  loading="lazy"
+                />
+              </div>
+              <div class="ratio" style="padding-top: 29.70297%"></div>
+            </div>
+
+            <figcaption>
+              <p>
+                Samskipti milli bakenda og framenda fara fram í gegnum HTTP.
+              </p>
+              <footer>Mynd frá höfundi.</footer>
+            </figcaption>
+          </figure>
+          <p>
+            Stundum er talað um <em>full stack&nbsp;forritun</em>, en það er
+            þegar forritari er fær í bæði framenda og bakenda&nbsp;forritun.
+          </p>
+        </div>
+        <h2 id="0.4">
+          <span>
+            <a href="#0.4">0.4</a>
+          </span>
+          Textaritlar
+        </h2>
+        <div class="paragraphs">
+          <p>
+            Þegar við vinnum með texta (texta í sínu <em>hreinasta</em> formi,
+            stafir án nokkurs útlits) notum við yfirleitt textaritla.
+            Textaritlar geta verið frá mjög einföldum forritum (t.d. Notepad í
+            Windows) yfir í flókin forrit sem hafa verið til í tugi ára (t.d.
+            <a href="https://en.wikipedia.org/wiki/Vi">Vi</a> og
+            <a href="https://en.wikipedia.org/wiki/Emacs">Emacs</a>). Yfirleitt
+            er best að lenda einhversstaðar í miðjunni, með textaritli sem
+            auðvelt er að byrja að nota, en hægt er að bæta við virkni og læra
+            betur á með&nbsp;tímanum.
+          </p>
+          <p>
+            Textaritlar sem vinsælir eru í dag og mælt er með eru&nbsp;t.d.:
+          </p>
+        </div>
+        <ul>
+          <li>
+            <a href="https://code.visualstudio.com/">Visual Studio&nbsp;Code</a>
+            – frír ritill frá Microsoft sem nýtir reynslu við smíði Visual
+            Studio, <em>IDE</em> frá&nbsp;Microsoft
+          </li>
+          <li>
+            <a href="https://atom.io/">Atom</a> – frír textaritill frá GitHub
+            með mörgum mögulegum&nbsp;viðbótum
+          </li>
+          <li>
+            <a href="https://www.sublimetext.com/">Sublime&nbsp;Text</a> –
+            aðeins eldri ritill sem getur verið hraðari í stærri verkefnum og að
+            vinna með stærri&nbsp;skrár
+          </li>
+        </ul>
+        <div class="paragraphs">
+          <p>
+            Bæði Visual Studio Code og Atom eru smíðaðir með veftækni—allt
+            viðmót þeirra er útbúið með HTML, CSS og&nbsp;JavaScript! Mjög
+            líklega er það ástæða þess að erfitt getur verið að vinna með stór
+            verkefni eða stórar skrár í&nbsp;þeim.
+          </p>
+        </div>
+        <h2 id="0.5">
+          <span>
+            <a href="#0.5">0.5</a>
+          </span>
+          Stafasett
+        </h2>
+        <div class="paragraphs">
+          <p>
+            Til þess að vinna með stafi í tölvum þarf á einhvern hátt að
+            skilgreina hvernig þeir eru geymdir. Þar sem tölvur vinna helst með
+            tvíundarkerfi, eru þau kerfi möppun á tölu yfir í staf og öfugt. Við
+            það að skrifa staf breytir ritill eða forrit stafnum í viðeigandi
+            tölu í því skjali sem geymir&nbsp;textann.
+          </p>
+          <p>
+            Með fyrstu stafasettum sem skilgreind voru fyrir tölvur var ASCII
+            (American Standard Code for Information Interchange) sem byggt var á
+            hvernig skipst var á upplýsingum með símskeytum. Í ASCII eru sjö
+            bitar notaðir til að túlka 128 stafi, fyrstu 32 eru
+            <em>stýristafir</em>, stafir sem ekki eiga að birtast (t.d. er
+            <code>0001010₂</code> notað til að túlka línubil), næstu 105 stafir
+            kóða greinarmerki, tölustafi og 26 stafi enskastafrófsins (bæði há-
+            og&nbsp;lágstafi).
+          </p>
+
+          <figure>
+            <div class="image">
+              <div class="img">
+                <img
+                  alt="Tafla til uppflettingar á US-ASCII kóðum."
+                  src="img/ascii.png"
+                  width="1724"
+                  height="1241"
+                  loading="lazy"
+                />
+              </div>
+              <div class="ratio" style="padding-top: 71.983759%"></div>
+            </div>
+
+            <figcaption>
+              <p>Tafla til uppflettingar á US-ASCII kóðum, frá ca. 1970.</p>
+              <footer>
+                Mynd frá Wikimedia:
+                <a
+                  href="https://commons.wikimedia.org/wiki/File:USASCII_code_chart.png"
+                  >https://commons.wikimedia.org/wiki/File:USASCII_code_chart.png</a
+                >
+              </footer>
+            </figcaption>
+          </figure>
+          <p>
+            Þegar tölvur fóru að vera notaðar utan Bandaríkjanna og þar sem
+            fleiri stafir eru notaðir, voru fundin upp ný stafasett. Fyrir
+            latneska stafrófið voru
+            <a href="https://en.wikipedia.org/wiki/ISO-8859-1">ISO-8859-1</a> og
+            <a href="https://en.wikipedia.org/wiki/Windows-1252"
+              >Windows-1252</a
+            >
+            mest notuð á vefnum, þar sem þau gat kóðað allt stafrófið í einu
+            bæti per&nbsp;staf.
+          </p>
+          <p>
+            Til þess að koma í veg fyrir að hvert stafróf þyrfti sitt eigið
+            stafasett og allan ruglingin tengdan því, var
+            <a href="https://en.wikipedia.org/wiki/Unicode"
+              >Unicode&nbsp;staðallinn</a
+            >
+            búinn til, með það að markmiði að túlka öll stafróf jarðar ásamt
+            öðrum sértækum stöfum (t.d.
+            <a href="https://en.wikipedia.org/wiki/Emoji">emoji</a> tákn).
+            <a href="https://en.wikipedia.org/wiki/UTF-8">UTF-8</a> er stafasett
+            sem kóðar alla stafi í Unicode og notar til þess allt að fjögur
+            bæti. Fyrstu 128 stafir í UTF-8 eru þeir sömu og í ASCII, þ.a. hægt
+            er að opna ASCII skjöl sem UTF-8 án&nbsp;ruglings.
+          </p>
+          <p>
+            Á vefnum er UTF-8 langmest notaða stafasettið og það sem við notum.
+            Textaritillinn sem við notum ætti að sýna okkur í hvaða stafasetti
+            skjalið okkar er og leyfa okkur að breyta því. Ef við lendum í því
+            að vista efni í textaritli en vafri birtir textann brenglaðan (sér í
+            lagi íslenska stafi) er það vegna mismunar á stafasetti sem skjal er
+            vistað í, og þess sem vafri birtir. Það er ekki hægt að greina
+            sjálfkrafa í hvaða stafasetti skjal eða vefsíða er í, við verðum að
+            gera það&nbsp;sjálf.
+          </p>
+        </div>
+        <h2 id="0.6">
+          <span>
+            <a href="#0.6">0.6</a>
+          </span>
+          Fyrsti vefurinn&nbsp;okkar
+        </h2>
+        <div class="paragraphs">
+          <p>
+            Til að byrja vegferð okkar sækjum við textaritil, opnum hann og búum
+            til nýtt skjal. Hið klassíska til að skrifa er „halló, heimur“ eða
+            <a href="https://en.wikipedia.org/wiki/%22Hello,_World!%22_program"
+              >„hello,&nbsp;world“</a
+            >
+            og fá það til að birtast á skjánum. Því getum við afritað
+            eftirfarandi inn í&nbsp;textaritil:
+          </p>
+        </div>
+        <div class="code code-html">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Halló, heimur!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></pre>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <p>
+            og vistað skjalið sem <code>index.html</code> einhversstaðar þar sem
+            við finnum það. Því næst opnum við vafra og með
+            <code>File &gt; Open</code> eða með því að draga það á vafrann,
+            veljum við skjalið og sjáum textann á&nbsp;skjánum.
+          </p>
+          <p>
+            Þegar við opnum skjalið svona beint á tölvunni okkar erum við ekki
+            að nýta okkur bakenda eða vefþjón, heldur er vafrinn að opna skjalið
+            beint af tölvunni, það sést á því að skjalið kemur ekki frá
+            <code>http://example.org</code> heldur
+            <code>file://mappa/index.html</code> eða álíka. Þetta er í fínu lagi
+            í fyrstu en þegar farið er að gera flóknari hluti þurfum við að
+            keyra vefþjón á tölvunni&nbsp;okkar.
+          </p>
+          <p>
+            Ástæðan fyrir því að við notum <code>index.html</code> er sú að það
+            skjal er notað sem sjálfgefna skjalið þegar mappa er opnuð, t.d. ef
+            við höfum möppu sem heitir <code>about</code> á vefþjóninum okkar á
+            <code>example.org</code> og innan í henni er skjalið
+            <code>about.html</code>. Ef við opnum
+            <code>http://example.org/about</code> fengjum við ekkert upp, aðeins
+            ef við opnum <code>http://example.org/about/about.html</code>,
+            hinsvegar ef við skýrum <code>about.html</code>,
+            <code>index.html</code> myndi vefurinn birtast bæði ef við opnum
+            <code>http://example.org/about</code> og
+            <code>http://example.org/about/index.html</code>.
+          </p>
+        </div>
+        <h2 id="0.7">
+          <span>
+            <a href="#0.7">0.7</a>
+          </span>
+          FTP
+        </h2>
+        <div class="paragraphs">
+          <p>
+            Til þess að koma vefsíðunum okkar yfir á vefþjóna eru nokkrar leiðir
+            en sú elsta og e.t.v. algengsta er að nota <em>FTP</em> (File
+            Transfer Protocol) eða SFTP (þar sem S stendur fyrir Secure eða
+            <em>SSH</em>). FTP leyfir okkur að opna stað í skráarkerfi vefþjóns
+            og færa skrár fram og til&nbsp;baka.
+          </p>
+          <p>
+            Frítt og nothæft FTP forrit er t.d.
+            <a href="https://cyberduck.io/">Cyberduck</a> fyrir Mac og Windows.
+            Oft hefur verið mælt með FileZilla en
+            <a
+              href="https://en.wikipedia.org/wiki/FileZilla#Bundled_adware_issues"
+              >frá og með 2018 hefur óæskilegum&nbsp;hugbúnaði</a
+            >
+            verið dreift með forritinu svo ekki er mælt með að nota&nbsp;það.
+          </p>
+        </div>
+        <h2 id="0.8">
+          <span>
+            <a href="#0.8">0.8</a>
+          </span>
+          Dæmi og&nbsp;textar
+        </h2>
+
+        <h3 id="0.8.1">
+          <span>
+            <a href="#0.8.1">0.8.1</a>
+          </span>
+          example.org
+        </h3>
+        <div class="paragraphs">
+          <p>
+            Í dæmum þar sem vísað er í vefþjóna og sá vefþjónn sem um ræðir
+            skiptir ekki máli, er hægt að nota <code>example.com</code>,
+            <code>example.org</code> eða <code>example.net</code>. Þessi
+            lénsnöfn eru sérstaklega tekin frá til notkunar í dæmum. Það þýðir
+            að enginn vaktar þau eða tekur við gögnum sem send eru á þau (ólíkt
+            t.d. <code>test.is</code> eða <code>example.is</code> sem eru í
+            eigu&nbsp;einhverra!)
+          </p>
+        </div>
+        <h3 id="0.8.2">
+          <span>
+            <a href="#0.8.2">0.8.2</a>
+          </span>
+          <code>foo</code> &amp; <code>bar</code>
+        </h3>
+        <div class="paragraphs">
+          <p>
+            Vert að minnast <code>foo</code> og <code>bar</code> sem eiga
+            eflaust eftir að skjóta upp kollinum. Þegar verið er að skrifa dæmi
+            þar sem einhver texti eða heiti á breytu þarf að koma fram, en
+            heitið sjálft skiptir ekki máli, eru <code>foo</code> og
+            <code>bar</code> yfirleitt&nbsp;notuð.
+          </p>
+          <p>
+            Dæmi í JavaScript þar sem <code>foo</code> og <code>bar</code> eru
+            notuð til að sýna samlagningu á tveim breytum, heiti breytanna
+            skiptir engu&nbsp;máli.
+          </p>
+        </div>
+        <div class="code code-javascript">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-keyword">const</span> foo = <span class="hljs-number">1</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre><span class="hljs-keyword">const</span> bar = <span class="hljs-number">2</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre><span class="hljs-built_in">console</span>.log(foo + bar);</pre>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <blockquote>
+          <p>
+            There are only two hard things in Computer Science: cache
+            invalidation and naming things.
+          </p>
+          <footer>
+            —
+            <a href="https://twitter.com/timbray/status/506146595650699264"
+              >Phil&nbsp;Karlton</a
+            >
+          </footer>
+        </blockquote>
+        <div class="paragraphs">
+          <p>
+            Að nota þessi heiti fyrir breytur
+            <a href="https://en.wikipedia.org/wiki/Foobar"
+              >á sér langa&nbsp;sögu</a
+            >, allt frá sjöunda áratugnum og jafnvel alla leið til seinni
+            heimstyrjaldarinnar með skammstöfuninni&nbsp;FUBAR.
+          </p>
+          <p>
+            Þó svo að þessi breytu heiti hafi lengi verið notuð til að sýna fram
+            á virkni, þýðir það ekki að þetta sé góð hefð. Að nota abstrakt
+            dæmi, ótengda raunveruleikanum hjálpar ekki til við að læra hvernig
+            hlutir virka, höfundur reynir að halda sig frá þessu í dæmum eins og
+            hægt&nbsp;er.
+          </p>
+        </div>
+        <h3 id="0.8.3">
+          <span>
+            <a href="#0.8.3">0.8.3</a>
+          </span>
+          Lorem&nbsp;ipsum
+        </h3>
+        <div class="paragraphs">
+          <p>
+            Annar „gervitexti“ sem skýtur upp kollinum er
+            <a href="https://en.wikipedia.org/wiki/Lorem_ipsum"
+              ><em>lorem&nbsp;ipsum</em></a
+            >, sem er texti sem einnig á sér langa sögu en í prentun. Þegar við
+            vinnum útlit þurfum við oft að hafa mikið af texta til þess að sjá
+            hvernig það mun haga sér. Þá er oft ekki búið að semja lokatextann
+            og er þá <em>lorem&nbsp;ipsum</em> notað. Þessi texti er skemmd
+            útgáfa af latneskum texta sem hefur verið notuð síðan
+            a.m.k.&nbsp;1960.
+          </p>
+        </div>
+        <blockquote>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est&nbsp;laborum.
+          </p>
+        </blockquote>
+      </article>
+
+      <footer>
+        <nav>
+          <ul>
+            <li class="prev"></li>
+            <li class="index"><a href="/">Efnisyfirlit</a></li>
+            <li class="next">
+              <p><a href="./01.saga.html">Sagan hingað&nbsp;til</a></p>
+            </li>
+          </ul>
+        </nav>
+        <hr />
+        <div class="version">Útgáfa 0.3, ágúst 2020</div>
+      </footer>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<!--
+  Velkominn ferðalangur, bakvið tjöldin, í uppsprettuna.
+  Þetta HTML er sjálfkrafa útbúið út frá Markdown skjölum.
+  Sjá nánar:
+  https://github.com/vefforritun/book
+  -->
+<html lang="is">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vefforitun—Kafli 19: CSS tæki & tól</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Kafli 19: CSS tæki & tól</h1>
+        <div class="reading-time">Um 4 mín lestur</div>
+      </header>
+
+      <article>
+        <div class="paragraphs">
+          <p>
+            Þar sem CSS hefur ekki föll og flóknari aðgerðir er búið að útbúa
+            ýmis tól sem hjálpa okkur við að skrifa skipulegra CSS með leiðum
+            til að draga úr endurtekningum,&nbsp;t.d.:
+          </p>
+        </div>
+        <ul>
+          <li>
+            Breytur, getum skilgreint fyrir liti, stærðir o.fl. Þessar breytur
+            eru öðruvísi en CSS breytur þar sem þær eru ekki dýnamískar og nýta
+            ekki&nbsp;cascade.
+          </li>
+          <li>
+            <em>mixins</em>, leiðir til að endurýta reglublokkir, virka svipað
+            og&nbsp;föll.
+          </li>
+          <li>
+            <em>nesting</em>, skrifum reglublokkir innan reglublokka og nýtum
+            selector að&nbsp;ofan.
+          </li>
+        </ul>
+        <div class="paragraphs">
+          <p>Dæmi um mál sem útfæra þetta&nbsp;eru:</p>
+        </div>
+        <ul>
+          <li>
+            <a href="http://lesscss.org/">LESS</a>,
+            <em>It&#39;s CSS, with just a little&nbsp;more.</em>
+          </li>
+          <li>
+            <a href="http://stylus-lang.com/">Stylus</a>,
+            <em>Expressive, dynamic, robust&nbsp;css.</em>
+          </li>
+          <li>
+            <a href="http://sass-lang.com/">Sass</a>,
+            <em>Syntactically Awesome Style&nbsp;Sheets.</em>
+          </li>
+        </ul>
+        <div class="paragraphs">
+          <p>
+            Flest af þessum tólum virka sem <em>superset</em> af CSS, sem þýðir
+            að „venjulegt“ CSS virkar en ef við bætum við það virkni úr málinu
+            bæta þau við virkni. Við þurfum að sækja okkur
+            <em>þýðanda</em> fyrir málið sem þá þýðir fyrir okkur úr því í
+            „venjulegt“&nbsp;CSS.
+          </p>
+        </div>
+        <h2 id="19.1">
+          <span>
+            <a href="#19.1">19.1</a>
+          </span>
+          Sass
+        </h2>
+        <div class="paragraphs">
+          <p>
+            Sass er töluvert mikið notað og hefur þýðendur í mörgum umhverfum.
+            Eldri útgáfa af málinu notaði <code>.sass</code> endingu á skjölum
+            en nýrri („sassy CSS“) notar <code>.scss</code>.
+          </p>
+          <p>
+            Sass útfærir breytur með <code>$</code> fyrir framan eigindi og
+            leyfir okkur að nota á öðrum stöðum með virkjum
+            og&nbsp;hjálparföllum:
+          </p>
+        </div>
+        <div class="code code-scss">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-comment">// svona komment virka</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre><span class="hljs-variable">$blue</span>: <span class="hljs-number">#3bbfce</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre><span class="hljs-variable">$margin</span>: <span class="hljs-number">16px</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td>
+                <pre><span class="hljs-selector-class">.box</span> {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="6"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">margin</span>: <span class="hljs-variable">$margin</span> / <span class="hljs-number">2</span>; <span class="hljs-comment">// eigum við breytu með virkja</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="7"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">background-color</span>: <span class="hljs-variable">$blue</span> * <span class="hljs-number">2</span>; <span class="hljs-comment">// líka fyrir liti!</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="8"></td>
+              <td><pre>}</pre></td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs"><p>sem er þýtt yfir&nbsp;í:</p></div>
+        <div class="code code-css">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-selector-class">.box</span> {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">margin</span>: <span class="hljs-number">8px</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#76ffff</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td><pre>}</pre></td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <p>
+            Við getum líka notað <em>mixin</em> og hreiðraðar reglur sem geta
+            nýst okkur t.d. ef við erum að skrifa&nbsp;BEM:
+          </p>
+        </div>
+        <div class="code code-scss">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-keyword">@mixin</span> rounded(<span class="hljs-variable">$color</span>: transparent) {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid <span class="hljs-variable">$color</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">5px</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td><pre>}</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="6"></td>
+              <td>
+                <pre><span class="hljs-selector-class">.box</span> {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="7"></td>
+              <td><pre>  &amp;__header {</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="8"></td>
+              <td>
+                <pre>    <span class="hljs-keyword">@include</span> rounded;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="9"></td>
+              <td><pre>  }</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="10"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="11"></td>
+              <td><pre>  &amp;__content {</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="12"></td>
+              <td>
+                <pre>    <span class="hljs-keyword">@include</span> rounded(<span class="hljs-number">#000</span>);</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="13"></td>
+              <td><pre>  }</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="14"></td>
+              <td><pre>}</pre></td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs"><p>sem er þýtt yfir&nbsp;í:</p></div>
+        <div class="code code-css">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-selector-class">.box__header</span> {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid transparent;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">5px</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td><pre>}</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td>
+                <pre><span class="hljs-selector-class">.box__content</span> {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="6"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#000</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="7"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">5px</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="8"></td>
+              <td><pre>}</pre></td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <p>
+            <em>Media&nbsp;queries</em> geta verið settar undir selector sem
+            getur hjálpað töluvert við að hópa saman hvernig hlutur hegðar sér í
+            mismunandi&nbsp;upplausnum:
+          </p>
+        </div>
+        <div class="code code-scss">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-selector-class">.box</span> {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td>
+                <pre>  <span class="hljs-keyword">@media</span> (min-width: <span class="hljs-number">800px</span>) {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td>
+                <pre>    <span class="hljs-attribute">width</span>: <span class="hljs-number">50%</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="6"></td>
+              <td><pre>  }</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="7"></td>
+              <td><pre>}</pre></td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <p>
+            Við getum nýtt okkur mixins og hreiðrun til að einfalda grid virkni
+            og gera&nbsp;læsilegri:
+          </p>
+        </div>
+        <div class="code code-scss">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-variable">$gutter</span>: <span class="hljs-number">20px</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre><span class="hljs-selector-class">.row</span> {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">display</span>: flex;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">flex-wrap</span>: wrap;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="6"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">margin-right</span>: -(<span class="hljs-variable">$gutter</span> / <span class="hljs-number">2</span>);</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="7"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">margin-left</span>: -(<span class="hljs-variable">$gutter</span> / <span class="hljs-number">2</span>);</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="8"></td>
+              <td><pre>}</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="9"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="10"></td>
+              <td>
+                <pre><span class="hljs-comment">// mixin sem reiknar nákvæmar prósentur útfrá dálkum</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="11"></td>
+              <td>
+                <pre><span class="hljs-keyword">@mixin</span> columns(<span class="hljs-variable">$col</span>: <span class="hljs-number">1</span>) {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="12"></td>
+              <td>
+                <pre>  <span class="hljs-comment">// margföldum með &quot;1%&quot; til að breyta gildi í prósentu gildi</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="13"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">width</span>: (<span class="hljs-variable">$col</span> / <span class="hljs-number">12</span> * <span class="hljs-number">100</span>) * <span class="hljs-number">1%</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="14"></td>
+              <td><pre>}</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="15"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="16"></td>
+              <td>
+                <pre><span class="hljs-selector-class">.col</span> {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="17"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">padding-right</span>: <span class="hljs-variable">$gutter</span> / <span class="hljs-number">2</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="18"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">padding-left</span>: <span class="hljs-variable">$gutter</span> / <span class="hljs-number">2</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="19"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="20"></td>
+              <td><pre>  &amp;-12 {</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="21"></td>
+              <td>
+                <pre>    <span class="hljs-keyword">@include</span> columns(<span class="hljs-number">12</span>);</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="22"></td>
+              <td><pre>  }</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="23"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="24"></td>
+              <td><pre>  &amp;-sm {</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="25"></td>
+              <td>
+                <pre>    <span class="hljs-comment">// viljum að col-sm-* sé notað alveg upp að 800px, ekki í 800px samt</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="26"></td>
+              <td>
+                <pre>    <span class="hljs-keyword">@media</span> (max-width: <span class="hljs-number">799px</span>) {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="27"></td>
+              <td><pre>      &amp;-12 {</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="28"></td>
+              <td>
+                <pre>        <span class="hljs-keyword">@include</span> columns(<span class="hljs-number">12</span>);</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="29"></td>
+              <td><pre>      }</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="30"></td>
+              <td><pre>    }</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="31"></td>
+              <td><pre>  }</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="32"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="33"></td>
+              <td>
+                <pre>  <span class="hljs-comment">// o.s.fr...</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="34"></td>
+              <td><pre>}</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="35"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="36"></td>
+              <td>
+                <pre><span class="hljs-comment">// eða...</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="37"></td>
+              <td>
+                <pre><span class="hljs-selector-class">.my-box</span> {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="38"></td>
+              <td>
+                <pre>  <span class="hljs-keyword">@include</span> columns(<span class="hljs-number">12</span>);</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="39"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="40"></td>
+              <td>
+                <pre>  <span class="hljs-keyword">@media</span> (min-width: <span class="hljs-number">800px</span>) {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="41"></td>
+              <td>
+                <pre>  <span class="hljs-selector-class">.my-box</span> {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="42"></td>
+              <td>
+                <pre>    <span class="hljs-keyword">@include</span> columns(<span class="hljs-number">4</span>);</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="43"></td>
+              <td><pre>  }</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="44"></td>
+              <td><pre>}</pre></td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <p>
+            Með Sass og <code>@import</code> at-regluna til þess að skipuleggja
+            skránar okkar betur, í grunn skránni okkar (t.d.
+            <code>styles.scss</code>) setjum við almennar skilgreiningar og
+            sækjum síðar aðrar skrár. Þannig getum við ennfrekar skipulagt CSS
+            virknina okkar og komið í veg fyrir stórar, flóknar&nbsp;skrár:
+          </p>
+        </div>
+        <div class="code code-scss">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-comment">// Almennar breytur</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre><span class="hljs-variable">$max-width</span>: <span class="hljs-number">1200px</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre><span class="hljs-variable">$gutter</span>: <span class="hljs-number">20px</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td><pre>main {</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="6"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">max-width</span>: <span class="hljs-variable">$max-width</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="7"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span> auto;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="8"></td>
+              <td><pre>}</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="9"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="10"></td>
+              <td>
+                <pre><span class="hljs-comment">// Sækjum skjöl sem skilgreina almenna virkni, t.d. grid</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="11"></td>
+              <td>
+                <pre><span class="hljs-keyword">@import</span> <span class="hljs-string">&quot;scss/grid&quot;</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="12"></td>
+              <td>
+                <pre><span class="hljs-comment">// ...</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="13"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="14"></td>
+              <td>
+                <pre><span class="hljs-comment">// Sækjum skjöl fyrir hvern „hlut“</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="15"></td>
+              <td>
+                <pre><span class="hljs-keyword">@import</span> <span class="hljs-string">&quot;scss/header&quot;</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="16"></td>
+              <td>
+                <pre><span class="hljs-keyword">@import</span> <span class="hljs-string">&quot;scss/button&quot;</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="17"></td>
+              <td>
+                <pre><span class="hljs-keyword">@import</span> <span class="hljs-string">&quot;scss/nav&quot;</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="18"></td>
+              <td>
+                <pre><span class="hljs-comment">// ...</span></pre>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <p>
+            Að skipta skjölum upp á þennan máta, samnýta almenna virkni gegnum
+            <em>mixin</em>, velja eða skilgreina viðmiðunarreglur og nota öguð
+            vinnubrögð hjálpar mikið í stærri CSS&nbsp;verkefnum.
+          </p>
+          <p>
+            Hægt er lesa nánar um virkni sem Sass bíður upp á í
+            <a
+              href="http://sass-lang.com/documentation/file.SASS_REFERENCE.html"
+              >skjölun</a
+            >
+            og prófa sig áfram með
+            <a href="https://www.sassmeister.com/"><em>Sassmeister</em></a> sem
+            þýðir Sass í&nbsp;vafra.
+          </p>
+          <p>
+            Þá er næsta spurning, hvernig getum við notað svona sniðugt tól í
+            okkar&nbsp;verkefnum?
+          </p>
+        </div>
+      </article>
+
+      <footer>
+        <nav>
+          <ul>
+            <li class="prev">
+              <p>
+                <a href="./18.css-verkefni.html">CSS í stærri&nbsp;verkefnum</a>
+              </p>
+            </li>
+            <li class="index"><a href="/">Efnisyfirlit</a></li>
+            <li class="next">
+              <p>
+                <a href="./20.npm-taeki-tol.html"
+                  >NPM og almenn tæki og&nbsp;tól</a
+                >
+              </p>
+            </li>
+          </ul>
+        </nav>
+        <hr />
+        <div class="version">Útgáfa 0.3, september 2020</div>
+      </footer>
+    </main>
+  </body>
+</html>

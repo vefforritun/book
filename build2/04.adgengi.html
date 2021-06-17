@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<!--
+  Velkominn ferðalangur, bakvið tjöldin, í uppsprettuna.
+  Þetta HTML er sjálfkrafa útbúið út frá Markdown skjölum.
+  Sjá nánar:
+  https://github.com/vefforritun/book
+  -->
+<html lang="is">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vefforitun—Kafli 4: Aðgengi</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Kafli 4: Aðgengi</h1>
+        <div class="reading-time">Um 10 mín lestur</div>
+      </header>
+
+      <article>
+        <div class="paragraphs">
+          <p>
+            Aðgengi og aðgengismál (e. accessibility eða a11y, 11 stafir eru
+            milli fyrsta og seinasta stafs) er oft tengt við það að „fatlað
+            fólk“ geti notað vefina okkar en það er frekar takmörkuð sýn á
+            aðgengi. Aðgengi snýst um að <em>fólk</em> geti notað vefina okkar.
+            Við getum öll orðið „fötluð“ tímabundið, hvort sem það er vegna
+            slyss sem setur okkur í gips á annarri hönd eða þreytu sem veldur
+            því að erfitt er að rýna í&nbsp;texta.
+          </p>
+          <p>
+            Í gegnum tíðina hefur það oft verið þannig að barátta fyrir auknu
+            aðgengi skilar sér í betri heim fyrir okkur öll. Fyrir raunheima er
+            þetta tekið saman í hugtakinu „algild hönnun“ eða
+            <a href="https://en.wikipedia.org/wiki/Universal_design"
+              >„Universal&nbsp;Design“</a
+            >
+            sem stefnir að því að öll hönnun sé aðgengileg öllu fólki, alltaf.
+            Gott dæmi um þetta eru niðurtektir (e. curb cuts) á gangstéttum,
+            lækkun sem upphaflega var ætluð hjólastólum en í dag hentar mun
+            fleiri aðilum: fólki með barnavagna, sendlum, fólki sem dregur
+            ferðatöskur o.s.fr.
+          </p>
+          <p>
+            Sem fagaðilar ættum við auk þess ekki að mismuna fólki og það mun
+            aðeins aukast að
+            <a href="http://jimthatcher.com/book2/chapter17.html"
+              >lög verði sett sem banna mismun, hvort sem hún er viljandi
+              eða&nbsp;ekki</a
+            >
+            eða
+            <a
+              href="https://www.levelaccess.com/winn-dixie-decision-florida-sets-landmark-precedent-digital-accessibility/"
+              >að þessum lögum verði framfylgt með&nbsp;sektum</a
+            >. Því er það að segja&nbsp;„_en fólk með fötlun mun ekki nota
+            vefinn okkar_“ lítið annað en afsökun fyrir því að huga ekki að
+            virkni sem bætir vefinn fyrir <strong>alla</strong>.
+          </p>
+        </div>
+        <blockquote>
+          <p>
+            <strong>P</strong> has
+            <a
+              href="http://www.healthline.com/health/multiple-sclerosis/effects-on-the-body"
+              >Multiple&nbsp;Sclerosis</a
+            >, which affects both her vision and her ability to control a mouse.
+            She often gets tingling in her hands that makes using a standard
+            computer mouse for a long period of time painful and difficult.
+          </p>
+          <footer>
+            —
+            <a
+              href="https://the-pastry-box-project.net/anne-gibson/2014-July-31"
+              >An Alphabet of Accessibility&nbsp;Issues</a
+            >
+          </footer>
+        </blockquote>
+
+        <h2 id="4.1">
+          <span>
+            <a href="#4.1">4.1</a>
+          </span>
+          WCAG
+        </h2>
+        <div class="paragraphs">
+          <p>
+            Að útfæra vef með grunn aðgengi í huga er ekki erfitt en getur verið
+            dýrt að gera eftir á. W3C heldur úti staðli,
+            <a href="https://www.w3.org/TR/WCAG21/"
+              >Web Content Accessibility Guidelines&nbsp;2.1</a
+            >, sem setur fram tilmæli og prinsipp sem hjálpa til við að gera
+            vefi aðgengilegri. Atriðunum er skipt í þrjá&nbsp;flokka:
+          </p>
+        </div>
+        <ul>
+          <li>A, minnsta&nbsp;stig</li>
+          <li>AA, það stig sem við ættum að stefna&nbsp;að</li>
+          <li>AAA, öll skilyrði&nbsp;uppfyllt</li>
+        </ul>
+        <div class="paragraphs">
+          <p>
+            WCAG byggir á fjórum prinsippum um það hvernig eigi að útfæra hluti
+            á&nbsp;vef:
+          </p>
+        </div>
+        <ol>
+          <li>
+            <em>Perceivable</em>: Upplýsingar og notendaviðmót verða að vera
+            sett upp þannig að notendur geti <em>skynjað</em> þau
+          </li>
+          <li>
+            <em>Operable</em>: Notendaviðmót og leiðsögukerfi (navigation) verða
+            að vera <em>nothæf</em>
+          </li>
+          <li>
+            <em>Understandable</em>: Upplýsingar og notkun á notendaviðmóti
+            verða að vera <em>skiljanleg</em>
+          </li>
+          <li>
+            <em>Robust</em>: Efni verður að vera nógu <em>traust</em> þ.a. það
+            geti verið túlkað áreiðanlega af breiðum hóp tækja, þar með
+            talið&nbsp;hjálpartækjum
+          </li>
+        </ol>
+        <div class="paragraphs">
+          <p>
+            Til að aðstoða okkur við að útfæra vefi sem standast tilmæli WCAG er
+            hægt að fylgja
+            <a href="https://www.w3.org/WAI/WCAG21/Techniques/"
+              >Techniques for WCAG&nbsp;2.1</a
+            >, sem útlistar aðferðir til að uppfylla WCAG með lýsingu og
+            prófanalýsingum, t.d.
+            <a href="https://www.w3.org/WAI/WCAG21/Techniques/html/H37"
+              >Using alt attributes on img&nbsp;elements</a
+            >.
+          </p>
+        </div>
+        <h3 id="4.1.1">
+          <span>
+            <a href="#4.1.1">4.1.1</a>
+          </span>
+          Aðgengi á&nbsp;Íslandi
+        </h3>
+        <div class="paragraphs">
+          <p>
+            Engin lög eru til staðar um aðgengi að vefjum á Íslandi, en
+            stjórnvöld hafa beint þeim tilmælum til opinberra aðila að ná
+            WCAG2.0&nbsp;AA:
+          </p>
+        </div>
+        <blockquote>
+          <p>
+            Íslensk stjórnvöld hafa beint þeim tilmælum til opinberra aðila að
+            leiðbeiningum alþjóðlegu staðlasamtakanna Worldwide Web Consortium
+            (W3C) sé fylgt hér á land. WCAG 2.0 AA leiðbeinir um hvernig ganga
+            skuli frá vefefni þannig að það sé aðgengilegt&nbsp;öllum.
+          </p>
+          <footer>
+            —<a
+              href="https://www.stjornarradid.is/verkefni/upplysingasamfelagid/opinberir-vefir/vefhandbokin/3.-adgengi-og-nytsemi/"
+              >Aðgengi og nytsemi í Vefhandbók Innanríkisráðuneytisins frá
+              árinu&nbsp;2012</a
+            >
+          </footer>
+        </blockquote>
+        <div class="paragraphs">
+          <p>
+            Birkir Rúnar sérfræðingur í aðgengismálum á vef, birti árið 2013
+            nokkrar greinar á vef Advania þar sem hann fór yfir stöðu
+            aðgengismála á&nbsp;Íslandi:
+          </p>
+        </div>
+        <ul>
+          <li>
+            <a href="./birkir1.html"
+              >Gott aðgengi gerir kraftaverk – þess vegna er ég&nbsp;rafviti</a
+            >
+          </li>
+          <li>
+            <a href="./birkir2.html">Gott aðgengi er góður&nbsp;bissness</a>
+          </li>
+          <li>
+            <a href="./birkir3.html"
+              >Ísland er eftirbátur í aðgengi að&nbsp;upplýsingatækni</a
+            >
+          </li>
+          <li>
+            <a href="./birkir4.html"
+              >Öflugt og einfalt regluverk tryggir aðgengi
+              að&nbsp;upplýsingatækni</a
+            >
+          </li>
+        </ul>
+
+        <blockquote>
+          <p>
+            Ástæðurnar fyrir því að gera aðgengisumbætur á vefjum eru
+            margvíslegar en mikilvægasta grunnástæðan fyrir góðu aðgengi er ætíð
+            sú sama. Hún er einfaldlega sú að með góðu aðgengi er verið að gera
+            kraftaverk í lífi einhvers hvort sem það er einhver sem þið hafið
+            aldrei hitt, einhver sem er ykkur kær, eða jafnvel framtíðarútgáfa
+            af sjálfum ykkur.
+          </p>
+          <footer>
+            — Birkir Rúnar Gunnarsson:
+            <a
+              href="https://vefverslun.advania.is/um-advania/fjolmidlar/advania-bloggid/blogg/2013/03/20/Gott-adgengi-gerir-kraftaverk-thess-vegna-er-eg-rafviti/"
+              >Gott aðgengi gerir kraftaverk – þess vegna er ég&nbsp;rafviti</a
+            >
+          </footer>
+        </blockquote>
+
+        <h3 id="4.1.2">
+          <span>
+            <a href="#4.1.2">4.1.2</a>
+          </span>
+          Að smíða vef með aðgengi í&nbsp;huga
+        </h3>
+        <div class="paragraphs">
+          <p>
+            Þegar við smíðum vef eru nokkur atriði sem við getum sérstaklega
+            haft í huga og eru þau sett hér fram í engri sérstakri röð. Þetta er
+            ekki tæmandi listi, heldur einföld ráð til að útbúa
+            aðgengilegri&nbsp;vefi.
+          </p>
+          <p>
+            Skilgreina <code>lang</code> attribute á
+            <code>&lt;html&gt;</code> til að skilgreina á hvaða máli vefurinn er
+            og er það notað t.d. af lesvöfrum til að velja&nbsp;tungumál.
+          </p>
+          <p>
+            Ef við höfum vef með fleiri en einu tungumáli getum við sett
+            <code>lang</code> á þau element sem innihalda texta á öðru máli en
+            rest af&nbsp;vefnum:
+          </p>
+        </div>
+        <div class="code code-html">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;is&quot;</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Halló, heimur!<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span>Hello, world!<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="6"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></pre>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <p>
+            Oftast eru þetta einföld gildi, t.d. <code>is</code> fyrir íslensku
+            eða <code>en</code> fyrir ensku. Þar sem tungumál eru flókin,
+            <a href="https://codepen.io/tigt/post/notes-on-lang"
+              >getur þetta gildi verið&nbsp;flókið</a
+            >. Eftirfarandi er&nbsp;löglegt:
+          </p>
+        </div>
+        <div class="code code-html">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en-GB-Cyrl-u-kn-true-x-unproof-t-jp-032-Zxxx-x-matsu&quot;</span>&gt;</span></pre>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <p>
+            Titill vefs, <code>&lt;title&gt;</code> er það fyrsta sem
+            skjálesarar lesa og skal því vera lýsandi. Ekki ætti að nota sama
+            titil á allar síður og ekki nota óljós eða of almenn orð.
+            <code>&lt;title&gt;Lærum vefforritun – forsíða&lt;/title&gt;</code>
+            frekar en <code>&lt;title&gt;Forsíða&lt;/title&gt;</code>.
+          </p>
+          <p>
+            Takmarka skal notkun á efni sem birtist aðeins þegar mús er haldið
+            yfir&nbsp;(<em>hover</em>, <em>sveimað</em>) elementi, þar sem það
+            felur almennt efni fyrir notendum, getur valdið rugling þegar smellt
+            er og er ekki nothæft á snjalltækjum. Að láta hluti birtast þegar
+            sveimað er yfir getur oft verið ódýr og fljótleg lausn þegar birta
+            þarf mikið af upplýsingum, t.d. í valmynd, en það getur líka verið
+            <em>löt</em> lausn.
+          </p>
+          <p>
+            Fyrir vídeó með töluðu máli getur verið mjög dýrmætt að bæta við
+            texta. Fólk með slaka heyrn, fólk sem talar ekki málið eða þau sem
+            ekki geta einhverra hluta vegna kveikt á hljóði græða öll. Hægt er
+            að nýta <code>&lt;video&gt;</code> element með
+            <code>&lt;track&gt;</code> elementi sem barni til að bæta við
+            <code>vtt</code> skjali með texta. Þó að það sé ekki tæknilega
+            flókið getur það verið afskaplega&nbsp;tímafrekt.
+          </p>
+        </div>
+        <div class="code code-html">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;<span class="hljs-name">video</span> <span class="hljs-attr">controls</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;<span class="hljs-name">source</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;video.mp4&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;video/mp4&quot;</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;<span class="hljs-name">track</span> <span class="hljs-attr">label</span>=<span class="hljs-string">&quot;English&quot;</span> <span class="hljs-attr">kind</span>=<span class="hljs-string">&quot;subtitles&quot;</span> <span class="hljs-attr">srclang</span>=<span class="hljs-string">&quot;en&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;subs.vtt&quot;</span> <span class="hljs-attr">default</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;/<span class="hljs-name">video</span>&gt;</span></pre>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <p>
+            Skrifa ekki of flókinn texta, í of löngum línum eða með of smáu
+            letri, þarsem texti er í eðli sínu það sem við notum til að miðla
+            upplýsingum okkar. Því er mikilvægt að vanda frágang og
+            birtingu&nbsp;hans.
+          </p>
+          <p>
+            Passa að nota ekki liti og litasamsetningar sem geta reynst erfiðar,
+            þá bæði að litamótstaða (contrast) sé góð (hægt að nota tól eins og
+            <a href="http://webaim.org/resources/contrastchecker/"
+              >Color Contrast&nbsp;Checker</a
+            >) og að nota ekki litasamsetningar sem geta reynst litblindum
+            erfiðar&nbsp;(<a href="http://colororacle.org/"
+              >Color&nbsp;Oracle</a
+            >
+            er tól sem hermir eftir&nbsp;litblindu)
+          </p>
+          <p>
+            Skilgreina <em>alt&nbsp;texta</em> á myndir með
+            <code>&lt;img alt=&quot;lýsandi texti fyrir mynd&quot;&gt;</code> og
+            ef mynd er aðeins til skrauts, skilja eftir tómt. Alt textinn er
+            birtur ef mynd nær ekki að hlaðast, eða lesinn af lesvöfrum í
+            samhengi við efni. Forðast í lengstu lög að hafa myndir af texta.
+            Skjálesarar taka fram þegar alt texti er lesinn svo það er óþarfi að
+            byrja textan á „mynd af…“ eða&nbsp;álíka.
+          </p>
+          <p>
+            Stundum er <code>title</code> atttibute ruglað saman við
+            <code>alt</code>, og þá sérstaklega þegar óskað er eftir að fá
+            <em>tooltip</em>, eða texta sem birtist þegar mús stoppar
+            yfir&nbsp;elementi.
+          </p>
+          <p>
+            Nota fyrirsagnir rétt og í röð, frá <code>&lt;h1&gt;</code> til
+            <code>&lt;h6&gt;</code> eins og farið var í að&nbsp;ofan.
+          </p>
+          <p>
+            Skrifa lýsandi texta þegar við búum til tengla, ekki
+            <em>smella&nbsp;hér</em>. Oft á tíðum er texti tengils lesin
+            sérstaklega í lesvöfrum og ætti því að innihalda eins mikið samræmi
+            og hægt er.
+            <code
+              >&lt;p&gt;Hægt er að eyða öllu með því að &lt;a
+              href=&quot;…&quot;&gt;smella hér.&lt;/a&gt;</code
+            >.
+          </p>
+          <p>
+            Fyrir vefi með stórar valmyndir sem koma á undan efni (þ.e.a.s., í
+            HTML kemur valmynd á undan, óháð birtingu), ætti að útbúa tengil
+            alveg efst sem vísar beint í efni (svokallaður
+            <a href="https://webaim.org/techniques/skipnav/"
+              >„skip navigation&nbsp;link“</a
+            >). Þennan tengil má fela með CSS þ.a. skjálesarar finni hann aðeins
+            og bjóði notendum upp á að sleppa við að fara í gegnum alla
+            valmyndina og beint í&nbsp;efnið.
+          </p>
+          <p>Breyta sem minnst af grunnhegðun vafra,&nbsp;t.d.</p>
+        </div>
+        <ul>
+          <li>
+            Ekki banna að <em>zooma</em> vefi því okkur finnst það ekki koma
+            vel&nbsp;út
+          </li>
+          <li>Banna að <em>pastea</em> í lykilorða&nbsp;reiti</li>
+          <li>
+            Útfæra nýja virkni fyrir virkni sem innbyggð er, t.d. búa til
+            sérstaka valmynd í staðinn fyrir að nota <code>&lt;select&gt;</code>
+          </li>
+        </ul>
+        <div class="paragraphs">
+          <p>
+            Nota sjálfvirk tól til að hjálpa til en ekki treysta í
+            <em>blindni</em>,&nbsp;t.d.
+          </p>
+        </div>
+        <ul>
+          <li>
+            <a href="http://wave.webaim.org/"
+              >WAVE - Web Accessibility Evaluation&nbsp;Tool</a
+            >
+          </li>
+          <li>
+            <a href="https://www.deque.com/axe/"
+              >axe: the Accessibility&nbsp;Engine</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://chrome.google.com/webstore/detail/axe/lhdoppojpmngadmnindnejefpokejbdd"
+              >aXe Chrome&nbsp;Extension</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://chrome.google.com/webstore/detail/accessibility-developer-t/fpkknkljclfencbdbgkenhalefipecmb?hl=en"
+              >Accessibility Developer&nbsp;Tools</a
+            >
+          </li>
+          <li>
+            <a href="http://khan.github.io/tota11y/"
+              >tota11y - an accessibility visualization&nbsp;toolkit</a
+            >
+          </li>
+        </ul>
+        <div class="paragraphs">
+          <p>
+            Þessi tól keyra „static analysis“ og bera saman við vel skilgreind
+            viðmið, öll blæbrigði í útfærslu okkar týnast, þó þau séu
+            aðgengileg, jafnvel&nbsp;aðgengilegri.
+          </p>
+          <p>
+            Góð leið til að prófa aðgengi vefs er að sleppa því að nota mús og
+            sjá hvort við getum gert allt sem hægt er á vefnum. Margir nota ekki
+            mús eða álíka og reiða sig að miklu leyti á lyklaborðið. Í þessu
+            samhengi viljum við <strong>ekki</strong> fjarlægja sjónræn merki um
+            hvar fókus er, þegar farið er í gegnum vef með því að nota
+            <code>Tab</code> lykil á lyklaborðinu ætti alltaf að sjást hvaða
+            gagnvirka elementi er&nbsp;valið.
+          </p>
+        </div>
+        <h3 id="4.1.3">
+          <span>
+            <a href="#4.1.3">4.1.3</a>
+          </span>
+          ARIA
+        </h3>
+        <div class="paragraphs">
+          <p>
+            Annar staðall frá W3C sem kemur að aðgengi er
+            <a href="http://www.w3.org/TR/wai-aria/"
+              >Accessible Rich Internet&nbsp;Applications</a
+            >. Þessi staðall skilgreinir auknar merkingar á element sem
+            skjálesarar geta nýtt til að bæta upplifun. Hann gefur til kynna til
+            hvers ákveðin svæði eru og hvert hlutverk þeirra er með
+            <code>role</code> attribute. T.d. að innan einhvers elements sé
+            leiðarkerfi með <code>role=&quot;navigation&quot;</code> eða að það
+            innihaldi leit með <code>role=&quot;search&quot;</code>.
+          </p>
+          <p>
+            Með ARIA getum við einnig skilgreint auka upplýsingar um
+            element,&nbsp;t.d.:
+          </p>
+        </div>
+        <ul>
+          <li>
+            <code>aria-expanded=&quot;true&quot;</code> — element er opið eða
+            lokað, t.d.&nbsp;trjávalmynd
+          </li>
+          <li>
+            <code>aria-describedby=&quot;label&quot;</code> — element er útskýrt
+            af því sem er í element með <code>id=&quot;label&quot;</code>, þetta
+            gæti t.d. átt við villuskilaboð í <code>&lt;input&gt;</code>
+          </li>
+          <li>
+            <code>aria-hidden=&quot;true&quot;</code> — element er falið fyrir
+            notanda og ætti ekki að vera sýnt notanda, getur verið notað til að
+            fela „skraut“ á síðum sem lesvefrar ættu að&nbsp;sleppa
+          </li>
+        </ul>
+        <div class="paragraphs">
+          <p>
+            Yfirleitt er þó betra að nýta rétt element (t.d.
+            <code>&lt;nav&gt;</code>) og attribute (t.d. <code>required</code>)
+            í staðinn fyrir að setja ARIA merkingar á allt. Sjá nánar í
+            <a href="http://html5doctor.com/on-html-belts-and-aria-braces/"
+              >On HTML belts and ARIA&nbsp;braces</a
+            >.
+          </p>
+          <p>Í öllum eftirfarandi dæmum eru ARIA merkingar&nbsp;óþarfar:</p>
+        </div>
+        <div class="code code-html">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">role</span>=<span class="hljs-string">&quot;button&quot;</span>&gt;</span>press me<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">role</span>=<span class="hljs-string">&quot;heading&quot;</span> <span class="hljs-attr">aria-level</span>=<span class="hljs-string">&quot;1&quot;</span>&gt;</span>heading text<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">required</span> <span class="hljs-attr">aria-required</span>=<span class="hljs-string">&quot;true&quot;</span>&gt;</span></pre>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <p>
+            Noktun á ARIA merkingum á mest við þegar verið er að skrifa flóknari
+            vefforrit sem nýta JavaScript virkni til hins ítrasta. Í W3C
+            skjalinu
+            <a href="https://www.w3.org/TR/using-aria/">Using&nbsp;ARIA</a> er
+            farið yfir hvernig nýta megi ARIA en þá eru líka tilteknar fimm
+            reglur fyrir&nbsp;notkun:
+          </p>
+        </div>
+        <ol>
+          <li>
+            Ef þú getur notað staðlað HTML element eða attribute með hegðun og
+            merkingu sem þú þarftnast skal leitast við að nota&nbsp;það
+          </li>
+          <li>
+            Í lengstu lög skal forðast að breyta merkingu staðlaðra HTML
+            elementa, t.d. með <code>&lt;h1 role=&quot;button&quot;&gt;</code>
+          </li>
+          <li>Allar stýringar verða að vera nothæfar með&nbsp;lyklaborði</li>
+          <li>
+            Fyrir sýnilega hluti sem er hægt að fókusa, skal ekki láta sem þeir
+            séu það ekki með <code>role=&quot;presentation&quot;</code> eða
+            <code>aria-hidden=&quot;true&quot;</code>
+          </li>
+          <li>
+            Öll gagnvirk element þurfa aðgengileg nöfn, sem eru annað hvort
+            texti innan þeirra eða <code>&lt;label&gt;</code> sem vísar
+            á&nbsp;element
+          </li>
+        </ol>
+
+        <h3 id="4.1.4">
+          <span>
+            <a href="#4.1.4">4.1.4</a>
+          </span>
+          Form &amp;&nbsp;töflur
+        </h3>
+        <div class="paragraphs">
+          <p>
+            Til að gera form aðgengileg þurfum við helst að merkja reiti á
+            aðgengilegan hátt með því að nota <code>&lt;label&gt;</code>. Ef
+            fleiri upplýsingar eru tengdar við reitinn, t.d. frekari upplýsingar
+            um hvernig fylla skuli út, er hægt að nota
+            <code>aria-describedby=&quot;id-a-reit&quot;</code> til að tengja þá
+            saman, sjá dæmi. Ef form er langt getur verið nytsamlegt að skipta
+            því upp með <code>&lt;fieldset&gt;</code>.
+          </p>
+        </div>
+        <div class="code code-html">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;password&quot;</span>&gt;</span>Lykilorð<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;password&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;password&quot;</span> <span class="hljs-attr">aria-describedby</span>=<span class="hljs-string">&quot;password-help&quot;</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;password-help&quot;</span>&gt;</span>Lykilorð verður að innihalda 8 stafi.<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></pre>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <p>
+            Fyrir flóknari töflur þarf að skilgreina fyrir hvaða reiti
+            fyrirsagnir eiga við með því að nota <code>scope</code>. Ef ekki, þá
+            <em>heyrir</em> sá sem <em>skoðar</em> töfluna ekki samhengið, nánar
+            um að smíða aðgengilegar töflur má lesa á
+            <a href="http://webaim.org/techniques/tables/"
+              >WebAIM: Creating Accessible&nbsp;Tables</a
+            >
+          </p>
+        </div>
+        <h3 id="4.1.5">
+          <span>
+            <a href="#4.1.5">4.1.5</a>
+          </span>
+          Skjálesarar
+        </h3>
+        <div class="paragraphs">
+          <p>
+            Helsta tólið, fyrir utan vafra, sem notað er til að
+            <em>lesa</em> vefi eru skjálesarar. Tól sem sækja vefsíður, vinna úr
+            þeim og <em>lesa</em> innihaldið upp. Hvernig virkar þinn
+            uppáhaldsvefur ef þú þarft að hlusta á&nbsp;hann?
+          </p>
+          <p>Hægt er að fá skjálesara fyrir flest stýrikerfi,&nbsp;t.d.:</p>
+        </div>
+        <ul>
+          <li>
+            <a href="http://www.freedomscientific.com/Products/Blindness/JAWS"
+              >JAWS</a
+            >, vinsæll skjálesari fyrir&nbsp;Windows
+          </li>
+          <li>
+            <a href="http://www.nvaccess.org/">NVDA Screen&nbsp;Reader</a>,
+            ókeypis, open source skjálesari fyrir&nbsp;Windows
+          </li>
+          <li>
+            <a href="https://help.apple.com/voiceover/info/guide/10.12/"
+              >VoiceOver</a
+            >, skjálesari frá Apple byggður inn í OS X, iOS og Apple TV, dæmi um
+            notkun má sjá á
+            <a href="http://webaim.org/articles/voiceover/"
+              >Using VoiceOver to Evaluate Web&nbsp;Accessibility</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://support.google.com/accessibility/android/answer/6283677?hl=en"
+              >TalkBack</a
+            >, skjálesari innbyggður í&nbsp;Android
+          </li>
+        </ul>
+        <div class="paragraphs">
+          <p>
+            Að prófa vef í skjálesara er í dag tiltölulega auðvelt, þá
+            sérstaklega með VoiceOver og TalkBack. Með því að læra nokkrar
+            skipanir er hægt að finna mörg aðgengisvandamál og fá betri sýn á
+            hvernig vefurinn okkar er&nbsp;„lesinn“.
+          </p>
+        </div>
+      </article>
+
+      <footer>
+        <nav>
+          <ul>
+            <li class="prev">
+              <p><a href="./03.element.html">HTML&nbsp;Element</a></p>
+            </li>
+            <li class="index"><a href="/">Efnisyfirlit</a></li>
+            <li class="next">
+              <p><a href="./05.seo.html">SEO</a></p>
+            </li>
+          </ul>
+        </nav>
+        <hr />
+        <div class="version">Útgáfa 0.3, ágúst 2020</div>
+      </footer>
+    </main>
+  </body>
+</html>

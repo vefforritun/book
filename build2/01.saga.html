@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<!--
+  Velkominn ferðalangur, bakvið tjöldin, í uppsprettuna.
+  Þetta HTML er sjálfkrafa útbúið út frá Markdown skjölum.
+  Sjá nánar:
+  https://github.com/vefforritun/book
+  -->
+<html lang="is">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vefforitun—Kafli 1: Sagan hingað til</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Kafli 1: Sagan hingað til</h1>
+        <div class="reading-time">Um 21 mín lestur</div>
+      </header>
+
+      <article>
+        <h2 id="1.1">
+          <span>
+            <a href="#1.1">1.1</a>
+          </span>
+          Texti &amp;&nbsp;upplýsingar
+        </h2>
+        <div class="paragraphs">
+          <p>
+            Frá örófi alda höfum við sagt hvort öðru sögur. Í fyrstu geymdar í
+            minni einstaklinga, seinna skrifaðar á skinn eða pappír, síðan
+            prentaðar með prentvél Gutenbergs og núna fjölfaldaðar
+            í&nbsp;prentsmiðjum.
+          </p>
+          <p>
+            Prentaður texti er í eðli sínu fastur. Við höfum blaðsíður í
+            ákveðinni stærð sem textinn er prentaður á og eftir það eru engar
+            breytingar mögulegar. En hvað ef svo væri&nbsp;ekki?
+          </p>
+          <p>
+            Árið 1941 gaf Jorge Luis Borges út smásöguna
+            <a href="http://www.coldbacon.com/writing/borges-garden.html"
+              >„The Garden of Forking&nbsp;Paths”</a
+            >
+            sem segir frá höfundi sem ætlar að skrifa stóra og flókna bók ásamt
+            því að búa til stórt og flókið völundarhús. Síðar kemur í ljós að
+            bókin og völundarhúsið er sami hluturinn en sagan lýsir heim þar sem
+            allar mögulegar niðurstöður atburða eiga sér stað samtímis. Þessi
+            smásaga er talin kynna fyrst hugmyndina um <em>HyperText</em>.
+          </p>
+        </div>
+        <blockquote>
+          <p>
+            I had questioned myself about the ways in which a book can be
+            infinite. I could think of nothing other than a cyclical volume, a
+            circular one. A book whose last page was identical with the first, a
+            book which had the possibility of continuing indefinitely.
+          </p>
+          <footer>
+            —Jorge Luis Borges, The Garden of Forking Paths,&nbsp;1941
+          </footer>
+        </blockquote>
+        <div class="paragraphs">
+          <p>
+            Við lok seinna stríðs skrifaði Vennevar Bush greinina
+            <a
+              href="http://www.theatlantic.com/magazine/archive/1945/07/as-we-may-think/303881/?single_page=true"
+              >„As We May&nbsp;Think“</a
+            >
+            í Atlantic Monthly þar sem hann lýsir <em>Memex</em>. Þetta
+            <em>Memex</em> tæki leyfir einstakling að halda utan um sitt eigið
+            safn af upplýsingum. Það leyfir flokkun, athugasemdir og tengingar
+            við annað efni svo hægt sé að fletta upp og leita ásamt því að deila
+            með öðrum á einfaldan hátt. Sannkallað töfratæki sem Bush gerði ráð
+            fyrir að myndi gjörbreyta&nbsp;heiminum.
+          </p>
+        </div>
+        <blockquote>
+          <p>
+            Consider a future device … in which an individual stores all his
+            books, records, and communications, and which is mechanized so that
+            it may be consulted with exceeding speed and flexibility. It is an
+            enlarged intimate supplement to his memory.
+          </p>
+          <footer>—Vannevar Bush, How We May Think,&nbsp;1945</footer>
+        </blockquote>
+
+        <h3 id="1.1.1">
+          <span>
+            <a href="#1.1.1">1.1.1</a>
+          </span>
+          HyperText &amp;&nbsp;HyperMedia
+        </h3>
+        <div class="paragraphs">
+          <p>
+            Þessar hugmyndir, ásamt mörgum öðrum, höfðu mikil áhrif á þróun
+            upplýsingatækninnar. Ted Nelson skilgreindi árið 1963 hugtakið
+            <em>HyperText</em>: texti á stafrænu formi sem inniheldur vísanir
+            þ.a. lesandi getur strax fengið aðgang að þeim. Textinn er ekki
+            lengur fastur, heldur teygir hann anga sína út og leyfir lesandanum
+            að stýra sinni eigin leið í gegnum hann. Í raunheimum mætti líkja
+            þessu við „Veldu þitt eigið ævintýri“&nbsp;bækur.
+          </p>
+
+          <figure>
+            <div class="image small">
+              <div class="img">
+                <img
+                  alt="Mynd 1: Ted Nelson"
+                  src="img/ted-nelson.jpg"
+                  width="250"
+                  height="300"
+                  loading="lazy"
+                />
+              </div>
+              <div class="ratio" style="padding-top: 120%"></div>
+            </div>
+
+            <figcaption>
+              <p>Ted Nelson.</p>
+              <footer>
+                Mynd frá Wikimedia:
+                <a
+                  href="https://commons.wikimedia.org/wiki/File:Ted_Nelson_cropped.jpg"
+                  >https://commons.wikimedia.org/wiki/File:Ted_Nelson_cropped.jpg</a
+                >
+              </footer>
+            </figcaption>
+          </figure>
+          <p>
+            Í
+            <a href="https://www.youtube.com/watch?v=yJDv-zdhzMY"
+              >„Mother of all&nbsp;Demos“</a
+            >
+            árið <strong>1968</strong> kynnti Douglas Engelbart til sögunnar NLS
+            („oN Line System“) sem inniheldur m.a. mús, hypertext,
+            útgáfustýringu (revision control), ritvinnsluforrit, fjarfundarbúnað
+            og fleira sem í dag væri talið til&nbsp;nútímatækni.
+          </p>
+
+          <figure>
+            <div class="image">
+              <div class="iframe">
+                <iframe
+                  src="https://www.youtube.com/embed/74c8LntW7fo"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                ></iframe>
+                <div class="ratio" style="padding-top: 56.25%"></div>
+              </div>
+            </div>
+
+            <figcaption>
+              <p>
+                Douglas Engelbart kynnir HyperText virkni í NLS, vídeó á
+                YouTube.
+              </p>
+              <footer>Mynd frá YouTube</footer>
+            </figcaption>
+          </figure>
+        </div>
+        <blockquote>
+          <p>
+            The future is already here — it&#39;s just not very evenly
+            distributed.
+          </p>
+          <footer>—William&nbsp;Gibson</footer>
+        </blockquote>
+        <div class="paragraphs">
+          <p>
+            Til þess að geta útfært í reynd hugtakið um HyperText þurfum við
+            einhverja leið til að ljá texta aukna dýpt og skilgreina tengingar,
+            auk lýsingar á textanum sem er setningarfræðilega aðgreind frá
+            textanum sjálfum. <em>Umbrotsmál</em> (e. markup language) leyfir
+            okkur að gera&nbsp;það.
+          </p>
+          <p>
+            HyperMedia er það hugtak þegar við takmörum efnið okkar ekki aðeins
+            við texta, heldur við fleiri miðla. Með fyrstu vinsælu stafrænu
+            kerfunum til að útfæra HyperMedia var
+            <a href="https://en.wikipedia.org/wiki/HyperCard">HyperCard</a> sem
+            kom út fyrir Machintosh tölvur árið&nbsp;1987.
+          </p>
+        </div>
+        <h2 id="1.2">
+          <span>
+            <a href="#1.2">1.2</a>
+          </span>
+          Markup&nbsp;mál
+        </h2>
+        <div class="paragraphs">
+          <p>
+            Við höfum mál sem skilgreinir snið&nbsp;(<em>markup</em>) á
+            textanum. Hægt er að skipta þessum málum í almenna&nbsp;flokka:
+          </p>
+        </div>
+        <ul>
+          <li>
+            <em>Létt</em> (e. lightweight) – einföld setningarfræði er notuð til
+            að leyfa aðskilnað á ýmsum grunnhugmyndum texta án þess að draga úr
+            læsileika textans, t.d. útbúa fyrirsagnir eða feitletra orð. Dæmi um
+            létt umbortsmál er&nbsp;Markdown.
+          </li>
+          <li>
+            <em>Stefjað</em> (e. procedural) – snið er innifalið í texta sem
+            leiðbeiningar um sértækar aðgerðir á textanum, t.d. að gera orð
+            feitletrað. Dæmi um stefjuð umbrotsmál eru
+            <a href="https://en.wikipedia.org/wiki/PostScript">PostScript</a> og
+            <a href="https://en.wikipedia.org/wiki/LaTeX">LaTex</a>.
+          </li>
+          <li>
+            <em>Framsetningar</em> (e. presentational) –
+            <a href="https://en.wikipedia.org/wiki/WYSIWYG"><em>WYSIWYG</em></a>
+            (What You See Is What You Get) ritlar, sniðið er falið fyrir
+            notendum í formi skjals, t.d. Microsoft&nbsp;Word.
+          </li>
+          <li>
+            <em>Lýsandi</em> (e. descriptive) – snið gefur texta merkingu sem er
+            <em>óháð</em> birtingu þess, notast er við
+            <em>merkingarfræðilegt</em> (semantic) snið. Leitast er eftir að
+            lýsa eðli textans en ekki <strong>útliti</strong> hans.
+          </li>
+        </ul>
+
+        <h3 id="1.2.1">
+          <span>
+            <a href="#1.2.1">1.2.1</a>
+          </span>
+          Markdown
+        </h3>
+        <div class="paragraphs">
+          <p>
+            <a href="https://daringfireball.net/projects/markdown/"
+              ><em>Markdown</em></a
+            >
+            er dæmi um létt umbrotsmál, búið til að
+            <a href="https://daringfireball.net/">John&nbsp;Gruber</a> (í
+            samstarfi við
+            <a href="https://en.wikipedia.org/wiki/Aaron_Swartz"
+              >Aaron&nbsp;Swartz</a
+            >) árið 2004. Markmið þess er að leyfa fólki að skrifa texta með
+            einföldum skipunum sem hægt er að þýða yfir í önnur form (t.d.
+            HTML). Þessi bók er sem dæmi skrifuð í&nbsp;Markdown.
+          </p>
+        </div>
+        <div class="code code-markdown">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-section"># Markdown fyrirsögn</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre>Texti sem inniheldur <span class="hljs-strong">**feitletraðan**</span> og <span class="hljs-emphasis">_skáletraðan_</span> texta</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td>
+                <pre>með [<span class="hljs-string">tengli</span>](<span class="hljs-link">http://example.org</span>).</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="6"></td>
+              <td>
+                <pre><span class="hljs-bullet">*</span> Listi</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="7"></td>
+              <td>
+                <pre><span class="hljs-bullet">*</span> af</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="8"></td>
+              <td>
+                <pre><span class="hljs-bullet">*</span> orðum</pre>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <p>
+            Helsti kostur Markdown er að auðvelt er fyrir manneskjur
+            <em>og</em> vélar að vinna með textann. Hægt er að smíða forrit sem
+            <em>þýða</em> úr Markdown yfir í eitthvað annað, t.d.&nbsp;HTML.
+          </p>
+        </div>
+        <h3 id="1.2.2">
+          <span>
+            <a href="#1.2.2">1.2.2</a>
+          </span>
+          HTML
+        </h3>
+        <div class="paragraphs">
+          <p>
+            HTML stendur fyrir <em>HyperText Markup&nbsp;Language</em>, lýsandi
+            umbrotsmál (e. descriptive markup language) með sniði sem leyfir
+            okkur að lýsa textanum okkar og nota HyperText hugtakið. Fyrstu
+            útgáfur voru
+            <a href="http://www.w3.org/TR/html4/intro/sgmltut.html"
+              >byggðar á <em>SGML</em></a
+            >, Standard Generalized Markup Language, sem er
+            <a
+              href="https://en.wikipedia.org/wiki/International_Organization_for_Standardization"
+              >ISO</a
+            >
+            staðall sem skilgreinir <em>almennt</em> markup mál fyrir skjöl. Það
+            byggir á tveimur&nbsp;hugmyndum:
+          </p>
+        </div>
+        <ul>
+          <li>Snið ætti að vera&nbsp;lýsandi</li>
+          <li>Snið ætti að vera strangt svo auðvelt sé að vinna úr&nbsp;því</li>
+        </ul>
+
+        <h2 id="1.3">
+          <span>
+            <a href="#1.3">1.3</a>
+          </span>
+          HTML &amp; sagan hingað&nbsp;til
+        </h2>
+        <div class="paragraphs">
+          <p>
+            Í kringum 1990 var
+            <a href="https://en.wikipedia.org/wiki/Tim_Berners-Lee"
+              >Sir Tim&nbsp;Berners-Lee</a
+            >
+            að vinna hjá
+            <a href="https://en.wikipedia.org/wiki/CERN">CERN</a> sem
+            eðlisfræðingur. Hann skrifaði minnisblað um kerfi sem hann sá fyrir
+            sér að myndi auka möguleika á samvinnu með því að deila skjölum á
+            einfaldan hátt. Í framhaldinu skilgreindi hann <em>HTML</em>. Sem
+            grunn nýtti hann SGML en bætti við það (sjá t.d. í skjalinu
+            <a
+              href="http://www.w3.org/History/19921103-hypertext/hypertext/WWW/MarkUp/Tags.html"
+              >„HTML&nbsp;Tags“</a
+            >) og skrifaði fyrsta vafrann og vefþjóninn sem túlkuðu og birtu
+            HTML (skrifað í Objective-C á NeXT tölvu).
+            <a href="http://info.cern.ch/hypertext/WWW/TheProject.html"
+              >Fyrsta&nbsp;vefsíðan</a
+            >
+            varð síðan aðgengileg 23. ágúst 1991, og er enn aðgengileg á sömu
+            slóð í&nbsp;dag.
+          </p>
+
+          <figure>
+            <div class="image">
+              <div class="img">
+                <img
+                  alt="NeXT tölvan sem Tim Berners-Lee notaði til að skrifa fyrsta vefþjóninn og vafrann. Á tölvu er skrifað „This machine is a server DO NOT POWER DOWN!!"
+                  src="img/next-server.jpg"
+                  width="800"
+                  height="600"
+                  loading="lazy"
+                />
+              </div>
+              <div class="ratio" style="padding-top: 75%"></div>
+            </div>
+
+            <figcaption>
+              <p>
+                NeXT tölvan sem Tim Berners-Lee notaði til að skrifa fyrsta
+                vefþjóninn og vafrann, nú til sýnis á safni hjá CERN. Á tölvuna
+                er skrifað „This machine is a server DO NOT POWER DOWN!!“.
+              </p>
+              <footer>
+                Mynd frá Wikimedia
+                <a
+                  href="https://commons.wikimedia.org/wiki/File:First_Web_Server.jpg"
+                  >https://commons.wikimedia.org/wiki/File:First_Web_Server.jpg</a
+                >
+              </footer>
+            </figcaption>
+          </figure>
+          <p>
+            Uppbygging og þróun fór fram á póstlistum þar sem þeir einstaklingar
+            sem höfðu áhuga gátu tekið þátt og haft áhrif, t.d.
+            <a
+              href="http://1997.webhistory.org/www.lists/www-talk.1993q1/0182.html"
+              >stakk Marc Andreessen upp&nbsp;á</a
+            >
+            <code>&lt;IMG&gt;</code> árið 1993 til að geta birt myndir á vefnum
+            og er það ennþá notað í dag. Í kjölfarið komu fleiri vafrar fram á
+            sjónarsviðið,&nbsp;t.d.:
+          </p>
+        </div>
+        <ul>
+          <li>
+            <a href="https://en.wikipedia.org/wiki/Line_Mode_Browser"
+              >Line Mode&nbsp;Browser</a
+            >
+            árið 1992,
+            <a href="https://en.wikipedia.org/wiki/Command-line_interface"
+              >CLI (Command-line&nbsp;Interface)</a
+            >
+            vafri gefin út á mörgum stýrikerfum. Endurgerður árið 2013, keyrandi
+            í vef:
+            <a href="http://line-mode.cern.ch/">Line Mode Browser&nbsp;2013</a>.
+          </li>
+          <li>
+            <a href="https://en.wikipedia.org/wiki/Lynx_(web_browser)">Lynx</a>
+            árið 1992, vafri sem vinnur aðeins í texta, elsti vafrinn enn í
+            almennri&nbsp;notkun.
+          </li>
+          <li>
+            <a href="https://en.wikipedia.org/wiki/Mosaic_(web_browser)"
+              >Mosaic</a
+            >
+            árið 1993, fyrsti <em>grafíski</em> vafrinn og talinn vera sá vafri
+            sem gerði vefinn vinsælan. Margt af því sem við þekkjum í vöfrum í
+            dag kom fyrst fram í Mosaic. Þróaður hjá
+            <a
+              href="https://en.wikipedia.org/wiki/National_Center_for_Supercomputing_Applications"
+              >NCSA</a
+            >
+            að hluta til með pening sem kom frá löggjöf sem
+            <a
+              href="http://en.wikipedia.org/wiki/Al_Gore_and_information_technology"
+              >Al Gore kom í gegn árið 1991 til að búa til
+              „information&nbsp;superhighway“</a
+            >.
+          </li>
+          <li>
+            Netscape Navigator 1.0 árið 1994, þróaður m.a. af Marc Andreessen,
+            ári seinna kemur útgáfa 1.1 sem kynnir
+            <em>töflur</em> til&nbsp;leiks.
+          </li>
+          <li>Opera 1.0 og Internet Explorer 1.0 árið&nbsp;1995.</li>
+        </ul>
+        <div class="paragraphs">
+          <figure>
+            <div class="image">
+              <div class="img">
+                <img
+                  alt="Skjáskot af Mosaic 3.0 á Windows XP."
+                  src="img/mosaic.png"
+                  width="1024"
+                  height="742"
+                  loading="lazy"
+                />
+              </div>
+              <div class="ratio" style="padding-top: 72.460938%"></div>
+            </div>
+
+            <figcaption>
+              <p>Skjáskot af Mosaic 3.0 á Windows XP.</p>
+              <footer>
+                Mynd frá Wikipedia.
+                <a
+                  href="https://en.wikipedia.org/wiki/Mosaic_(web_browser)#/media/File:NCSA_Mosaic.PNG"
+                  >https://en.wikipedia.org/wiki/Mosaic_(web_browser)#/media/File:NCSA_Mosaic.PNG</a
+                >
+              </footer>
+            </figcaption>
+          </figure>
+        </div>
+        <h2 id="1.4">
+          <span>
+            <a href="#1.4">1.4</a>
+          </span>
+          Staðlar
+        </h2>
+        <div class="paragraphs">
+          <p>
+            Um leið og fleiri einn vafri voru komnir á sjónarsviðið þurfti að
+            skilgreina <em>hvernig</em> HTML virki í hörgul. Hver vafri um sig
+            getur ekki útfært hlut á annan hátt en hinir eða bætt við sinni
+            eigin, sérstöðluðu&nbsp;virkni.
+          </p>
+          <p>
+            Stöðlun á HTML 1.0 var fyrst reynd hjá
+            <a
+              href="https://en.wikipedia.org/wiki/Internet_Engineering_Task_Force"
+              >IETF</a
+            >
+            (Internet Engineering Task Force) en komst ekki úr
+            <a href="http://www.w3.org/MarkUp/draft-ietf-iiir-html-01.txt"
+              >því að vera&nbsp;drög</a
+            >. Útgáfa 2.0 var síðar stöðluð af IETF í
+            <a href="https://tools.ietf.org/html/rfc1866">RFC&nbsp;1866</a> árið
+            1995. Tim Berners-Lee stofnaði W3C (World Wide Web Consortium) hjá
+            MIT árið 1994 með stuðning frá Evrópusambandinu og
+            <a href="https://en.wikipedia.org/wiki/DARPA">DARPA</a>. CERN dró
+            sig þá til hliðar, enda stofnun sem sérhæfir sig í rannsóknum á
+            sviði eðlisfræði, ekki því að vera leiðandi í upplýsingatækni. Allur
+            kóði vafrans og vefþjónsins sem Tim Berners-Lee vann að hjá CERN var
+            <a href="https://cds.cern.ch/record/1164399"
+              >settur í almenningseign af CERN árið&nbsp;1993</a
+            >.
+          </p>
+        </div>
+        <blockquote>
+          <p>
+            The primary design principle underlying the Web’s usefulness and
+            growth is universality. […] And it should be accessible from any
+            kind of hardware that can connect to the Internet: stationary or
+            mobile, small screen or large.
+          </p>
+          <footer>
+            —Tim Berners-Lee:
+            <a
+              href="http://www.scientificamerican.com/article.cfm?id=long-live-the-web"
+              >Long Live the&nbsp;Web</a
+            >
+            á 20 ára afmæli&nbsp;vefsins.
+          </footer>
+        </blockquote>
+        <div class="paragraphs">
+          <p>
+            Frá byrjun hefur víðsýni og frelsi einkennt vefinn. Umferð á netinu
+            hefur að mestu verið hlutlaus, þ.e.a.s. henni er ekki mismunað eftir
+            því hvaðan hún kemur eða hvert hún fer. Ef netið væri ekki hlutlaust
+            gætu þjónustuaðilar farið að gera greinarmun á umferð og skipt henni
+            í hópa. Eftir því í hvaða hóp þú ert getur það haft í för með sér
+            takmarkanir, aukinn kostnað&nbsp;o.s.fr.
+          </p>
+
+          <figure>
+            <div class="image">
+              <div class="iframe">
+                <iframe
+                  src="https://www.youtube.com/embed/UMNFehJIi0E"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                ></iframe>
+                <div class="ratio" style="padding-top: 56.25%"></div>
+              </div>
+            </div>
+
+            <figcaption>
+              <p>
+                Tim Berners-Lee á opnunarhátið sumarólympíuleikanna 2012 þar sem
+                hann sendi skilaboðin „This is for everyone“ í sambandi við
+                vefinn.
+              </p>
+            </figcaption>
+          </figure>
+          <p>
+            Frekar má lesa um sögu vefsins í
+            <a href="https://www.w3.org/2012/08/history-of-the-web/origins.htm"
+              >History of the&nbsp;Web</a
+            >
+            og vert er að endurtaka það sem kemur fram þar:
+            <em
+              >„Understanding how an activity started and developed frequently
+              gives a much greater insight into why things are as
+              they&nbsp;are.“</em
+            >
+          </p>
+        </div>
+        <h2 id="1.5">
+          <span>
+            <a href="#1.5">1.5</a>
+          </span>
+          W3C
+        </h2>
+        <div class="paragraphs">
+          <p>
+            Hlutverk W3C var og er að vinna að framþróun vefsins. Það er gert í
+            gegnum vinnuhópa (e. working groups) sem taka að sér ákveðna staðla
+            fyrir tækni vinna að því að staðla þær óstöðluðu hugmyndir eða
+            óstaðlaða virkni sem er til staðar í&nbsp;dag.
+          </p>
+          <p>
+            Til að vinna þessa staðla eru útbúnir <em>specs</em> sem segja til
+            um hvernig hegðun á að vera. Hver sem er getur komið sér í þessa
+            vinnu þar sem W3C eru opin félagasamtök. Flest þau sem vinna að
+            stöðlunum eru þó í vinnu hjá vafrafyrirtækjunum en geta unnið saman
+            á (tiltölulega) óháðum vettvangi að framþróun vefsins. W3C staðlar
+            t.d. HTML, CSS, XML og SVG, en
+            <a href="https://www.w3.org/standards/"
+              >margt annað er þó einnig í stöðlun og vinnslu&nbsp;þar</a
+            >. Ferli stöðlunar er langt (tekur ár eða&nbsp;áratugi!) og strangt
+            hjá W3C en í grófum dráttum er&nbsp;það:
+          </p>
+        </div>
+        <ul>
+          <li>
+            <em>Working&nbsp;draft</em> – búið er að safna nægum upplýsingum til
+            að gefa út fyrstu drög af staðli, sem þó er líklegt að munu breytast
+            mikið. Hér um bil hver sem getur lesið og gert athugasemdir við
+            working&nbsp;draft.
+          </li>
+          <li>
+            <em>Candidate&nbsp;recommendation</em> – þroskaðri útgáfa af
+            staðlinum sem tilbúinn er til athugasemda varðandi&nbsp;útfærslu.
+          </li>
+          <li>
+            <em>Proposed&nbsp;recommendation</em> – búið er að taka við almennum
+            athugasemdum og athugasemdum varðandi útfærslu og staðall er
+            tilbúinn til loka&nbsp;samþykktar.
+          </li>
+          <li>
+            <em>W3C&nbsp;recommendation</em> – Þroskaðasta stig staðals, W3C
+            hefur samþykkt hann og mælir með útfærslu&nbsp;hans.
+          </li>
+        </ul>
+        <div class="paragraphs">
+          <p>
+            Oft þegar unnið er með staðlaða hluti getur verið gott að lesa yfir
+            staðalinn til að fá <em>nákvæmari</em> tilfinningu fyrir því hvernig
+            hlutir eigi að virka. Þó ber að hafa í huga að staðlar eru skrifaðir
+            fyrir þau sem útfæra <em>vafrana</em> (eða tækin sem birta vefsíður)
+            en ekki höfunda efnis fyrir vafrana eða&nbsp;tækin.
+          </p>
+          <p>
+            Þetta verður sérstaklega áhugavert þegar unnið er með nýja tækni sem
+            ennþá inniheldur villur, óskilgreinda hluti eða&nbsp;álíka.
+          </p>
+        </div>
+        <h2 id="1.6">
+          <span>
+            <a href="#1.6">1.6</a>
+          </span>
+          Vafrastríðin
+        </h2>
+
+        <h3 id="1.6.1">
+          <span>
+            <a href="#1.6.1">1.6.1</a>
+          </span>
+          Fyrra&nbsp;vafrastríðið
+        </h3>
+        <div class="paragraphs">
+          <p>
+            Netscape Navigator 4.0 sem kom út árið 1997 (með stuðning við CSS,
+            JavaScript og DOM) varð gífurlega vinsæll vafri. Uppi voru plön um
+            að næstu útgáfur yrðu <em>ekki</em> ókeypis. Þegar Microsoft fór að
+            dreifa Internet Explorer (IE) ókeypis með Windows í kringum 1997
+            (sem síðar varð kveikja að stórri
+            <a
+              href="https://en.wikipedia.org/wiki/United_States_v._Microsoft_Corp."
+              ><em>anti&nbsp;trust</em> lögsókn á hendur&nbsp;Microsoft</a
+            >) fór markaðshlutdeild Netscape að dala og hugmyndir um að græða
+            pening á vafranum urðu að engu. Á frekar stuttum tíma tók IE alveg
+            yfir markaðinn á meðan Netscape fór þá leið að
+            <a href="http://www.joelonsoftware.com/articles/fog0000000069.html"
+              >endurskrifa Navigator 6.0 að öllu leiti, sem varð
+              þeim&nbsp;kostnaðarsamt</a
+            >. Þetta tímabil er oft nefnt
+            <a
+              href="http://en.wikipedia.org/wiki/Browser_wars#The_first_browser_war"
+              ><em>fyrsta</em> vafrastríðið</a
+            >.
+          </p>
+
+          <figure>
+            <div class="image">
+              <div class="img">
+                <img
+                  alt="Markaðshlutdeildir vafra í „Fyrsta vafrastríðinu“."
+                  src="img/1st-browser-wars.png"
+                  width="1280"
+                  height="960"
+                  loading="lazy"
+                />
+              </div>
+              <div class="ratio" style="padding-top: 75%"></div>
+            </div>
+
+            <figcaption>
+              <p>Markaðshlutdeildir vafra í „Fyrsta vafrastríðinu“.</p>
+              <footer>
+                Mynd frá Wikimedia:
+                <a
+                  href="https://commons.wikimedia.org/wiki/File:Browser_Wars_(en).svg"
+                  >https://commons.wikimedia.org/wiki/File:Browser_Wars_(en).svg</a
+                >
+              </footer>
+            </figcaption>
+          </figure>
+          <p>
+            Eftir að Netscape tapaði stöðu sinni var fyrirtækið selt
+            <a href="https://en.wikipedia.org/wiki/AOL">AOL</a> en áður en það
+            gerðist var Netscape Navigator gerður open source og
+            <a href="https://en.wikipedia.org/wiki/Mozilla_Foundation"
+              >Mozilla stofnað sem umsjónaraðili þess&nbsp;verkefnis</a
+            >. Mozilla nafnið er talið vera komið frá Jamie Zawinksi,
+            <a href="https://www.jwz.org/">jwz</a>, og standa fyrir
+            <a href="https://en.wikipedia.org/wiki/Mozilla_(mascot)"
+              ><em>mosaic&nbsp;killer</em></a
+            >. PBS gerði heimildarmyndina
+            <a href="http://www.clickmovement.org/coderush"
+              ><em>Coderush</em></a
+            >
+            um þetta&nbsp;tímabil.
+          </p>
+        </div>
+        <blockquote>
+          <p>
+            Every program attempts to expand until it can read mail. Those
+            programs which cannot so expand are replaced by ones which&nbsp;can.
+          </p>
+          <footer>
+            —<a href="https://en.wikipedia.org/wiki/Jamie_Zawinski#Principles"
+              >Zawinski&#39;s law of software&nbsp;development</a
+            >
+          </footer>
+        </blockquote>
+        <div class="paragraphs">
+          <p>
+            Í dag lifir Netscape Navigator að einhverju leyti í Firefox, en
+            fyrsta útgáfan kom út árið 2002, þá undir nafninu Phoenix. Útgáfa
+            1.0 af Firefox kom út&nbsp;2004.
+          </p>
+        </div>
+        <h3 id="1.6.2">
+          <span>
+            <a href="#1.6.2">1.6.2</a>
+          </span>
+          Vefstaðlar
+        </h3>
+        <div class="paragraphs">
+          <p>
+            Eftir fyrsta vafrastríðið var CSS orðið nógu vel skilgreint til að
+            hægt væri að nota það í vefforritun en illa gekk að fá fólk til að
+            skipta úr því að nota töflur til að setja upp vefi. Mikið var gert
+            úr því að fólk myndi nýta sér <em>töflulausa&nbsp;vefhönnun</em>,
+            þ.e.a.s., nota CSS til að setja upp vefi en ekki&nbsp;töflur.
+          </p>
+          <p>
+            Það varð þó breyting á með
+            <a href="http://en.wikipedia.org/wiki/A_List_Apart"
+              >A List&nbsp;Apart</a
+            >
+            sem varð til sem póstlisti 1997 en varð fljótlega að helsta
+            veftímariti vefbransans og hefur verið það alla tíð síðan.
+            <a href="http://en.wikipedia.org/wiki/Web_Standards_Project"
+              >Web Standards Project&nbsp;(WaSP)</a
+            >
+            var stofnað 1998 með það að markmiði að þrýsta á vafra framleiðendur
+            að auka stuðning við staðla og tókst það með útgáfum Netscape
+            Navigator 6 árið 2000 og IE6 árið 2001. Zeldman, áhrifamikill
+            vefmógúll, skrifaði grein í A List Apart 2001,&nbsp;„<a
+              href="https://alistapart.com/article/tohell"
+              >To Hell with Bad&nbsp;Browsers</a
+            >“, þar sem hann hvatti forritara og fólk sem vann á vefnum til að
+            byrja að nota staðla. Þó svo að margir væru enn að nota gamla vafra
+            sem ekki styddu staðlana þá væri ekki endalaust hægt að halda í þá
+            og nóg væri&nbsp;nóg.
+          </p>
+          <p>
+            Það var samt ekki fyrr en árið 2003 sem
+            <em>töflulaus&nbsp;vefhönnun</em> varð að alvöru með endurhönnun
+            ESPN með XHTML og CSS, fyrsti stóri vefurinn til að vera gerður
+            þannig. Wired hafði þó verið endurhannaður árinu áður en útgáfa hans
+            hafði ekki jafn mikil áhrif. Árið 2003 var
+            <a href="http://www.csszengarden.com/">CSS Zen&nbsp;Garden</a>
+            einnig stofnað, en það er vefur sem sýnir hvað var/er hægt að gera
+            með CSS. Gefið var HTML skjal og máttu þeir aðilar sem sendu inn
+            hönnun <em>aðeins</em> breyta CSS en ekki HTML. Þetta gekk vel og
+            margar mjög framúrstefnulegar og nýtískulegar hannanir voru til
+            sýnis. Árið 2013 var WaSP líka lagt niður með skilaboðunum,&nbsp;„<a
+              href="http://www.webstandards.org/2013/03/01/our-work-here-is-done/"
+              >our work here is&nbsp;done</a
+            >“.
+          </p>
+
+          <figure>
+            <div class="image">
+              <div class="img">
+                <img
+                  alt="ESPN, fyrsti stóri vefurinn til að vera gerður töflulaust."
+                  src="img/espn.png"
+                  width="781"
+                  height="675"
+                  loading="lazy"
+                />
+              </div>
+              <div class="ratio" style="padding-top: 86.427657%"></div>
+            </div>
+
+            <figcaption>
+              <p>ESPN, fyrsti stóri vefurinn til að vera gerður töflulaust.</p>
+              <footer>
+                Skjáskot frá Wayback Machine:
+                <a
+                  href="https://web.archive.org/web/20030328212000/http://lite.espn.go.com/"
+                  >https://web.archive.org/web/20030328212000/http://lite.espn.go.com/</a
+                >
+              </footer>
+            </figcaption>
+          </figure>
+        </div>
+        <h3 id="1.6.3">
+          <span>
+            <a href="#1.6.3">1.6.3</a>
+          </span>
+          Annað&nbsp;vafrastríðið
+        </h3>
+        <div class="paragraphs">
+          <p>
+            Eftir að hætt var að gera vefi með töflum kom nokkur ládeyða yfir
+            vafraframleiðendur og varð hún svo mikil að Microsoft tilkynnti árið
+            2003 að IE6SP1 yrði seinasti vafrinn þeirra. Það ásamt því að
+            hugtakið
+            <a href="https://en.wikipedia.org/wiki/Web_2.0"
+              ><em>Web&nbsp;2.0</em> var gert vinsælt af Tim&nbsp;O‘Reilly</a
+            >
+            hleypti nýju lífi í markaðinn um 2004.
+            <a
+              href="http://donmelton.com/2013/01/10/safari-is-released-to-the-world/"
+              >Apple gaf út Safari fyrir Mac&nbsp;OSX</a
+            >, byggðan á
+            <a href="http://lists.kde.org/?m=104197092318639">KTHML</a> árið
+            2003. WebKit, vélin sem keyrir áfram Safari, var árið 2005 gerð open
+            source af&nbsp;Apple.
+          </p>
+          <p>
+            Fyrsta alvöru vefþróunartólið,
+            <a href="http://en.wikipedia.org/wiki/Firebug_(software)"
+              >Firebug</a
+            >
+            fyrir Firefox, kom út árið 2006 og gjörbreytti því hvernig vefir
+            voru unnir. Í fyrsta skipti var hægt að breyta á einfaldan hátt,
+            beint í vafranum, hvernig vefir höguðu sér. IE 7.0 kom einnig út
+            árið 2006, fimm árum eftir IE&nbsp;6.0.
+          </p>
+
+          <figure>
+            <div class="image">
+              <div class="img">
+                <img
+                  alt="Hlutdeild vafra 2009-2015."
+                  src="img/2nd-browser-wars.png"
+                  width="480"
+                  height="480"
+                  loading="lazy"
+                />
+              </div>
+              <div class="ratio" style="padding-top: 100%"></div>
+            </div>
+
+            <figcaption>
+              <p>Hlutdeild vafra 2009-2015.</p>
+              <footer>
+                Mynd frá Wikimedia:
+                <a
+                  href="https://commons.wikimedia.org/wiki/File:Usage_share_of_web_browsers_(Source_StatCounter).svg"
+                  >https://commons.wikimedia.org/wiki/File:Usage_share_of_web_browsers_(Source_StatCounter).svg</a
+                >
+              </footer>
+            </figcaption>
+          </figure>
+          <p>
+            Með tilkomu iPhone árið 2007 og útgáfu Safari 3.0 á Mac OSX, Windows
+            og iOS, varð vefurinn í fyrsta skipti fyrir alvöru aðgengilegur í
+            símum í „almennilegum“ vafra. Tilraunir til að gera sérstakar
+            vefsíður fyrir iPhone byrjuðu snemma, sérstaklega í ljósi þess að
+            ekki var strax hægt að búa til öpp fyrir&nbsp;iOS.
+          </p>
+          <p>
+            Google gaf út Chrome vafrann árið 2008, byggðum á Chromium, open
+            source vafra. Chromium var síðan aftur byggður á WebKit.
+            <a
+              href="https://blog.chromium.org/2013/04/blink-rendering-engine-for-chromium.html"
+              >Árið 2013 var Webkit verkefnið <em>forkað</em></a
+            >
+            og til varð ný vafravél,
+            <a href="https://www.chromium.org/blink"><em>Blink</em></a> sem
+            Chrome notar í&nbsp;dag.
+          </p>
+          <p>
+            Eitt af því sem hamlaði verulega útbreiðslu nýrrar virkni í vöfrum á
+            fyrstu árum vefsins var það að stanslaust þurfti að sækja nýjar
+            útgáfur af vöfrum. Það gat valdið því að fólk keyrði óuppfærðan
+            vafra í mörg ár og notaði hann til að sinna öllu því sem það þurfti
+            á vefnum, sem aftur gerði það að verkum að flestir stærri vefir urðu
+            að styðja gamla vafra lengur en æskilegt hefði verið. Í dag er þetta
+            minna vandamál þar sem allir vafrar dreifa uppfærslum mjög ört og (í
+            flestum tilfellum) án þess að brjóta neitt á milli uppfærsla.
+            <a href="https://blog.codinghorror.com/the-infinite-version/"
+              >Chrome var fyrsti vafrinn til að gera&nbsp;þetta</a
+            >
+            og er í dag hægt að
+            <a href="https://www.google.com/chrome/browser/canary.html"
+              >sækja <em>Chrome&nbsp;Canary</em></a
+            >
+            sem er útgáfan af Chrome með því allra nýjasta, uppfærð daglega með
+            nýjasta&nbsp;buildi.
+          </p>
+          <p>
+            Ættartré þeirra vafra sem við notum í dag er orðið frekar flókið og
+            margþætt, en hægt er að skoða það á&nbsp;„<a
+              href="http://www.evolutionoftheweb.com/"
+              >evolution of the&nbsp;web</a
+            >“ fyrir vafra frá&nbsp;1992–2013.
+          </p>
+        </div>
+        <h2 id="1.7">
+          <span>
+            <a href="#1.7">1.7</a>
+          </span>
+          HTML&nbsp;4
+        </h2>
+        <div class="paragraphs">
+          <p>
+            Þremur árum eftir að W3C var stofnað var HTML 3.2 staðlað og gefið
+            út sem W3C Recommendation í janúar 1997. Í desember sama ár var HTML
+            4.0 staðlað og skilgreinir það „nútíma“&nbsp;HTML.
+          </p>
+          <p>
+            Þegar við vinnum með HTML erum við ávallt að vinna með
+            <em>element</em>, sem er einstakur hluti af vef. Hvert element getur
+            innihaldið önnur element, texta eða ekkert. T.d. er
+            <code>&lt;p&gt;Halló heimur&lt;/p&gt;</code>
+            <em>p&nbsp;element</em> sem skilgreinir málsgrein (e. paragraph) með
+            textann „Halló&nbsp;heimur“.
+          </p>
+          <p>
+            Til að mynda tengil (e. hyperlink) notum við t.d.
+            <code
+              >&lt;a href=&quot;https://example.org&quot;&gt;Lærum
+              &lt;strong&gt;HTML&lt;/strong&gt;&lt;/a&gt;</code
+            >
+            er <em>a&nbsp;element</em> (anchor) sem inniheldur bæði textann
+            „Lærum “ og <em>strong&nbsp;element</em> með textann „HTML“ og vísar
+            á&nbsp;„<a href="https://example.org%E2%80%9C"
+              >https://example.org“</a
+            >.
+          </p>
+          <p>
+            Með því að falda saman element búum við til tré sem myndar vefinn
+            okkar. Þetta tré er oft kallað <em>DOM</em> eða
+            <em>DOM&nbsp;tré</em>, þar sem DOM stendur fyrir
+            <em>Document Object&nbsp;Model</em>. Við höfum möguleika á að vinna
+            með þetta tré í gegnum JavaScript. Element mynda ekki eingöngu þetta
+            tré, heldur býr hvert þeirra yfir merkingu — það hefur
+            <em>merkingarfræðilegt&nbsp;gildi</em> (e. semantic&nbsp;value).
+          </p>
+          <p>
+            Hvert element hefst á <em>byrjunartagi</em>, t.d.
+            <code>&lt;p&gt;</code>. Að sama skapi ættu element í flestum
+            tilfellum að enda á <em>lokatagi</em>, t.d. <code>&lt;/p&gt;</code>.
+            Í einhverjum tilfellum hefur element aðeins byrjunartag og er þá
+            möguleiki á að <em>sjálfloka</em> (e. self closing) því (t.d.
+            <code>&lt;hr /&gt;</code>) en með tilkomu HTML5 er það ekki krafa (í
+            lagi að skrifa <code>&lt;hr&gt;</code>).
+          </p>
+          <p>
+            Í HTML höfum við þrjú element sem mynda grunninn að
+            vefsíðunum&nbsp;okkar:
+          </p>
+        </div>
+        <ul>
+          <li>
+            <code>&lt;html&gt;</code> skilgreinir rót HTML vefs og er það fyrsta
+            í hverri vefsíðu, fyrir utan&nbsp;DocType.
+          </li>
+          <li>
+            <code>&lt;head&gt;</code> er yfirleitt fyrsta barn
+            <code>&lt;html&gt;</code> og heldur utan um lýsigögn vefsíðu, t.d.
+            titil, sem er texti skilgreindur innan <code>&lt;title&gt;</code>.
+          </li>
+          <li>
+            <code>&lt;body&gt;</code> skilgreinir meginmál vefs, element innan
+            <code>&lt;body&gt;</code> mynda það tré sem birt er&nbsp;notanda.
+          </li>
+        </ul>
+        <div class="paragraphs">
+          <p>
+            Oft þegar rætt er um HTML er <em>element</em> og
+            <em>tag</em> blandað saman og t.d. talað um
+            <em>p&nbsp;tag</em> þegar það sem meint er <em>p&nbsp;element</em>.
+            Þetta er viss smámunasemi en þarna er munur og því æskilegt að tala
+            rétt um&nbsp;hlutina.
+          </p>
+          <p>
+            Til þess að ljá element frekari merkingu getum við bætt við
+            nafn-gildis pari með því að nota <em>attribute</em> sem eru sett á
+            byrjunartagið, t.d.
+            <code>href=&quot;https://example.org&quot;</code> sem myndar
+            vísunina sem a element vísar á. Ekki er krafa um að umljúka gildið
+            með gæsalöppum, en til að gildið sé skýrt er það æskilegt. Sum
+            attribute eru aðeins notuð til að kveikja á gildi og er þá nóg að
+            hafa aðeins heitið, t.d. <code>&lt;option selected&gt;</code>.
+          </p>
+          <p>
+            Til eru nokkur attribute sem leyfilegt er að setja á öll element,
+            svokölluð
+            <a href="(https://w3c.github.io/html/dom.html#global-attributes"
+              ><em>global&nbsp;attributes</em></a
+            >. Af þeim ber helst að&nbsp;nefna:
+          </p>
+        </div>
+        <ul>
+          <li>
+            <code>id</code>, skilgreinir auðkenni á element sem notað er til að
+            vísa á það innan síðu með
+            <em>fragment&nbsp;identifier</em>
+            (<code>index.html#auðkenni</code>), í CSS, eða til þess að vinna með
+            í DOM gegnum&nbsp;JavaScript.
+          </li>
+          <li>
+            <code>class</code>, orð, skiptum á bilum, sem skilgreina flokka sem
+            elementið tilheyrir. Mikið notað í CSS til að velja ákveðin element
+            eða ákveðinn hóp af&nbsp;þeim.
+          </li>
+          <li>
+            <code>title</code>, texti með auka upplýsingum um element sem oftast
+            birtist sem <em>tooltip</em> þegar mús er haldið
+            yfir&nbsp;elementinu.
+          </li>
+        </ul>
+        <div class="paragraphs">
+          <p>
+            Bil og línubil hafa ekki merkingu í HTML, þ.e.a.s. ef við notum
+            fleiri en eitt bil eða línubil í orði þá eru þau felld saman í eitt
+            bil. Ef við viljum setja athugasemdir innan HTML skjals getum við
+            notað sérstakt athugasemda element sem mun aldrei birtast notanda:
+            <code>&lt;!-- no comment --&gt;</code>.
+          </p>
+        </div>
+        <h3 id="1.7.1">
+          <span>
+            <a href="#1.7.1">1.7.1</a>
+          </span>
+          DocType
+        </h3>
+        <div class="paragraphs">
+          <p>
+            Öll sniðmál sem byggja á SGML þurfa að tilgreina Document Type
+            Definition (DTD) sem skilgreinir málfræðina sem farið er eftir. Í
+            HTML er þetta sett fram í fyrstu línu skjalsins, í <em>DocType</em>.
+            Fyrir HTML 4, <em>strict</em> útgáfu skilgreinum&nbsp;við:
+          </p>
+        </div>
+        <div class="code code-html">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">HTML</span> <span class="hljs-meta-keyword">PUBLIC</span> <span class="hljs-meta-string">&quot;-//W3C//DTD HTML 4.01//EN&quot;</span> <span class="hljs-meta-string">&quot;http://www.w3.org/TR/html4/strict.dtd&quot;</span>&gt;</span></pre>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <p>
+            Enn í dag þurfum við að skilgreina í hvaða DocType HTML skjölin
+            okkar eru. Ástæðan fyrir því er að vafrar í dag geta ennþá túlkað og
+            sýnt vefi frá því á árdögum vefsins. Þegar enn var verið að
+            skilgreina hvernig HTML var birt í vöfrum var mikið um ósamræmi og á
+            tímabili var ekki hægt að innleiða nýjungar án þess að brjóta þá
+            vefi sem þegar voru til. Þegar nýir vefir voru smíðaðir sem notuðu
+            nýja staðla þurftu að velja sérstaklega að nota þá með því að
+            skilgreina DocType. Ef vefur skilgreindi ekkert DocType var hann
+            birtur í
+            <a
+              href="https://developer.mozilla.org/en-US/docs/Quirks_Mode_and_Standards_Mode"
+              ><em>quirks&nbsp;mode</em>,</a
+            >
+            þar sem gert var ráð fyrir að hinir ýmsu kvillar væru til staðar.
+            Hinsvegar ef vefur benti á rétt, staðlað DTD, var hann birtur í
+            <a
+              href="https://developer.mozilla.org/en-US/docs/Quirks_Mode_and_Standards_Mode"
+              ><em>standards&nbsp;mode</em></a
+            >. Með þessari aðferð árið 1996 jókst notkun á CSS&nbsp;talsvert.
+          </p>
+        </div>
+        <h2 id="1.8">
+          <span>
+            <a href="#1.8">1.8</a>
+          </span>
+          XML
+        </h2>
+        <div class="paragraphs">
+          <p>
+            XML, eða <em>Extensible Markup&nbsp;Language</em> er opið sniðmál
+            sem staðlað er af W3C og hefur það að markmiði að kóða almennar
+            upplýsingar á formi sem bæði er læsilegt af tölvum og fólki. XML er
+            skilgreint með SGML og notast við element og attribute og eru því
+            XML og HTML skjöl að mörgu leyti lík, nema að XML nota yfirleitt tög
+            sem draga nöfn sín af verkefninu sem verið er að&nbsp;leysa.
+          </p>
+        </div>
+        <div class="code code-xml">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;<span class="hljs-name">page</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;<span class="hljs-name">section</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;<span class="hljs-name">heading</span>&gt;</span>Fyrirsögn<span class="hljs-tag">&lt;/<span class="hljs-name">heading</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;<span class="hljs-name">content</span>&gt;</span>Efni<span class="hljs-tag">&lt;/<span class="hljs-name">content</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="6"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="7"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;/<span class="hljs-name">page</span>&gt;</span></pre>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <p>
+            XML skjöl <em>verða</em> að uppfylla vissar kröfur um réttmæti til
+            að tölvur geti lesið þau, þau verða að vera <em>valid</em>. Ef þau
+            eru það ekki mun XML þáttari sem reynir að búa til DOM tré kasta
+            villu og <strong>engu</strong> er skilað. XML skjöl verða einnig að
+            byrja á <em>XML&nbsp;skilgreiningu</em>, t.d.
+            <code
+              >&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;
+              ?&gt;</code
+            >
+            sem segir til um útgáfa af XML og stafasett sem notað&nbsp;er.
+          </p>
+        </div>
+        <h3 id="1.8.1">
+          <span>
+            <a href="#1.8.1">1.8.1</a>
+          </span>
+          XHTML
+        </h3>
+        <div class="paragraphs">
+          <p>
+            Við lok seinustu aldar var XML mjög vinsæl tækni sem var mikið notuð
+            á internetinu. Þessar vinsældir ásamt því hversu erfitt það gat
+            verið á stundum að þátta HTML (vafrar höfðu byggt inn virkni sem
+            lagaði villur hjá notendum þar sem erfitt getur verið að skrifa HTML
+            alveg kórrétt) urðu til þess að fólk fór að vinna að því að gera
+            útgáfu af HTML sem fór eftir sömu reglum og XML. <em>XHTML</em>,
+            Extensible HyperText Markup Language, var staðlað af W3C og kom
+            útgáfa 1.0 út sem W3C recommendation árið 2000 og útgáfa 1.1
+            árið&nbsp;2001.
+          </p>
+        </div>
+        <h2 id="1.9">
+          <span>
+            <a href="#1.9">1.9</a>
+          </span>
+          Stafasett &amp;&nbsp;HTML
+        </h2>
+        <div class="paragraphs">
+          <p>
+            Þar sem tölvur geta verið heldur vandlátar á það í hvaða
+            <em>stafasetti</em> við skrifum, þá skilgreinum við það sérstaklega
+            í <code>&lt;head&gt;</code> með því að setja það á
+            <code>charset</code> attribute á <code>&lt;meta&gt;</code>, element
+            sem leyfir okkur að setja fram lýsigögn um skjalið okkar. Í
+            langflestum tilfellum viljum við nota
+            <a href="https://en.wikipedia.org/wiki/UTF-8">UTF-8</a> sem getur
+            kóðað alla stafi (code points) í
+            <a href="http://unicode.org/">Unicode</a>.
+          </p>
+        </div>
+        <div class="code code-html">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span>&gt;</span></pre>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <p>
+            Í XML og HTML eru sérstakir stafir,
+            <a
+              href="http://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references"
+              ><em>character&nbsp;entity</em></a
+            >
+            skilgreindir með <code>&amp;X;</code> þar sem <code>X</code> er:
+          </p>
+        </div>
+        <ul>
+          <li>
+            Heiti tákns, t.d. <code>&amp;lt;</code> fyrir
+            minna-enn&nbsp;(<code>&lt;</code>)
+          </li>
+          <li>
+            <a href="https://en.wikipedia.org/wiki/Code_point"
+              >Code&nbsp;point</a
+            >, í decimal eða hexadecimal með <code>#</code> fyrir framan, t.d.
+            <code>&amp;#x00DE;</code> fyrir&nbsp;Þ
+          </li>
+        </ul>
+
+        <h2 id="1.10">
+          <span>
+            <a href="#1.10">1.10</a>
+          </span>
+          HTML5
+        </h2>
+        <div class="paragraphs">
+          <p>
+            Eftir áhugaleysi W3C á því að þróa HTML áfam og mikinn fókus á XHTML
+            og XML tengda tækni tóku nokkrir aðilar sig saman og stofnuðu
+            <a href="https://whatwg.org/">WHATWG</a> (Web Hypertext Application
+            Technology Working Group) árið 2004, með það að markmiði að vinna
+            áfram að HTML og eðlilegri framþróun vefsins. Þessi vinna fór fram
+            undir nafninu HTML5 þar sem hver sem er gat lagt til breytingar á
+            HTML í gegnum póstlista en takmarkaður hópur ritstjóra stýrði því
+            hvað fór inn í&nbsp;staðal.
+          </p>
+          <p>
+            Tveimur árum seinna, árið 2006, sá W3C að sér og hélt áfram þróun
+            HTML sem HTML 5. En þar sem hver heilvita maður sér að þróun á tveim
+            aðskildum stöðlum (HTML5 og HTML 5) á sama tíma virkar ekki, þá voru
+            þeir blessunarlega sameinaðir í einn HTML5 staðal árið 2007. W3C
+            hætti þróun á XHTML 2.0 árið 2009 og farið var að öllu að þróa HTML5
+            sem framtíð&nbsp;HTML.
+          </p>
+
+          <figure>
+            <div class="image">
+              <div class="img">
+                <img
+                  alt="HTML5 Logo"
+                  src="img/html5-logo.png"
+                  width="599"
+                  height="532"
+                  loading="lazy"
+                />
+              </div>
+              <div class="ratio" style="padding-top: 88.814691%"></div>
+            </div>
+
+            <figcaption>
+              <p>Logo fyrir HTML5.</p>
+              <footer>
+                Mynd frá Wikimedia:
+                <a
+                  href="http://commons.wikimedia.org/wiki/File:HTML5_oval_logo.png"
+                  >http://commons.wikimedia.org/wiki/File:HTML5_oval_logo.png</a
+                >
+              </footer>
+            </figcaption>
+          </figure>
+          <p>
+            Árið 2012 tók W3C „snapshot“ af staðlinum eins og hann leit út hjá
+            WHATWG og fór í þá vinnu að gera staðalinn að W3C staðli. WHATWG
+            hætti hinsvegar að tala sérstaklega um HTML5 og
+            <a href="http://blog.whatwg.org/html-is-the-new-html5"
+              >vinnur nú að framþróun&nbsp;HTML</a
+            >
+            í lifandi staðli sem mun aldrei klárast og heldur áfram að þróast án
+            þess að hlutir séu&nbsp;fjarlægðir.
+          </p>
+          <p>
+            HTML5 byggir hvorki á SGML né XML en er samhæft fyrri útgáfum (e.
+            backwards compatible) af HTML. Stefnan er að auka samvirkni
+            (interoperability) og aðgengi að vefnum. Til að vera að fullu
+            samhæft fyrri útgáfum verður HTML5 að skilgreina&nbsp;DocType:
+          </p>
+        </div>
+        <div class="code code-html">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-meta">&lt;!doctype <span class="hljs-meta-keyword">html</span>&gt;</span></pre>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <p>
+            Þetta er eina DocType sem við notum, nema við höfum mjög góða ástæðu
+            til annars. Héðan í frá miðast öll umfjöllun við HTML5. Grunnurinn
+            að vefsíðunum okkar verður&nbsp;þá:
+          </p>
+        </div>
+        <div class="code code-html">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-meta">&lt;!doctype <span class="hljs-meta-keyword">html</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;is&quot;</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Halló heimur<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="6"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="7"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="8"></td>
+              <td>
+                <pre>    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Halló heimur<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="9"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="10"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></pre>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <figure>
+            <div class="image">
+              <div class="img">
+                <img
+                  alt="Skjáskot af Spacejam.com"
+                  src="img/spacejam.jpg"
+                  width="833"
+                  height="717"
+                  loading="lazy"
+                />
+              </div>
+              <div class="ratio" style="padding-top: 86.07443%"></div>
+            </div>
+
+            <figcaption>
+              <p>
+                Vefurinn fyrir stórmyndina Spacejam kom út 1996 og er ennþá
+                aðgengilegur og birtist eins og höfundur hans ætluðu sér, þökk
+                sé HTML og stöðlum.
+              </p>
+              <footer>
+                Mynd: Skjáskot af:
+                <a href="https://spacejam.com/">https://spacejam.com/</a>
+              </footer>
+            </figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <footer>
+        <nav>
+          <ul>
+            <li class="prev">
+              <p><a href="./00.inngangur.html">Inngangur</a></p>
+            </li>
+            <li class="index"><a href="/">Efnisyfirlit</a></li>
+            <li class="next">
+              <p><a href="./02.html.html">Að skrifa&nbsp;HTML</a></p>
+            </li>
+          </ul>
+        </nav>
+        <hr />
+        <div class="version">Útgáfa 0.3, ágúst 2020</div>
+      </footer>
+    </main>
+  </body>
+</html>

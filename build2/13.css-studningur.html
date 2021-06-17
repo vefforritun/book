@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<!--
+  Velkominn ferðalangur, bakvið tjöldin, í uppsprettuna.
+  Þetta HTML er sjálfkrafa útbúið út frá Markdown skjölum.
+  Sjá nánar:
+  https://github.com/vefforritun/book
+  -->
+<html lang="is">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vefforitun—Kafli 13: CSS stuðningur</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Kafli 13: CSS stuðningur</h1>
+        <div class="reading-time">Um 8 mín lestur</div>
+      </header>
+
+      <article>
+        <h2 id="13.1">
+          <span>
+            <a href="#13.1">13.1</a>
+          </span>
+          Progressive&nbsp;enhancement
+        </h2>
+        <div class="paragraphs">
+          <p>
+            Hugtakið um <em>progressive&nbsp;enhancement</em> segir að við eigum
+            að einbeita okkur að upplifun sem krefst minnstu mögulegrar tækni og
+            bæta hana í lögum, <em>progressively</em>. Á hverju af þessum
+            <em>lögum</em> nær notandi að upplifa efnið okkar. Þetta má hugsa í
+            tilfelli vefforritunar&nbsp;svona:
+          </p>
+        </div>
+        <ol>
+          <li>Skrifum áhugavert, skýrt&nbsp;efni.</li>
+          <li>Setjum það upp með aðgengilegu, merkingarfræðilegu&nbsp;HTML.</li>
+          <li>Bætum við grunn útliti sem er vel&nbsp;stutt.</li>
+          <li>Bætum við flóknara útliti sem er e.t.v. minna&nbsp;stutt.</li>
+          <li>Bætum við aukinni virkni með&nbsp;JavaScript.</li>
+        </ol>
+        <div class="paragraphs">
+          <p>
+            Með hverju skrefi verður vefurinn <em>fallegri</em>,
+            <em>skemmtilegri</em> og meira <em>töff</em> fyrir einhverjar
+            skilgreiningar af þessum orðum. En, á hverju stigi er efnið okkar,
+            aðal ástæða fyrir vefnum okkar,&nbsp;aðgengilegt.
+          </p>
+        </div>
+        <h3 id="13.1.1">
+          <span>
+            <a href="#13.1.1">13.1.1</a>
+          </span>
+          Shim og&nbsp;polyfill
+        </h3>
+        <div class="paragraphs">
+          <p>
+            Almennt er talað um <em>shim</em> sem virkni sem „stungið“ er inn í
+            umhverfi til þess að veita nýja virkni í gömlu umhverfi (eða öfugt,
+            gamalli virkni í nýrra umhverfi). Þegar umhverfið er síðan uppfært
+            ætti <em>shim</em> virknin að detta út og allur kóði ætti að virka í
+            nýja umhverfinu. Þessi virkni er e.t.v. ekki alveg kórrétt eða hröð,
+            en hún veitir fyrr aðgang að nýrri&nbsp;virkni.
+          </p>
+          <p>
+            Fyrir vefinn er talað um <em>polyfill</em> sem kóða sem veitir
+            aðgang að nýrri virkni áður en allir vafrar bjóða upp á hana,
+            þ.e.a.s. polyfill er shim fyrir vafra virkni. Polyfill eru ekki
+            eingöngu fyrir CSS virkni heldur eru til polyfill fyrir mikið af
+            virkni sem komið hefur til á seinustu árum og koma einhversskonar
+            stuðningi í jafnvel elstu vafra, sjá t.d.
+            <a
+              href="https://github.com/Modernizr/Modernizr/wiki/HTML5-Cross-Browser-Polyfills"
+              >HTML5 Cross Browser&nbsp;Polyfills</a
+            >.
+          </p>
+        </div>
+        <h3 id="13.1.2">
+          <span>
+            <a href="#13.1.2">13.1.2</a>
+          </span>
+          CSS og progressive&nbsp;enhancement
+        </h3>
+        <div class="paragraphs">
+          <p>
+            Við getum notað <em>í&nbsp;dag</em> virkni sem verður ekki að fullu
+            studd í öllum vöfrum fyrr en <em>í&nbsp;framtíðinni</em> og við
+            höfum plan um hvernig. Í því plani tökum við tillit til
+            þess&nbsp;að:
+          </p>
+        </div>
+        <ul>
+          <li>
+            Ákveða hvaða vafra og stýrikerfi við ætlum (eða ætlum ekki
+            að&nbsp;styðja).
+          </li>
+          <li>Prófa í viðeigandi&nbsp;tækjum.</li>
+          <li>Nýta okkur <em>progressive&nbsp;enhancement</em>.</li>
+        </ul>
+
+        <h2 id="13.2">
+          <span>
+            <a href="#13.2">13.2</a>
+          </span>
+          „Nýleg“ virkni í&nbsp;CSS
+        </h2>
+        <div class="paragraphs">
+          <p>
+            Ný veftækni (eins og t.d. CSS 3) er ekki að fullu studd í öllum
+            vöfrum sem notaðir eru dagsdaglega. Við viljum því ekki nota þá
+            virkni blint ef það getur á einhvern hátt dregið úr upplifun
+            notenda. Það eru nokkrar leiðir til að skrifa CSS með þetta allt
+            saman í huga. Eftir því sem árin líða og vafrar eru fljótari að bæta
+            við virkni (eða vöfrum fækkar…) á þetta minna við, samt sem áður
+            þarf að hugsa um þetta til að skilja ekki einhverja sem heimsækja
+            vefina okkar eftir úti í&nbsp;kuldanum.
+          </p>
+          <p>
+            Auðveld leið er að skilgreina <em>fallback</em> gildi, en það er
+            gildi sem við eru viss um að allir vafrar styðji áður en við
+            skilgreinum gildi sem nýtir nýrri tækni sem ekki er að
+            fullu&nbsp;studd.
+          </p>
+        </div>
+        <div class="code code-css">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td><pre>width: 99%;</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td><pre>width: calc(100% - 30px);</pre></td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <p>
+            Fallið <code>calc()</code> leyfir okkur að reikna saman lengdir sem
+            hafa mismunandi lengdir. T.d. getum við reiknað
+            <code>calc(50% - 2px);</code> og m.v. hvað <code>50%</code> verður
+            reiknað sem, verða <code>2px</code> dregnir frá þeirri stærð þegar
+            notað gildi er&nbsp;fundið.
+          </p>
+          <p>
+            Önnur leið sem vafraframleiður bjóða upp á (eða, buðu upp á) er að
+            nota <em>vafraforskeyti</em> (vendor prefixes) á ákveðnum eigindum
+            og gildum. Þá er boðið upp á virknina áður en vafrinn er með
+            fullkominn stuðning eða á meðan staðallinn er ekki að fullu
+            skilgreindur. Þetta hefur farið minnkandi seinustu ár þar sem
+            vefforritarar uppfærðu ekki endilega vefi eftir að forskeyti urðu
+            óþarfi og vafrar urðu að halda áfram að styðja&nbsp;þau.
+          </p>
+        </div>
+        <div class="code code-css">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td><pre>display: -webkit-box;</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td><pre>display: -ms-flexbox;</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td><pre>display: flex;</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td><pre>-webkit-user-select: none;</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="6"></td>
+              <td><pre>-moz-user-select: none;</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="7"></td>
+              <td><pre>-ms-user-select: none;</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="8"></td>
+              <td><pre>user-select: none;</pre></td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <p>
+            Ekki er æskilegt að handskrifa vafraforskeyti heldur nota sjálfvirk
+            tól til að sjá um, t.d.
+            <a href="https://autoprefixer.github.io/"><em>autoprefixer</em></a
+            >.
+          </p>
+          <p>
+            Báðar þessar leiðir nýta sér villumeðhöndlun CSS: eigindi og gildi
+            sem ekki eru þekkt af vafra er einfaldlega sleppt og næsta
+            er&nbsp;skoðað.
+          </p>
+          <p>
+            <a href="http://caniuse.com/">caniuse.com</a> hefur yfirgripsmikinn
+            gagnagrunn yfir stuðning vafra á ákveðinni virkni. Við getum nýtt
+            okkur þennan gagnagrun til að taka ákvörðun um það hvort það sé þess
+            virði að leggja í að nota nýja virkni yfir höfuð fyrir
+            verkefnið&nbsp;okkar.
+          </p>
+        </div>
+        <h3 id="13.2.1">
+          <span>
+            <a href="#13.2.1">13.2.1</a>
+          </span>
+          Feature&nbsp;queries
+        </h3>
+        <div class="paragraphs">
+          <p>
+            Nýlegri leið til að skrifa CSS sem ekki er tryggt að allir vafrir
+            styðja er að nota <em>feature&nbsp;queries</em> með
+            <code>@supports</code> at-reglunni. <code>@supports</code> leyfir
+            okkur að athuga hvort að eigindi <strong>og</strong> gildi séu
+            studd, þá getum við innan reglunnar skilgreint CSS sem er notað. Það
+            ber þó að fara sparlega með notkun á þessu og ætti aðeins að nota ef
+            við þurfum að skrifa fleiri en eina línu af CSS, hugsanlega með
+            nýrri virkni og eldri í bland. Ef við ætlum einfaldlega að bæta við
+            virkni í einni línu þá notum við&nbsp;fallback.
+          </p>
+        </div>
+        <div class="code code-css">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-comment">/* ef við getum breytt því í hvaða átt texti er skrifaður með writing mode</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre><span class="hljs-comment">   gerum það *og* fleytum texta til vinstri */</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre><span class="hljs-keyword">@supports</span> (<span class="hljs-attribute">writing-mode:</span> vertical-lr) {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td>
+                <pre>  <span class="hljs-selector-tag">h1</span> {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td>
+                <pre>    <span class="hljs-attribute">float</span>: left;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="6"></td>
+              <td>
+                <pre>    <span class="hljs-attribute">writing-mode</span>: vertical-lr;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="7"></td>
+              <td><pre>  }</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="8"></td>
+              <td><pre>}</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="9"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="10"></td>
+              <td>
+                <pre><span class="hljs-comment">/* ekki gera svona, bara bæta við border-radius sem progressive enhancement */</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="11"></td>
+              <td>
+                <pre><span class="hljs-keyword">@supports</span> (<span class="hljs-attribute">border-radius:</span> <span class="hljs-number">50%</span>) {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="12"></td>
+              <td>
+                <pre>  <span class="hljs-selector-class">.box</span> {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="13"></td>
+              <td>
+                <pre>    <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">50%</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="14"></td>
+              <td><pre>  }</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="15"></td>
+              <td><pre>}</pre></td>
+            </tr>
+          </table>
+        </div>
+
+        <h3 id="13.2.2">
+          <span>
+            <a href="#13.2.2">13.2.2</a>
+          </span>
+          CSS&nbsp;variables
+        </h3>
+        <div class="paragraphs">
+          <p>
+            CSS variables leyfa okkur að skilgreina breytur, t.d. fyrir lit,
+            ákveðna lengd eða eitthvað annað sem er mikið notað. Þetta leyfir
+            okkur að gera breytingar á auðveldari máta og getur bætt lesanleika.
+            Breyturnar eru skilgreindar með <code>--&lt;heiti&gt;</code> en það
+            er vegna þess að þær nýta sömu hugsun og í vafraforskeytum og eru í
+            raun að nota <em>tóma</em> forskeytið. Til þess að nýta breytu notum
+            við <code>var(--&lt;heiti&gt;)</code> fallið í CSS. Ef breyta er
+            ekki skilgreind getum við sent aðra færibreytu sem er þá
+            <em>fallback</em> gildi, <code>var(&lt;breyta&gt;, #000)</code>.
+            Breytur sem skilgreindar eru munu erfast frá foreldri til barns og
+            eru háðar <em>cascade</em>.
+          </p>
+        </div>
+        <div class="code code-html">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Halló <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>heimur<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>bless<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></pre>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="code code-css">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-selector-tag">h1</span> {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">--main-color</span>: <span class="hljs-number">#f0f</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">color</span>: <span class="hljs-built_in">var</span>(--main-color);</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td><pre>}</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="6"></td>
+              <td>
+                <pre><span class="hljs-selector-tag">span</span> {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="7"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">color</span>: <span class="hljs-number">#000</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="8"></td>
+              <td>
+                <pre>  <span class="hljs-comment">/* ef við höfum aðgang að breytu er hún notuð, annars #000 */</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="9"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">var</span>(--main-color, #<span class="hljs-number">0</span>f0);</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="10"></td>
+              <td><pre>}</pre></td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <figure>
+            <div class="image">
+              <div class="img">
+                <img
+                  alt=""
+                  src="img/css-vars.png"
+                  width="452"
+                  height="222"
+                  loading="lazy"
+                />
+              </div>
+              <div class="ratio" style="padding-top: 49.115044%"></div>
+            </div>
+
+            <figcaption>
+              <p>Litum stýrt með CSS breytum.</p>
+              <footer>Mynd frá höfundi.</footer>
+            </figcaption>
+          </figure>
+          <p>
+            Til þess að skilgreina breytur alveg efst í trénu svo hún sé
+            aðgengileg öllu getum við notað <code>:root</code> gerviklasann
+            (pseudo-class). Þessi gerviklasi er alltaf jafngildur rótinni á
+            skjalinu sem er verið að stíla. Fyrir HTML væri það eins og að
+            skilgreina fyrir <code>html</code> nema <code>:root</code> hefur
+            hærri&nbsp;sértækni.
+          </p>
+        </div>
+        <div class="code code-css">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-selector-pseudo">:root</span> {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">--main-color</span>: <span class="hljs-number">#f0f</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td><pre>}</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td>
+                <pre><span class="hljs-selector-tag">h1</span> {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">color</span>: <span class="hljs-built_in">var</span>(--main-color);</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="6"></td>
+              <td><pre>}</pre></td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <p>Aðrir hlutir sem við getum gert með CSS&nbsp;breytum:</p>
+        </div>
+        <ul>
+          <li>
+            Breytt dýnamískt gildi með því að setja breytu með
+            <code>style</code> attribute.
+          </li>
+          <li>
+            Margfaldað tölulegt gildi breytu með <code>calc()</code>, t.d.
+            <code>calc(--multiplier * 1em)</code>.
+          </li>
+          <li>
+            Skilgreint mörg gildi í einu, t.d.
+            <code>--margins: 10px 20px;</code>,
+            <code>margin: var(--margins);</code>.
+          </li>
+        </ul>
+
+        <h3 id="13.2.3">
+          <span>
+            <a href="#13.2.3">13.2.3</a>
+          </span>
+          Border&nbsp;radius
+        </h3>
+        <div class="paragraphs">
+          <p>
+            Hægt er að rúnna horn á boxi með <code>border-radius</code>, það
+            virkar hvort sem <code>border</code> hafi verið skilgreindur eða
+            ekki. Líkt og með <code>border</code> er
+            <code>border-radius</code> shorthand fyrir
+            <code>border-top-left-radius</code> o.s.fr.
+          </p>
+          <p>
+            Ef við skilgreinum eina tölu er miðað við hringlaga horn en tvær
+            tölur miða við sporöskjulaga horn. Hægt er að nota t.d.
+            <a
+              href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Background_and_Borders/Border-radius_generator"
+              >border-radius generator frá&nbsp;Mozilla</a
+            >
+            til að skilgreina hin fullkomnu rúnuðu&nbsp;horn.
+          </p>
+        </div>
+        <h3 id="13.2.4">
+          <span>
+            <a href="#13.2.4">13.2.4</a>
+          </span>
+          Box&nbsp;shadow
+        </h3>
+        <div class="paragraphs">
+          <p>
+            Líkt og með skugga á texta getum við skilgreint einn eða fleiri
+            skugga á boxum. Þessir skuggar geta bæði legið
+            utan&nbsp;(<code>outset</code>, sjálfgefið gildi) eða innan
+            boxsins&nbsp;(<code>inset</code>). Við skilgreinum hvernig skugginn
+            liggur frá boxinu á x og y ás, hversu mikið hann er
+            <em>bluraður</em>, hvernig hann dreifist og hvernig hann er á
+            litinn. Fyrir flóknari skugga má nota
+            <a
+              href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Model/Box-shadow_generator"
+              >box-shadow generator frá&nbsp;Mozilla</a
+            >.
+          </p>
+        </div>
+        <h3 id="13.2.5">
+          <span>
+            <a href="#13.2.5">13.2.5</a>
+          </span>
+          CSS&nbsp;shapes
+        </h3>
+        <div class="paragraphs">
+          <p>
+            Þar sem lang flest í CSS er skilgreint sem rétthyrnt box getur verið
+            skemmtilegt að brjóta upp þessi box og gera eitthvað öðruvísi. CSS
+            shapes leyfa okkur skilgreina hvernig inline element leggjast upp að
+            boxunum okkar, í staðinn fyrir að nota ytra byrði þeirra. Við getum
+            skilgreint form (t.d. hring, polygon) eða
+            <em>alpha&nbsp;channel</em> á mynd, þau svæði myndar sem eru gegnsæ.
+            Í dag er hægt að nota í einhverjum vöfrum
+            <code>shape-outside</code> sem leyfir að gera þetta fyrir efni utan
+            boxa, en unnið er að skilgreiningu á <code>shape-inside</code>.
+          </p>
+        </div>
+        <div class="code code-css">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-selector-tag">img</span> {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">float</span>: left;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td>
+                <pre>  <span class="hljs-comment">/* efni leggst eftir sporöskjulaga ferli utan um myndina */</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">shape-outside</span>: <span class="hljs-built_in">ellipse</span>(<span class="hljs-number">50%</span> <span class="hljs-number">50%</span>); </pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="6"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">margin</span>: <span class="hljs-number">1em</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="7"></td>
+              <td><pre>}</pre></td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <figure>
+            <div class="image">
+              <div class="img">
+                <img
+                  alt=""
+                  src="img/shapes.png"
+                  width="1000"
+                  height="619"
+                  loading="lazy"
+                />
+              </div>
+              <div class="ratio" style="padding-top: 61.9%"></div>
+            </div>
+
+            <figcaption>
+              <p>Texti legst upp að mynd með gegnsæan hluta.</p>
+              <footer>Mynd frá höfundi.</footer>
+            </figcaption>
+          </figure>
+        </div>
+        <h3 id="13.2.6">
+          <span>
+            <a href="#13.2.6">13.2.6</a>
+          </span>
+          <code>object-fit</code>
+        </h3>
+        <div class="paragraphs">
+          <p>
+            Þegar við fellum inn annað efni á síðuna okkar, eins og mynd með
+            <code>&lt;img&gt;</code> þá gætum við þurft að skilgreina hvernig
+            það meðhöndlað til að passa í foreldri sitt. Með
+            <code>object-fit</code> getum við skilgreint nokkrar leiðir til
+            að&nbsp;meðhöndla:
+          </p>
+        </div>
+        <ul>
+          <li>
+            <code>object-fit: fill;</code>, sjálfgefið, fyllir algjörlega út í
+            foreldi. Ef stærðarhlutföll (aspect ratio) passar ekki, er
+            hlutur&nbsp;teygður
+          </li>
+          <li>
+            <code>object-fit: cover;</code>, hlutur fyllir út í box en
+            stærðarhlutföllum er haldið, ef hlutur passar ekki er klippt
+            af&nbsp;honum
+          </li>
+          <li>
+            <code>object-fit: contain;</code>, hlutur fyllir út í box en
+            stærðarhlutföllum er haldið, ef hlutur passar ekki er hann skalaður,
+            getur myndast&nbsp;„letterbox“
+          </li>
+          <li><code>object-fit: none;</code>, ekkert er átt við&nbsp;hlut</li>
+        </ul>
+        <div class="paragraphs">
+          <p>
+            Einnig er hægt að stýra staðsetningu hlutar í tvívíðu rúmi með
+            <code>object-position: &lt;x-ás&gt; &lt;y-ás&gt;;</code>. Sjálfgefið
+            gildi er <code>object-position: 50% 50%;</code>, hlutur
+            er&nbsp;miðjaður.
+          </p>
+
+          <figure>
+            <div class="image">
+              <div class="img">
+                <img
+                  alt=""
+                  src="img/object-fit.png"
+                  width="1000"
+                  height="582"
+                  loading="lazy"
+                />
+              </div>
+              <div class="ratio" style="padding-top: 58.2%"></div>
+            </div>
+
+            <figcaption>
+              <p>
+                Dæmi um hvernig object-fit kemur mynd fyrir, mynd er skilgreind
+                til að vera nákvæmlega 600x200.
+              </p>
+              <footer>Mynd frá höfundi.</footer>
+            </figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <footer>
+        <nav>
+          <ul>
+            <li class="prev">
+              <p>
+                <a href="./12.css-letur-litir.html">Letur &amp;&nbsp;litir</a>
+              </p>
+            </li>
+            <li class="index"><a href="/">Efnisyfirlit</a></li>
+            <li class="next">
+              <p><a href="./14.css-flexbox.html">Flexbox</a></p>
+            </li>
+          </ul>
+        </nav>
+        <hr />
+        <div class="version">Útgáfa 0.3, september 2020</div>
+      </footer>
+    </main>
+  </body>
+</html>

@@ -1,9 +1,18 @@
-# Drög að kennslubók í vefforritun
+# Bókin um vef­forritun
 
-Drög þessi eru skrifuð eftir nokkur ár af kennslu vefforritunar í HÍ.
+Grunnkóði fyrir bókin um vefforritun: lærðu að smíða vefi með HTML og CSS.
 
-* [Kafli 0: Inngangur](chapters/00.inngangur.md)
-* [Kafli 1: HTML](chapters/01.html.md)
-* [Kafli 2: CSS](chapters/02.css.md)
+Allir kaflar sem Markdown í `./chapters`.
 
-Efni þetta hefur ekki fengið tæknilegan yfirlestur. Myndir eru héðan og þaðan, og þarf að geta heimilda fyrir þær.
+Til að útbúa vefútgáfu þarf að hafa Node.js (útgáfa 14+) uppsett og keyra:
+
+```bash
+npm install
+npm run generate
+```
+
+Markdown er þýtt yfir í HTML út frá lýsigögnum í `./book.json`, með sértækri virkni fyrir ýmislegt.
+
+Þýðing á hverri skrá er geymd í `cache/` möppu til að flýta fyrir seinni keyrslum.
+
+Niðurstaða er skrifuð í `build/`.

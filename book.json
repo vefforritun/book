@@ -1,0 +1,33 @@
+{
+  "title": "Bókin um vef&shy;forritun",
+  "subtitle": "Lærðu að smíða vefi með HTML og CSS ✨",
+  "version": "Útgáfa 0.3, ágúst 2020.",
+  "contact": "Höfundur: <a href=\"mailto:kjarni@gmail.com?subject=Segðu+mér+meira+um+vefforritun!\">Ólafur Sverrir Kjartansson</a>. Fylgstu með á <a href=\"https://github.com/vefforritun/book\">GitHub</a>.",
+  "chapters": {
+    "title": "Kaflar",
+    "consolidatedTitle": "Öll bókin í einni skrá",
+    "files": [
+      "./chapters/00.inngangur.md",
+      "./chapters/01.saga.md",
+      "./chapters/02.html.md",
+      "./chapters/03.element.md",
+      "./chapters/04.adgengi.md",
+      "./chapters/05.seo.md",
+      "./chapters/06.css.md",
+      "./chapters/07.css-malfraedi.md",
+      "./chapters/08.css-box-model.md",
+      "./chapters/09.css-specifity-cascade.md",
+      "./chapters/10.css-best-practices.md",
+      "./chapters/11.visual-formatting.md",
+      "./chapters/12.css-letur-litir.md",
+      "./chapters/13.css-studningur.md",
+      "./chapters/14.css-flexbox.md",
+      "./chapters/15.skalanlegir.md",
+      "./chapters/16.kvikun.md",
+      "./chapters/17.honnun.md",
+      "./chapters/18.css-verkefni.md",
+      "./chapters/19.css-taeki-tol.md",
+      "./chapters/20.npm-taeki-tol.md"
+    ]
+  }
+}
