@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<!--
+  Velkominn ferðalangur, bakvið tjöldin, í uppsprettuna.
+  Þetta HTML er sjálfkrafa útbúið út frá Markdown skjölum.
+  Sjá nánar:
+  https://github.com/vefforritun/book
+  -->
+<html lang="is">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vefforitun—Kafli 20: NPM og almenn tæki og tól</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Kafli 20: NPM og almenn tæki og tól</h1>
+        <div class="reading-time">Um 8 mín lestur</div>
+      </header>
+
+      <article>
+        <h2 id="20.1">
+          <span>
+            <a href="#20.1">20.1</a>
+          </span>
+          npm
+        </h2>
+        <div class="paragraphs">
+          <p>
+            npm er <em>pakkastjóri</em> (package manager) fyrir JavaScript en
+            leyfir okkur líka að setja upp og nota allskonar tól sem byggð eru
+            með&nbsp;JavaScript.
+          </p>
+          <p>
+            Pakkastjóri sér um að sjálfvirknivæða það að setja upp, stilla og
+            fjarlægja hugbúnað. Í staðinn fyrir að þurfa að sækja einhvern
+            hugbúnað, finna hvert við sóttum hann, keyra eitthvað
+            uppsetningarforrit og síðan keyra forritið, þá keyrum við eina
+            skipun og höfum aðgang að&nbsp;forriti.
+          </p>
+          <p>
+            npm er sett upp með <em>node.js</em> og þurfum við því að setja það
+            upp, en hægt er að nálgast
+            <a href="https://nodejs.org/"
+              >nýjustu útgáfu af node.js á vef&nbsp;þess</a
+            >. Það koma reglulega upp tilvikt þar sem við þurfum að hafa fleiri
+            en eina útgáfu af node.js aðgengilega, þá getum við notað
+            <a href="https://github.com/creationix/nvm">nvm</a> (mac og linux)
+            eða
+            <a href="https://github.com/coreybutler/nvm-windows">nvm-windows</a>
+          </p>
+          <p>
+            Eftir að hafa sett upp node.js getum við opnað terminal og staðfest
+            að við höfum aðgang að&nbsp;báðu:
+          </p>
+        </div>
+        <div class="code code-bash">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td><pre>&gt; node -v</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td><pre>v12.18.4 (eða sú útgáfa sem við sóttum)</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td><pre>&gt; npm -v</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td><pre>6.14.6</pre></td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <p>
+            Með node.js og npm uppsett getum við sótt okkur tæki og tól til þess
+            að auðvelda líf okkar í vefforritun. Það eru tvær aðferðir
+            til&nbsp;þess:
+          </p>
+        </div>
+        <ul>
+          <li>Setja tól upp almennt,&nbsp;eða</li>
+          <li>Setja upp tól í verkefninu&nbsp;okkar</li>
+        </ul>
+
+        <h2 id="20.2">
+          <span>
+            <a href="#20.2">20.2</a>
+          </span>
+          Almenn&nbsp;tól
+        </h2>
+        <div class="paragraphs">
+          <p>
+            Með því að setja upp almennt tól getum við notað það hvar sem er
+            gegnum terminal.
+            <a href="https://www.browsersync.io/"><code>browser-sync</code></a>
+            er dæmi um svona tól, en það leyfir okkur að keyra lítinn vefþjón á
+            okkar eigin vél og sjálfkrafa endurhlaða síðu þegar við gerum
+            breytingar sem getur sparað okkur ófáa&nbsp;smellina.
+          </p>
+          <p>
+            Byrjum á því að setja upp <code>browser-sync</code> almennt með npm
+            með því að nota <code>-g</code> flaggið sem stendur
+            fyrir&nbsp;„global“.
+          </p>
+        </div>
+        <div class="code code-bash">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td><pre>&gt; npm install -g browser-sync</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td><pre>...</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td><pre>+ browser-sync@2.26.12</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td>
+                <pre>added 220 packages from 204 contributors <span class="hljs-keyword">in</span> 21.777s <span class="hljs-comment"># eða eitthvað álíka</span></pre>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <p>
+            Ef við förum nú í möppu þar sem við höfum <code>index.html</code> og
+            <code>styles.css</code> skjal getum við kveikt á
+            <code>browser-sync</code> vefþjóninum&nbsp;með:
+          </p>
+        </div>
+        <div class="code code-bash">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre>&gt; <span class="hljs-built_in">cd</span> /slóð/á/verkefni</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre>
+&gt; browser-sync start --server --files index.html styles.css</pre
+                >
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td><pre>[Browsersync] Access URLs:</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td><pre> ----------------------------------------</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td><pre>       Local: http://localhost:3000</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="6"></td>
+              <td><pre>    External: http://192.168.1.1:3000</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="7"></td>
+              <td><pre> ----------------------------------------</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="8"></td>
+              <td><pre>          UI: http://localhost:3001</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="9"></td>
+              <td><pre> UI External: http://192.168.1.1:3001</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="10"></td>
+              <td><pre> ----------------------------------------</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="11"></td>
+              <td><pre>[Browsersync] Serving files from: ./</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="12"></td>
+              <td><pre>[Browsersync] Watching files...</pre></td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <p>
+            nú fylgist <code>browser-sync</code> með <code>index.html</code> og
+            <code>styles.css</code> og sjálfkrafa endurhleður síðuna. En núna
+            erum við búin að setja upp þetta tól og getum notað fyrir einhver
+            verkefni, en hvað ef við viljum leyfa öðrum í teyminu okkar að njóta
+            þess&nbsp;sama?
+          </p>
+        </div>
+        <h2 id="20.3">
+          <span>
+            <a href="#20.3">20.3</a>
+          </span>
+          Tól í&nbsp;verkefnum
+        </h2>
+        <div class="paragraphs">
+          <p>
+            Með því að innifela tólin sem við notum við þróun á verkefni í
+            verkefninu sjálfu erum við nákvæm um hver <em>dependency</em> okkar
+            eru. Ef aðrir (þar með talið við sjálf eftir einhvern) koma að
+            verkefninu viljum við að allt sé skýrt, hvaða tól sé verið að nota
+            og hvernig. npm getur hjálpað okkur með&nbsp;þetta.
+          </p>
+          <p>
+            Ef við förum í möppuna þar sem verkefnið okkar er geymt og keyrum
+            <code>npm init</code> skipunina sem spyr npm okkur um uplýsingar
+            varðandi verkefnið okkar. Þær eru síðan geymdar í
+            <code>package.json</code> skrá. Við getum síðan bætt sérstaklega við
+            <em>dependency</em> á ákveðin tól, t.d.
+            <code>browser-sync</code> með því að nota
+            <code>npm install &lt;pakki&gt; --save-dev</code> en það segir npm
+            að vista vísun í <code>browser-sync</code> í
+            <code>package.json</code> þar sem <code>browser-sync</code> er
+            <em>development&nbsp;dependency</em>. Ef við tilgreinum
+            <code>--save</code> erum við að segja að pakkinn sé keyrslu
+            <em>dependency</em>, þ.e.a.s. til að verkefnið keyri þarf þessi
+            pakki að vera&nbsp;til.
+          </p>
+        </div>
+        <div class="code code-bash">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre>&gt; <span class="hljs-built_in">cd</span> /slóð/á/verkefni</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td><pre>&gt; npm init</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td><pre>…svara spurningum</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td><pre>&gt; npm install browser-sync --save-dev</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td><pre>…</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="6"></td>
+              <td>
+                <pre>added 412 packages <span class="hljs-keyword">in</span> 37.537s <span class="hljs-comment"># eða eitthvað álíka</span></pre>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <p>
+            þá lítur <code>package.json</code> einhvern vegin svona&nbsp;út:
+          </p>
+        </div>
+        <div class="code code-json">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td><pre>{</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre>  <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;prufa&quot;</span>,</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre>  <span class="hljs-attr">&quot;version&quot;</span>: <span class="hljs-string">&quot;0.0.1&quot;</span>,</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td>
+                <pre>  <span class="hljs-attr">&quot;description&quot;</span>: <span class="hljs-string">&quot;Prufupakki Óla&quot;</span>,</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td>
+                <pre>  <span class="hljs-attr">&quot;main&quot;</span>: <span class="hljs-string">&quot;index.js&quot;</span>,</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="6"></td>
+              <td>
+                <pre>  <span class="hljs-attr">&quot;scripts&quot;</span>: {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="7"></td>
+              <td>
+                <pre>    <span class="hljs-attr">&quot;test&quot;</span>: <span class="hljs-string">&quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="8"></td>
+              <td><pre>  },</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="9"></td>
+              <td>
+                <pre>  <span class="hljs-attr">&quot;author&quot;</span>: <span class="hljs-string">&quot;Óli&quot;</span>,</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="10"></td>
+              <td>
+                <pre>  <span class="hljs-attr">&quot;license&quot;</span>: <span class="hljs-string">&quot;ISC&quot;</span>,</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="11"></td>
+              <td>
+                <pre>  <span class="hljs-attr">&quot;devDependencies&quot;</span>: {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="12"></td>
+              <td>
+                <pre>    <span class="hljs-attr">&quot;browser-sync&quot;</span>: <span class="hljs-string">&quot;^2.26.12&quot;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="13"></td>
+              <td><pre>  }</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="14"></td>
+              <td><pre>}</pre></td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <p>
+            en hún er geymd á <code>json</code> formi sem er gagnaform sem á
+            rætur sínar að rekja til JavaScript. Að auki
+            <code>package.json</code> verður til
+            <code>package-lock.json</code> sem geymir nákvæmar útgáfur þeirra
+            forrita sem við treystum á, því þau sjálf hafa sín eigin dependency.
+            <code>./node_modules</code> er síðan mappa sem verður til samhliða
+            þessum skrám og geymir hún forritakóða fyrir alla pakka sem við
+            höfum sett upp. Þessi mappa er útbúin út frá
+            <code>package.json</code> og <code>package-lock.json</code> og þarf
+            því ekki að geyma hana eða senda með sérstaklega. Við einfaldlega
+            keyrum <code>npm install</code> og npm sér um að sækja allt sem
+            sækja&nbsp;þarf.
+          </p>
+          <p>En hvernig keyrum við þá <code>browser-sync</code>?</p>
+        </div>
+        <h2 id="20.4">
+          <span>
+            <a href="#20.4">20.4</a>
+          </span>
+          npm&nbsp;scripts
+        </h2>
+        <div class="paragraphs">
+          <p>
+            npm býður upp á leið til þess að skilgreina <em>skriptur</em> sem
+            við getum keyrt með <code>npm run &lt;nafn-á-skriptu&gt;</code>. Við
+            skilgreinum þessar skriptur undir
+            <code>&quot;scripts&quot;</code> hlutanum í
+            <code>package.json</code>, ef við bætum við skriptu til að keyra
+            <code>browser-sync</code> við dæmið að ofan fáum&nbsp;við:
+          </p>
+        </div>
+        <div class="code code-json">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td><pre>&quot;scripts&quot;: {</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre>
+  &quot;browser-sync&quot;: &quot;browser-sync start --server --files index.html styles.css&quot;</pre
+                >
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td><pre>},</pre></td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <p>
+            sérstaklega þarf að passa upp á að hafa <code>,</code> á eftir
+            hverri skriptu ef önnur fylgir og enga kommu í&nbsp;lokin.
+          </p>
+          <p>
+            Við getum þá keyrt <code>browser-sync</code> í verkefninu
+            okkar&nbsp;með:
+          </p>
+        </div>
+        <div class="code code-bash">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td><pre>npm run browser-sync</pre></td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <p>
+            og fengið sömu virkni og áður en núna tekur verkefnið okkar skýrt
+            fram að það noti <code>browser-sync</code>.
+          </p>
+        </div>
+        <h2 id="20.5">
+          <span>
+            <a href="#20.5">20.5</a>
+          </span>
+          node-sass
+        </h2>
+        <div class="paragraphs">
+          <code>node-sass</code> er þýðandi fyrir Sass skrifaður fyrir node.js
+          sem við getum sótt með&nbsp;npm.
+        </div>
+        <div class="code code-bash">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td><pre>npm install --save node-sass</pre></td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <p>
+            Með <code>node-sass</code> kemur CLI forrit sem við getum keyrt og
+            gefið slóð á <code>.scss</code> skrár og nafn á
+            <code>.css</code> skrá og er þá sass þýtt yfir í CSS skrá.
+            <code>-w</code> flag lætur forritið vakta skránna okkar og þýða hana
+            aftur ef <code>.scss</code> skrár&nbsp;breytast.
+          </p>
+        </div>
+        <div class="code code-json">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td><pre>&quot;scripts&quot;: {</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre>
+  &quot;browser-sync&quot;: &quot;browser-sync start --server --files index.html styles.css&quot;,</pre
+                >
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre>
+  &quot;sass&quot;: &quot;node-sass styles.scss styles.css -w&quot;</pre
+                >
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td><pre>},</pre></td>
+            </tr>
+          </table>
+        </div>
+        <div class="code code-bash">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td><pre>&gt; npm run sass</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td><pre>=&gt; changed: /slóð/á/verkefni/styles.scss</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td><pre>Rendering Complete, saving .css file...</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td><pre>Wrote CSS to /slóð/á/verkefni/styles.css</pre></td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <p>
+            Núna lendum við í því að hafa tvö tól sem við viljum keyra á sama
+            tíma, við því eru tvær&nbsp;lausnir:
+          </p>
+        </div>
+        <ol>
+          <li>
+            Keyra tvö terminal sem keyra sitthvort command, það getur virkað en
+            verið heldur leiðinlegt í&nbsp;uppsetningu
+          </li>
+          <li>
+            Finna <em>annað</em> tól sem leyfir okkur að keyra bæði í&nbsp;einu!
+          </li>
+        </ol>
+        <div class="paragraphs">
+          <p>
+            Eitt svona tól er
+            <a href="https://github.com/kimmobrunfeldt/concurrently"
+              ><code>concurrently</code></a
+            >
+            er einn af mörgum pökkum sem leyfir okkur að keyra margar skipanir í
+            einu. Ef við setjum það upp og&nbsp;keyrum:
+          </p>
+        </div>
+        <div class="code code-bash">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td><pre>&gt; npm install --save-dev concurrently</pre></td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs"><p>og bætum við&nbsp;skriptum</p></div>
+        <div class="code code-json">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td><pre>&quot;scripts&quot;: {</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre>
+  &quot;browser-sync&quot;: &quot;browser-sync start --server --files index.html styles.css&quot;,</pre
+                >
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre>
+  &quot;sass&quot;: &quot;node-sass styles.scss styles.css -w&quot;,</pre
+                >
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td>
+                <pre>
+  &quot;dev&quot;: &quot;concurrently npm:sass npm:sass&quot;</pre
+                >
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td><pre>},</pre></td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <p>og þá getum við keyrt bæði tólin okkar í einu&nbsp;með:</p>
+        </div>
+        <div class="code code-bash">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td><pre>&gt; npm run dev</pre></td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <p>
+            Það er venja að hafa skriptu sem heitir eitthvað í áttina að
+            <code>dev</code> (fyrir development) til að keyra þróunartól í gang.
+            Ef við bætum við skriptu sem heitir <code>start</code> er búist við
+            að hún keyri upp raunkeyrslu útgáfu (e. production) af verkefninu.
+            Þá er líka hægt að nota beint <code>npm start</code>.
+          </p>
+        </div>
+        <h2 id="20.6">
+          <span>
+            <a href="#20.6">20.6</a>
+          </span>
+          stylelint
+        </h2>
+        <div class="paragraphs">
+          <p>
+            Seinasta CSS þróunartólið sem við setjum upp er
+            <a href="https://github.com/stylelint/stylelint"
+              ><code>stylelint</code></a
+            >
+            en eins og nafnið gefur til kynna er það <em>linter</em> fyrir CSS
+            (og fleiri mál, t.d. Sass). Því fylgja margar reglur sem hægt er að
+            sér sníða fyrir hvert og eitt verkefni, eða fá ákveðnar
+            <em>best&nbsp;practices</em> reglur með, t.d.
+            <a href="https://github.com/primer/stylelint-config-primer"
+              ><code>stylelint-config-primer</code></a
+            >
+            sem inniheldur grunnreglur og styður&nbsp;sass.
+          </p>
+        </div>
+        <div class="code code-bash">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td><pre>npm install --save-dev stylelint</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td><pre>npm install --save-dev stylelint-config-primer</pre></td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <p>
+            Til þess að kveikja á <code>stylelint-config-primer</code> reglunum
+            þurfum við að búa til <code>.stylelintrc</code> skrá (skrár sem
+            byrja á <code>.</code> eru oft notaðar til að geyma stillingar, en
+            þær geta líka valdið vandræðum þar sem mörg stýrikerfi fela þær)
+            sem&nbsp;inniheldur:
+          </p>
+        </div>
+        <div class="code code-json">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td><pre>{</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre>  <span class="hljs-attr">&quot;extends&quot;</span>: <span class="hljs-string">&quot;stylelint-config-primer&quot;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td><pre>}</pre></td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <p>og bætum við skriptu sem keyrir&nbsp;tólið:</p>
+        </div>
+        <div class="code code-json">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td><pre>&quot;scripts&quot;: {</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre>
+  &quot;browser-sync&quot;: &quot;browser-sync start --server --files index.html styles.css&quot;,</pre
+                >
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre>
+  &quot;sass&quot;: &quot;node-sass styles.scss styles.css -w&quot;,</pre
+                >
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td>
+                <pre>
+  &quot;dev&quot;: &quot;npm-run-all --parallel sass browser-sync&quot;,</pre
+                >
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td>
+                <pre>
+  &quot;lint&quot;: &quot;stylelint styles.scss --syntax scss&quot;</pre
+                >
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="6"></td>
+              <td><pre>},</pre></td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <p>
+            Ef við núna skrifum sass/css sem ekki er talið gott samkvæmt
+            reglunum sem við höfum valið&nbsp;okkur:
+          </p>
+        </div>
+        <div class="code code-scss">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-selector-tag">h1</span> {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">color</span>: red;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td><pre>}</pre></td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <p>
+            og keyrum lint til að athuga&nbsp;(<code>-s</code> stendur fyrir
+            silent, en þá sleppir npm að sýna upplýsingar um&nbsp;keyrslu)
+          </p>
+        </div>
+        <div class="code code-bash">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td><pre>&gt; npm run lint -s</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td><pre>styles.scss</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre>1:1   ✖  Expected <span class="hljs-string">&quot;h1&quot;</span> to have no more than 0 <span class="hljs-built_in">type</span>  selector-max-type selectors</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td>
+                <pre>3:10  ✖  Unexpected named color <span class="hljs-string">&quot;red&quot;</span>               color-named</pre>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <p>
+            Þegar við vinnum í verkefnum í teymi, þar sem ákveðnar reglur um
+            kóðastíl hafa verið skilgreindar förum við eftir þeim til að halda
+            samræmi. Við erum e.t.v. ekki alltaf sammála reglunum, en við
+            treystum því að það séu góðar ástæður þar að baki, eða ræðum við
+            teymið okkar um að breyta&nbsp;þeim.
+          </p>
+          <p>
+            Allar reglur sem hægt er að stilla í Stylelint
+            <a href="https://stylelint.io/user-guide/rules/"
+              >má nálgast á&nbsp;vefnum</a
+            >. Ef við viljum breyta því hvernig regla virkar getum við stillt
+            hana sérstaklega í <code>.stylelintrc</code>, t.d.
+            <a href="https://stylelint.io/user-guide/rules/comment-no-empty/"
+              >banna tómar&nbsp;athugasemdir</a
+            >:
+          </p>
+        </div>
+        <div class="code code-json">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td><pre>{</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre>  <span class="hljs-attr">&quot;extends&quot;</span>: <span class="hljs-string">&quot;stylelint-config-primer&quot;</span>,</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre>  <span class="hljs-attr">&quot;rules&quot;</span>: {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td>
+                <pre>    <span class="hljs-attr">&quot;comment-no-empty&quot;</span>: <span class="hljs-literal">true</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td><pre>  }</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="6"></td>
+              <td><pre>}</pre></td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <p>
+            Það geta þó komið upp aðstæður þar sem við viljandi brjótum almenna
+            reglu fyrir sértækt tilvik. T.d. viljum við setja letur á
+            <code>html</code> en Stylelint vill ekki að við notum type-selector.
+            Við getum þá slökkt á athugun á þeirri línu með
+            <code>/* stylelint-disable-line */</code> (einnig
+            <a
+              href="https://stylelint.io/user-guide/configuration/#turning-rules-off-from-within-your-css"
+              >hægt að slökkva á fleiri&nbsp;vegu</a
+            >).
+          </p>
+        </div>
+      </article>
+
+      <footer>
+        <nav>
+          <ul>
+            <li class="prev">
+              <p>
+                <a href="./19.css-taeki-tol.html">CSS tæki &amp;&nbsp;tól</a>
+              </p>
+            </li>
+            <li class="index"><a href="/">Efnisyfirlit</a></li>
+            <li class="next"></li>
+          </ul>
+        </nav>
+        <hr />
+        <div class="version">Útgáfa 0.3, september 2020</div>
+      </footer>
+    </main>
+  </body>
+</html>

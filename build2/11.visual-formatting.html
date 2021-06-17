@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<!--
+  Velkominn ferðalangur, bakvið tjöldin, í uppsprettuna.
+  Þetta HTML er sjálfkrafa útbúið út frá Markdown skjölum.
+  Sjá nánar:
+  https://github.com/vefforritun/book
+  -->
+<html lang="is">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vefforitun—Kafli 11: Visual Formatting módel</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Kafli 11: Visual Formatting módel</h1>
+        <div class="reading-time">Um 9 mín lestur</div>
+      </header>
+
+      <article>
+        <div class="paragraphs">
+          <p>
+            CSS 2.1 skilgreinir
+            <a href="http://www.w3.org/TR/CSS2/visuren.html"
+              ><em>visual formatting&nbsp;model</em></a
+            >
+            sem skilgreinir hvernig við stýrum uppsetningu og flæði efnis á
+            síðu.
+          </p>
+        </div>
+        <h2 id="11.1">
+          <span>
+            <a href="#11.1">11.1</a>
+          </span>
+          Normal flow – eðlilegt&nbsp;flæði
+        </h2>
+        <div class="paragraphs">
+          <p>
+            Ef við höfum ekki skilgreint hvernig element á að haga sér er það í
+            <em>eðlilegu&nbsp;flæði</em> og er sjálfgefið annað hvort
+            <em>block</em> eða <em>inline</em>. Við getum stýrt hvernig element
+            hegðar sér með <code>display</code> eigindu, sem tekur
+            eftirfarandi&nbsp;gildi:
+          </p>
+        </div>
+        <ul>
+          <li>
+            <code>block</code>, element forma „blokkir“ og fylla upp í
+            breidd&nbsp;foreldris.
+          </li>
+          <li>
+            <code>inline</code>, element forma ekki „blokkir“ heldur dreifir sér
+            í línur, inline element fá ekki lárétt <code>margin</code>,
+            <code>width</code> eða <code>height</code>.
+          </li>
+          <li>
+            <code>inline-block</code>, element myndar blokk (og getur því fengið
+            lárétt margin) en dreifir sér í&nbsp;línu.
+          </li>
+          <li>
+            <code>none</code>, element er fjarlægt með öllu úr flæði og tekur
+            ekkert&nbsp;pláss.
+          </li>
+        </ul>
+        <div class="paragraphs">
+          <p>
+            Ef við viljum ekki ganga svo langt að fjarlægja box með
+            <code>display: none;</code> getum við falið allt efni innan þess með
+            <code>visibility: hidden;</code>. Það felur boxið og allt efni í því
+            en reiknar með því í&nbsp;útliti.
+          </p>
+        </div>
+        <h2 id="11.2">
+          <span>
+            <a href="#11.2">11.2</a>
+          </span>
+          Efni í&nbsp;boxi
+        </h2>
+        <div class="paragraphs">
+          <p>
+            Þegar við stýrum stærð á elementum með <code>height</code> eða
+            <code>width</code> hættum við á að elementið verði of lítið fyrir
+            efni sitt. Þá getur <code>overflow</code> hjálpað en það leyfir
+            okkur að skilgreina hvað gerist við efnið sem flæðir út&nbsp;fyrir:
+          </p>
+        </div>
+        <ul>
+          <li>
+            <code>visible</code> (sjálfgefið) sýnir efni sem flæðir
+            út&nbsp;fyrir
+          </li>
+          <li><code>hidden</code> felur efni sem flæðir út&nbsp;fyrir</li>
+          <li><code>scroll</code> efnið flæðir og skrunstikur&nbsp;birtast</li>
+          <li>
+            <code>auto</code> birtir efni ef pláss, annars&nbsp;skrunstikur
+          </li>
+        </ul>
+        <div class="paragraphs">
+          <p>
+            Í þeim tilfellum sem við takmörkum hæð á elementum sem innihalda
+            texta þá viljum við hugsa sérstaklega um <code>overflow</code>. Það
+            er auðvelt að gera ráð fyrir því að texti muni alltaf vera jafn
+            langur og sá sem við höfum í forritun, en hvað gerist ef einhver
+            bætir við tvisvar sinnum lengri texta? Eða ef fyrirsögn er það löng
+            að hún fari í tvær línur? <code>overflow: hidden</code> er lausn sem
+            viðheldur útliti en felur efni og er því ekki æskilegt.
+            <code>overflow: auto</code> setur sjálfkrafa þær skrunstikur sem
+            verða að vera og er yfirleitt besta lausnin.
+            <code>overflow</code> er <em>short-hand</em> gildi fyrir
+            <code>overflow-x</code> og <code>overflow-y</code> sem við getum
+            notað til að stýra birtingu á x eða y ás&nbsp;sérstaklega.
+          </p>
+        </div>
+        <h2 id="11.3">
+          <span>
+            <a href="#11.3">11.3</a>
+          </span>
+          Staðsetning
+        </h2>
+        <div class="paragraphs">
+          <p>
+            Við getum stýrt staðsetningu á elementum með
+            <code>position</code> eigindinu. Það tekur nokkur lykilorð sem stýra
+            hvernig við viljum breyta staðsetningu. Ásamt því notum við
+            <code>top</code>, <code>right</code>, <code>bottom</code> og
+            <code>left</code> eigindin (stundum kölluð
+            <em>offset&nbsp;eigindi</em>) til þess að staðsetja elementið. Þau
+            taka öll bæði jákvæð og neikvæð gildi sem lengd.
+            <code>static</code> er sjálfgefna gildi <code>position</code> og
+            staðsetur það í eðlilegu flæði. Að gefa element
+            <code>position</code> gildi annað en <code>static</code> gerir það
+            að <em>containing&nbsp;block</em> sem notast er við í suma
+            útreikninga. Fyrsta containing block er rótar elementið, yfirleitt
+            <code>&lt;html&gt;</code>.
+          </p>
+        </div>
+        <h3 id="11.3.1">
+          <span>
+            <a href="#11.3.1">11.3.1</a>
+          </span>
+          Hlutfallsleg&nbsp;staðsetning
+        </h3>
+        <div class="paragraphs">
+          <p>
+            Við staðsejum element <em>hlutfallslega</em> í eðlilegu flæði með
+            <code>position: relative;</code>. Staðsetning á elementi er reiknuð
+            út frá eðlilegu flæði en síðan er það flutt hlutfallslega miðað við
+            þá staðsetningu eftir gildum offset eiginda. Eftir flutning er
+            „plássið“ í eðlilegu flæði&nbsp;eftir.
+          </p>
+        </div>
+        <div class="code code-html">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;box&quot;</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;box&quot;</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;box&quot;</span>&gt;</span>3<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;box&quot;</span>&gt;</span>4<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></pre>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="code code-css">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-selector-class">.box</span> {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">margin-bottom</span>: <span class="hljs-number">10px</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">padding</span>: <span class="hljs-number">20px</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">height</span>: <span class="hljs-number">50px</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td><pre>}</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="6"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="7"></td>
+              <td>
+                <pre><span class="hljs-selector-class">.box</span><span class="hljs-selector-pseudo">:nth-child(2)</span> {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="8"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">position</span>: relative;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="9"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">top</span>: <span class="hljs-number">150px</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="10"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">left</span>: <span class="hljs-number">50px</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="11"></td>
+              <td><pre>}</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="12"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="13"></td>
+              <td>
+                <pre><span class="hljs-selector-class">.box</span><span class="hljs-selector-pseudo">:nth-child(4)</span> {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="14"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">position</span>: relative;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="15"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">top</span>: -<span class="hljs-number">200px</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="16"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">left</span>: -<span class="hljs-number">50px</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="17"></td>
+              <td><pre>}</pre></td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <figure>
+            <div class="image">
+              <div class="img">
+                <img
+                  alt=""
+                  src="img/pos-relative.png"
+                  width="900"
+                  height="353"
+                  loading="lazy"
+                />
+              </div>
+              <div class="ratio" style="padding-top: 39.222222%"></div>
+            </div>
+
+            <figcaption>
+              <p>
+                Box 2 er flutt niður og til vinstri. Box 4 er flutt upp í pláss
+                box 2 og dregið út til vinstri með neikvæðu gildi. Bæði eru
+                reiknuð fyrst í eðlilegu flæði og fá breidd þaðan og skilja
+                eftir sig pláss.
+              </p>
+              <footer>Mynd frá höfundi.</footer>
+            </figcaption>
+          </figure>
+        </div>
+        <h3 id="11.3.2">
+          <span>
+            <a href="#11.3.2">11.3.2</a>
+          </span>
+          Nákvæm&nbsp;staðsetning
+        </h3>
+        <div class="paragraphs">
+          <p>
+            Við staðsetjum element <em>nákvæmlega</em> með
+            <code>position: absolute;</code>, út frá containing block. Element
+            sem eru staðsett nákvæmlega eru ekki reiknuð í eðlilegu flæði og
+            skilja því ekki eftir sig pláss. Að auki þar sem þau eru ekki með í
+            útreikning í eðlilegu flæði, þá
+            <strong>fá þau ekki&nbsp;breidd</strong> út frá því.
+            <code>width: 100%;</code> mun ekki gefa breidd sem er jöfn fullri
+            breidd foreldris, heldur mun það taka stærð sem efni&nbsp;krefst.
+          </p>
+        </div>
+        <div class="code code-html">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;absolute&quot;</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;box&quot;</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;box&quot;</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;box&quot;</span>&gt;</span>3<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;box&quot;</span>&gt;</span>4<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="6"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></pre>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="code code-css">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-selector-class">.absolute</span> {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre>  <span class="hljs-comment">/* gerum foreldri að containing block */</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">position</span>: relative;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#000</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td><pre>}</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="6"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="7"></td>
+              <td>
+                <pre><span class="hljs-selector-class">.box</span> {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="8"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">margin-bottom</span>: <span class="hljs-number">10px</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="9"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">padding</span>: <span class="hljs-number">20px</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="10"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">height</span>: <span class="hljs-number">50px</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="11"></td>
+              <td><pre>}</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="12"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="13"></td>
+              <td>
+                <pre><span class="hljs-selector-class">.box</span><span class="hljs-selector-pseudo">:nth-child(1)</span> {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="14"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">position</span>: absolute;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="15"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="16"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">right</span>: <span class="hljs-number">0</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="17"></td>
+              <td><pre>}</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="18"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="19"></td>
+              <td>
+                <pre><span class="hljs-selector-class">.box</span><span class="hljs-selector-pseudo">:nth-child(3)</span> {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="20"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">position</span>: absolute;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="21"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">bottom</span>: <span class="hljs-number">0</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="22"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">left</span>: <span class="hljs-number">50px</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="23"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="24"></td>
+              <td><pre>}</pre></td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <figure>
+            <div class="image">
+              <div class="img">
+                <img
+                  alt=""
+                  src="img/pos-absolute.png"
+                  width="800"
+                  height="216"
+                  loading="lazy"
+                />
+              </div>
+              <div class="ratio" style="padding-top: 27%"></div>
+            </div>
+
+            <figcaption>
+              <p>
+                Foreldri er containing block svo staðsetning miðast við það. Box
+                1 er flutt í efra hægra horn, það fær ekki stærð þar sem það er
+                ekki reiknað í eðlilegu flæði. Box 3 er staðsett í botni 50px
+                frá vinstri og gefin 100px breidd.
+              </p>
+              <footer>Mynd frá höfundi.</footer>
+            </figcaption>
+          </figure>
+          <p>
+            Með því að nota <code>position: absolute;</code> getum við látið
+            element <em>fylla út&nbsp;í</em> foreldri sitt að öllu leiti með því
+            að tilgreina öll staðsetningar eigindi í <code>0</code>. Foreldri
+            <strong>verður</strong> að vera containing block, annars er barnið
+            staðsett ofar í&nbsp;trénu.
+          </p>
+        </div>
+        <div class="code code-html">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;box&quot;</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;child&quot;</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td><pre>    Box 1 – barn</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="6"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;box parent&quot;</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="7"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;child fill&quot;</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="8"></td>
+              <td><pre>    Box 2 – barn</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="9"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="10"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></pre>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="code code-css">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-selector-class">.fill</span> {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">position</span>: absolute;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">right</span>: <span class="hljs-number">0</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">bottom</span>: <span class="hljs-number">0</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="6"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="7"></td>
+              <td><pre>}</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="8"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="9"></td>
+              <td>
+                <pre><span class="hljs-selector-class">.parent</span> {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="10"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">position</span>: relative;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="11"></td>
+              <td><pre>}</pre></td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <figure>
+            <div class="image">
+              <div class="img">
+                <img
+                  alt=""
+                  src="img/pos-absolute-filled.png"
+                  width="800"
+                  height="204"
+                  loading="lazy"
+                />
+              </div>
+              <div class="ratio" style="padding-top: 25.5%"></div>
+            </div>
+
+            <figcaption>
+              <p>
+                Barn í boxi 2 fyllir alveg út í foreldri sitt þar sem það er
+                containing block.
+              </p>
+              <footer>Mynd frá höfundi.</footer>
+            </figcaption>
+          </figure>
+        </div>
+        <h3 id="11.3.3">
+          <span>
+            <a href="#11.3.3">11.3.3</a>
+          </span>
+          Föst&nbsp;staðsetning
+        </h3>
+        <div class="paragraphs">
+          <p>
+            Við staðsetjum element <em>fast</em> út frá viewporti með
+            <code>position: fixed;</code>. Element sem eru fast staðsett eru
+            ekki reiknuð í eðlilegu flæði og skilja því ekki eftir sig pláss.
+            Element er fast að því leiti að þegar síða er
+            <em>scrolluð</em> helst element í&nbsp;stað.
+          </p>
+        </div>
+        <div class="code code-css">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-comment">/* element er alltaf staðsett uppi í vinstra horni vafra */</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre><span class="hljs-selector-class">.fixed</span> {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">position</span>: fixed;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="6"></td>
+              <td><pre>}</pre></td>
+            </tr>
+          </table>
+        </div>
+
+        <h3 id="11.3.4">
+          <span>
+            <a href="#11.3.4">11.3.4</a>
+          </span>
+          Klístruð&nbsp;staðsetning
+        </h3>
+        <div class="paragraphs">
+          <p>
+            <em>Klístruð</em> staðsetning með
+            <code>position: sticky;</code> notar samblöndu af hlutfallslegri og
+            fastri staðsetningu. Staðsetning er reiknuð út frá eðlilegu flæði en
+            þegar komið er að ákveðnum þröskuldi á
+            <em>containing&nbsp;block</em> sem getur skrunað, þá er það reiknað
+            sem það væri hlutfallslega&nbsp;fast.
+          </p>
+        </div>
+        <div class="code code-css">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-selector-class">.sticky</span> {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre>  <span class="hljs-comment">/* staðsett hlutfallslega þangað til... */</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">position</span>: sticky;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td>
+                <pre>  <span class="hljs-comment">/* 200px frá top á containing block sem skrunar, þá fast */</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="6"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">top</span>: <span class="hljs-number">200px</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="7"></td>
+              <td><pre>}</pre></td>
+            </tr>
+          </table>
+        </div>
+
+        <h3 id="11.3.5">
+          <span>
+            <a href="#11.3.5">11.3.5</a>
+          </span>
+          Þriðja&nbsp;víddin
+        </h3>
+        <div class="paragraphs">
+          <p>
+            Element sem hafa annað gildi en <code>position: static;</code> eru
+            ekki aðeins staðsett í tvívíðu rúmi, þau liggja líka á z-ás. Þetta
+            kemur fram t.d. í því að ef tvö eða fleiri element eigi að birtast í
+            efra vinstra horni, hvert þeirra sést? Þessi staðsetning ræðst af
+            <em>stacking&nbsp;order</em> og hvernig það er reiknað út sjálfgefið
+            fylgir
+            <a href="https://www.w3.org/TR/CSS2/visuren.html#z-index"
+              >ákveðnum&nbsp;reglum</a
+            >. Við getum ákvarðað hvar í röðinni element liggur með því að gefa
+            því sitt eigið gildi með <code>z-index: &lt;tala&gt;;</code>. Hærra
+            <code>z-index</code> gildi raðar element <em>nær</em> notanda
+            þ.e.a.s. ofar á&nbsp;z-ás.
+          </p>
+        </div>
+        <div class="code code-html">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;zindex&quot;</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;box&quot;</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;box&quot;</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;box&quot;</span>&gt;</span>3<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td>
+                <pre>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;box&quot;</span>&gt;</span>4<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="6"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></pre>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="code code-css">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-selector-class">.zindex</span> {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">position</span>: relative;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#000</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td><pre>}</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="6"></td>
+              <td>
+                <pre><span class="hljs-selector-class">.zindex</span> <span class="hljs-selector-class">.box</span><span class="hljs-selector-pseudo">:nth-child(1)</span> {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="7"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">position</span>: absolute;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="8"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">top</span>: <span class="hljs-number">60px</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="9"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">right</span>: <span class="hljs-number">0</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="10"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">z-index</span>: <span class="hljs-number">4</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="11"></td>
+              <td><pre>}</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="12"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="13"></td>
+              <td>
+                <pre><span class="hljs-selector-class">.zindex</span> <span class="hljs-selector-class">.box</span><span class="hljs-selector-pseudo">:nth-child(2)</span> {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="14"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">position</span>: relative;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="15"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">z-index</span>: <span class="hljs-number">1</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="16"></td>
+              <td><pre>}</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="17"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="18"></td>
+              <td>
+                <pre><span class="hljs-selector-class">.zindex</span> <span class="hljs-selector-class">.box</span><span class="hljs-selector-pseudo">:nth-child(3)</span> {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="19"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">position</span>: absolute;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="20"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">bottom</span>: <span class="hljs-number">50px</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="21"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">left</span>: <span class="hljs-number">50px</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="22"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">z-index</span>: <span class="hljs-number">1</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="23"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="24"></td>
+              <td><pre>}</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="25"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="26"></td>
+              <td>
+                <pre><span class="hljs-selector-class">.zindex</span> <span class="hljs-selector-class">.box</span><span class="hljs-selector-pseudo">:nth-child(4)</span> {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="27"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">position</span>: relative;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="28"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">z-index</span>: <span class="hljs-number">3</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="29"></td>
+              <td><pre>}</pre></td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <figure>
+            <div class="image">
+              <div class="img">
+                <img
+                  alt=""
+                  src="img/pos-absolute-zindex.png"
+                  width="800"
+                  height="213"
+                  loading="lazy"
+                />
+              </div>
+              <div class="ratio" style="padding-top: 26.625%"></div>
+            </div>
+
+            <figcaption>
+              <p>
+                Box 1 liggur ofan á öllum öðrum boxum en box 3 liggur ofan á
+                boxi 2 en undir boxi 4.
+              </p>
+              <footer>Mynd frá höfundi.</footer>
+            </figcaption>
+          </figure>
+          <p>
+            Eitt sem getur valdið vandræðum með <code>z-index</code> er þegar
+            við viljum birta element <em>innan</em> elements sem hefur
+            skilgreint <code>z-index</code> og hefur systkini sem hafa sama
+            <code>z-index</code>, fyrir utan það. T.d. ef við viljum birta
+            upplýsingar þegar <em>hoverað</em> er yfir eitthvað eða smellt á
+            takka í lista af boxum. Boxin hafa sama <code>z-index</code> og
+            reglur segja til um að seinna í DOM trénu (þ.e.a.s. seinna í HTML
+            röð) hefur forgang í birtingu ef sama <code>z-index</code> gildi
+            er&nbsp;skilgreint.
+          </p>
+
+          <figure>
+            <div class="image">
+              <div class="img">
+                <img
+                  alt=""
+                  src="img/z-index-hover.png"
+                  width="600"
+                  height="251"
+                  loading="lazy"
+                />
+              </div>
+              <div class="ratio" style="padding-top: 41.833333%"></div>
+            </div>
+
+            <figcaption>
+              <p>
+                Texti sem birtist þegar hoverað er yfir texta liggur undir boxi
+                sem kemur á eftir og hefur sama z-index.
+              </p>
+              <footer>Mynd frá höfundi.</footer>
+            </figcaption>
+          </figure>
+        </div>
+        <h2 id="11.4">
+          <span>
+            <a href="#11.4">11.4</a>
+          </span>
+          Fela efni ætlað&nbsp;skjálesurum
+        </h2>
+        <div class="paragraphs">
+          <p>
+            Það geta komið upp þau tilvik þar sem við viljum fela efni frá
+            vöfrum en gera það aðgengilegt skjálesurum. T.d. „beint í efni“
+            tenglar eða textar sem auðveldara er að lesa úr samhengi
+            hönnunarsíðu en ef hún er lesin. Til þess að gera þetta „skjálesara
+            aðgengilega efni“ falið, er CSS notað. Það eru nokkrar leiðir til
+            þess að ná þessu fram, t.d. að skilgreina
+            <code>.sr-only</code> skipun:
+          </p>
+        </div>
+        <div class="code code-css">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-selector-class">.sr-only</span> {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">position</span>: absolute;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">left</span>: -<span class="hljs-number">10000px</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">top</span>: auto;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">width</span>: <span class="hljs-number">1px</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="6"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">height</span>: <span class="hljs-number">1px</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="7"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">overflow</span>: hidden;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="8"></td>
+              <td><pre>}</pre></td>
+            </tr>
+          </table>
+        </div>
+
+        <h2 id="11.5">
+          <span>
+            <a href="#11.5">11.5</a>
+          </span>
+          Floats
+        </h2>
+        <div class="paragraphs">
+          <p>
+            Önnur leið sem CSS 2.1 skilgreinir til að hafa áhrif á eðlilegt
+            flæði er með <em>floats</em> en það getum við skilgreint fyrir
+            element með <code>float</code> eigindinu sem getur tekið gildin
+            <code>left</code>, <code>right</code> eða sjálfgefna gildið
+            <code>none</code>. Með því að skilgreina
+            <code>float: left;</code> eða <code>float: right;</code> fjarlægjum
+            við element úr eðlilegu flæði og „fleytum“ því til vinstri eða hægri
+            m.v. þá línu sem það er í. Þessi lína er efri brún staðsetningar
+            elements í eðlilegu flæði áður en því er fleytt. Fleiri en eitt
+            element sem fleytt er í sömu átt munu sitja hlið við hlið lárétt svo
+            lengi sem þau hafa pláss. Um leið og plássið er ekki til staðar mun
+            elementi vera ýtt niður og „ný“ lína&nbsp;mynduð.
+          </p>
+        </div>
+        <div class="code code-html">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;img&quot;</span>&gt;</span>mynd<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Lorem ipsum dolor sit amet…<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></pre>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="code code-css">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-selector-class">.img</span> {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">float</span>: left;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span> <span class="hljs-number">10px</span> <span class="hljs-number">10px</span> <span class="hljs-number">0</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td><pre>}</pre></td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <figure>
+            <div class="image">
+              <div class="img">
+                <img
+                  alt=""
+                  src="img/float.png"
+                  width="800"
+                  height="190"
+                  loading="lazy"
+                />
+              </div>
+              <div class="ratio" style="padding-top: 23.75%"></div>
+            </div>
+
+            <figcaption>
+              <p>„Mynd“ er fleytt til vinstri og liggur við hliðina á texta.</p>
+              <footer>Mynd frá höfundi.</footer>
+            </figcaption>
+          </figure>
+          <p>
+            Við getum stýrt flæðinu í kringum element sem er fleytt með
+            <code>clear</code> eigindinu sem tekur við gildunum
+            <code>left</code>, <code>right</code>, <code>both</code> eða
+            sjálfgefna gildinu <code>none</code>. Ef við „hreinsum“ ekki innan
+            foreldris, sem aðeins inniheldur element sem er fleytt, getum við
+            lent í vandræðum þar sem það fær þá ekki hæð og fellur saman
+            (collapses). Nokkrar leiðir eru til að koma í veg fyrir þetta en sú
+            sem var vinsælust meðan <code>float</code> var meira notað var
+            <em>clearfix</em> sem er sett á foreldrið og útbýr gervi-element á
+            eftir því sem sér um að&nbsp;hreinsa.
+          </p>
+        </div>
+        <div class="code code-css">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-selector-class">.clearfix</span><span class="hljs-selector-pseudo">::after</span> {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">content</span>: <span class="hljs-string">&#x27;&#x27;</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">display</span>: table;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">clear</span>: both;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td><pre>}</pre></td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <p>
+            Á einum tímapunkti var <code>float</code> töluvert notað til þess að
+            stýra heildar útliti á síðum, t.d. til að fleyta dálkum til hliðar,
+            við hliðina á meginmáli. Í dag ættum við <strong>ekki</strong> að
+            nota <code>float</code> til að stýra útliti heldur aðeins til að
+            fleyta elementum innan annars efnis, t.d. myndum sem eiga við texta.
+            Til þess að stýra útliti notum við Flexbox eða CSS&nbsp;grid.
+          </p>
+        </div>
+      </article>
+
+      <footer>
+        <nav>
+          <ul>
+            <li class="prev">
+              <p>
+                <a href="./10.css-best-practices.html">Að skrifa&nbsp;CSS</a>
+              </p>
+            </li>
+            <li class="index"><a href="/">Efnisyfirlit</a></li>
+            <li class="next">
+              <p>
+                <a href="./12.css-letur-litir.html">Letur &amp;&nbsp;litir</a>
+              </p>
+            </li>
+          </ul>
+        </nav>
+        <hr />
+        <div class="version">Útgáfa 0.3, september 2020</div>
+      </footer>
+    </main>
+  </body>
+</html>

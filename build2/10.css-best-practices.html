@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<!--
+  Velkominn ferðalangur, bakvið tjöldin, í uppsprettuna.
+  Þetta HTML er sjálfkrafa útbúið út frá Markdown skjölum.
+  Sjá nánar:
+  https://github.com/vefforritun/book
+  -->
+<html lang="is">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vefforitun—Kafli 10: Að skrifa CSS</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Kafli 10: Að skrifa CSS</h1>
+        <div class="reading-time">Um 3 mín lestur</div>
+      </header>
+
+      <article>
+        <div class="paragraphs">
+          <p>
+            Eins og með HTML skiptir máli að huga að því hvernig við formum og
+            skrifum&nbsp;CSS.
+          </p>
+          <p>
+            Algeng leiðin til að skrifa CSS er að hafa einn selector per línu
+            með <code>{</code> á línu seinasta selectors. Allar yfirlýsingar eru
+            síðan dregnar inn innan&nbsp;reglusetts.
+          </p>
+        </div>
+        <div class="code code-css">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-comment">/* ekki svona */</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre><span class="hljs-selector-class">.text</span>, <span class="hljs-selector-class">.list</span>, <span class="hljs-selector-tag">div</span> { <span class="hljs-attribute">font-size</span>: <span class="hljs-number">1em</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre><span class="hljs-attribute">color</span>: black; }</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td>
+                <pre><span class="hljs-comment">/* heldur svona */</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="6"></td>
+              <td>
+                <pre><span class="hljs-selector-class">.text</span>,</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="7"></td>
+              <td>
+                <pre><span class="hljs-selector-class">.list</span>,</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="8"></td>
+              <td>
+                <pre><span class="hljs-selector-tag">div</span> {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="9"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">1em</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="10"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">color</span>: black;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="11"></td>
+              <td><pre>}</pre></td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <p>
+            Almennt notum við ekki ID selectora þar sem þeir hafa hærra
+            specifity en class selector og valda því vanda. Einnig ætti
+            <code>id</code> aðeins að vera skilgreint einu sinni fyrir element
+            per síðu og því ekki hægt að endurnýta fyrir fleiri. Þetta þýðir þó
+            ekki að við notum <code>id</code> aldrei, þegar við vissulega viljum
+            finna einstök element með JavaScript getum við notað
+            <code>id</code>.
+          </p>
+        </div>
+        <div class="code code-css">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-selector-id">#main</span> <span class="hljs-selector-class">.list</span> { <span class="hljs-attribute">font-size</span>: <span class="hljs-number">2em</span>; }</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre><span class="hljs-comment">/*</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td>
+                <pre><span class="hljs-comment">  getum ekki náð hærra specificity nema með því að nota líka id</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td>
+                <pre><span class="hljs-comment">  eða fara út í að nota !important</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="6"></td>
+              <td>
+                <pre><span class="hljs-comment">*/</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="7"></td>
+              <td>
+                <pre><span class="hljs-selector-class">.list</span> { <span class="hljs-attribute">font-size</span>: <span class="hljs-number">1.5em</span>; }</pre>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <p>
+            Einnig er æskilegt að nýta sér „flóðið“ þar sem það á við, t.d. til
+            að skilgreina leturgerð aðeins einu sinni, þarf ekki að skilgreina
+            aftur og aftur fyrir mörg&nbsp;element.
+          </p>
+          <p>
+            Stundum eru yfirlýsingum raðað á einhvern sérstakan hátt og þeim
+            hópað saman, t.d. allt sem á við texta saman, allt sem á við
+            staðsetningu. Þetta á sérstaklega við í verkefnum sem margir
+            vinna&nbsp;í.
+          </p>
+          <p>
+            Þegar við skrifum <code>class</code> á element til að velja með
+            selector þá er venjan að skrifa þá með
+            <em>kebab-case</em> á&nbsp;ensku:
+          </p>
+        </div>
+        <div class="code code-css">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-comment">/* ekki svona */</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre><span class="hljs-selector-class">.MikilvaegurTexti</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre><span class="hljs-selector-class">.ListOfItems</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td>
+                <pre><span class="hljs-comment">/* heldur svona */</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="6"></td>
+              <td>
+                <pre><span class="hljs-selector-class">.important-text</span></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="7"></td>
+              <td>
+                <pre><span class="hljs-selector-class">.list-of-items</span></pre>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <p>
+            <em>Kebab-case</em> er ein af nokkrum leiðum til að skrifa samsett
+            orð án bila en sú þörf kemur oft upp í forritun þegar bil hefur
+            merkingu. Í CSS er bil leið til að sameina selectors svo velja þarf
+            einhverja leið til að útbúa samsett orð. Aðrar leiðir eru&nbsp;t.d.
+          </p>
+        </div>
+        <ul>
+          <li>lowerCamelCase</li>
+          <li>UpperCamelCase</li>
+          <li>snake_case</li>
+          <li>Upper_Snake_Case</li>
+        </ul>
+        <div class="paragraphs">
+          <p>
+            Eins og með annað sem viðkemur kóðastíl er mikilvægt að
+            gæta&nbsp;samræmis.
+          </p>
+        </div>
+        <h2 id="10.1">
+          <span>
+            <a href="#10.1">10.1</a>
+          </span>
+          CSS&nbsp;validation
+        </h2>
+        <div class="paragraphs">
+          <p>
+            W3C heldur úti
+            <a href="https://jigsaw.w3.org/css-validator/"
+              ><em>validation</em> þjónustu</a
+            >
+            sem bæði bendir okkur á beinar villur en einnig hugsanlega vandræði
+            sem CSS gæti skapað. Til þess að fá allar upplýsingar þurfum við að
+            kveikja á öllum <em>warnings</em> undir <em>more&nbsp;options</em>.
+          </p>
+          <p>Fyrir eftirfarandi&nbsp;CSS:</p>
+        </div>
+        <div class="code code-css">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre><span class="hljs-selector-tag">p</span> {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">1</span>en;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">margim</span>: <span class="hljs-number">1em</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="4"></td>
+              <td><pre>}</pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="5"></td>
+              <td><pre></pre></td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="6"></td>
+              <td>
+                <pre><span class="hljs-selector-class">.list</span> {</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="7"></td>
+              <td>
+                <pre>  <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#999</span>;</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="8"></td>
+              <td><pre>}</pre></td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs"><p>fáum við&nbsp;villur:</p></div>
+        <div class="code code-txt">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre>2 p Value Error : font-size Unknown dimension 1en</pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td><pre>3 p Property margim doesn&#x27;t exist : 1em</pre></td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs"><p>og&nbsp;viðvaranir:</p></div>
+        <div class="code code-txt">
+          <table class="code-table">
+            <tr>
+              <td class="line-number" data-pseudo-content="1"></td>
+              <td>
+                <pre>
+7 You have no color set (or color is set to transparent) but you have set</pre
+                >
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="2"></td>
+              <td>
+                <pre>
+  a background-color. Make sure that cascading of colors keeps the text</pre
+                >
+              </td>
+            </tr>
+            <tr>
+              <td class="line-number" data-pseudo-content="3"></td>
+              <td><pre>  reasonably legible.</pre></td>
+            </tr>
+          </table>
+        </div>
+        <div class="paragraphs">
+          <p>
+            Sem bendir okkur á að þar sem við setjum bakgrunnslit en ekki lit,
+            þá gætum við lent í því að flóðið gefi okkur ólæsilegan texta, eða
+            texta sem ekki hefur nægilega mikið <em>contrast</em>.
+          </p>
+        </div>
+        <h2 id="10.2">
+          <span>
+            <a href="#10.2">10.2</a>
+          </span>
+          Reset
+        </h2>
+        <div class="paragraphs">
+          <p>
+            Hver „user agent“ (í flestum tilfellum vafri) setur sín eigin
+            sjálfgefnu gildi sem eru notuð ef við skilgreinum ekkert. Þetta
+            getur verið mismunandi milli vafra og því varð hugtakið um
+            <em>css&nbsp;reset</em> til, en það eru reglusett sem setur öll
+            element í „núllstöðu“. Fyrsta
+            <a href="http://meyerweb.com/eric/tools/css/reset/"
+              ><code>reset.css</code> skjalið</a
+            >
+            var búið til af Eric&nbsp;Meyer.
+          </p>
+        </div>
+      </article>
+
+      <footer>
+        <nav>
+          <ul>
+            <li class="prev">
+              <p>
+                <a href="./09.css-specifity-cascade.html"
+                  >Sértækni &amp;&nbsp;flóðið</a
+                >
+              </p>
+            </li>
+            <li class="index"><a href="/">Efnisyfirlit</a></li>
+            <li class="next">
+              <p>
+                <a href="./11.visual-formatting.html"
+                  >Visual Formatting&nbsp;módel</a
+                >
+              </p>
+            </li>
+          </ul>
+        </nav>
+        <hr />
+        <div class="version">Útgáfa 0.3, ágúst 2020</div>
+      </footer>
+    </main>
+  </body>
+</html>
