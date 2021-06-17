@@ -7,7 +7,8 @@
     "node": ">=14"
   },
   "scripts": {
-    "generate": "node src/generate.js"
+    "generate": "node src/generate.js",
+    "clean": "rm -rf ./cache ./build"
   },
   "repository": {
     "type": "git",
@@ -21,10 +22,10 @@
   },
   "homepage": "https://github.com/vefforritun/book#readme",
   "devDependencies": {
-    "gray-matter": "^4.0.2",
-    "highlight.js": "^10.5.0",
-    "image-size": "^0.9.3",
-    "marked": "^1.2.7",
-    "prettier": "^2.2.1"
+    "gray-matter": "^4.0.3",
+    "highlight.js": "^10.7.3",
+    "image-size": "^1.0.0",
+    "marked": "^2.1.1",
+    "prettier": "^2.3.1"
   }
 }
