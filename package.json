@@ -7,7 +7,8 @@
     "node": ">=14"
   },
   "scripts": {
-    "generate": "node src/generate.js"
+    "generate": "node src/generate.js",
+    "clean": "rm -rf ./cache ./build"
   },
   "repository": {
     "type": "git",
