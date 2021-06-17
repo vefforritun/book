@@ -148,9 +148,6 @@ async function main() {
     chapters: book.chapters,
   };
 
-  console.log('book :>> ', book);
-  console.log('data :>> ', data);
-
   // TODO cache all-in-one based on *all* chapters
   try {
     reporter.group(`Assembling all-in-one file`);
