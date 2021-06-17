@@ -1,5 +1,9 @@
 const prettier = require("prettier");
 
+function readingTimeReadable(time) {
+  return `um ${time} mín lestími`;
+}
+
 function chapter(data, reporter) {
   const {
     title,
@@ -14,7 +18,7 @@ function chapter(data, reporter) {
   } = data;
 
   const readingTime = estimatedReadingTime > 0 ?
-      `<div class="reading-time">Um ${estimatedReadingTime} mín lestur</div>` : '';
+      `<p class="reading-time">${readingTimeReadable(estimatedReadingTime)}</p>` : '';
 
     const nav = previousContent || nextContent ?
       `<nav>
@@ -44,7 +48,7 @@ function chapter(data, reporter) {
     <body>
       <main>
         <header>
-          <h1>${title}</h1>
+          <h1>Kafli ${chapter}: ${title}</h1>
           ${readingTime}
         </header>
 
@@ -55,7 +59,7 @@ function chapter(data, reporter) {
         <footer>
           ${nav}
           <hr>
-          ${version ? `<div class="version">${version}</div>` : ''}
+          ${version ? `<p class="version">${version}</p>` : ''}
         </footer>
       </main>
     </body>
@@ -77,8 +81,9 @@ function _prettier(content, reporter) {
   };
 
   try {
+    reporter.info(`Prettifing content`);
     prettyContent = prettier.format(prettyContent, prettierOptions);
-    reporter.verbose(`Ran prettier`);
+    reporter.info(`Done prettifing content`);
   } catch (e) {
     reporter.error(`Unable to run prettier`, e.message);
   }
@@ -89,6 +94,8 @@ function _prettier(content, reporter) {
 function allInOne({ title, subtitle, version, contact, chapters }, processed, reporter) {
 
   const procssedContent = [];
+
+  const totalEstimatedReadingTime = processed.reduce((total, item) => item.estimatedReadingTime + total, 0);
 
   processed.forEach((item) => {
     const {
@@ -103,13 +110,22 @@ function allInOne({ title, subtitle, version, contact, chapters }, processed, re
       content,
     } = item;
 
+    const contentWithFixedHeadings = content.replace(/<h2/g, '<h3').replace(/<\/h2>/g, '</h3>');
+    const readingTime = estimatedReadingTime > 0 ?
+      `<p class="reading-time">${readingTimeReadable(estimatedReadingTime)}</p>` : '';
+
     procssedContent.push(`
       <article>
-        <h2>${title}</h2>
-        <div class="content">${content}</div>
+        <h2>Kafli ${chapter}: ${title}</h2>
+        ${readingTime}
+
+        <div class="content">${contentWithFixedHeadings}</div>
       </article>
     `);
   });
+
+  const totalReadingTime = totalEstimatedReadingTime > 0 ?
+      `<p class="reading-time">${readingTimeReadable(totalEstimatedReadingTime)}</p>` : '';
 
   const outputContent = `<!doctype html>
   <!--
@@ -131,6 +147,7 @@ function allInOne({ title, subtitle, version, contact, chapters }, processed, re
       <main>
         <header>
           <h1>${title}</h1>
+          ${totalReadingTime}
         </header>
 
         ${procssedContent.join('')}
@@ -146,8 +163,17 @@ function allInOne({ title, subtitle, version, contact, chapters }, processed, re
   return _prettier(outputContent, reporter);
 }
 
-function index({ title, subtitle, version, contact, chapters }, processed, reporter) {
-  const chaptersContent = `<li><a href="00.inngangur.html">Inngangur</a></li>`;
+function index({ title, subtitle, version, contact, chapters, consolidatedTitle }, processed, reporter) {
+  const chaptersContent = processed.map((item) => {
+    const url = item.outputFilebasename;
+    const title = item.title;
+    const readingTime = readingTimeReadable(item.estimatedReadingTime);
+
+    return `<li><a href="${url}">${title}</a>, <span class="reading-time">${readingTime}</span></li>`;
+  }).join('');
+
+  const totalEstimatedReadingTime = processed.reduce((total, item) => item.estimatedReadingTime + total, 0);
+  const totalReadingTime = totalEstimatedReadingTime > 0 ? readingTimeReadable(totalEstimatedReadingTime) : '';
 
   const outputContent = `
   <!DOCTYPE html>
@@ -173,13 +199,16 @@ function index({ title, subtitle, version, contact, chapters }, processed, repor
             ${chaptersContent}
           </ol>
 
+          <p><a href="all.html">${chapters.consolidatedTitle}</a>, <span class="reading-time">${totalReadingTime}</span></p>
+
+          <hr>
+
           <p>${contact}</p>
 
         </article>
 
         <footer>
-          <hr>
-          <div class="version">${version}</div>
+          <p class="version">${version}</p>
         </footer>
 
       </main>

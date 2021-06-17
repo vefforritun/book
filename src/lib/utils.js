@@ -1,5 +1,6 @@
 const util = require('util');
 const fs = require('fs');
+const path = require('path');
 
 const accessAsync = util.promisify(fs.access);
 const readFileAsync = util.promisify(fs.readFile);
@@ -30,7 +31,13 @@ async function readFile(file, { encoding = 'utf8' } = {}) {
 }
 
 async function createDir(dir) {
-  await mkdirAsync(dir, { recursive: true });
+  try {
+    await mkdirAsync(dir, { recursive: true });
+  } catch (e) {
+    return false;
+  }
+
+  return true;
 }
 
 async function writeFile(file, data, { encoding = 'utf8' } = {}) {
@@ -65,17 +72,19 @@ async function copyDirectory({ from, to, reporter } = {}) {
     return false;
   }
 
-  if (!await isWriteable(to)) {
-    reporter.warn(`"${to}" is not writeable`);
-    return false;
+  if (await exists(to)) {
+    const toStats = await lstatAsync(to);
+
+    if (!toStats.isDirectory()) {
+      reporter.warn(`"${to}" exists and is not a directory`);
+      return false;
+    };
+  } else {
+    if (!await createDir(to)) {
+      reporter.warn(`Unable to create directory "${to}"`);
+      return false;
+    }
   }
-
-  const toStats = await lstatAsync(to);
-
-  if (!toStats.isDirectory()) {
-    reporter.warn(`"${to}" is not a directory`);
-    return false;
-  };
 
   const fromStats = await lstatAsync(from);
 
@@ -86,14 +95,23 @@ async function copyDirectory({ from, to, reporter } = {}) {
 
   const dirContents = await readdirAsync(from);
 
+  for (const item of dirContents) {
+    const source = path.join(from, item);
+    const target = path.join(to, path.basename(item));
 
-  dirContents.forEach((item) => {
-    const target = path.join(to, path.basename(from));
+    const stats = await lstatAsync(source);
 
-
-  });
-
-  console.log('stats :>> ', files);
+    if (stats.isDirectory()) {
+      if (!await exists(target)) {
+        await createDir(target);
+      }
+      await copyDirectory({ from: source, to: target, reporter });
+    } else if (stats.isFile()) {
+      await copyFileAsync(source, target);
+    } else {
+      // ??
+    }
+  }
 
   return true;
 }
@@ -105,5 +123,5 @@ module.exports = {
   readFile,
   writeFile,
   createDir,
-  copyAll,
+  copyDirectory,
 };

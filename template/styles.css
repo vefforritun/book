@@ -269,14 +269,13 @@ nav ul li:empty a::before {
   }
 }
 
-
 h1 {
   font-family: var(--font-monospaced, monospace);
   margin-bottom: 2rem;
   position: relative;
   font-size: 3rem; /* 2*24=48 */
   font-weight: 500;
-  xline-height: 2; /* Tökum 3 línur, (3*24)/48=1,5 */
+  line-height: 1;
 }
 
 h2 {
@@ -399,6 +398,30 @@ p a:hover::after {
   p a:hover::after {
     opacity: 0;
   }
+}
+
+/**
+ * Lestími
+ */
+ .reading-time {
+  margin-bottom: 1rem;
+  font-style: italic;
+
+  /* Fyrir lestíma fyrir alla bók í einu, drögum nær heiti og minnkum letur */
+  margin-top: -1rem;
+  font-size: 0.75rem;
+  line-height: 1.3333333333;
+}
+
+header .reading-time {
+  /* Stækkum letur almennt fyrir heildartíma bókar, og einn kafla í einu */
+  margin-bottom: 2rem;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+header .reading-time::first-letter {
+  text-transform: capitalize;
 }
 
 .paragraphs {
