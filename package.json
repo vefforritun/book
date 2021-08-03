@@ -25,6 +25,7 @@
     "gray-matter": "^4.0.3",
     "highlight.js": "^10.7.3",
     "image-size": "^1.0.0",
+    "jsdom": "^16.6.0",
     "marked": "^2.1.1",
     "prettier": "^2.3.1"
   }

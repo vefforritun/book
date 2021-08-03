@@ -116,6 +116,12 @@ async function copyDirectory({ from, to, reporter } = {}) {
   return true;
 }
 
+function autolink(s) {
+  const pattern = /(^|[\s\n]|<[A-Za-z]*\/?>)((?:https?|ftp):\/\/[\-A-Z0-9+\u0026\u2019@#\/%?=()~_|!:,.;]*[\-A-Z0-9+\u0026@#\/%=~()_|])/gi;
+
+  return (s || '').replace(pattern, "$1<a href='$2'>$2</a>");
+}
+
 module.exports = {
   exists,
   isReadable,
@@ -124,4 +130,5 @@ module.exports = {
   writeFile,
   createDir,
   copyDirectory,
+  autolink,
 };

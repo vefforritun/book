@@ -426,6 +426,32 @@ header .reading-time::first-letter {
 
 .paragraphs {
   margin-bottom: 2rem;
+  max-width: calc(8 / (var(--columns) - 2) * 100%);
+}
+
+/* footnotes TODO CLEAN */
+
+.footnote {
+  float: right;
+  clear: right;
+  margin-top: 8px;
+  margin-right: -37%;
+  position: relative;
+  width: calc(4 / (var(--columns)) * 100%);
+  display: block;
+  text-indent: 0;
+
+  font-size: 0.7rem;
+  text-indent: -0.7em;
+}
+
+.footnote-mark {
+  font-size: 0.8333333333rem;
+  line-height: 2.4;
+}
+
+.footnote code {
+  font-size: inherit;
 }
 
 /* TODO small caps */
@@ -640,6 +666,10 @@ ul {
   font-size: 1rem;
   line-height: 2;
   margin-bottom: 2rem;
+}
+
+article ul {
+  max-width: calc(8 / (var(--columns) - 2) * 100%);
 }
 
 ol {
