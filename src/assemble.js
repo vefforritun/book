@@ -1,7 +1,7 @@
 const prettier = require("prettier");
 
 function readingTimeReadable(time) {
-  return `um ${time} mín lestími`;
+  return `um ${time} mínútna lestími.`;
 }
 
 function chapter(data, reporter) {
@@ -9,6 +9,7 @@ function chapter(data, reporter) {
     title,
     chapter,
     version,
+    history,
     next,
     previous,
     nextContent,
@@ -60,12 +61,28 @@ function chapter(data, reporter) {
           ${nav}
           <hr>
           ${version ? `<p class="version">${version}</p>` : ''}
+          ${generateHistory(history)}
         </footer>
       </main>
     </body>
   </html>`;
 
   return _prettier(outputContent, reporter);
+}
+
+function generateHistory(history) {
+  if (!Array.isArray(history) || history.length === 0) {
+    return '';
+  }
+
+  return `
+    <details class="history">
+      <summary>Fyrri útgáfur</summary>
+      <ul>
+      ${history.map((item) => `<li>${item}</li>`).join('')}
+      </ul>
+    </details>
+  `;
 }
 
 function _prettier(content, reporter) {
@@ -184,6 +201,7 @@ function index({ title, subtitle, version, contact, chapters, consolidatedTitle 
       <title>Vefforitun</title>
       <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet">
       <link rel="stylesheet" href="reset.css"/>
+      <link rel="stylesheet" href="grid.css"/>
       <link rel="stylesheet" href="styles.css"/>
     </head>
     <body>

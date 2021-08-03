@@ -680,6 +680,24 @@ hr::after {
   line-height: 1.5rem;
 }
 
+details.history {
+  margin-left: var(--column-one-percentage);
+  margin-right: var(--column-one-percentage);
+  font-size: 0.6666666667rem;
+  line-height: 1.5rem;
+}
+
+details.history summary {
+  margin-left: -1em; /* ca markerinn sjálfur */
+}
+
+details.history ul,
+details.history li,
+details.history p,
+details.history a {
+  font-size: inherit;
+}
+
 @media print {
   body, header, main, article, .code {
     margin: 0;
