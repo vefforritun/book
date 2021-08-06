@@ -445,6 +445,10 @@ header .reading-time::first-letter {
   text-indent: -0.7em;
 }
 
+blockquote .footnote {
+  margin-right: -75%;
+}
+
 .footnote-mark {
   font-size: 0.8333333333rem;
   line-height: 2.4;
