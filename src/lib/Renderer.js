@@ -154,6 +154,11 @@ module.exports = class Renderer {
 
     if (!lang) return `${prefix}code`;
 
+    if (lang === 'ascii') {
+      return prefix + `
+        <div class="code code-ascii"><pre>${code.replace(/</g, '&lt;')}</pre></div>`;
+    }
+
     let lineNumber = 0
     const highlightedContent = hljs.highlightAuto(code, [lang]).value
 

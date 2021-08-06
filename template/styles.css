@@ -502,6 +502,19 @@ abbr {
   background-color: var(--color-javascript-background);
 }
 
+/* ascii art, meh v1 */
+
+.code-ascii {
+  background-color: transparent;
+  line-height: 1;
+}
+
+.code-ascii pre {
+  overflow: hidden;
+}
+
+/* /ascii art */
+
 table.code-table {
   width: 100%;
   display: block;
@@ -887,7 +900,6 @@ details.history a {
 
 .hljs-meta {
   color: var(--color-highlight-meta);
-  font-weight: bold;
 }
 
 .hljs-deletion {
