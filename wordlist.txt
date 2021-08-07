@@ -3,3 +3,5 @@ tíundarkerfi
 skýrum
 skýrt
 skýra
+hlekkur
+linkur

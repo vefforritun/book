@@ -511,6 +511,7 @@ abbr {
 .code-ascii {
   background-color: transparent;
   line-height: 1;
+  padding-top: 0;
 }
 
 .code-ascii pre {
