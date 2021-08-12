@@ -510,8 +510,9 @@ abbr {
 
 .code-ascii {
   background-color: transparent;
-  line-height: 1;
+  line-height: 1.2;
   padding-top: 0;
+  padding-bottom: 0;
 }
 
 .code-ascii pre {
@@ -619,6 +620,11 @@ figcaption p {
   line-height: 1.3333333333;
 
   margin-bottom: 1rem;
+}
+
+figcaption code {
+  font-size: inherit;
+  line-height: inherit;
 }
 
 figcaption footer {

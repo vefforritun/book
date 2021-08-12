@@ -1,4 +1,5 @@
 const path = require('path');
+const marked = require('marked');
 
 const { cleanUrl, escape } = require('marked/src/helpers');
 const hljs = require('highlight.js');
@@ -8,12 +9,15 @@ const { autolink } = require('./utils');
 
 function parseCustomIdText(text) {
   // TODO nbsp from other custom handling
-  const CUSTOM_ID_REGEX = /\&nbsp\;\{\#(.*)\}$/;
+  const CUSTOM_ID_REGEX = /(\&nbsp\;)?\{\#(.*)\}$/;
   const match = (text || '').match(CUSTOM_ID_REGEX);
-
 
   if (match && match.length === 2) {
     return match[1];
+  }
+
+  if (match && match.length === 3) {
+    return match[2];
   }
 
   return undefined;
@@ -367,7 +371,7 @@ module.exports = class Renderer {
     if (title) {
       caption = `
       <figcaption>
-        <p>${autolink(title)}</p>${credit}
+        <p>${this.marked(autolink(title))}</p>${credit}
       </figcaption>`;
     }
 
@@ -422,7 +426,7 @@ module.exports = class Renderer {
   text(text) {
     const prefix = this.beforeRender('text');
 
-    // no typographic orphans
+    // no typographic widows
     const lastSpace = text.lastIndexOf(' ');
 
     if (lastSpace > 0 && lastSpace !== text.length - 1) {
@@ -451,4 +455,9 @@ module.exports = class Renderer {
     return prefix + out;
   }
 
+  marked(text) {
+    return marked
+      .parseInline(text)
+      .replace(/&amp;/g, '&'); // TODO why? not bothered chasing this down atm
+  }
 };

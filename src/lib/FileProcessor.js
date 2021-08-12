@@ -46,7 +46,6 @@ function postprocess(html) {
     }
   });
 
-
   // mark abbrs
   const seen = [];
   const skippedNodes = ['h1', 'h2', 'h3'];
@@ -95,7 +94,6 @@ function postprocess(html) {
   }
 
   walk(dom.window.document.body);
-
 
   return dom.window.document.body.innerHTML;
 }

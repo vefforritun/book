@@ -41,7 +41,7 @@ function chapter(data, reporter) {
     <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Vefforitun—${title}</title>
+      <title>${title}—Vefforritun</title>
       <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet">
       <link rel="stylesheet" href="reset.css"/>
       <link rel="stylesheet" href="styles.css"/>
@@ -98,9 +98,9 @@ function _prettier(content, reporter) {
   };
 
   try {
-    reporter.info(`Prettifing content`);
+    reporter.info(`Prettifying content`);
     prettyContent = prettier.format(prettyContent, prettierOptions);
-    reporter.info(`Done prettifing content`);
+    reporter.info(`Done prettifying content`);
   } catch (e) {
     reporter.error(`Unable to run prettier`, e.message);
   }
@@ -155,7 +155,7 @@ function allInOne({ title, subtitle, version, contact, chapters }, processed, re
     <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Vefforitun—${title}</title>
+      <title>${title}—Vefforritun</title>
       <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet">
       <link rel="stylesheet" href="reset.css"/>
       <link rel="stylesheet" href="styles.css"/>
@@ -198,7 +198,7 @@ function index({ title, subtitle, version, contact, chapters, consolidatedTitle 
     <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Vefforitun</title>
+      <title>Vefforritun</title>
       <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet">
       <link rel="stylesheet" href="reset.css"/>
       <link rel="stylesheet" href="grid.css"/>
