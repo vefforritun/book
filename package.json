@@ -9,7 +9,7 @@
   "scripts": {
     "generate": "node src/generate.js",
     "clean": "rm -rf ./cache ./build",
-    "wordlist": "find ./chapters -type f | xargs grep --color -w -Ff ./wordlist.txt"
+    "wordlist": "find ./chapters/*.md -type f | xargs grep --color=always -w -Ff ./wordlist.txt | awk '{print $0,\"\\n\"}'"
   },
   "repository": {
     "type": "git",
