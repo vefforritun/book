@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="is">
+  <head>
+    <meta charset="utf-8" />
+    <title>Form dæmi</title>
+  </head>
+  <body>
+    <form action="https://www.google.com/search" method="get">
+      <label>
+        Leitarorð:
+        <input type="search" name="q">
+      </label>
+      <button>Leita með Google</button>
+     </form>
+     <form action="/skraning" method="post">
+      <fieldset>
+        <legend>Persónuupplýsingar</legend>
+        <label>
+          Nafn:
+          <input type="text" id="name" required>
+        </label>
+        <label>
+          Sími:
+          <input type="text" id="phone"  placeholder="000-0000">
+        </label>
+        <div>
+          <label for="comment">Athugasemdir:</label>
+          <textarea name="comment" id="comment"></textarea>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Upplýsingar</legend>
+        <label>
+          <input name="delivery" type="radio" value="mail">
+          Senda í bréfpósti
+        </label>
+        <label>
+          <input name="delivery" type="radio" value="email" checked>
+          Senda í tölvupósti
+        </label>
+        <div>
+          <label>
+            <input name="register" type="checkbox">
+            Skrá á póstlista
+          </label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Spurningar</legend>
+        <div>
+          <label for="color">Uppáhaldslitur</label>
+          <select id="color" name="color">
+            <option value="green">Grænn</option>
+            <option value="red">Rauður</option>
+          </select>
+        </div>
+        <div>
+          <label for="language">Uppáhaldsmál</label>
+          <input id="language" type="text" list="languages">
+        </div>
+      </fieldset>
+      <button type="reset">Byrja upp á nýtt</button>
+      <button>Senda</button>
+      <datalist id="languages">
+        <option value="css">CSS</option>
+        <option value="english">Enska</option>
+        <option value="html">HTML</option>
+        <option value="icelandic">Íslenska</option>
+        <option value="japanese">Japanska</option>
+        <option value="javascript">JavaScript</option>
+      </datalist>
+    </form>
+  </body>
+</html>
