@@ -18,8 +18,8 @@ function chapter(data, reporter) {
     content,
   } = data;
 
-  const readingTime = estimatedReadingTime > 0 ?
-      `<p class="reading-time">${readingTimeReadable(estimatedReadingTime)}</p>` : '';
+  const readingTime = estimatedReadingTime > 0 ? '' : '';
+      // `<p class="reading-time">${readingTimeReadable(estimatedReadingTime)}</p>` : '';
 
     const nav = previousContent || nextContent ?
       `<nav>
@@ -201,7 +201,7 @@ function index({ title, subtitle, version, contact, chapters, consolidatedTitle 
       <title>Vefforritun</title>
       <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet">
       <link rel="stylesheet" href="reset.css"/>
-      <link rel="stylesheet" href="grid.css"/>
+      <link rel="stylesheet" href="xgrid.css"/>
       <link rel="stylesheet" href="styles.css"/>
     </head>
     <body>
@@ -217,7 +217,7 @@ function index({ title, subtitle, version, contact, chapters, consolidatedTitle 
             ${chaptersContent}
           </ol>
 
-          <p><a href="all.html">${chapters.consolidatedTitle}</a>, <span class="reading-time">${totalReadingTime}</span></p>
+          <p><a href="all.html">${chapters.consolidatedTitle}</a></p>
 
           <hr>
 
