@@ -1,7 +1,7 @@
 ---
 title: "Gott aðgengi er góður bissness"
 chapter: 2
-version: Greinin birtist fyrst á vef Advania (https://www.advania.is/um-advania/markadsmal/blogg/blogg/2013/04/30/Gott-adgengi-er-godur-bissness/) í apríl 2013. Afritað með leyfi höfunds.
+version: Greinin birtist fyrst á [vef Advania](https://www.advania.is/um-advania/markadsmal/blogg/blogg/2013/04/30/Gott-adgengi-er-godur-bissness/) í apríl 2013. Afritað með leyfi höfunds.
 previous: \[Gott aðgengi gerir kraftaverk – þess vegna er ég rafviti](./birkir1.html)
 next: \[Ísland er eftirbátur í aðgengi að upplýsingatækni](./birkir3.html)
 ---

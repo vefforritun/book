@@ -33,5 +33,11 @@
       "./chapters/23.css-taeki-tol.md",
       "./chapters/24.npm-taeki-tol.md"
     ]
-  }
+  },
+  "appendix": [
+    "./chapters/appendix/a11y/birkir1.md",
+    "./chapters/appendix/a11y/birkir2.md",
+    "./chapters/appendix/a11y/birkir3.md",
+    "./chapters/appendix/a11y/birkir4.md"
+  ]
 }

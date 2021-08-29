@@ -1,6 +1,7 @@
 const util = require('util');
 const fs = require('fs');
 const path = require('path');
+const marked = require('marked');
 
 const accessAsync = util.promisify(fs.access);
 const readFileAsync = util.promisify(fs.readFile);
@@ -122,6 +123,17 @@ function autolink(s) {
   return (s || '').replace(pattern, "$1<a href='$2'>$2</a>");
 }
 
+function singleLineMarkdown(str, { skipPs = false } = {}) {
+  marked.use({
+    renderer: {
+      paragraph(text) {
+        return text;
+      }
+    }
+  });
+  return marked(str).replace('<div class="paragraphs">', '');
+}
+
 module.exports = {
   exists,
   isReadable,
@@ -131,4 +143,5 @@ module.exports = {
   createDir,
   copyDirectory,
   autolink,
+  singleLineMarkdown,
 };

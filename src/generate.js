@@ -106,39 +106,47 @@ async function main() {
     process.exit(1);
   }
 
-  const processed = [];
+  async function processFiles(files) {
+    const processed = [];
+    console.log(files)
+    for (file of files) {
+      reporter.group(`Processing "${file}"`);
+      const outputFile = getOutputFilename(file);
+      const outputFilebasename = path.basename(outputFile);
 
-  for (file of chapters) {
-    reporter.group(`Processing "${file}"`);
-    const outputFile = getOutputFilename(file);
-    const outputFilebasename = path.basename(outputFile);
+      let data = await cacher.getCachedData(file);
 
-    let data = await cacher.getCachedData(file);
+      if (data) {
+        reporter.verbose(`data for "${file}" is cached`);
+      } else {
+        reporter.info(`data for "${file}" is not cached`);
+        data = await processor.process(file);
+        data.outputFile = outputFile;
+        data.outputFilebasename = outputFilebasename;
+        await cacher.cacheData(file, data);
+      }
 
-    if (data) {
-      reporter.verbose(`data for "${file}" is cached`);
-    } else {
-      reporter.info(`data for "${file}" is not cached`);
-      data = await processor.process(file);
-      data.outputFile = outputFile;
-      data.outputFilebasename = outputFilebasename;
-      await cacher.cacheData(file, data);
+      const isCached = await cacher.isCachedFile(file, outputFile);
+
+      if (isCached) {
+        reporter.verbose(`${outputFile} is current`);
+      } else {
+        reporter.info(`${outputFile} is not current, creating`);
+        const assembled = await chapter(data, reporter);
+        await writeFile(outputFile, assembled);
+        await cacher.markCached(file, outputFile);
+      }
+
+      processed.push(data);
+      reporter.groupEnd(`Done processing "${file}"`);
     }
-
-    const isCached = await cacher.isCachedFile(file, outputFile);
-
-    if (isCached) {
-      reporter.verbose(`${outputFile} is current`);
-    } else {
-      reporter.info(`${outputFile} is not current, creating`);
-      const assembled = await chapter(data, reporter);
-      await writeFile(outputFile, assembled);
-      await cacher.markCached(file, outputFile);
-    }
-
-    processed.push(data);
-    reporter.groupEnd(`Done processing "${file}"`);
+    return processed;
   }
+
+  const processed = await processFiles(chapters);
+
+  // TODO we don't track appendixes in ToC.. yet
+  await processFiles(book.appendix || []);
 
   const data = {
     title: book.title,

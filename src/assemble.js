@@ -1,4 +1,5 @@
 const prettier = require("prettier");
+const { singleLineMarkdown } = require('./lib/utils');
 
 function readingTimeReadable(time) {
   return `um ${time} mínútna lestími.`;
@@ -60,7 +61,7 @@ function chapter(data, reporter) {
         <footer>
           ${nav}
           <hr>
-          ${version ? `<p class="version">${version}</p>` : ''}
+          ${version ? `<p class="version">${singleLineMarkdown(version)}</p>` : ''}
           ${generateHistory(history)}
         </footer>
       </main>
