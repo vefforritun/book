@@ -636,8 +636,6 @@ textanoda:
 html-athugasemd:
   title: HTML athugasemd
   english: HTML comment
-element-p:
-  title: p element
 element-strong:
 element-a:
 element-article:
@@ -688,7 +686,6 @@ reader-view:
 element-html:
 element-head:
 element-body:
-element-title:
 lysigogn:
 doctype:
 dtd:
@@ -706,3 +703,83 @@ afturvirkt:
 samvirkni:
   title: Samvirkni
   english: interoperability
+
+# Kafli 4
+html-stadall:
+  title: HTML staðallinn
+  related: html
+html-metadata:
+  details: { chapter: 4, id: 'lysigogn' }
+element-title:
+  related: html-metadata
+element-style:
+  related: html-metadata
+element-link:
+  details: { chapter: 4, id: 'lysigogn-link' }
+element-meta:
+  details: { chapter: 4, id: 'lysigogn-meta' }
+element-script:
+  details: { chapter: 4, id: 'lysigogn-script' }
+element-noscript:
+  details: { chapter: 4, id: 'lysigogn-script' }
+html-flow:
+  details: { chapter: 4, id: 'flaedi' }
+element-p:
+  title: p element
+  related: html-flow
+element-main:
+  title: main element
+  related: html-flow
+element-header:
+  title: header element
+  related: html-flow
+element-footer:
+  title: footer element
+  related: html-flow
+element-pre:
+  title: pre element
+  related: html-flow
+element-address:
+  title: address element
+  related: html-flow
+element-div:
+  title: div element
+  details: { chapter: 4, id: 'flaedi-div' }
+  related: [html-flow, merkingarfraedi]
+html-sectioning:
+  details: { chapter: 4, id: 'kaflar-og-svaedi' }
+element-article:
+  title: article element
+  related: html-sectioning
+element-aside:
+  title: aside element
+  related: html-sectioning
+element-nav:
+  title: nav element
+  related: html-sectioning
+element-section:
+  title: section element
+  related: html-sectioning
+html-headings:
+  details: { chapter: 4, id: 'fyrirsagnir' }
+element-h1:
+  title: h1 element
+  related: html-headings
+element-h2:
+  title: h2 element
+  related: html-headings
+element-h3:
+  title: h3 element
+  related: html-headings
+element-h4:
+  title: h4 element
+  related: html-headings
+element-h5:
+  title: h5 element
+  related: html-headings
+element-h6:
+  title: h6 element
+  related: html-headings
+utlinur:
+  title: Útlínur
+  details: { chapter: 4, id: 'utlinur' }

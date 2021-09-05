@@ -24,3 +24,23 @@ Skjáskot eru tekin í Firefox með manual „responsive design mode“ og
 ```bash
 :screenshot --fullpage --dpr 2
 ```
+
+## Málfar
+
+Reynt er að virða eftirfarandi reglur í texta:
+
+* Kynlaus persónufornöfn og ekki nota „maður“ heldur frekar „manneskja“ eða „einstaklingur“.
+* Oxford komma.
+* Listar enda á punkti.
+* Listar hafa aldrei undirlista.
+* Ekki nota aðrar skammstafanir en `t.d.`.
+
+### Hjálpar skripta
+
+Haldið er utan um óæskileg orð í `wordlist.txt`, hægt að athuga notkun með `npm run wordlist`.
+
+## Markdown
+
+footnotes
+ids
+skoða þarna merkjasvæði dót
