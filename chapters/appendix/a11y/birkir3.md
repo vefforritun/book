@@ -1,7 +1,7 @@
 ---
 title: "Ísland er eftirbátur í aðgengi að upplýsingatækni"
 chapter: 3
-version: Greinin birtist fyrst á vef Advania (https://www.advania.is/um-advania/markadsmal/blogg/blogg/2013/03/20/Gott-adgengi-gerir-kraftaverk-thess-vegna-er-eg-rafviti/) í ágúst 2014. Afritað með leyfi höfunds.
+version: Greinin birtist fyrst á [vef Advania](https://www.advania.is/um-advania/markadsmal/blogg/blogg/2013/03/20/Gott-adgengi-gerir-kraftaverk-thess-vegna-er-eg-rafviti/) í ágúst 2014. Afritað með leyfi höfunds.
 previous: \[Gott aðgengi er góður bissness](./birkir2.html)
 next: \[Öflugt og einfalt regluverk tryggir aðgengi að upplýsingatækni](./birkir4.html)
 ---

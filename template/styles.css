@@ -426,6 +426,36 @@ header .reading-time::first-letter {
 
 .paragraphs {
   margin-bottom: 2rem;
+  max-width: calc(8 / (var(--columns) - 2) * 100%);
+}
+
+/* footnotes TODO CLEAN */
+
+.footnote {
+  float: right;
+  clear: right;
+  margin-top: 8px;
+  margin-right: -37%;
+  position: relative;
+  width: calc(4 / (var(--columns)) * 100%);
+  display: block;
+  text-indent: 0;
+
+  font-size: 0.7rem;
+  text-indent: -0.7em;
+}
+
+blockquote .footnote {
+  margin-right: -75%;
+}
+
+.footnote-mark {
+  font-size: 0.8333333333rem;
+  line-height: 2.4;
+}
+
+.footnote code {
+  font-size: inherit;
 }
 
 /* TODO small caps */
@@ -475,6 +505,21 @@ abbr {
 .code-javascript {
   background-color: var(--color-javascript-background);
 }
+
+/* ascii art, meh v1 */
+
+.code-ascii {
+  background-color: transparent;
+  line-height: 1.2;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.code-ascii pre {
+  overflow: hidden;
+}
+
+/* /ascii art */
 
 table.code-table {
   width: 100%;
@@ -577,6 +622,11 @@ figcaption p {
   margin-bottom: 1rem;
 }
 
+figcaption code {
+  font-size: inherit;
+  line-height: inherit;
+}
+
 figcaption footer {
   font-size: 0.6666666667rem;
   line-height: 1.5;
@@ -642,6 +692,10 @@ ul {
   margin-bottom: 2rem;
 }
 
+article ul {
+  max-width: calc(8 / (var(--columns) - 2) * 100%);
+}
+
 ol {
   list-style: decimal;
   font-size: 1rem;
@@ -678,6 +732,24 @@ hr::after {
   margin-right: var(--column-one-percentage);
   font-size: 0.6666666667rem;
   line-height: 1.5rem;
+}
+
+details.history {
+  margin-left: var(--column-one-percentage);
+  margin-right: var(--column-one-percentage);
+  font-size: 0.6666666667rem;
+  line-height: 1.5rem;
+}
+
+details.history summary {
+  margin-left: -1em; /* ca markerinn sjálfur */
+}
+
+details.history ul,
+details.history li,
+details.history p,
+details.history a {
+  font-size: inherit;
 }
 
 @media print {
@@ -839,7 +911,6 @@ hr::after {
 
 .hljs-meta {
   color: var(--color-highlight-meta);
-  font-weight: bold;
 }
 
 .hljs-deletion {

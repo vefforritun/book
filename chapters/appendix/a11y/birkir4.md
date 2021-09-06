@@ -1,9 +1,9 @@
 ---
 title: "Öflugt og einfalt regluverk tryggir aðgengi að upplýsingatækni"
 chapter: 4
-version: Greinin birtist fyrst á vef Advania (https://www.advania.is/um-advania/markadsmal/blogg/blogg/2014/08/26/Oflugt-og-einfalt-regluverk-tryggir-adgengi-ad-upplysingataekni/) í ágúst 2014. Afritað með leyfi höfunds.
+version: Greinin birtist fyrst á [vef Advania](https://www.advania.is/um-advania/markadsmal/blogg/blogg/2014/08/26/Oflugt-og-einfalt-regluverk-tryggir-adgengi-ad-upplysingataekni/) í ágúst 2014. Afritað með leyfi höfunds.
 previous: \[Ísland er eftirbátur í aðgengi að upplýsingatækni](./birkir3.html)
-next: \[Aðgengi](./04.adgengi.html)
+next: \[Aðgengi](./07.adgengi.html)
 ---
 
 Í síðustu færslu var farið yfir mannréttindi, samfélagslega ábyrgð og ávinning af góðu aðgengi að hugbúnaði og vefjum. Hér verður farið yfir nauðsyn þess að setja lög um aðgengi hér á landi og fjallað um hvað við getum lært af öðrum þjóðum.
