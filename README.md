@@ -38,9 +38,3 @@ Reynt er að virða eftirfarandi reglur í texta:
 ### Hjálpar skripta
 
 Haldið er utan um óæskileg orð í `wordlist.txt`, hægt að athuga notkun með `npm run wordlist`.
-
-## Markdown
-
-footnotes
-ids
-skoða þarna merkjasvæði dót
