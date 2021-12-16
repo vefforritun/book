@@ -1,37 +1,60 @@
 const path = require('path');
+const marked = require('marked');
 
 const { cleanUrl, escape } = require('marked/src/helpers');
 const hljs = require('highlight.js');
 const sizeOfImage = require('image-size');
 
+const { autolink } = require('./utils');
+
+function parseCustomIdText(text) {
+  // TODO nbsp from other custom handling
+  const CUSTOM_ID_REGEX = /(\&nbsp\;)?\{\#(.*)\}$/;
+  const match = (text || '').match(CUSTOM_ID_REGEX);
+
+  if (match && match.length === 2) {
+    return match[1];
+  }
+
+  if (match && match.length === 3) {
+    return match[2];
+  }
+
+  return undefined;
+}
+
+/*
+Footnotes based on
+https://github.com/markedjs/marked/issues/1562#issuecomment-643171344
+*/
+const footnoteMatch = /^\[\^([^\]]+)\]:([\s\S]*)$/;
+const referenceMatch = /\[\^([^\]]+)\](?![\(:])/g;
+const referencePrefix = "footnote-reference";
+const footnotePrefix = "footnote";
+
+const footnoteTemplate = (ref, text) => {
+  return `<sup class="footnote-text" data-number="${ref}" id="${footnotePrefix}:${ref}"><a href="#${referencePrefix}:${ref}">${ref}</a></sup>${text}`;
+};
+const referenceTemplate = ref => {
+  return `<sup class="footnote-mark" data-number="${ref}" id="${referencePrefix}:${ref}"><a href="#${footnotePrefix}:${ref}">${ref}</a></sup>`;
+};
+
+const interpolateReferences = (text) => {
+  return text.replace(referenceMatch, (_, ref) => {
+    return referenceTemplate(ref);
+  });
+}
+const interpolateFootnotes = (text) => {
+  return text.replace(footnoteMatch, (_, value, text) => {
+    return footnoteTemplate(value, text);
+  });
+}
+
 hljs.configure({
   tabReplace: '\t',
 });
 
-function autolink(s) {
-  const pattern = /(^|[\s\n]|<[A-Za-z]*\/?>)((?:https?|ftp):\/\/[\-A-Z0-9+\u0026\u2019@#\/%?=()~_|!:,.;]*[\-A-Z0-9+\u0026@#\/%=~()_|])/gi;
-
-  return (s || '').replace(pattern, "$1<a href='$2'>$2</a>");
-}
-
 const blockLevelTokens = ['heading', 'html', 'table', 'code', 'hr', 'list', 'blockquote', 'paragraph', 'table', 'tablerow', 'tablecell'];
-
-const abbreviations = {
-  'TCP': 'Transmission Control Protocol',
-  'SMTP': 'Simple Mail Transfer Protocol',
-  'FTP': 'File Transfer Protocol',
-  'URL': 'Uniform Resource Locator',
-  'HTTP': 'HyperText Transfer Protocol',
-  'IPv6': 'Internet Protocol, version 6',
-  'IPv4': 'Internet Protocol, version 4',
-  'IP': 'Internet Protocol',
-  'DNS': 'Domain Name System',
-  'HTML': 'HyperText Markup Language',
-  'CSS': 'Cascading Style Sheets',
-  'WYSIWYG': 'What You See Is What You Get',
-  'CLI': 'Command Line Interface',
-  'DOM': '',
-};
 
 function isBlockToken(token) {
   return blockLevelTokens.indexOf(token) >= 0;
@@ -134,6 +157,11 @@ module.exports = class Renderer {
     const lang = (infostring || '').match(/\S*/)[0];
 
     if (!lang) return `${prefix}code`;
+
+    if (lang === 'ascii') {
+      return prefix + `
+        <div class="code code-ascii"><pre>${code.replace(/</g, '&lt;')}</pre></div>`;
+    }
 
     let lineNumber = 0
     const highlightedContent = hljs.highlightAuto(code, [lang]).value
@@ -271,6 +299,11 @@ module.exports = class Renderer {
       return prefix + text;
     }
 
+    if (text.match(/^\[\^([^\]]+)\]:([\s\S]*)$/g)) {
+      return prefix + '<span class="footnote">' + interpolateFootnotes(text) + '</span>\n';
+    }
+
+
     return prefix + '<p>' + text + '</p>\n';
   }
 
@@ -282,13 +315,22 @@ module.exports = class Renderer {
         level === 2 ? `${this.h1}.${this.h2}` :
           `${this.h1}.${this.h2}.${this.h3}`;
 
+    const customIdText = parseCustomIdText(text);
+
+    const customId = customIdText ? ` id="${customIdText}"` : '';
+    const textWithoutCustomId = customIdText ? text.replace(`{#${customIdText}}`, ''): text;
+    const textLinkStartIfCustomId = customIdText ? `<a href="#${customIdText}">` : ``;
+    const textLinkEndIfCustomId = customIdText ? `</a>` : ``;
+
     return `
       ${prefix}
-      <h${level} id="${currentLevel}" >
-        <span>
+      <h${level}${customId}>
+        <span id="${currentLevel}">
           <a href="#${currentLevel}">${currentLevel}</a>
         </span>
-        ${text}
+        ${textLinkStartIfCustomId}
+          ${textWithoutCustomId}
+        ${textLinkEndIfCustomId}
       </h${level}>`;
   }
 
@@ -329,7 +371,7 @@ module.exports = class Renderer {
     if (title) {
       caption = `
       <figcaption>
-        <p>${autolink(title)}</p>${credit}
+        <p>${this.marked(autolink(title))}</p>${credit}
       </figcaption>`;
     }
 
@@ -384,21 +426,14 @@ module.exports = class Renderer {
   text(text) {
     const prefix = this.beforeRender('text');
 
-    // no typographic orphans
+    // no typographic widows
     const lastSpace = text.lastIndexOf(' ');
 
     if (lastSpace > 0 && lastSpace !== text.length - 1) {
       text = `${text.substring(0, lastSpace)}&nbsp;${text.substring(lastSpace + 1, text.length)}`;
     }
 
-    /*
-    for (const abbr in abbreviations) {
-      const replacement = `<abbr title="${abbreviations[abbr]}">${abbr}</abbr>`;
-      text = text.replace(new RegExp(`${abbr}`, 'g'), replacement);
-    }
-    */
-
-    return prefix + text;
+    return prefix + interpolateReferences(text);
   }
 
   link(href, title, text) {
@@ -420,4 +455,9 @@ module.exports = class Renderer {
     return prefix + out;
   }
 
+  marked(text) {
+    return marked
+      .parseInline(text)
+      .replace(/&amp;/g, '&'); // TODO why? not bothered chasing this down atm
+  }
 };

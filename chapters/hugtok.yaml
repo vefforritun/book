@@ -1,0 +1,785 @@
+# kafli 0
+talnakerfi:
+  title: Talnakerfi
+  description: Kerfi til að tákna tölur með tölustöfum
+  details: { chapter: 0, id: 'talnakerfi-og-tolvur' }
+  related: [tugakerfi, tviundakerfi, attundakerfi, sextandakerfi]
+  more:
+    - https://is.wikipedia.org/wiki/Talnakerfi
+tugakerfi:
+  title: Tugakerfi
+  synonym: [Tíunakerfi]
+  description: Talnakerfi sem hefur 10 sem grunntölu.
+  details: { chapter: 0, id: 'talnakerfi-og-tolvur' }
+tviundakerfi:
+  title: Tvíundakerfi
+  english: binary
+  description: Talnakerfi sem hefur 2 sem grunntölu.
+  details: { chapter: 0, id: 'talnakerfi-og-tolvur' }
+attundakerfi:
+  title: Áttundakerfi
+  description: Talnakerfi sem hefur 8 sem grunntölu.
+  details: { chapter: 0, id: 'talnakerfi-og-tolvur' }
+  related: [talnakerfi]
+sextandakerfi:
+  title: Sextándakerfi
+  description: Talnakerfi sem hefur 16 sem grunntölu.
+  details: { chapter: 0, id: 'talnakerfi-og-tolvur' }
+  related: [talnakerfi]
+undirskrift:
+  title: Undirskrift
+  english: subscript
+  description: Texti sem skrifaður er fyrir neðan
+  related: [yfirskrift, talnakerfi]
+  examples: 11₁₀, talan 10 er skrifuð með undirskrift til að tákna að um tugakerfi sé að ræða
+yfirskrift:
+  title: Yfirskrift
+  english: superscript
+forskeyti:
+eftirataknun:
+  title: Eftirátáknun
+  english: postfix
+grunntala:
+  more: "[Grunntala á Wikipedia](https://is.wikipedia.org/wiki/Grunntala)"
+biti:
+  title: Biti
+  english: bit
+  description: Gildi sem tekur annaðhvort af eða á stöðu og er oftast táknað með `0` eða `1`
+  details: { chapter: 0, id: 'bitar-og-baeti' }
+  related: [baeti]
+baeti:
+  title: Bæti
+  english: byte
+  description: Hópur af átta bitum.
+  details: { chapter: 0, id: 'bitar-og-baeti' }
+  related: [biti]
+gui:
+  title: GUI
+  abbreviation: Graphical User Interface
+  english: GUI
+  description: Grafískt notendaviðmót fyrir forrit
+  details: { chapter: 0, id: 'gui-og-cli' }
+  related: [cli, skel, jadartaeki]
+cli:
+  title: CLI
+  abbreviation: Command-line interface
+  english: CLI
+  description: Skipanalína sem tekur við skipunum fyrir CLI forrit, forrit sem byggja aðeins á texta
+  details: { chapter: 0, id: 'gui-og-cli' }
+  related: [gui, skel, jadartaeki]
+  examples:
+    - "[`cmd.exe`](https://en.wikipedia.org/wiki/Cmd.exe)"
+    - "[`zsh`](https://en.wikipedia.org/wiki/Z_shell)"
+    - "[`Terminal`](https://en.wikipedia.org/wiki/Terminal_(macOS)))"
+    - "[`Bash`](https://en.wikipedia.org/wiki/Bash_(Unix_shell))"
+jadartaeki:
+  title: Jaðartæki
+  english: Peripheral device
+  description: Tæki (t.d. mús eða lyklaborð) sem er tengt við tölvu og leyfir okkur að koma upplýsingum inn í hana
+  details: { chapter: 0, id: 'gui-og-cli' }
+  related: [gui, cli, skel]
+skel:
+  title: Skel
+  english: shell
+  description: „Ysta lag“ stýrikerfis sem tekur við skipunum frá notanda gegnum jaðartæki
+  details: { chapter: 0, id: 'gui-og-cli' }
+  related: [gui, cli, jadartaeki]
+textaritill:
+  title: Textaritill
+  english: text editor
+  description: Forrit sem leyfir okkur að vinna með texta
+  details: { chapter: 0, id: 'textaritlar' }
+vi:
+  title: Vi
+  description: Textaritill
+  related: textaritill
+emacs:
+  title: Emacs
+  description: Textaritill
+  related: textaritill
+visual-studio-code:
+  title: Visual Studio Code
+  description: Textaritill
+  related: textaritill
+atom:
+  title: Atom
+  description: Textaritill
+  related: textaritill
+sublime-text:
+  title: Sublime Text
+  description: Textaritill
+  related: textaritill
+stafasett:
+  title: Stafasett
+  english: character encoding
+  description: Skilgreining á því hvernig tölva geymir texta
+  details: { chapter: 0, id: 'stafasett' }
+hastafir:
+  title: Hástafir
+  english: uppercase
+lagstafir:
+  title: Lágstafir
+  english: lowercase
+ascii:
+  title: ASCII
+  description: ASCII stafasett
+  related: stafasett
+bil:
+  title: Bil
+  english: space
+nylina:
+  title: Nýlína
+  english: newline
+lausnarstafur:
+  title: Lausnarstafur
+  english: escape character
+lausnarruna:
+  title: Lausnarruna
+  english: escape sequence
+gaesalappir:
+  title: Gæsalappir
+strengur:
+  title: Strengur
+  english: string
+tab:
+  title: Tab
+  english: tab
+dalkahnappur:
+  title: Dálkahnappur
+  english: tab key
+bilstong:
+  title: Bilstöng
+  english: space bar
+vendistafur:
+  title: Vendistafur
+  english: carriage return
+whitespace:
+  title: Whitespace
+  english: whitespace
+iso-8859-1:
+  title: ISO-8859-1
+  description: Stafasett
+  related: stafasett
+windows-1252:
+  title: Windows-1252
+  description: Stafasett
+  related: stafasett
+utf-8:
+  title: UTF-8
+  description: Stafasett
+  related: stafasett
+example-org:
+  title: example.org
+  description: Lénsnafn sem oft er notað í dæmum.
+  details: { chapter: 0, id: 'example-org' }
+foo:
+  title: Foo
+  details: { chapter: 0, id: 'foo-og-bar' }
+bar:
+  title: Bar
+  details: { chapter: 0, id: 'foo-og-bar' }
+foobar:
+baz:
+lorem-ipsum:
+  details: { chapter: 0, id: 'lorem-ipsum' }
+
+# kafli 1
+internetid:
+  title: Internetið
+  details: { chapter: 1, id: 'internetid' }
+internet-protocol-suite:
+  title: Internet protocol suite
+  related: internetid
+tengi-lag:
+  title: Tengi lag
+  english: link layer
+  related: internetid
+internet-lag:
+  title: Internet lag
+  english: Internet layer
+  related: internetid
+flutnings-lag:
+  title: Flutnings lag
+  english: Transport layer
+  related: internetid
+tcp:
+  title: TCP
+  related: internetid
+udp:
+  title: UDP
+  related: internetid
+forrita-lag:
+  title: Forrita lag
+  english: Application layer
+  related: internetid
+smtp:
+  title: SMTP
+  related: internetid
+ip-tolur:
+  title: IP tölur
+  details: { chapter: 1, id: 'ip-tolur' }
+ipv4:
+  title: IPv4
+  related: ip-tolur
+ipv6:
+  title: IPv6
+  related: [ip-tolur, sextandakerfi]
+ping:
+  title: ping
+  related: ip-tolur
+0-0-0-0:
+  title: "0.0.0.0"
+  related: ip-tolur
+127-0-0-1:
+  title: "127.0.0.1"
+  related: ip-tolur
+192-168-0-0:
+  title: "192.168.0.0"
+  related: ip-tolur
+localhost:
+  title: localhost
+  related: ip-tolur
+hosts:
+  title: hosts
+  related: ip-tolur
+vefurinn:
+  title: Vefurinn
+  details: { chapter: 1, id: 'vefurinn' }
+vefthjonn:
+  title: Vefþjónn
+  details: { chapter: 1, id: 'vefthjonn' }
+port:
+  title: Port
+  related: vefthjonn
+port-3000:
+  title: port 3000
+  related: vefthjonn
+lensnafn:
+  title: Lénsnafn
+  related: vefthjonn
+dns:
+  title: DNS
+  related: [vefthjonn, ip-tolur]
+http:
+  title: HTTP
+  details: { chapter: 1, id: 'http' }
+url:
+  title: URL
+  details: { chapter: 1, id: 'url' }
+  related: [http, vefurinn, vefthjonn]
+uri:
+  title: URI
+  related: url
+protocol:
+  title: Protocol
+  related: url
+query-string:
+  title: Query string
+  related: url
+fragment-identifier:
+  title: Fragment identifier
+  related: url
+vefsida:
+  title: Vefsíða
+  details: { chapter: 1, id: 'vefsida' }
+  related: [html, css, javascript, framendi, bakendi]
+vafri:
+  title: Vafri
+  details: { chapter: 1, id: 'vafri' }
+  related: vefsida
+view-source:
+  title: View source
+  related: vafri
+vefforrit:
+  title: Vefforrit
+  details: { chapter: 1, id: 'vefforrit' }
+  related: [html, css, javascript, framendi, bakendi]
+stadlar:
+  title: Staðlar
+  related: vefforrit
+framendi:
+  title: Framendi
+  english: [frontend, front-end, client-side]
+  details: { chapter: 1, id: 'framendi-og-bakendi' }
+  related: [html, css, javascript]
+bakendi:
+  title: Bakendi
+  english: [backend, back-end, server-side]
+  details: { chapter: 1, id: 'framendi-og-bakendi' }
+  related: [html, css, javascript, vefthjonn]
+framework:
+  title: Framework
+  related: [framendi, bakendi]
+library:
+  title: Library
+  related: [framendi, bakendi]
+react:
+  title: React
+  related: framendi
+angular:
+  title: Angular
+  related: framendi
+vue:
+  title: Vue
+  related: framendi
+gagnagrunnur:
+  title: Gagnagrunnur
+  related: bakendi
+c-sharp:
+  title: C#
+  related: bakendi
+python:
+  title: Python
+  related: bakendi
+django:
+  title: Django
+  related: bakendi
+dot-net:
+  title: .NET
+  related: bakendi
+full-stack:
+  title: Full stack
+  related: [framendi, bakendi]
+ftp:
+  title: FTP
+  details: { chapter: 1, id: 'ftp' }
+  related: url
+sftp:
+  title: SFTP
+  related: ftp
+cyberduck:
+  title: Cyberduck
+  related: ftp
+filezilla:
+  title: FileZilla
+  related: ftp
+ssh:
+  title: SSH
+  related: ftp
+
+# kafli 2
+texti:
+  title: Texti
+  details: { chapter: 2, id: 'texti-og-upplysingar' }
+garden-of-forking-paths:
+  title: The Garden of Forking Paths
+  related: texti
+as-we-may-think:
+  title: As We May Think
+  related: texti
+memex:
+  title: Memex
+  related: as-we-may-think
+hypertext:
+  title: HyperText
+  details: { chapter: 2, id: 'hypertext-og-hypermedia' }
+  related: [texti]
+hypermedia:
+  title: HyperMedia
+  details: { chapter: 2, id: 'hypertext-og-hypermedia' }
+ted-nelson:
+  title: Ted Nelson
+  related: hypertext
+douglas-engelbart:
+  title: Douglas Engelbart
+  related: hypertext
+mother-of-all-demos:
+  title: Mother of All Demos
+  related: douglas-engelbart
+nls:
+  title: NLS
+  related: douglas-engelbart
+william-gibson:
+  title: William Gibson
+  related: hypertext
+umbortsmal:
+  title: Umbrotsmál
+  english: hypertext
+  related: hypertext
+hypercard:
+  title: HyperCard
+  related: hypermedia
+markup-language:
+  title: Markup language
+  related: hypertext
+  details: { chapter: 2, id: 'markup-mal' }
+lett-markup-mal:
+  related: markup-language
+stefjad-markup-mal:
+  related: markup-language
+framsetningar-markup-mal:
+  related: markup-language
+lysandi-markup-mal:
+  related: markup-language
+markdown:
+  details: { chapter: 2, id: 'markdown' }
+  related: markup-language
+postscript:
+  related: markup-language
+latex:
+  related: markup-language
+wysiwyg:
+  related: markup-language
+microsoft-word:
+john-gruber:
+  related: markdown
+aaron-swartz:
+  related: markdown
+tbl:
+  title: Tim Berners-Lee
+  details: { chapter: 2, id: 'html-verdur-til' }
+tags:
+  title: Tags
+  related: html
+cern:
+  title: CERN
+  related: tbl
+next:
+  title: NeXT
+  related: tbl
+objective-c:
+  title: Objective-C
+  related: [next, tbl]
+fyrsta-vefsidan:
+  title: Fyrsta vefsíðan
+  related: tbl
+  details: { chapter: 2, id: 'html-verdur-til' }
+marc-andreessen:
+line-mode-browser:
+  title: Line Mode Browser
+  details: { chapter: 2, id: 'html-verdur-til' }
+  related: vafri
+lynx:
+  title: Lynx
+  details: { chapter: 2, id: 'html-verdur-til' }
+  related: vafri
+mosaic:
+  title: Mosaic
+  details: { chapter: 2, id: 'html-verdur-til' }
+  related: vafri
+ncsa:
+  title: NCSA
+  abbreviation: National Center for Supercomputing Applications
+  related: mosaic
+netscape:
+  title: Netscape
+  details: { chapter: 2, id: 'html-verdur-til' }
+netscape-navigator:
+  title: Netscape Navigator
+  details: { chapter: 2, id: 'html-verdur-til' }
+  related: [vafri, netscape]
+internet-explorer:
+  title: Internet Explorer
+  details: { chapter: 2, id: 'html-verdur-til' }
+  related: vafri
+opera:
+  title: Opera
+  details: { chapter: 2, id: 'html-verdur-til' }
+  related: vafri
+stadlar:
+  title: Staðlar
+  details: { chapter: 2, id: 'stadlar' }
+ietf:
+  title: IETF
+  abbreviation: Internet Engineering Task Force
+  related: stadlar
+rfc-1866:
+  title: RFC 1866
+  description: Stöðlun á HTML 2.0
+  related: [ietf, stadlar]
+w3c:
+  title: W3C
+  abbreviation: World Wide Web Consortium
+  details: { chapter: 2, id: 'w3c' }
+  related: [stadlar, html, css, xml, svg]
+forskrift:
+  english: [spec, specification]
+  related: w3c
+darpa:
+  title: DARPA
+  related: w3c
+mit:
+  title: MIT
+  related: w3c
+vinnuhopar:
+  title: Vinnuhópar
+  english: working groups
+  related: w3c
+working-draft:
+  title: Working draft
+  related: vinnuhopar
+candidate-recommendation:
+  title: Candidate recommendation
+  related: vinnuhopar
+proposed-recommendation:
+  title: Proposed recommendation
+  related: vinnuhopar
+w3c-recommendation:
+  title: W3C recommendation
+  related: vinnuhopar
+vafrastridin:
+  title: Vafrastríðin
+  details: { chapter: 2, id: 'vafrastridin' }
+fyrra-vafrastridid:
+  title: Fyrra vafrastríðið
+  details: { chapter: 2, id: 'fyrra-vafrastridid' }
+  related: vafrastridin
+seinna-vafrastridid:
+  title: Seinna vafrastríðið
+  details: { chapter: 2, id: 'seinna-vafrastridid' }
+  related: vafrastridin
+dom:
+  title: DOM
+  related: [fyrra-vafrastridid, html, thattun]
+aol:
+  title: AOL
+  related: [fyrra-vafrastridid]
+mozilla:
+  title: Mozilla
+  related: [fyrra-vafrastridid]
+jwz:
+  title: JWZ
+  related: [fyrra-vafrastridid]
+phoenix:
+  title: Phoenix
+  related: [fyrra-vafrastridid, firefox]
+firefox:
+  title: Firefox
+  related: [fyrra-vafrastridid, netscape]
+vefstadlar:
+  title: Vefstaðalar
+  related: [w3c, vinnuhopar, stadlar]
+css:
+  title: CSS
+  details: { chapter: 2, id: 'vefstadlar' }
+  related: [vefstadlar]
+toflulaus-vefhonnun:
+  related: vefstadlar
+a-list-apart:
+zeldman:
+wasp:
+  title: WaSP
+espn:
+  related: vefstadlar
+xhtml:
+css-zen-garden:
+annad-vafrastridid:
+  title: Annað vafrastríðið
+web-2:
+  title: Web 2.0
+  related: annad-vafrastridid
+safari:
+khtml:
+webkit:
+firebug:
+vafravel:
+  title: Vafravél
+  english: browser engine
+  related: annad-vafrastridid
+iphone:
+chrome:
+chromium:
+blink:
+chrome-canary:
+firefox-nightly:
+fork:
+
+# kafli 3
+html:
+  details:
+    - { chapter: 2, id: 'html-verdur-til' }
+    - { chapter: 3 }
+  related: [hypertext, markup-language, w3c]
+sgml:
+  related: [html, iso]
+iso:
+  abbreviation: International Organization for Standardization
+element:
+  title: Element
+  details: { chapter: 3, id: 'html-element' }
+gagnaskipan:
+  title: Gagnaskipan
+  english: data structure
+  related: html
+tre:
+  title: Tré
+  english: tree
+  related: gagnaskipan
+stigskipting:
+  english: hierarchical
+  related: tre
+noda:
+  title: Nóða
+  english: node
+  related: tre
+born:
+  title: Börn
+  english: children
+  related: tre
+rotarnoda:
+  title: Rótarnóða
+  english: root node
+thattun:
+  title: Þáttun
+  english: parse
+  related: [gagnaskipan, vafri]
+undirtre:
+  title: Undirtré
+  english: subtree
+elementnoda:
+  title: Elementnóða
+  english: element node
+  related: [element, noda]
+textanoda:
+  title: Textanóða
+  english: text node
+html-athugasemd:
+  title: HTML athugasemd
+  english: HTML comment
+element-strong:
+element-a:
+element-article:
+element-section:
+element-hr:
+tag:
+  title: Tag
+  english: tag
+  related: element
+  details: { chapter: 3, id: 'tog' }
+byrjunar-tag:
+enda-tag:
+sjalflokandi:
+  title: Sjálflokandi
+  english: self closing
+hyperlink:
+  related: [hypertext, element-a]
+  details: { chapter: 3, id: 'hyperlink' }
+attribute:
+  title: Attribute
+  details: { chapter: 3, id: 'html-attribute' }
+nafn-gildis-par:
+  title: Nafn-gildis par
+  english: name-value pair
+attribute-id:
+  title: ID attribute
+  related: attribute
+attribute-class:
+  title: Class attribute
+  related: [attribute, css]
+attribute-global:
+  title: Global attribute
+  related: attribute
+merkingarfraedi:
+  title: Merkingarfræði
+  english: semantics
+merkingarfraedilegt-gildi:
+  title: Merkingafræðilegt gildi
+merkingarfraedileg-sidvendni:
+  related: merkingarfraedi
+element-font:
+googlebot:
+  related: merkingarfraedi
+pocket:
+  related: merkingarfraedi
+reader-view:
+  related: merkingarfraedi
+element-html:
+element-head:
+element-body:
+lysigogn:
+doctype:
+dtd:
+quirks-mode:
+standards-mode:
+element-meta:
+character-entity:
+code-point:
+html5:
+whatwg:
+html-5:
+afturvirkt:
+  title: Afturvirkt
+  english: backwards compatible
+samvirkni:
+  title: Samvirkni
+  english: interoperability
+
+# Kafli 4
+html-stadall:
+  title: HTML staðallinn
+  related: html
+html-metadata:
+  details: { chapter: 4, id: 'lysigogn' }
+element-title:
+  related: html-metadata
+element-style:
+  related: html-metadata
+element-link:
+  details: { chapter: 4, id: 'lysigogn-link' }
+element-meta:
+  details: { chapter: 4, id: 'lysigogn-meta' }
+element-script:
+  details: { chapter: 4, id: 'lysigogn-script' }
+element-noscript:
+  details: { chapter: 4, id: 'lysigogn-script' }
+html-flow:
+  details: { chapter: 4, id: 'flaedi' }
+element-p:
+  title: p element
+  related: html-flow
+element-main:
+  title: main element
+  related: html-flow
+element-header:
+  title: header element
+  related: html-flow
+element-footer:
+  title: footer element
+  related: html-flow
+element-pre:
+  title: pre element
+  related: html-flow
+element-address:
+  title: address element
+  related: html-flow
+element-div:
+  title: div element
+  details: { chapter: 4, id: 'flaedi-div' }
+  related: [html-flow, merkingarfraedi]
+html-sectioning:
+  details: { chapter: 4, id: 'kaflar-og-svaedi' }
+element-article:
+  title: article element
+  related: html-sectioning
+element-aside:
+  title: aside element
+  related: html-sectioning
+element-nav:
+  title: nav element
+  related: html-sectioning
+element-section:
+  title: section element
+  related: html-sectioning
+html-headings:
+  details: { chapter: 4, id: 'fyrirsagnir' }
+element-h1:
+  title: h1 element
+  related: html-headings
+element-h2:
+  title: h2 element
+  related: html-headings
+element-h3:
+  title: h3 element
+  related: html-headings
+element-h4:
+  title: h4 element
+  related: html-headings
+element-h5:
+  title: h5 element
+  related: html-headings
+element-h6:
+  title: h6 element
+  related: html-headings
+utlinur:
+  title: Útlínur
+  details: { chapter: 4, id: 'utlinur' }

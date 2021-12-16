@@ -1,7 +1,8 @@
 const prettier = require("prettier");
+const { singleLineMarkdown } = require('./lib/utils');
 
 function readingTimeReadable(time) {
-  return `um ${time} mín lestími`;
+  return `um ${time} mínútna lestími.`;
 }
 
 function chapter(data, reporter) {
@@ -9,6 +10,7 @@ function chapter(data, reporter) {
     title,
     chapter,
     version,
+    history,
     next,
     previous,
     nextContent,
@@ -17,8 +19,8 @@ function chapter(data, reporter) {
     content,
   } = data;
 
-  const readingTime = estimatedReadingTime > 0 ?
-      `<p class="reading-time">${readingTimeReadable(estimatedReadingTime)}</p>` : '';
+  const readingTime = estimatedReadingTime > 0 ? '' : '';
+      // `<p class="reading-time">${readingTimeReadable(estimatedReadingTime)}</p>` : '';
 
     const nav = previousContent || nextContent ?
       `<nav>
@@ -40,7 +42,7 @@ function chapter(data, reporter) {
     <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Vefforitun—${title}</title>
+      <title>${title}—Vefforritun</title>
       <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet">
       <link rel="stylesheet" href="reset.css"/>
       <link rel="stylesheet" href="styles.css"/>
@@ -59,13 +61,29 @@ function chapter(data, reporter) {
         <footer>
           ${nav}
           <hr>
-          ${version ? `<p class="version">${version}</p>` : ''}
+          ${version ? `<p class="version">${singleLineMarkdown(version)}</p>` : ''}
+          ${generateHistory(history)}
         </footer>
       </main>
     </body>
   </html>`;
 
   return _prettier(outputContent, reporter);
+}
+
+function generateHistory(history) {
+  if (!Array.isArray(history) || history.length === 0) {
+    return '';
+  }
+
+  return `
+    <details class="history">
+      <summary>Fyrri útgáfur</summary>
+      <ul>
+      ${history.map((item) => `<li>${item}</li>`).join('')}
+      </ul>
+    </details>
+  `;
 }
 
 function _prettier(content, reporter) {
@@ -81,9 +99,9 @@ function _prettier(content, reporter) {
   };
 
   try {
-    reporter.info(`Prettifing content`);
+    reporter.info(`Prettifying content`);
     prettyContent = prettier.format(prettyContent, prettierOptions);
-    reporter.info(`Done prettifing content`);
+    reporter.info(`Done prettifying content`);
   } catch (e) {
     reporter.error(`Unable to run prettier`, e.message);
   }
@@ -138,7 +156,7 @@ function allInOne({ title, subtitle, version, contact, chapters }, processed, re
     <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Vefforitun—${title}</title>
+      <title>${title}—Vefforritun</title>
       <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet">
       <link rel="stylesheet" href="reset.css"/>
       <link rel="stylesheet" href="styles.css"/>
@@ -181,9 +199,10 @@ function index({ title, subtitle, version, contact, chapters, consolidatedTitle 
     <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Vefforitun</title>
+      <title>Vefforritun</title>
       <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet">
       <link rel="stylesheet" href="reset.css"/>
+      <link rel="stylesheet" href="xgrid.css"/>
       <link rel="stylesheet" href="styles.css"/>
     </head>
     <body>
@@ -199,7 +218,7 @@ function index({ title, subtitle, version, contact, chapters, consolidatedTitle 
             ${chaptersContent}
           </ol>
 
-          <p><a href="all.html">${chapters.consolidatedTitle}</a>, <span class="reading-time">${totalReadingTime}</span></p>
+          <p><a href="all.html">${chapters.consolidatedTitle}</a></p>
 
           <hr>
 

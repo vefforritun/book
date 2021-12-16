@@ -1,8 +1,8 @@
 ---
 title: "Gott aðgengi gerir kraftaverk – þess vegna er ég rafviti"
 chapter: 1
-version: Greinin birtist fyrst á vef Advania (https://www.advania.is/um-advania/markadsmal/blogg/blogg/2013/03/20/Gott-adgengi-gerir-kraftaverk-thess-vegna-er-eg-rafviti/) í mars 2013. Afritað með leyfi höfunds.
-previous: \[Aðgengi](./04.adgengi.html)
+version: Greinin birtist fyrst á [vef Advania](https://www.advania.is/um-advania/markadsmal/blogg/blogg/2013/03/20/Gott-adgengi-gerir-kraftaverk-thess-vegna-er-eg-rafviti/) í mars 2013. Afritað með leyfi höfunds.
+previous: \[Aðgengi](./07.adgengi.html)
 next: \[Gott aðgengi er góður bissness](./birkir2.html)
 ---
 
