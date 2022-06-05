@@ -2,7 +2,7 @@ const util = require('util');
 const fs = require('fs');
 const path = require('path');
 
-const marked = require('marked');
+const {marked} = require('marked');
 const graymatter = require('gray-matter');
 const jsdom = require('jsdom');
 
