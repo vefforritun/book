@@ -46,6 +46,7 @@ function chapter(data, reporter) {
       <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet">
       <link rel="stylesheet" href="reset.css"/>
       <link rel="stylesheet" href="styles.css"/>
+      <script defer data-domain="bok.vefforritun.is" src="https://plausible.io/js/plausible.js"></script>
     </head>
     <body>
       <main>
@@ -160,6 +161,7 @@ function allInOne({ title, subtitle, version, contact, chapters }, processed, re
       <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet">
       <link rel="stylesheet" href="reset.css"/>
       <link rel="stylesheet" href="styles.css"/>
+      <script defer data-domain="bok.vefforritun.is" src="https://plausible.io/js/plausible.js"></script>
     </head>
     <body>
       <main>
@@ -204,6 +206,7 @@ function index({ title, subtitle, version, contact, chapters, consolidatedTitle 
       <link rel="stylesheet" href="reset.css"/>
       <link rel="stylesheet" href="xgrid.css"/>
       <link rel="stylesheet" href="styles.css"/>
+      <script defer data-domain="bok.vefforritun.is" src="https://plausible.io/js/plausible.js"></script>
     </head>
     <body>
       <main>
