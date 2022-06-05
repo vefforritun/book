@@ -1,11 +1,75 @@
 const path = require('path');
-const marked = require('marked');
+const {marked} = require('marked');
 
-const { cleanUrl, escape } = require('marked/src/helpers');
 const hljs = require('highlight.js');
 const sizeOfImage = require('image-size');
 
 const { autolink } = require('./utils');
+
+/**
+ * `escape` and `cleanUrls` are copied from marked source since importing broke updating from v2 to v4
+ * Per this comment
+ * https://github.com/markedjs/marked/issues/2468#issuecomment-1122458308
+ */
+
+// copied from marked: https://github.com/markedjs/marked/blob/master/src/helpers.js
+const escapeTest = /[&<>"']/;
+const escapeReplace = /[&<>"']/g;
+const escapeTestNoEncode = /[<>"']|&(?!#?\w+;)/;
+const escapeReplaceNoEncode = /[<>"']|&(?!#?\w+;)/g;
+const escapeReplacements = {
+  '&': '&amp;',
+  '<': '&lt;',
+  '>': '&gt;',
+  '"': '&quot;',
+  "'": '&#39;'
+};
+const getEscapeReplacement = (ch) => escapeReplacements[ch];
+
+function escape(html, encode) {
+  if (encode) {
+    if (escapeTest.test(html)) {
+      return html.replace(escapeReplace, getEscapeReplacement);
+    }
+  } else {
+    if (escapeTestNoEncode.test(html)) {
+      return html.replace(escapeReplaceNoEncode, getEscapeReplacement);
+    }
+  }
+
+  return html;
+}
+
+/**
+ * Copied from marked: https://github.com/markedjs/marked/blob/master/src/helpers.js
+ * @param {boolean} sanitize
+ * @param {string} base
+ * @param {string} href
+ */
+function cleanUrl(sanitize, base, href) {
+  if (sanitize) {
+    let prot;
+    try {
+      prot = decodeURIComponent(unescape(href))
+        .replace(nonWordAndColonTest, '')
+        .toLowerCase();
+    } catch (e) {
+      return null;
+    }
+    if (prot.indexOf('javascript:') === 0 || prot.indexOf('vbscript:') === 0 || prot.indexOf('data:') === 0) {
+      return null;
+    }
+  }
+  if (base && !originIndependentUrl.test(href)) {
+    href = resolveUrl(base, href);
+  }
+  try {
+    href = encodeURI(href).replace(/%25/g, '%');
+  } catch (e) {
+    return null;
+  }
+  return href;
+}
 
 function parseCustomIdText(text) {
   // TODO nbsp from other custom handling

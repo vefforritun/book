@@ -1,7 +1,7 @@
 const util = require('util');
 const fs = require('fs');
 const path = require('path');
-const marked = require('marked');
+const {marked} = require('marked');
 
 const accessAsync = util.promisify(fs.access);
 const readFileAsync = util.promisify(fs.readFile);

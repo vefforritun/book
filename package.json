@@ -24,10 +24,10 @@
   "homepage": "https://github.com/vefforritun/book#readme",
   "devDependencies": {
     "gray-matter": "^4.0.3",
-    "highlight.js": "^10.7.3",
-    "image-size": "^1.0.0",
-    "jsdom": "^16.6.0",
-    "marked": "^2.1.1",
-    "prettier": "^2.3.1"
+    "highlight.js": "^11.5.1",
+    "image-size": "^1.0.1",
+    "jsdom": "^19.0.0",
+    "marked": "^4.0.16",
+    "prettier": "^2.6.2"
   }
 }
