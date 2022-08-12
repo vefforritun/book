@@ -9,7 +9,8 @@
   "scripts": {
     "generate": "node src/generate.js",
     "clean": "rm -rf ./cache ./build",
-    "wordlist": "find ./chapters/*.md -type f | xargs grep --color=always -w -Ff ./wordlist.txt | awk '{print $0,\"\\n\"}'"
+    "wordlist": "find ./chapters/*.md -type f | xargs grep --color=always -w -Ff ./wordlist.txt | awk '{print $0,\"\\n\"}'",
+    "pdf": "pandoc -s ./chapters/pdf.md $(cat pdffiles.txt) -o ./pdf/bok.pdf --pdf-engine=xelatex --number-sections --resource-path=./chapters --lua-filter=./pandoc-filters.lua"
   },
   "repository": {
     "type": "git",
