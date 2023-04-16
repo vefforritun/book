@@ -1,7 +1,7 @@
-const util = require('util');
-const fs = require('fs');
-const path = require('path');
-const {marked} = require('marked');
+const util = require("util");
+const fs = require("fs");
+const path = require("path");
+const { marked } = require("marked");
 
 const accessAsync = util.promisify(fs.access);
 const readFileAsync = util.promisify(fs.readFile);
@@ -21,8 +21,8 @@ async function exists(file) {
   return ok;
 }
 
-async function readFile(file, { encoding = 'utf8' } = {}) {
-  if (!await isReadable(file)) {
+async function readFile(file, { encoding = "utf8" } = {}) {
+  if (!(await isReadable(file))) {
     return null;
   }
 
@@ -41,7 +41,7 @@ async function createDir(dir) {
   return true;
 }
 
-async function writeFile(file, data, { encoding = 'utf8' } = {}) {
+async function writeFile(file, data, { encoding = "utf8" } = {}) {
   return writeFileAsync(file, data, { encoding });
 }
 
@@ -68,7 +68,7 @@ async function isReadable(dir) {
 }
 
 async function copyDirectory({ from, to, reporter } = {}) {
-  if (!await isReadable(from)) {
+  if (!(await isReadable(from))) {
     reporter.warn(`"${from}" is not readable`);
     return false;
   }
@@ -79,9 +79,9 @@ async function copyDirectory({ from, to, reporter } = {}) {
     if (!toStats.isDirectory()) {
       reporter.warn(`"${to}" exists and is not a directory`);
       return false;
-    };
+    }
   } else {
-    if (!await createDir(to)) {
+    if (!(await createDir(to))) {
       reporter.warn(`Unable to create directory "${to}"`);
       return false;
     }
@@ -92,7 +92,7 @@ async function copyDirectory({ from, to, reporter } = {}) {
   if (!fromStats.isDirectory()) {
     reporter.warn(`"${from}" is not a directory`);
     return false;
-  };
+  }
 
   const dirContents = await readdirAsync(from);
 
@@ -103,7 +103,7 @@ async function copyDirectory({ from, to, reporter } = {}) {
     const stats = await lstatAsync(source);
 
     if (stats.isDirectory()) {
-      if (!await exists(target)) {
+      if (!(await exists(target))) {
         await createDir(target);
       }
       await copyDirectory({ from: source, to: target, reporter });
@@ -117,23 +117,6 @@ async function copyDirectory({ from, to, reporter } = {}) {
   return true;
 }
 
-function autolink(s) {
-  const pattern = /(^|[\s\n]|<[A-Za-z]*\/?>)((?:https?|ftp):\/\/[\-A-Z0-9+\u0026\u2019@#\/%?=()~_|!:,.;]*[\-A-Z0-9+\u0026@#\/%=~()_|])/gi;
-
-  return (s || '').replace(pattern, "$1<a href='$2'>$2</a>");
-}
-
-function singleLineMarkdown(str, { skipPs = false } = {}) {
-  marked.use({
-    renderer: {
-      paragraph(text) {
-        return text;
-      }
-    }
-  });
-  return marked(str).replace('<div class="paragraphs">', '');
-}
-
 module.exports = {
   exists,
   isReadable,
@@ -142,6 +125,4 @@ module.exports = {
   writeFile,
   createDir,
   copyDirectory,
-  autolink,
-  singleLineMarkdown,
 };

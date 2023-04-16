@@ -1,5 +1,5 @@
 const prettier = require("prettier");
-const { singleLineMarkdown } = require('./lib/utils');
+const { singleLineMarkdown } = require("./utils/markdown");
 
 function readingTimeReadable(time) {
   return `um ${time} mínútna lestími.`;
@@ -19,19 +19,21 @@ function chapter(data, reporter) {
     content,
   } = data;
 
-  const readingTime = estimatedReadingTime > 0 ? '' : '';
-      // `<p class="reading-time">${readingTimeReadable(estimatedReadingTime)}</p>` : '';
+  const readingTime = estimatedReadingTime > 0 ? "" : "";
+  // `<p class="reading-time">${readingTimeReadable(estimatedReadingTime)}</p>` : '';
 
-    const nav = previousContent || nextContent ?
-      `<nav>
+  const nav =
+    previousContent || nextContent
+      ? `<nav>
         <ul>
           <li class="prev">${previousContent}</li>
           <li class="index"><a href="/">Efnisyfirlit</a></li>
           <li class="next">${nextContent}</li>
         </ul>
-      </nav>` : '';
+      </nav>`
+      : "";
 
-    const outputContent = `<!doctype html>
+  const outputContent = `<!doctype html>
   <!--
   Velkominn ferðalangur, bakvið tjöldin, í uppsprettuna.
   Þetta HTML er sjálfkrafa útbúið út frá Markdown skjölum.
@@ -62,7 +64,11 @@ function chapter(data, reporter) {
         <footer>
           ${nav}
           <hr>
-          ${version ? `<p class="version">${singleLineMarkdown(version)}</p>` : ''}
+          ${
+            version
+              ? `<p class="version">${singleLineMarkdown(version)}</p>`
+              : ""
+          }
           ${generateHistory(history)}
         </footer>
       </main>
@@ -74,14 +80,14 @@ function chapter(data, reporter) {
 
 function generateHistory(history) {
   if (!Array.isArray(history) || history.length === 0) {
-    return '';
+    return "";
   }
 
   return `
     <details class="history">
       <summary>Fyrri útgáfur</summary>
       <ul>
-      ${history.map((item) => `<li>${item}</li>`).join('')}
+      ${history.map((item) => `<li>${item}</li>`).join("")}
       </ul>
     </details>
   `;
@@ -91,12 +97,12 @@ function _prettier(content, reporter) {
   let prettyContent = content;
 
   const prettierOptions = {
-    'parser': 'html',
-    'htmlWhitespaceSensitivity': 'css',
-    'printWidth': 80,
-    'quoteProps': 'as-needed',
-    'singleQuote': false,
-    'useTabs': false,
+    parser: "html",
+    htmlWhitespaceSensitivity: "css",
+    printWidth: 80,
+    quoteProps: "as-needed",
+    singleQuote: false,
+    useTabs: false,
   };
 
   try {
@@ -110,11 +116,17 @@ function _prettier(content, reporter) {
   return prettyContent;
 }
 
-function allInOne({ title, subtitle, version, contact, chapters }, processed, reporter) {
-
+function allInOne(
+  { title, subtitle, version, contact, chapters },
+  processed,
+  reporter
+) {
   const procssedContent = [];
 
-  const totalEstimatedReadingTime = processed.reduce((total, item) => item.estimatedReadingTime + total, 0);
+  const totalEstimatedReadingTime = processed.reduce(
+    (total, item) => item.estimatedReadingTime + total,
+    0
+  );
 
   processed.forEach((item) => {
     const {
@@ -129,9 +141,15 @@ function allInOne({ title, subtitle, version, contact, chapters }, processed, re
       content,
     } = item;
 
-    const contentWithFixedHeadings = content.replace(/<h2/g, '<h3').replace(/<\/h2>/g, '</h3>');
-    const readingTime = estimatedReadingTime > 0 ?
-      `<p class="reading-time">${readingTimeReadable(estimatedReadingTime)}</p>` : '';
+    const contentWithFixedHeadings = content
+      .replace(/<h2/g, "<h3")
+      .replace(/<\/h2>/g, "</h3>");
+    const readingTime =
+      estimatedReadingTime > 0
+        ? `<p class="reading-time">${readingTimeReadable(
+            estimatedReadingTime
+          )}</p>`
+        : "";
 
     procssedContent.push(`
       <article>
@@ -143,8 +161,12 @@ function allInOne({ title, subtitle, version, contact, chapters }, processed, re
     `);
   });
 
-  const totalReadingTime = totalEstimatedReadingTime > 0 ?
-      `<p class="reading-time">${readingTimeReadable(totalEstimatedReadingTime)}</p>` : '';
+  const totalReadingTime =
+    totalEstimatedReadingTime > 0
+      ? `<p class="reading-time">${readingTimeReadable(
+          totalEstimatedReadingTime
+        )}</p>`
+      : "";
 
   const outputContent = `<!doctype html>
   <!--
@@ -170,7 +192,7 @@ function allInOne({ title, subtitle, version, contact, chapters }, processed, re
           ${totalReadingTime}
         </header>
 
-        ${procssedContent.join('')}
+        ${procssedContent.join("")}
 
         <footer>
           <hr>
@@ -183,17 +205,29 @@ function allInOne({ title, subtitle, version, contact, chapters }, processed, re
   return _prettier(outputContent, reporter);
 }
 
-function index({ title, subtitle, version, contact, chapters, consolidatedTitle }, processed, reporter) {
-  const chaptersContent = processed.map((item) => {
-    const url = item.outputFilebasename;
-    const title = item.title;
-    const readingTime = readingTimeReadable(item.estimatedReadingTime);
+function index(
+  { title, subtitle, version, contact, chapters, consolidatedTitle },
+  processed,
+  reporter
+) {
+  const chaptersContent = processed
+    .map((item) => {
+      const url = item.outputFilebasename;
+      const title = item.title;
+      const readingTime = readingTimeReadable(item.estimatedReadingTime);
 
-    return `<li><a href="${url}">${title}</a>, <span class="reading-time">${readingTime}</span></li>`;
-  }).join('');
+      return `<li><a href="${url}">${title}</a>, <span class="reading-time">${readingTime}</span></li>`;
+    })
+    .join("");
 
-  const totalEstimatedReadingTime = processed.reduce((total, item) => item.estimatedReadingTime + total, 0);
-  const totalReadingTime = totalEstimatedReadingTime > 0 ? readingTimeReadable(totalEstimatedReadingTime) : '';
+  const totalEstimatedReadingTime = processed.reduce(
+    (total, item) => item.estimatedReadingTime + total,
+    0
+  );
+  const totalReadingTime =
+    totalEstimatedReadingTime > 0
+      ? readingTimeReadable(totalEstimatedReadingTime)
+      : "";
 
   const outputContent = `
   <!DOCTYPE html>

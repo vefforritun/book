@@ -1,5 +1,5 @@
 const path = require("path");
-const { readFile } = require("../utils");
+const { readFile } = require("../utils/fileHelpers");
 
 module.exports = class FileReader {
   getBaseDir(file) {

@@ -5,9 +5,9 @@ const graymatter = require("gray-matter");
 
 const Renderer = require("./Renderer");
 const EstimateReadingTime = require("./estimateReadingTime");
-const postprocess = require("./utils/postprocess");
-const { markedSingleLine } = require("./utils/markedHelpers");
-const { readFile } = require("./utils");
+const postprocess = require("../utils/postprocess");
+const { markedSingleLine } = require("../utils/markdown");
+const { readFile } = require("../utils/fileHelpers");
 
 const WORDS_PER_MINUTE = 200;
 
