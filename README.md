@@ -29,12 +29,25 @@ Skjáskot eru tekin í Firefox með manual „responsive design mode“ og
 
 Reynt er að virða eftirfarandi reglur í texta:
 
-* Kynlaus persónufornöfn og ekki nota „maður“ heldur frekar „manneskja“ eða „einstaklingur“.
-* Oxford komma.
-* Listar enda á punkti.
-* Listar hafa aldrei undirlista.
-* Ekki nota aðrar skammstafanir en `t.d.`.
+- Kynlaus persónufornöfn og ekki nota „maður“ heldur frekar „manneskja“ eða „einstaklingur“.
+- Oxford komma.
+- Listar enda á punkti.
+- Listar hafa aldrei undirlista.
+- Ekki nota aðrar skammstafanir en `t.d.`.
 
 ### Hjálpar skripta
 
 Haldið er utan um óæskileg orð í `wordlist.txt`, hægt að athuga notkun með `npm run wordlist`.
+
+## Test
+
+Test eru skrifuð í `jest` og geymd í `./src/tests`. Notar [`Stryker Mutator`](`Stryker Mutator`) fyrir [mutation test](https://en.wikipedia.org/wiki/Mutation_testing).
+
+Til að keyra:
+
+```bash
+npm test
+npm test -- --watch # í watch mode
+npm run coverage # sýnir coverage á öllum skrám
+npm run stryker # keyrir stryker mutations + test
+```
