@@ -8,9 +8,13 @@ const jsdom = require('jsdom');
 
 const Renderer = require('./Renderer');
 const { autolink } = require('./utils');
-const estimateReadingTime = require('./estimateReadingTime');
+const EstimateReadingTime = require('./estimateReadingTime');
 
 const readFileAsync = util.promisify(fs.readFile);
+
+const WORDS_PER_MINUTE = 200;
+
+const readingTimeEstimator = new EstimateReadingTime({ words_per_minute: WORDS_PER_MINUTE });
 
 const abbreviations = {
   'TCP': 'Transmission Control Protocol',
@@ -161,7 +165,7 @@ module.exports = class FileProcessor {
 
     const previousContent = this.makeNextPrevContent(previous);
     const nextContent = this.makeNextPrevContent(next);
-    const estimatedReadingTime = estimateReadingTime(content.toString(this.encoding));
+    const estimatedReadingTime = readingTimeEstimator.estimate(content.toString(this.encoding));
     const historyLinked = history.map((i) => markedSingleLine(i));
 
     return {
