@@ -5,6 +5,7 @@ const { isWriteable, isReadable, writeFile, exists, createDir, copyDirectory } =
 const FileProcessor = require('./lib/FileProcessor');
 const Cacher = require('./lib/Cacher');
 const { chapter, index, allInOne } = require('./assemble');
+const FileReader = require('./lib/utils/FileReader');
 
 /*** Config ***/
 
@@ -31,7 +32,8 @@ class NullCacher {
 
 let cacher = new NullCacher();
 const reporter = new Reporter({ silent, verbose });
-const processor = new FileProcessor({ outputDir, reporter, encoding });
+const fileReader = new FileReader();
+const processor = new FileProcessor({ outputDir, reporter, encoding, fileReader });
 
 function getOutputFilename(file) {
   console.assert(typeof file === 'string', 'file should be string');

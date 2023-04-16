@@ -1,5 +1,3 @@
-const util = require("util");
-const fs = require("fs");
 const path = require("path");
 
 const { marked } = require("marked");
@@ -9,8 +7,7 @@ const Renderer = require("./Renderer");
 const EstimateReadingTime = require("./estimateReadingTime");
 const postprocess = require("./utils/postprocess");
 const { markedSingleLine } = require("./utils/markedHelpers");
-
-const readFileAsync = util.promisify(fs.readFile);
+const { readFile } = require("./utils");
 
 const WORDS_PER_MINUTE = 200;
 
@@ -19,8 +16,9 @@ const readingTimeEstimator = new EstimateReadingTime({
 });
 
 module.exports = class FileProcessor {
-  constructor({ reporter, outputDir, encoding } = {}) {
+  constructor({ reporter, fileReader, outputDir, encoding } = {}) {
     this.reporter = reporter;
+    this.fileReader = fileReader;
     this.outputDir = outputDir;
     this.encoding = encoding;
   }
@@ -38,11 +36,10 @@ module.exports = class FileProcessor {
   }
 
   async process(file) {
-    const basedir = path.dirname(file);
-
     this.reporter.verbose(`Processing "${file}"`);
 
-    const fileContent = await readFileAsync(file);
+    const basedir = this.fileReader.getBaseDir(file);
+    const fileContent = await this.fileReader.readFile(file);
 
     const {
       content,
