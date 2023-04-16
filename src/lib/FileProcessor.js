@@ -41,17 +41,16 @@ module.exports = class FileProcessor {
     const basedir = this.fileReader.getBaseDir(file);
     const fileContent = await this.fileReader.readFile(file);
 
+    const { data, content } = graymatter(fileContent);
+
     const {
-      content,
-      data: {
-        title = "",
-        chapter: metaChapter = 0,
-        version = "",
-        history = [],
-        next = "",
-        previous = "",
-      } = {},
-    } = graymatter(fileContent);
+      title = "",
+      chapter: metaChapter = 0,
+      version = "",
+      history = [],
+      next = "",
+      previous = "",
+    } = data;
 
     const chapter = isNaN(parseInt(metaChapter, 10))
       ? 1
