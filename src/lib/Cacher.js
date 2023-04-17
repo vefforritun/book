@@ -18,11 +18,11 @@ const {
 } = require("../utils/fileHelpers");
 
 module.exports = class Cacher {
-  constructor({ cacheDir, reporter } = {}) {
+  constructor({ cacheDir, reporter, cacheIndex = {} } = {}) {
     this.cacheDir = cacheDir;
     this.reporter = reporter;
 
-    this.cacheIndex = {};
+    this.cacheIndex = cacheIndex;
   }
 
   cacheKey(file = "") {
@@ -41,6 +41,7 @@ module.exports = class Cacher {
 
       readStream.on("readable", () => {
         const data = readStream.read();
+
         if (data) hash.update(data);
         else {
           resolve(hash.digest("hex"));
@@ -54,12 +55,17 @@ module.exports = class Cacher {
   }
 
   cacheFile() {
+    if (!this.cacheDir) return "index.json";
+
     return path.join(this.cacheDir, "index.json");
   }
 
   async primeCache() {
-    if (!exists(this.cacheFile()) && !isWriteable(this.cacheFile())) {
-      throw new Error("expecting cache file to be writeable");
+    const doesExist = await exists(this.cacheFile());
+    const fileIsWriteable = await isWriteable(this.cacheFile());
+
+    if (doesExist && !fileIsWriteable) {
+      throw new Error("expected cache file to be writeable");
     }
 
     const cache = (await readFile(this.cacheFile())) || "{}";

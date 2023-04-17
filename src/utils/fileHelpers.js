@@ -1,12 +1,8 @@
 const util = require("util");
 const fs = require("fs");
+const fsPromises = require("fs/promises");
 const path = require("path");
-const { marked } = require("marked");
 
-const accessAsync = util.promisify(fs.access);
-const readFileAsync = util.promisify(fs.readFile);
-const writeFileAsync = util.promisify(fs.writeFile);
-const mkdirAsync = util.promisify(fs.mkdir);
 const lstatAsync = util.promisify(fs.lstat);
 const copyFileAsync = util.promisify(fs.copyFile);
 const readdirAsync = util.promisify(fs.readdir);
@@ -14,7 +10,7 @@ const readdirAsync = util.promisify(fs.readdir);
 async function exists(file) {
   let ok = true;
   try {
-    await accessAsync(file, fs.constants.F_OK);
+    await fsPromises.access(file, fs.constants.F_OK);
   } catch (e) {
     ok = false;
   }
@@ -26,14 +22,14 @@ async function readFile(file, { encoding = "utf8" } = {}) {
     return null;
   }
 
-  const content = await readFileAsync(file);
+  const content = await fsPromises.readFile(file);
 
   return content.toString(encoding);
 }
 
 async function createDir(dir) {
   try {
-    await mkdirAsync(dir, { recursive: true });
+    await fsPromises.mkdir(dir, { recursive: true });
   } catch (e) {
     return false;
   }
@@ -42,13 +38,13 @@ async function createDir(dir) {
 }
 
 async function writeFile(file, data, { encoding = "utf8" } = {}) {
-  return writeFileAsync(file, data, { encoding });
+  return fsPromises.writeFile(file, data, { encoding });
 }
 
 async function isWriteable(dir) {
   let writeable = true;
   try {
-    await accessAsync(dir, fs.constants.W_OK);
+    await fsPromises.access(dir, fs.constants.W_OK);
   } catch (e) {
     writeable = false;
   }
@@ -59,7 +55,7 @@ async function isWriteable(dir) {
 async function isReadable(dir) {
   let readable = true;
   try {
-    await accessAsync(dir, fs.constants.R_OK);
+    await fsPromises.access(dir, fs.constants.R_OK);
   } catch (e) {
     readable = false;
   }
