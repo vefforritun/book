@@ -3,7 +3,6 @@ const fs = require("fs");
 const fsPromises = require("fs/promises");
 const path = require("path");
 
-const lstatAsync = util.promisify(fs.lstat);
 const copyFileAsync = util.promisify(fs.copyFile);
 const readdirAsync = util.promisify(fs.readdir);
 
@@ -28,9 +27,11 @@ async function readFile(file, { encoding = "utf8" } = {}) {
 }
 
 async function createDir(dir) {
+  console.log(dir);
   try {
     await fsPromises.mkdir(dir, { recursive: true });
   } catch (e) {
+    console.log("ya");
     return false;
   }
 
@@ -70,7 +71,7 @@ async function copyDirectory({ from, to, reporter } = {}) {
   }
 
   if (await exists(to)) {
-    const toStats = await lstatAsync(to);
+    const toStats = await fsPromises.lstat(to);
 
     if (!toStats.isDirectory()) {
       reporter.warn(`"${to}" exists and is not a directory`);
@@ -83,7 +84,7 @@ async function copyDirectory({ from, to, reporter } = {}) {
     }
   }
 
-  const fromStats = await lstatAsync(from);
+  const fromStats = await fsPromises.lstat(from);
 
   if (!fromStats.isDirectory()) {
     reporter.warn(`"${from}" is not a directory`);
@@ -96,7 +97,7 @@ async function copyDirectory({ from, to, reporter } = {}) {
     const source = path.join(from, item);
     const target = path.join(to, path.basename(item));
 
-    const stats = await lstatAsync(source);
+    const stats = await fsPromises.lstat(source);
 
     if (stats.isDirectory()) {
       if (!(await exists(target))) {
