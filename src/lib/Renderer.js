@@ -1,26 +1,28 @@
-const path = require("path");
-const { marked } = require("marked");
+const path = require('path');
+const { marked } = require('marked');
 
-const hljs = require("highlight.js");
-const sizeOfImage = require("image-size");
+const hljs = require('highlight.js');
+const sizeOfImage = require('image-size');
 const {
   autolink,
   escape,
   cleanUrl,
   parseCustomIdText,
   isBlockToken,
-} = require("../utils/markdown");
+} = require('../utils/markdown');
 const {
   interpolateReferences,
   interpolateFootnotes,
-} = require("../utils/footnotes");
+} = require('../utils/footnotes');
 
 hljs.configure({
-  tabReplace: "\t",
+  tabReplace: '\t',
 });
 
 module.exports = class Renderer {
-  constructor({ options, chapter = 1, basedir = "", reporter = {} } = {}) {
+  constructor({
+    options, chapter = 1, basedir = '', reporter = {},
+  } = {}) {
     this.options = options || {};
     this.h1 = chapter;
     this.basedir = basedir;
@@ -28,19 +30,22 @@ module.exports = class Renderer {
   }
 
   h2 = 0;
+
   h3 = 0;
 
-  lastToken = "";
-  lastBlockToken = "";
+  lastToken = '';
+
+  lastBlockToken = '';
+
   openParagraphsDiv = false;
 
   isEmbeddable(href, text) {
-    return href.indexOf("youtube.com") >= 0;
+    return href.indexOf('youtube.com') >= 0;
   }
 
   embeddableContent(href) {
     const match = href.match(
-      /.*(?:youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=)([^#\&\?]*).*/
+      /.*(?:youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=)([^#\&\?]*).*/,
     );
 
     let id = null;
@@ -61,69 +66,69 @@ module.exports = class Renderer {
   }
 
   beforeRender(token, level = undefined) {
-    if (token === "heading") {
+    if (token === 'heading') {
       if (level === 2 && this.h2 === 0) {
         this.h2 = 1;
         this.h3 = 0;
       } else if (level === 2 && this.h2 > 0) {
-        this.h2 = this.h2 + 1;
+        this.h2 += 1;
         this.h3 = 0;
       }
 
       if (level === 3 && this.h3 === 0) {
         this.h3 = 1;
       } else if (level === 3 && this.h3 > 0) {
-        this.h3 = this.h3 + 1;
+        this.h3 += 1;
       }
     }
 
-    const lastBlockToken = this.lastBlockToken;
+    const { lastBlockToken } = this;
     this.lastToken = token;
 
     if (isBlockToken(token)) {
       this.lastBlockToken = token;
     }
 
-    if (token === "paragraph" && lastBlockToken !== "paragraph") {
+    if (token === 'paragraph' && lastBlockToken !== 'paragraph') {
       this.openParagraphsDiv = true;
 
       return '<div class="paragraphs">';
     }
 
     if (
-      //lastBlockToken === 'paragraph' &&
-      token !== "paragraph" &&
-      isBlockToken(token) &&
-      this.openParagraphsDiv
+      // lastBlockToken === 'paragraph' &&
+      token !== 'paragraph'
+      && isBlockToken(token)
+      && this.openParagraphsDiv
     ) {
       this.openParagraphsDiv = false;
 
-      return "</div>";
+      return '</div>';
     }
 
-    return "";
+    return '';
   }
 
   postRender(content) {
-    if (this.lastBlockToken === "paragraph") {
+    if (this.lastBlockToken === 'paragraph') {
       return `${content}</div>`;
     }
     return content;
   }
 
   code(code, infostring, escaped) {
-    const prefix = this.beforeRender("code");
-    const lang = (infostring || "").match(/\S*/)[0];
+    const prefix = this.beforeRender('code');
+    const lang = (infostring || '').match(/\S*/)[0];
 
     if (!lang) return `${prefix}code`;
 
-    if (lang === "ascii") {
+    if (lang === 'ascii') {
       return (
-        prefix +
-        `
+        `${prefix
+        }
         <div class="code code-ascii"><pre>${code.replace(
           /</g,
-          "&lt;"
+          '&lt;',
         )}</pre></div>`
       );
     }
@@ -135,27 +140,19 @@ module.exports = class Renderer {
     const cssPattern = /<span class="css">(.|\n)*?<\/span>/g;
 
     const adaptedHighlightedContent = highlightedContent
-      .replace(commentPattern, (data) => {
-        return data.replace(/\r?\n/g, () => {
-          return '</span>\n<span class="hljs-comment">';
-        });
-      })
+      .replace(commentPattern, (data) => data.replace(/\r?\n/g, () => '</span>\n<span class="hljs-comment">'))
       // TODO fix for multi-line embedded CSS (and other stuff...)
       // needs to parse the tree correctly, can't do this with regex
-      .replace(cssPattern, (data, i) => {
-        return (
-          data.replace(/\r?\n/g, () => {
-            return '</span>\n<span class="css">';
-          }) + "</span>"
-        );
-      });
+      .replace(cssPattern, (data, i) => (
+        `${data.replace(/\r?\n/g, () => '</span>\n<span class="css">')}</span>`
+      ));
 
     const contentTable = adaptedHighlightedContent
       .split(/\r?\n/)
       .map((lineContent) => {
-        if (lineContent.trim().startsWith("</span>")) {
+        if (lineContent.trim().startsWith('</span>')) {
           // TODO fix for above as well, get all stray </span>s
-          lineContent = lineContent.replace("</span>", "");
+          lineContent = lineContent.replace('</span>', '');
         }
 
         // <pre> on line to make sure prettier preserves whitespace
@@ -165,7 +162,7 @@ module.exports = class Renderer {
         <td><pre>${lineContent}</pre></td>
       </tr>`;
       })
-      .join("");
+      .join('');
 
     const table = `
     <table class="code-table">
@@ -173,8 +170,8 @@ module.exports = class Renderer {
     </table>`;
 
     return (
-      prefix +
-      `
+      `${prefix
+      }
   <div class="code code-${lang}">
     ${table}
   </div>`
@@ -187,17 +184,17 @@ module.exports = class Renderer {
       quote = quote.substring('<div class="paragraphs">'.length);
     }
 
-    const prefix = this.beforeRender("blockquote");
+    const prefix = this.beforeRender('blockquote');
 
-    let indexOfCitation = quote.lastIndexOf("\n—");
+    const indexOfCitation = quote.lastIndexOf('\n—');
 
-    let cite = "";
+    let cite = '';
 
     if (indexOfCitation > 0) {
       let citeText = quote.substring(indexOfCitation, quote.length);
 
-      if (citeText.indexOf("</p>") > 0) {
-        citeText = citeText.substring(0, citeText.indexOf("</p>"));
+      if (citeText.indexOf('</p>') > 0) {
+        citeText = citeText.substring(0, citeText.indexOf('</p>'));
       }
 
       cite = `<footer>${citeText}</footer>`;
@@ -206,23 +203,23 @@ module.exports = class Renderer {
 
     // remove quotemarks
     // TODO brittle, assumes <p> at start/end
-    if (quote.startsWith("<p>") || quote.startsWith("<p>")) {
+    if (quote.startsWith('<p>') || quote.startsWith('<p>')) {
       quote = quote.substring(3).trim();
     }
 
     if (
-      quote.startsWith('"') ||
-      quote.startsWith("“") ||
-      quote.startsWith("„")
+      quote.startsWith('"')
+      || quote.startsWith('“')
+      || quote.startsWith('„')
     ) {
       quote = quote.substring(1).trim();
     }
 
-    if (quote.endsWith("<p>") || quote.endsWith("</p>")) {
+    if (quote.endsWith('<p>') || quote.endsWith('</p>')) {
       quote = quote.substring(0, quote.length - 4).trim();
     }
 
-    if (quote.endsWith('"') || quote.endsWith("”") || quote.endsWith("“")) {
+    if (quote.endsWith('"') || quote.endsWith('”') || quote.endsWith('“')) {
       quote = quote.substring(0, quote.length - 1).trim();
     }
 
@@ -231,85 +228,84 @@ module.exports = class Renderer {
   }
 
   html(html) {
-    const prefix = this.beforeRender("html");
+    const prefix = this.beforeRender('html');
     return `${prefix}${html}`;
   }
 
   hr() {
-    const prefix = this.beforeRender("hr");
+    const prefix = this.beforeRender('hr');
     return `${prefix}<hr>`;
   }
 
   list(body, ordered, start, foo) {
-    const prefix = this.beforeRender("list");
+    const prefix = this.beforeRender('list');
 
-    const type = ordered ? "ol" : "ul",
-      startatt = ordered && start !== 1 ? ' start="' + start + '"' : "";
-    return prefix + "<" + type + startatt + ">\n" + body + "</" + type + ">\n";
+    const type = ordered ? 'ol' : 'ul';
+    const startatt = ordered && start !== 1 ? ` start="${start}"` : '';
+    return `${prefix}<${type}${startatt}>\n${body}</${type}>\n`;
   }
 
   listitem(text) {
-    const prefix = this.beforeRender("listitem");
-    return prefix + "<li>" + text + "</li>\n";
+    const prefix = this.beforeRender('listitem');
+    return `${prefix}<li>${text}</li>\n`;
   }
 
   checkbox(checked) {
-    const prefix = this.beforeRender("checkbox");
+    const prefix = this.beforeRender('checkbox');
     return (
-      prefix +
-      "<input " +
-      (checked ? 'checked="" ' : "") +
-      'disabled="" type="checkbox"' +
-      (this.options.xhtml ? " /" : "") +
-      "> "
+      `${prefix
+      }<input ${
+        checked ? 'checked="" ' : ''
+      }disabled="" type="checkbox"${
+        this.options.xhtml ? ' /' : ''
+      }> `
     );
   }
 
   paragraph(text) {
-    const prefix = this.beforeRender("paragraph");
+    const prefix = this.beforeRender('paragraph');
 
     if (
-      text.trim().startsWith("<") &&
-      !text.trim().startsWith("<em") &&
-      !text.trim().startsWith("<del") &&
-      !text.trim().startsWith("<a ") &&
-      !text.trim().startsWith("<strong")
+      text.trim().startsWith('<')
+      && !text.trim().startsWith('<em')
+      && !text.trim().startsWith('<del')
+      && !text.trim().startsWith('<a ')
+      && !text.trim().startsWith('<strong')
     ) {
       return prefix + text;
     }
 
     if (text.match(/^\[\^([^\]]+)\]:([\s\S]*)$/g)) {
       return (
-        prefix +
-        '<span class="footnote">' +
-        interpolateFootnotes(text) +
-        "</span>\n"
+        `${prefix
+        }<span class="footnote">${
+          interpolateFootnotes(text)
+        }</span>\n`
       );
     }
 
-    return prefix + "<p>" + text + "</p>\n";
+    return `${prefix}<p>${text}</p>\n`;
   }
 
   heading(text, level = 1) {
-    const prefix = this.beforeRender("heading", level);
+    const prefix = this.beforeRender('heading', level);
 
-    const currentLevel =
-      level === 1
-        ? this.h1.toString()
-        : level === 2
+    const currentLevel = level === 1
+      ? this.h1.toString()
+      : level === 2
         ? `${this.h1}.${this.h2}`
         : `${this.h1}.${this.h2}.${this.h3}`;
 
     const customIdText = parseCustomIdText(text);
 
-    const customId = customIdText ? ` id="${customIdText}"` : "";
+    const customId = customIdText ? ` id="${customIdText}"` : '';
     const textWithoutCustomId = customIdText
-      ? text.replace(`{#${customIdText}}`, "")
+      ? text.replace(`{#${customIdText}}`, '')
       : text;
     const textLinkStartIfCustomId = customIdText
       ? `<a href="#${customIdText}">`
-      : ``;
-    const textLinkEndIfCustomId = customIdText ? `</a>` : ``;
+      : '';
+    const textLinkEndIfCustomId = customIdText ? '</a>' : '';
 
     return `
       ${prefix}
@@ -323,14 +319,14 @@ module.exports = class Renderer {
       </h${level}>`;
   }
 
-  image(href, title = "", text) {
-    const prefix = this.beforeRender("image");
+  image(href, title = '', text) {
+    const prefix = this.beforeRender('image');
     const imagedir = path.join(this.basedir, href);
     const isEmbed = this.isEmbeddable(href);
 
     let size = null;
-    let imgSize = "";
-    let imgRatio = "";
+    let imgSize = '';
+    let imgRatio = '';
 
     if (!isEmbed) {
       try {
@@ -346,20 +342,19 @@ module.exports = class Renderer {
       imgRatio = `<div class="ratio" style="padding-top: ${ratio}%;"></div>`;
     }
 
-    let credit = "";
+    let credit = '';
 
-    const creditIndex = (title || "").toLowerCase().indexOf("credit:");
+    const creditIndex = (title || '').toLowerCase().indexOf('credit:');
     if (creditIndex > 0) {
-      credit =
-        "<footer>" +
+      credit = `<footer>${
         autolink(
-          title.substring(creditIndex + "credit:".length, title.length).trim()
-        ) +
-        "</footer>";
+          title.substring(creditIndex + 'credit:'.length, title.length).trim(),
+        )
+      }</footer>`;
       title = title.substring(0, creditIndex).trim();
     }
 
-    let caption = "";
+    let caption = '';
     if (title) {
       caption = `
       <figcaption>
@@ -368,12 +363,12 @@ module.exports = class Renderer {
     }
 
     const imageExtraClass = [
-      !title ? " no-caption" : null,
-      size && size.width <= 400 ? " small" : null,
+      !title ? ' no-caption' : null,
+      size && size.width <= 400 ? ' small' : null,
     ].filter(Boolean);
 
     let content = `<div class="img"><img alt="${
-      text || ""
+      text || ''
     }" src="${href}"${imgSize}></div>`;
 
     if (isEmbed) {
@@ -393,40 +388,40 @@ module.exports = class Renderer {
   }
 
   strong(text) {
-    const prefix = this.beforeRender("strong");
-    return prefix + "<strong>" + text + "</strong>";
+    const prefix = this.beforeRender('strong');
+    return `${prefix}<strong>${text}</strong>`;
   }
 
   em(text) {
-    const prefix = this.beforeRender("em");
-    return prefix + "<em>" + text + "</em>";
+    const prefix = this.beforeRender('em');
+    return `${prefix}<em>${text}</em>`;
   }
 
   codespan(text) {
-    const prefix = this.beforeRender("codespan");
-    return prefix + "<code>" + text + "</code>";
+    const prefix = this.beforeRender('codespan');
+    return `${prefix}<code>${text}</code>`;
   }
 
   br() {
-    const prefix = this.beforeRender("br");
+    const prefix = this.beforeRender('br');
     return `${prefix} <br>`;
   }
 
   del(text) {
-    const prefix = this.beforeRender("del");
-    return prefix + "<del>" + text + "</del>";
+    const prefix = this.beforeRender('del');
+    return `${prefix}<del>${text}</del>`;
   }
 
   text(text) {
-    const prefix = this.beforeRender("text");
+    const prefix = this.beforeRender('text');
 
     // no typographic widows
-    const lastSpace = text.lastIndexOf(" ");
+    const lastSpace = text.lastIndexOf(' ');
 
     if (lastSpace > 0 && lastSpace !== text.length - 1) {
       text = `${text.substring(0, lastSpace)}&nbsp;${text.substring(
         lastSpace + 1,
-        text.length
+        text.length,
       )}`;
     }
 
@@ -434,9 +429,9 @@ module.exports = class Renderer {
   }
 
   link(href, title, text) {
-    const prefix = this.beforeRender("link");
+    const prefix = this.beforeRender('link');
 
-    if ((text || "").indexOf("iframe") >= 0) {
+    if ((text || '').indexOf('iframe') >= 0) {
       return prefix + text;
     }
 
@@ -444,15 +439,15 @@ module.exports = class Renderer {
     if (href === null) {
       return prefix + text;
     }
-    let out = '<a href="' + escape(href) + '"';
+    let out = `<a href="${escape(href)}"`;
     if (title) {
-      out += ' title="' + title + '"';
+      out += ` title="${title}"`;
     }
-    out += ">" + text + "</a>";
+    out += `>${text}</a>`;
     return prefix + out;
   }
 
   marked(text) {
-    return marked.parseInline(text).replace(/&amp;/g, "&"); // TODO why? not bothered chasing this down atm
+    return marked.parseInline(text).replace(/&amp;/g, '&'); // TODO why? not bothered chasing this down atm
   }
 };

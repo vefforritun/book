@@ -1,13 +1,13 @@
-const path = require("path");
+const path = require('path');
 
-const { marked } = require("marked");
-const graymatter = require("gray-matter");
+const { marked } = require('marked');
+const graymatter = require('gray-matter');
 
-const Renderer = require("./Renderer");
-const EstimateReadingTime = require("./estimateReadingTime");
-const postprocess = require("../utils/postprocess");
-const { markedSingleLine } = require("../utils/markdown");
-const { readFile } = require("../utils/fileHelpers");
+const Renderer = require('./Renderer');
+const EstimateReadingTime = require('./estimateReadingTime');
+const postprocess = require('../utils/postprocess');
+const { markedSingleLine } = require('../utils/markdown');
+const { readFile } = require('../utils/fileHelpers');
 
 const WORDS_PER_MINUTE = 200;
 
@@ -16,7 +16,9 @@ const readingTimeEstimator = new EstimateReadingTime({
 });
 
 module.exports = class FileProcessor {
-  constructor({ reporter, fileReader, outputDir, encoding } = {}) {
+  constructor({
+    reporter, fileReader, outputDir, encoding,
+  } = {}) {
     this.reporter = reporter;
     this.fileReader = fileReader;
     this.outputDir = outputDir;
@@ -25,12 +27,12 @@ module.exports = class FileProcessor {
 
   makeNextPrevContent(content) {
     if (!content) {
-      return "";
+      return '';
     }
 
-    const replaced = content.replace(/\\\[/g, "[");
+    const replaced = content.replace(/\\\[/g, '[');
 
-    const output = marked(replaced).replace('<div class="paragraphs">', "");
+    const output = marked(replaced).replace('<div class="paragraphs">', '');
 
     return output;
   }
@@ -44,12 +46,12 @@ module.exports = class FileProcessor {
     const { data, content } = graymatter(fileContent);
 
     const {
-      title = "",
+      title = '',
       chapter: metaChapter = 0,
-      version = "",
+      version = '',
       history = [],
-      next = "",
-      previous = "",
+      next = '',
+      previous = '',
     } = data;
 
     const chapter = isNaN(parseInt(metaChapter, 10))
@@ -66,7 +68,7 @@ module.exports = class FileProcessor {
     });
 
     const renderedHtml = renderer.postRender(
-      marked(content.toString(this.encoding))
+      marked(content.toString(this.encoding)),
     );
 
     const html = postprocess(renderedHtml);
@@ -74,7 +76,7 @@ module.exports = class FileProcessor {
     const previousContent = this.makeNextPrevContent(previous);
     const nextContent = this.makeNextPrevContent(next);
     const estimatedReadingTime = readingTimeEstimator.estimate(
-      content.toString(this.encoding)
+      content.toString(this.encoding),
     );
     const historyLinked = history.map((i) => markedSingleLine(i));
 

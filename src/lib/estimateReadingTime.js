@@ -6,14 +6,14 @@ const DEFAULT_WORDS_PER_MINUTE = 200;
  */
 module.exports = class EstimateReadingTime {
   constructor({ words_per_minute = DEFAULT_WORDS_PER_MINUTE } = {}) {
-    if (typeof words_per_minute !== "number") {
-      throw new Error("WPM must be a number");
+    if (typeof words_per_minute !== 'number') {
+      throw new Error('WPM must be a number');
     }
     this.WPM = words_per_minute;
   }
 
   estimate(content) {
-    if (typeof content !== "string") {
+    if (typeof content !== 'string') {
       return -1;
     }
 
@@ -21,7 +21,7 @@ module.exports = class EstimateReadingTime {
       return 0;
     }
 
-    const words = content.split(" ").length;
+    const words = content.split(' ').length;
 
     return Math.ceil(words / this.WPM);
   }

@@ -22,14 +22,14 @@ module.exports = class Reporter {
     const elapsedAsSeconds = elapsed / 1e9;
     const fixed = elapsedAsSeconds.toFixed(2);
 
-    return `${fixed}${fixed.length < 4 ? " ".repeat(4 - fixed.length) : ""}`;
+    return `${fixed}${fixed.length < 4 ? ' '.repeat(4 - fixed.length) : ''}`;
   }
 
   timing() {
     return [
       this.datetime ? new Date().toUTCString() : null,
       this.elapsed ? this.timerEnd(this.start).toString() : null,
-      this.datetime || this.elapsed ? "—" : null,
+      this.datetime || this.elapsed ? '—' : null,
     ].filter(Boolean);
   }
 

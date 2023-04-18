@@ -1,5 +1,5 @@
-const path = require("path");
-const { readFile } = require("../utils/fileHelpers");
+const path = require('path');
+const { readFile } = require('../utils/fileHelpers');
 
 // Merge this with or replace with fileHelpers.js
 module.exports = class FileReader {

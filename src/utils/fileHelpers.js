@@ -1,7 +1,7 @@
-const util = require("util");
-const fs = require("fs");
-const fsPromises = require("fs/promises");
-const path = require("path");
+const util = require('util');
+const fs = require('fs');
+const fsPromises = require('fs/promises');
+const path = require('path');
 
 const copyFileAsync = util.promisify(fs.copyFile);
 const readdirAsync = util.promisify(fs.readdir);
@@ -16,7 +16,7 @@ async function exists(file) {
   return ok;
 }
 
-async function readFile(file, { encoding = "utf8" } = {}) {
+async function readFile(file, { encoding = 'utf8' } = {}) {
   if (!(await isReadable(file))) {
     return null;
   }
@@ -31,14 +31,14 @@ async function createDir(dir) {
   try {
     await fsPromises.mkdir(dir, { recursive: true });
   } catch (e) {
-    console.log("ya");
+    console.log('ya');
     return false;
   }
 
   return true;
 }
 
-async function writeFile(file, data, { encoding = "utf8" } = {}) {
+async function writeFile(file, data, { encoding = 'utf8' } = {}) {
   return fsPromises.writeFile(file, data, { encoding });
 }
 
@@ -77,11 +77,9 @@ async function copyDirectory({ from, to, reporter } = {}) {
       reporter.warn(`"${to}" exists and is not a directory`);
       return false;
     }
-  } else {
-    if (!(await createDir(to))) {
-      reporter.warn(`Unable to create directory "${to}"`);
-      return false;
-    }
+  } else if (!(await createDir(to))) {
+    reporter.warn(`Unable to create directory "${to}"`);
+    return false;
   }
 
   const fromStats = await fsPromises.lstat(from);

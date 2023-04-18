@@ -1,22 +1,21 @@
-const { marked } = require("marked");
+const { marked } = require('marked');
 
 function markedSingleLine(content) {
   if (!content) {
-    return "";
+    return '';
   }
 
-  const replaced = content.replace(/\\\[/g, "[");
+  const replaced = content.replace(/\\\[/g, '[');
 
-  const output = marked(replaced).replace('<div class="paragraphs">', "");
+  const output = marked(replaced).replace('<div class="paragraphs">', '');
 
   return output;
 }
 
 function autolink(s) {
-  const pattern =
-    /(^|[\s\n]|<[A-Za-z]*\/?>)((?:https?|ftp):\/\/[\-A-Z0-9+\u0026\u2019@#\/%?=()~_|!:,.;]*[\-A-Z0-9+\u0026@#\/%=~()_|])/gi;
+  const pattern = /(^|[\s\n]|<[A-Za-z]*\/?>)((?:https?|ftp):\/\/[\-A-Z0-9+\u0026\u2019@#\/%?=()~_|!:,.;]*[\-A-Z0-9+\u0026@#\/%=~()_|])/gi;
 
-  return (s || "").replace(pattern, "$1<a href='$2'>$2</a>");
+  return (s || '').replace(pattern, "$1<a href='$2'>$2</a>");
 }
 
 function singleLineMarkdown(str, { skipPs = false } = {}) {
@@ -27,7 +26,7 @@ function singleLineMarkdown(str, { skipPs = false } = {}) {
       },
     },
   });
-  return marked(str).replace('<div class="paragraphs">', "");
+  return marked(str).replace('<div class="paragraphs">', '');
 }
 
 /**
@@ -42,11 +41,11 @@ const escapeReplace = /[&<>"']/g;
 const escapeTestNoEncode = /[<>"']|&(?!#?\w+;)/;
 const escapeReplaceNoEncode = /[<>"']|&(?!#?\w+;)/g;
 const escapeReplacements = {
-  "&": "&amp;",
-  "<": "&lt;",
-  ">": "&gt;",
-  '"': "&quot;",
-  "'": "&#39;",
+  '&': '&amp;',
+  '<': '&lt;',
+  '>': '&gt;',
+  '"': '&quot;',
+  "'": '&#39;',
 };
 const getEscapeReplacement = (ch) => escapeReplacements[ch];
 
@@ -55,10 +54,8 @@ function escape(html, encode) {
     if (escapeTest.test(html)) {
       return html.replace(escapeReplace, getEscapeReplacement);
     }
-  } else {
-    if (escapeTestNoEncode.test(html)) {
-      return html.replace(escapeReplaceNoEncode, getEscapeReplacement);
-    }
+  } else if (escapeTestNoEncode.test(html)) {
+    return html.replace(escapeReplaceNoEncode, getEscapeReplacement);
   }
 
   return html;
@@ -76,15 +73,15 @@ function cleanUrl(sanitize, base, href) {
     let prot;
     try {
       prot = decodeURIComponent(unescape(href))
-        .replace(nonWordAndColonTest, "")
+        .replace(nonWordAndColonTest, '')
         .toLowerCase();
     } catch (e) {
       return null;
     }
     if (
-      prot.indexOf("javascript:") === 0 ||
-      prot.indexOf("vbscript:") === 0 ||
-      prot.indexOf("data:") === 0
+      prot.indexOf('javascript:') === 0
+      || prot.indexOf('vbscript:') === 0
+      || prot.indexOf('data:') === 0
     ) {
       return null;
     }
@@ -93,7 +90,7 @@ function cleanUrl(sanitize, base, href) {
     href = resolveUrl(base, href);
   }
   try {
-    href = encodeURI(href).replace(/%25/g, "%");
+    href = encodeURI(href).replace(/%25/g, '%');
   } catch (e) {
     return null;
   }
@@ -103,7 +100,7 @@ function cleanUrl(sanitize, base, href) {
 function parseCustomIdText(text) {
   // TODO nbsp from other custom handling
   const CUSTOM_ID_REGEX = /(\&nbsp\;)?\{\#(.*)\}$/;
-  const match = (text || "").match(CUSTOM_ID_REGEX);
+  const match = (text || '').match(CUSTOM_ID_REGEX);
 
   if (match && match.length === 2) {
     return match[1];
@@ -117,17 +114,17 @@ function parseCustomIdText(text) {
 }
 
 const blockLevelTokens = [
-  "heading",
-  "html",
-  "table",
-  "code",
-  "hr",
-  "list",
-  "blockquote",
-  "paragraph",
-  "table",
-  "tablerow",
-  "tablecell",
+  'heading',
+  'html',
+  'table',
+  'code',
+  'hr',
+  'list',
+  'blockquote',
+  'paragraph',
+  'table',
+  'tablerow',
+  'tablecell',
 ];
 
 function isBlockToken(token) {

@@ -1,13 +1,13 @@
-const util = require("util");
-const path = require("path");
-const fs = require("fs");
-const crypto = require("crypto");
-const zlib = require("zlib");
+const util = require('util');
+const path = require('path');
+const fs = require('fs');
+const crypto = require('crypto');
+const zlib = require('zlib');
 
 const deflateAsync = util.promisify(zlib.deflate);
 const inflateAsync = util.promisify(zlib.inflate);
 
-const HASH_ALGORITHM = "sha1";
+const HASH_ALGORITHM = 'sha1';
 
 const {
   exists,
@@ -15,7 +15,7 @@ const {
   isWriteable,
   writeFile,
   createDir,
-} = require("../utils/fileHelpers");
+} = require('../utils/fileHelpers');
 
 // This thing is very bugged and needs to be rewritten
 module.exports = class Cacher {
@@ -25,13 +25,13 @@ module.exports = class Cacher {
     this.cacheIndex = cacheIndex;
   }
 
-  cacheKey(file = "") {
-    return file.replace(/\\/g, "-");
+  cacheKey(file = '') {
+    return file.replace(/\\/g, '-');
   }
 
   getDataHash(data) {
     const hash = crypto.createHash(HASH_ALGORITHM);
-    return hash.update(JSON.stringify(data)).digest("hex");
+    return hash.update(JSON.stringify(data)).digest('hex');
   }
 
   async getFileHash(file) {
@@ -39,25 +39,25 @@ module.exports = class Cacher {
       const hash = crypto.createHash(HASH_ALGORITHM);
       const readStream = fs.createReadStream(file);
 
-      readStream.on("readable", () => {
+      readStream.on('readable', () => {
         const data = readStream.read();
 
         if (data) hash.update(data);
         else {
-          resolve(hash.digest("hex"));
+          resolve(hash.digest('hex'));
         }
       });
 
-      readStream.on("error", (e) => {
+      readStream.on('error', (e) => {
         reject(e);
       });
     });
   }
 
   cacheFile() {
-    if (!this.cacheDir) return "index.json";
+    if (!this.cacheDir) return 'index.json';
 
-    return path.join(this.cacheDir, "index.json");
+    return path.join(this.cacheDir, 'index.json');
   }
 
   async primeCache() {
@@ -65,10 +65,10 @@ module.exports = class Cacher {
     const fileIsWriteable = await isWriteable(this.cacheFile());
 
     if (doesExist && !fileIsWriteable) {
-      throw new Error("expected cache file to be writeable");
+      throw new Error('expected cache file to be writeable');
     }
 
-    const cache = (await readFile(this.cacheFile())) || "{}";
+    const cache = (await readFile(this.cacheFile())) || '{}';
 
     let index = {};
 
@@ -76,10 +76,10 @@ module.exports = class Cacher {
       const parsed = JSON.parse(cache);
       index = parsed;
     } catch (e) {
-      this.reporter.error("cache index corrupted, recreating", e);
+      this.reporter.error('cache index corrupted, recreating', e);
     }
 
-    this.reporter.verbose("cache primed");
+    this.reporter.verbose('cache primed');
 
     this.cacheIndex = index;
     return index;
@@ -87,7 +87,7 @@ module.exports = class Cacher {
 
   async writeToFile() {
     if (!(await exists(this.cacheDir))) {
-      this.reporter.verbose(`Cache dir doesn't exist, creating`);
+      this.reporter.verbose('Cache dir doesn\'t exist, creating');
       await createDir(this.cacheDir);
     }
     const data = JSON.stringify(this.cacheIndex, 2);
@@ -95,7 +95,7 @@ module.exports = class Cacher {
     try {
       await writeFile(this.cacheFile(), data);
     } catch (e) {
-      this.reporter.error("Error writing cache index", e);
+      this.reporter.error('Error writing cache index', e);
       return false;
     }
 
@@ -112,17 +112,17 @@ module.exports = class Cacher {
 
   async compress(data) {
     const asString = JSON.stringify(data);
-    const asBuffer = Buffer.from(asString).toString("utf8");
+    const asBuffer = Buffer.from(asString).toString('utf8');
     const asZipped = await deflateAsync(asBuffer);
-    const asZippedString = Buffer.from(asZipped).toString("base64");
+    const asZippedString = Buffer.from(asZipped).toString('base64');
 
     return asZippedString;
   }
 
   async uncompress(data) {
-    const asBase64 = Buffer.from(data, "base64");
+    const asBase64 = Buffer.from(data, 'base64');
     const asBuffer = await inflateAsync(asBase64);
-    const asString = Buffer.from(asBuffer).toString("utf8");
+    const asString = Buffer.from(asBuffer).toString('utf8');
     const asObj = JSON.parse(asString);
 
     return asObj;
