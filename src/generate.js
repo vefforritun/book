@@ -27,6 +27,8 @@ const encoding = 'utf8';
 
 /** * /Config ** */
 
+// TODO file read this
+// eslint-disable-next-line import/no-dynamic-require
 const book = require(bookFile);
 
 class NullCacher {
@@ -70,7 +72,7 @@ async function main() {
         await createDir(cacheDir);
       } catch (e) {
         reporter.error(
-          `Cache directory "${cacheDir}" does not exist and unable to create: ${e}`,
+          `Cache directory "${cacheDir}" does not exist and unable to create: ${e}`
         );
         process.exit(1);
       }
@@ -81,7 +83,7 @@ async function main() {
 
     if (!cacheIsReadable || !cacheIsWritable) {
       reporter.error(
-        `Cache directory "${cacheDir}" is not readable or writeable`,
+        `Cache directory "${cacheDir}" is not readable or writeable`
       );
       process.exit(1);
     }
@@ -104,7 +106,7 @@ async function main() {
       await createDir(outputDir);
     } catch (e) {
       reporter.error(
-        `Output directory "${outputDir}" does not exist and unable to create: ${e}`,
+        `Output directory "${outputDir}" does not exist and unable to create: ${e}`
       );
       process.exit(1);
     }
@@ -119,12 +121,12 @@ async function main() {
 
   let allReadable = true;
   await Promise.all(
-    chapters.map(async (chapter) => {
-      if (!(await isReadable(chapter))) {
-        reporter.error(`File "${chapter}" is not readable`);
+    chapters.map(async (itemChapter) => {
+      if (!(await isReadable(itemChapter))) {
+        reporter.error(`File "${itemChapter}" is not readable`);
         allReadable = false;
       }
-    }),
+    })
   );
 
   if (!allReadable) {
@@ -134,8 +136,8 @@ async function main() {
 
   async function processFiles(files) {
     const processed = [];
-    console.log(files);
-    for (file of files) {
+
+    for await (const file of files) {
       reporter.group(`Processing "${file}"`);
       const outputFile = getOutputFilename(file);
       const outputFilebasename = path.basename(outputFile);

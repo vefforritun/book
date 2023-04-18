@@ -87,7 +87,7 @@ module.exports = class Cacher {
 
   async writeToFile() {
     if (!(await exists(this.cacheDir))) {
-      this.reporter.verbose('Cache dir doesn\'t exist, creating');
+      this.reporter.verbose("Cache dir doesn't exist, creating");
       await createDir(this.cacheDir);
     }
     const data = JSON.stringify(this.cacheIndex, 2);
@@ -133,7 +133,7 @@ module.exports = class Cacher {
       const hash = await this.getFileHash(file);
 
       if (hash === this.cacheIndex.data[file].hash) {
-        return await this.uncompress(this.cacheIndex.data[file].data);
+        return this.uncompress(this.cacheIndex.data[file].data);
       }
     }
 

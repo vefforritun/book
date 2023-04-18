@@ -27,7 +27,7 @@ describe('Cacher', () => {
     it('should return known hash for known string', () => {
       const cacher = new Cacher();
       expect(cacher.getDataHash('foo')).toBe(
-        'd465e627f9946f2fa0d2dc0fc04e5385bc6cd46d',
+        'd465e627f9946f2fa0d2dc0fc04e5385bc6cd46d'
       );
     });
   });
@@ -37,7 +37,7 @@ describe('Cacher', () => {
     it('should return empty if empty', async () => {
       const mReadStream = {
         read: jest.fn().mockReturnValueOnce(null),
-        on: jest.fn().mockImplementation(function (event, handler) {
+        on: jest.fn().mockImplementation((event, handler) => {
           handler();
           return this;
         }),
@@ -46,7 +46,7 @@ describe('Cacher', () => {
 
       const cacher = new Cacher();
       expect(cacher.getFileHash('')).resolves.toBe(
-        'da39a3ee5e6b4b0d3255bfef95601890afd80709',
+        'da39a3ee5e6b4b0d3255bfef95601890afd80709'
       );
     });
   });
@@ -71,7 +71,7 @@ describe('Cacher', () => {
         .mockReturnValueOnce(Promise.reject());
 
       await expect(cacher.primeCache()).rejects.toThrow(
-        'expected cache file to be writeable',
+        'expected cache file to be writeable'
       );
     });
 
@@ -82,7 +82,7 @@ describe('Cacher', () => {
       };
       fsPromises.access.mockReturnValueOnce(Promise.resolve());
       fsPromises.readFile.mockReturnValueOnce(
-        Promise.resolve('{"cache": true}'),
+        Promise.resolve('{"cache": true}')
       );
 
       const cacher = new Cacher({ reporter: mockReporter });
@@ -154,7 +154,7 @@ describe('Cacher', () => {
     it('should return cached data', async () => {
       const mReadStream = {
         read: jest.fn().mockReturnValueOnce(null),
-        on: jest.fn().mockImplementation(function (event, handler) {
+        on: jest.fn().mockImplementation((event, handler) => {
           handler();
           return this;
         }),
@@ -185,7 +185,7 @@ describe('Cacher', () => {
     it('should set data in cache', async () => {
       const mReadStream = {
         read: jest.fn().mockReturnValueOnce(null),
-        on: jest.fn().mockImplementation(function (event, handler) {
+        on: jest.fn().mockImplementation((event, handler) => {
           handler();
           return this;
         }),
@@ -211,7 +211,7 @@ describe('Cacher', () => {
     it('should return if is cached file', async () => {
       const mReadStream = {
         read: jest.fn().mockReturnValueOnce(null),
-        on: jest.fn().mockImplementation(function (event, handler) {
+        on: jest.fn().mockImplementation((event, handler) => {
           handler();
           return this;
         }),
@@ -229,7 +229,7 @@ describe('Cacher', () => {
     it('should mark a cached file', () => {
       const mReadStream = {
         read: jest.fn().mockReturnValueOnce(null),
-        on: jest.fn().mockImplementation(function (event, handler) {
+        on: jest.fn().mockImplementation((event, handler) => {
           handler();
           return this;
         }),

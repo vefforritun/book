@@ -1,3 +1,5 @@
+/* eslint-disable no-plusplus */
+/* eslint-disable no-param-reassign */
 const path = require('path');
 const { marked } = require('marked');
 
@@ -20,9 +22,7 @@ hljs.configure({
 });
 
 module.exports = class Renderer {
-  constructor({
-    options, chapter = 1, basedir = '', reporter = {},
-  } = {}) {
+  constructor({ options, chapter = 1, basedir = '', reporter = {} } = {}) {
     this.options = options || {};
     this.h1 = chapter;
     this.basedir = basedir;
@@ -39,19 +39,20 @@ module.exports = class Renderer {
 
   openParagraphsDiv = false;
 
+  // eslint-disable-next-line no-unused-vars
   isEmbeddable(href, text) {
     return href.indexOf('youtube.com') >= 0;
   }
 
   embeddableContent(href) {
     const match = href.match(
-      /.*(?:youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=)([^#\&\?]*).*/,
+      /.*(?:youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=)([^#&?]*).*/
     );
 
     let id = null;
 
     if (match && match.length > 0) {
-      id = match[1];
+      [, id] = match;
     }
 
     return `<div class="iframe">
@@ -97,9 +98,9 @@ module.exports = class Renderer {
 
     if (
       // lastBlockToken === 'paragraph' &&
-      token !== 'paragraph'
-      && isBlockToken(token)
-      && this.openParagraphsDiv
+      token !== 'paragraph' &&
+      isBlockToken(token) &&
+      this.openParagraphsDiv
     ) {
       this.openParagraphsDiv = false;
 
@@ -116,6 +117,7 @@ module.exports = class Renderer {
     return content;
   }
 
+  // eslint-disable-next-line no-unused-vars
   code(code, infostring, escaped) {
     const prefix = this.beforeRender('code');
     const lang = (infostring || '').match(/\S*/)[0];
@@ -123,14 +125,11 @@ module.exports = class Renderer {
     if (!lang) return `${prefix}code`;
 
     if (lang === 'ascii') {
-      return (
-        `${prefix
-        }
+      return `${prefix}
         <div class="code code-ascii"><pre>${code.replace(
           /</g,
-          '&lt;',
-        )}</pre></div>`
-      );
+          '&lt;'
+        )}</pre></div>`;
     }
 
     let lineNumber = 0;
@@ -140,12 +139,19 @@ module.exports = class Renderer {
     const cssPattern = /<span class="css">(.|\n)*?<\/span>/g;
 
     const adaptedHighlightedContent = highlightedContent
-      .replace(commentPattern, (data) => data.replace(/\r?\n/g, () => '</span>\n<span class="hljs-comment">'))
+      .replace(commentPattern, (data) =>
+        data.replace(/\r?\n/g, () => '</span>\n<span class="hljs-comment">')
+      )
       // TODO fix for multi-line embedded CSS (and other stuff...)
       // needs to parse the tree correctly, can't do this with regex
-      .replace(cssPattern, (data, i) => (
-        `${data.replace(/\r?\n/g, () => '</span>\n<span class="css">')}</span>`
-      ));
+      .replace(
+        cssPattern,
+        (data) =>
+          `${data.replace(
+            /\r?\n/g,
+            () => '</span>\n<span class="css">'
+          )}</span>`
+      );
 
     const contentTable = adaptedHighlightedContent
       .split(/\r?\n/)
@@ -169,13 +175,10 @@ module.exports = class Renderer {
       ${contentTable}
     </table>`;
 
-    return (
-      `${prefix
-      }
+    return `${prefix}
   <div class="code code-${lang}">
     ${table}
-  </div>`
-    );
+  </div>`;
   }
 
   blockquote(quote) {
@@ -208,9 +211,9 @@ module.exports = class Renderer {
     }
 
     if (
-      quote.startsWith('"')
-      || quote.startsWith('“')
-      || quote.startsWith('„')
+      quote.startsWith('"') ||
+      quote.startsWith('“') ||
+      quote.startsWith('„')
     ) {
       quote = quote.substring(1).trim();
     }
@@ -237,7 +240,7 @@ module.exports = class Renderer {
     return `${prefix}<hr>`;
   }
 
-  list(body, ordered, start, foo) {
+  list(body, ordered, start) {
     const prefix = this.beforeRender('list');
 
     const type = ordered ? 'ol' : 'ul';
@@ -252,36 +255,28 @@ module.exports = class Renderer {
 
   checkbox(checked) {
     const prefix = this.beforeRender('checkbox');
-    return (
-      `${prefix
-      }<input ${
-        checked ? 'checked="" ' : ''
-      }disabled="" type="checkbox"${
-        this.options.xhtml ? ' /' : ''
-      }> `
-    );
+    return `${prefix}<input ${
+      checked ? 'checked="" ' : ''
+    }disabled="" type="checkbox"${this.options.xhtml ? ' /' : ''}> `;
   }
 
   paragraph(text) {
     const prefix = this.beforeRender('paragraph');
 
     if (
-      text.trim().startsWith('<')
-      && !text.trim().startsWith('<em')
-      && !text.trim().startsWith('<del')
-      && !text.trim().startsWith('<a ')
-      && !text.trim().startsWith('<strong')
+      text.trim().startsWith('<') &&
+      !text.trim().startsWith('<em') &&
+      !text.trim().startsWith('<del') &&
+      !text.trim().startsWith('<a ') &&
+      !text.trim().startsWith('<strong')
     ) {
       return prefix + text;
     }
 
     if (text.match(/^\[\^([^\]]+)\]:([\s\S]*)$/g)) {
-      return (
-        `${prefix
-        }<span class="footnote">${
-          interpolateFootnotes(text)
-        }</span>\n`
-      );
+      return `${prefix}<span class="footnote">${interpolateFootnotes(
+        text
+      )}</span>\n`;
     }
 
     return `${prefix}<p>${text}</p>\n`;
@@ -290,9 +285,11 @@ module.exports = class Renderer {
   heading(text, level = 1) {
     const prefix = this.beforeRender('heading', level);
 
-    const currentLevel = level === 1
-      ? this.h1.toString()
-      : level === 2
+    const currentLevel =
+      // eslint-disable-next-line no-nested-ternary
+      level === 1
+        ? this.h1.toString()
+        : level === 2
         ? `${this.h1}.${this.h2}`
         : `${this.h1}.${this.h2}.${this.h3}`;
 
@@ -319,7 +316,7 @@ module.exports = class Renderer {
       </h${level}>`;
   }
 
-  image(href, title = '', text) {
+  image(href, title = '', text = undefined) {
     const prefix = this.beforeRender('image');
     const imagedir = path.join(this.basedir, href);
     const isEmbed = this.isEmbeddable(href);
@@ -346,11 +343,9 @@ module.exports = class Renderer {
 
     const creditIndex = (title || '').toLowerCase().indexOf('credit:');
     if (creditIndex > 0) {
-      credit = `<footer>${
-        autolink(
-          title.substring(creditIndex + 'credit:'.length, title.length).trim(),
-        )
-      }</footer>`;
+      credit = `<footer>${autolink(
+        title.substring(creditIndex + 'credit:'.length, title.length).trim()
+      )}</footer>`;
       title = title.substring(0, creditIndex).trim();
     }
 
@@ -421,7 +416,7 @@ module.exports = class Renderer {
     if (lastSpace > 0 && lastSpace !== text.length - 1) {
       text = `${text.substring(0, lastSpace)}&nbsp;${text.substring(
         lastSpace + 1,
-        text.length,
+        text.length
       )}`;
     }
 

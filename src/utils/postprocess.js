@@ -25,7 +25,7 @@ module.exports = function postprocess(html) {
   dom.window.document.querySelectorAll('sup.footnote-mark').forEach((i) => {
     const { number } = i.dataset;
     const textElement = dom.window.document.querySelector(
-      `sup.footnote-text[data-number="${number}"]`,
+      `sup.footnote-text[data-number="${number}"]`
     );
 
     if (textElement) {
@@ -40,12 +40,10 @@ module.exports = function postprocess(html) {
   const seen = [];
   const skippedNodes = ['h1', 'h2', 'h3'];
   const walk = (node) => {
-    const {
-      childNodes, nodeType, nodeName, textContent: text,
-    } = node;
+    const { childNodes, nodeType, nodeName, textContent: text } = node;
     if (
-      nodeType === node.ELEMENT_NODE
-      && skippedNodes.indexOf(nodeName.toLowerCase()) < 0
+      nodeType === node.ELEMENT_NODE &&
+      skippedNodes.indexOf(nodeName.toLowerCase()) < 0
     ) {
       for (const child of Array.from(childNodes)) {
         walk(child);
@@ -54,6 +52,7 @@ module.exports = function postprocess(html) {
       // might have more than one abbr we need to replace in current text node
       const toReplaceForCurrentNode = [];
 
+      // eslint-disable-next-line guard-for-in
       for (const abbr in abbreviations) {
         const regexp = new RegExp(`${abbr}`, 'g');
         if (text.match(regexp) && seen.indexOf(abbr) < 0) {

@@ -16,6 +16,17 @@ async function exists(file) {
   return ok;
 }
 
+async function isReadable(dir) {
+  let readable = true;
+  try {
+    await fsPromises.access(dir, fs.constants.R_OK);
+  } catch (e) {
+    readable = false;
+  }
+
+  return readable;
+}
+
 async function readFile(file, { encoding = 'utf8' } = {}) {
   if (!(await isReadable(file))) {
     return null;
@@ -27,11 +38,9 @@ async function readFile(file, { encoding = 'utf8' } = {}) {
 }
 
 async function createDir(dir) {
-  console.log(dir);
   try {
     await fsPromises.mkdir(dir, { recursive: true });
   } catch (e) {
-    console.log('ya');
     return false;
   }
 
@@ -51,17 +60,6 @@ async function isWriteable(dir) {
   }
 
   return writeable;
-}
-
-async function isReadable(dir) {
-  let readable = true;
-  try {
-    await fsPromises.access(dir, fs.constants.R_OK);
-  } catch (e) {
-    readable = false;
-  }
-
-  return readable;
 }
 
 async function copyDirectory({ from, to, reporter } = {}) {
@@ -91,7 +89,7 @@ async function copyDirectory({ from, to, reporter } = {}) {
 
   const dirContents = await readdirAsync(from);
 
-  for (const item of dirContents) {
+  for await (const item of dirContents) {
     const source = path.join(from, item);
     const target = path.join(to, path.basename(item));
 

@@ -1,4 +1,3 @@
-const fs = require('fs');
 const fsPromises = require('fs/promises');
 const { copyDirectory } = require('../../utils/fileHelpers');
 
@@ -14,7 +13,7 @@ describe('fileHelpers', () => {
       fsPromises.access.mockReturnValueOnce(Promise.reject());
 
       expect(
-        await copyDirectory({ from: 'from', to: 'to', reporter: mockReporter }),
+        await copyDirectory({ from: 'from', to: 'to', reporter: mockReporter })
       ).toBe(false);
       expect(mockReporter.warn).toHaveBeenCalledTimes(1);
       expect(mockReporter.warn).toHaveBeenCalledWith('"from" is not readable');
@@ -30,11 +29,11 @@ describe('fileHelpers', () => {
       fsPromises.mkdir.mockReturnValueOnce(Promise.reject());
 
       expect(
-        await copyDirectory({ from: 'from', to: 'to', reporter: mockReporter }),
+        await copyDirectory({ from: 'from', to: 'to', reporter: mockReporter })
       ).toBe(false);
       expect(mockReporter.warn).toHaveBeenCalledTimes(1);
       expect(mockReporter.warn).toHaveBeenCalledWith(
-        'Unable to create directory "to"',
+        'Unable to create directory "to"'
       );
     });
 
@@ -50,11 +49,11 @@ describe('fileHelpers', () => {
         .mockReturnValueOnce(Promise.resolve({ isDirectory: () => false }));
 
       expect(
-        await copyDirectory({ from: 'from', to: 'to', reporter: mockReporter }),
+        await copyDirectory({ from: 'from', to: 'to', reporter: mockReporter })
       ).toBe(false);
       expect(mockReporter.warn).toHaveBeenCalledTimes(1);
       expect(mockReporter.warn).toHaveBeenCalledWith(
-        '"from" is not a directory',
+        '"from" is not a directory'
       );
     });
   });
