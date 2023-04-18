@@ -17,11 +17,11 @@ const {
   createDir,
 } = require("../utils/fileHelpers");
 
+// This thing is very bugged and needs to be rewritten
 module.exports = class Cacher {
   constructor({ cacheDir, reporter, cacheIndex = {} } = {}) {
     this.cacheDir = cacheDir;
     this.reporter = reporter;
-
     this.cacheIndex = cacheIndex;
   }
 
@@ -102,7 +102,7 @@ module.exports = class Cacher {
     return true;
   }
 
-  async getCachedHash(file) {
+  getCachedHash(file) {
     if (file in this.cacheIndex) {
       return this.cacheIndex[file];
     }
@@ -161,7 +161,7 @@ module.exports = class Cacher {
       return false;
     }
 
-    const previousFileHash = await this.getCachedHash(file);
+    const previousFileHash = this.getCachedHash(file);
 
     if (!previousFileHash) {
       return false;
@@ -172,6 +172,7 @@ module.exports = class Cacher {
     return previousFileHash === fileHash;
   }
 
+  // TODO this method is sus
   async markCached(file) {
     const outputFileHash = await this.getFileHash(file);
 

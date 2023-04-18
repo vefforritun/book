@@ -156,6 +156,7 @@ async function main() {
         reporter.info(`${outputFile} is not current, creating`);
         const assembled = await chapter(data, reporter);
         await writeFile(outputFile, assembled);
+        // TODO bugged
         await cacher.markCached(file, outputFile);
       }
 

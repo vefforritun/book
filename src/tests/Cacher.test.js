@@ -75,35 +75,34 @@ describe("Cacher", () => {
       );
     });
 
-    it("should use cache file is valid json", async () => {
+    it("should use cache file if valid json", async () => {
       const mockReporter = {
         error: jest.fn(),
         verbose: jest.fn(),
       };
-      const cacher = new Cacher({ reporter: mockReporter });
       fsPromises.access.mockReturnValueOnce(Promise.resolve());
       fsPromises.readFile.mockReturnValueOnce(
         Promise.resolve('{"cache": true}')
       );
 
-      expect(await cacher.primeCache()).toEqual({ cache: true });
+      const cacher = new Cacher({ reporter: mockReporter });
 
+      expect(await cacher.primeCache()).toEqual({ cache: true });
       expect(mockReporter.error).toHaveBeenCalledTimes(0);
       expect(mockReporter.verbose).toHaveBeenCalledTimes(1);
     });
 
-    it("should recreate cache file is invalid json", async () => {
+    it("should recreate cache file if invalid json", async () => {
       const mockReporter = {
         error: jest.fn(),
         verbose: jest.fn(),
       };
-      const cacher = new Cacher({ reporter: mockReporter });
       fsPromises.access.mockReturnValueOnce(Promise.resolve());
-
       fsPromises.readFile.mockReturnValueOnce(Promise.resolve("invalid json"));
 
-      expect(await cacher.primeCache()).toEqual({});
+      const cacher = new Cacher({ reporter: mockReporter });
 
+      expect(await cacher.primeCache()).toEqual({});
       expect(mockReporter.error).toHaveBeenCalledTimes(1);
       expect(mockReporter.verbose).toHaveBeenCalledTimes(1);
     });
@@ -198,7 +197,7 @@ describe("Cacher", () => {
       expect(await cacher.cacheData("foo", "bar")).toBe(undefined);
     });
 
-    it("should return if is cached file", async () => {
+    it("should return if is not cached file", async () => {
       const mockReporter = {
         error: jest.fn(),
         verbose: jest.fn(),
@@ -207,6 +206,39 @@ describe("Cacher", () => {
       const cacher = new Cacher({ reporter: mockReporter });
 
       expect(await cacher.isCachedFile("foo", "bar")).toBe(false);
+    });
+
+    it("should return if is cached file", async () => {
+      const mReadStream = {
+        read: jest.fn().mockReturnValueOnce(null),
+        on: jest.fn().mockImplementation(function (event, handler) {
+          handler();
+          return this;
+        }),
+      };
+      fs.createReadStream.mockReturnValueOnce(mReadStream);
+      const cacher = new Cacher({
+        cacheIndex: {
+          foo: "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+        },
+      });
+
+      expect(await cacher.isCachedFile("foo")).toBe(true);
+    });
+
+    it("should mark a cached file", () => {
+      const mReadStream = {
+        read: jest.fn().mockReturnValueOnce(null),
+        on: jest.fn().mockImplementation(function (event, handler) {
+          handler();
+          return this;
+        }),
+      };
+      fs.createReadStream.mockReturnValueOnce(mReadStream);
+
+      const cacher = new Cacher();
+      cacher.markCached("foo");
+      expect(cacher.cacheIndex.foo).toBeUndefined();
     });
   });
 });
