@@ -1,5 +1,5 @@
 const prettier = require("prettier");
-const { singleLineMarkdown } = require("./utils/markdown");
+const { singleLineMarkdown } = require("../utils/markdown");
 
 function readingTimeReadable(time) {
   return `um ${time} mínútna lestími.`;
@@ -196,7 +196,7 @@ function allInOne(
 
         <footer>
           <hr>
-          ${version}
+          ${version ?? ""}
         </footer>
       </main>
     </body>
@@ -276,6 +276,8 @@ function index(
 }
 
 module.exports = {
+  generateHistory,
+  _prettier,
   chapter,
   allInOne,
   index,

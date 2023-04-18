@@ -11,7 +11,7 @@
     "clean": "rm -rf ./cache ./build",
     "wordlist": "find ./chapters/*.md -type f | xargs grep --color=always -w -Ff ./wordlist.txt | awk '{print $0,\"\\n\"}'",
     "test": "jest",
-    "coverage": "jest --coverage --collectCoverageFrom='src/**/*.js'",
+    "coverage": "jest --coverage --collectCoverageFrom='src/**/{!(generate),}.js'",
     "stryker": "stryker run"
   },
   "repository": {
@@ -35,5 +35,10 @@
     "jsdom": "^19.0.0",
     "marked": "^4.0.16",
     "prettier": "^2.6.2"
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "<rootDir>/src/generate.js"
+    ]
   }
 }

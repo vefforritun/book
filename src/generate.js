@@ -11,7 +11,7 @@ const {
 } = require("./utils/fileHelpers");
 const FileProcessor = require("./lib/FileProcessor");
 const Cacher = require("./lib/Cacher");
-const { chapter, index, allInOne } = require("./assemble");
+const { chapter, index, allInOne } = require("./lib/assemble");
 const FileReader = require("./lib/FileReader");
 
 /*** Config ***/
