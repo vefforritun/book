@@ -5,7 +5,13 @@ const { marked } = require('marked');
 
 const hljs = require('highlight.js');
 const sizeOfImage = require('image-size');
-const { autolink, escape, cleanUrl, parseCustomIdText } = require('./markdown');
+const {
+  autolink,
+  escape,
+  cleanUrl,
+  parseCustomIdText,
+  isBlockToken,
+} = require('../utils/markdownUtils');
 const {
   interpolateReferences,
   interpolateFootnotes,
@@ -14,24 +20,6 @@ const {
 hljs.configure({
   tabReplace: '\t',
 });
-
-const blockLevelTokens = [
-  'heading',
-  'html',
-  'table',
-  'code',
-  'hr',
-  'list',
-  'blockquote',
-  'paragraph',
-  'table',
-  'tablerow',
-  'tablecell',
-];
-
-function isBlockToken(token) {
-  return blockLevelTokens.indexOf(token) >= 0;
-}
 
 module.exports = class Renderer {
   constructor({ options, chapter = 1, basedir = '', reporter = {} } = {}) {

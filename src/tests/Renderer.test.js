@@ -163,5 +163,10 @@ const foo = 'bar';
         '<a href="https://example.org" title="title">text</a>'
       );
     });
+
+    it('should render marked', () => {
+      const renderer = new Renderer();
+      expect(renderer.marked('foo&bar')).toMatch('foo&bar');
+    });
   });
 });
