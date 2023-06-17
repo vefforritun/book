@@ -5,6 +5,22 @@
 // everything is needed
 
 const { marked } = require('marked');
+const postprocess = require('../utils/postprocess');
+const Renderer = require('./Renderer');
+
+function renderMarkdown(content, options) {
+  const renderer = new Renderer(options);
+
+  marked.setOptions({
+    renderer,
+  });
+
+  const renderedHtml = renderer.postRender(
+    marked(content.toString(options.encoding))
+  );
+
+  return postprocess(renderedHtml);
+}
 
 function markedSingleLine(content) {
   if (!content) {
@@ -194,24 +210,6 @@ function parseCustomIdText(text) {
   return undefined;
 }
 
-const blockLevelTokens = [
-  'heading',
-  'html',
-  'table',
-  'code',
-  'hr',
-  'list',
-  'blockquote',
-  'paragraph',
-  'table',
-  'tablerow',
-  'tablecell',
-];
-
-function isBlockToken(token) {
-  return blockLevelTokens.indexOf(token) >= 0;
-}
-
 module.exports = {
   autolink,
   markedSingleLine,
@@ -219,5 +217,5 @@ module.exports = {
   escape,
   parseCustomIdText,
   cleanUrl,
-  isBlockToken,
+  renderMarkdown,
 };

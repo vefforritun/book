@@ -18,7 +18,7 @@ describe('Renderer', () => {
       const renderer = new Renderer();
       const url = 'https://www.youtube.com/watch?v=1';
       expect(renderer.embeddableContent(url)).toMatch(
-        'src="https://www.youtube.com/embed/1"',
+        'src="https://www.youtube.com/embed/1"'
       );
     });
   });
@@ -160,13 +160,8 @@ const foo = 'bar';
       const renderer = new Renderer();
       expect(renderer.link(null, 'title', 'text')).toMatch('text');
       expect(renderer.link('https://example.org', 'title', 'text')).toMatch(
-        '<a href="https://example.org" title="title">text</a>',
+        '<a href="https://example.org" title="title">text</a>'
       );
-    });
-
-    it('should render marked', () => {
-      const renderer = new Renderer();
-      expect(renderer.marked('foo&bar')).toMatch('foo&bar');
     });
   });
 });

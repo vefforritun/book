@@ -5,13 +5,7 @@ const { marked } = require('marked');
 
 const hljs = require('highlight.js');
 const sizeOfImage = require('image-size');
-const {
-  autolink,
-  escape,
-  cleanUrl,
-  parseCustomIdText,
-  isBlockToken,
-} = require('../utils/markdown');
+const { autolink, escape, cleanUrl, parseCustomIdText } = require('./markdown');
 const {
   interpolateReferences,
   interpolateFootnotes,
@@ -20,6 +14,24 @@ const {
 hljs.configure({
   tabReplace: '\t',
 });
+
+const blockLevelTokens = [
+  'heading',
+  'html',
+  'table',
+  'code',
+  'hr',
+  'list',
+  'blockquote',
+  'paragraph',
+  'table',
+  'tablerow',
+  'tablecell',
+];
+
+function isBlockToken(token) {
+  return blockLevelTokens.indexOf(token) >= 0;
+}
 
 module.exports = class Renderer {
   constructor({ options, chapter = 1, basedir = '', reporter = {} } = {}) {
@@ -443,6 +455,10 @@ module.exports = class Renderer {
   }
 
   marked(text) {
-    return marked.parseInline(text).replace(/&amp;/g, '&'); // TODO why? not bothered chasing this down atm
+    const parsed = marked.parseInline(text);
+
+    const fixed = parsed.replace(/&amp;/g, '&');
+
+    return fixed;
   }
 };

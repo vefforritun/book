@@ -1,10 +1,8 @@
 const { marked } = require('marked');
 const graymatter = require('gray-matter');
 
-const Renderer = require('./Renderer');
 const EstimateReadingTime = require('./estimateReadingTime');
-const postprocess = require('../utils/postprocess');
-const { markedSingleLine } = require('../utils/markdown');
+const { markedSingleLine, renderMarkdown } = require('./markdown');
 
 const WORDS_PER_MINUTE = 200;
 
@@ -52,21 +50,12 @@ module.exports = class FileProcessor {
     const chapter = Number.isNaN(parseInt(metaChapter, 10))
       ? 1
       : parseInt(metaChapter, 10);
-    const renderer = new Renderer({
+
+    const html = renderMarkdown(content, {
       chapter,
       basedir,
       reporter: this.reporter,
     });
-
-    marked.setOptions({
-      renderer,
-    });
-
-    const renderedHtml = renderer.postRender(
-      marked(content.toString(this.encoding))
-    );
-
-    const html = postprocess(renderedHtml);
 
     const previousContent = this.makeNextPrevContent(previous);
     const nextContent = this.makeNextPrevContent(next);

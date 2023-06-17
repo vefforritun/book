@@ -1,5 +1,5 @@
 const prettier = require('prettier');
-const { singleLineMarkdown } = require('../utils/markdown');
+const { singleLineMarkdown } = require('./markdown');
 
 function readingTimeReadable(time) {
   return `um ${time} mínútna lestími.`;
