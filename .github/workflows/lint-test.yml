@@ -1,0 +1,30 @@
+name: CI-lint
+on:
+  # So we don't trigger two runs when pushing to a PR
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  lint-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ArtiomTr/jest-coverage-report-action@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Lint
+        # Note we *fail on any warning* by passing --max-warnings=0 to eslint in package.json
+        run: npm run lint
+
+      - name: Test
+        # Run this even if linting failed
+        if: always()
+        run: npm test

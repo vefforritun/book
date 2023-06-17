@@ -9,14 +9,20 @@ const inflateAsync = util.promisify(zlib.inflate);
 
 const HASH_ALGORITHM = 'sha1';
 
-const { exists, readFile, isWriteable, writeFile, createDir } = require("./utils");
+const {
+  exists,
+  readFile,
+  isWriteable,
+  writeFile,
+  createDir,
+} = require('../utils/fileHelpers');
 
+// This thing is very bugged and needs to be rewritten
 module.exports = class Cacher {
-  constructor({ cacheDir, reporter } = {}) {
+  constructor({ cacheDir, reporter, cacheIndex = {} } = {}) {
     this.cacheDir = cacheDir;
     this.reporter = reporter;
-
-    this.cacheIndex = {};
+    this.cacheIndex = cacheIndex;
   }
 
   cacheKey(file = '') {
@@ -35,8 +41,8 @@ module.exports = class Cacher {
 
       readStream.on('readable', () => {
         const data = readStream.read();
-        if (data)
-          hash.update(data);
+
+        if (data) hash.update(data);
         else {
           resolve(hash.digest('hex'));
         }
@@ -44,25 +50,27 @@ module.exports = class Cacher {
 
       readStream.on('error', (e) => {
         reject(e);
-      })
+      });
     });
   }
 
   cacheFile() {
+    if (!this.cacheDir) return 'index.json';
+
     return path.join(this.cacheDir, 'index.json');
   }
 
   async primeCache() {
-    if (
-      !exists(this.cacheFile()) &&
-      !isWriteable(this.cacheFile())
-    ) {
-      throw new Error('expecting cache file to be writeable');
+    const doesExist = await exists(this.cacheFile());
+    const fileIsWriteable = await isWriteable(this.cacheFile());
+
+    if (doesExist && !fileIsWriteable) {
+      throw new Error('expected cache file to be writeable');
     }
 
-    const cache = await readFile(this.cacheFile()) || '{}';
+    const cache = (await readFile(this.cacheFile())) || '{}';
 
-    let index = {}
+    let index = {};
 
     try {
       const parsed = JSON.parse(cache);
@@ -78,8 +86,8 @@ module.exports = class Cacher {
   }
 
   async writeToFile() {
-    if (!await exists(this.cacheDir)) {
-      this.reporter.verbose(`Cache dir doesn't exist, creating`);
+    if (!(await exists(this.cacheDir))) {
+      this.reporter.verbose("Cache dir doesn't exist, creating");
       await createDir(this.cacheDir);
     }
     const data = JSON.stringify(this.cacheIndex, 2);
@@ -94,7 +102,7 @@ module.exports = class Cacher {
     return true;
   }
 
-  async getCachedHash(file) {
+  getCachedHash(file) {
     if (file in this.cacheIndex) {
       return this.cacheIndex[file];
     }
@@ -125,7 +133,7 @@ module.exports = class Cacher {
       const hash = await this.getFileHash(file);
 
       if (hash === this.cacheIndex.data[file].hash) {
-        return await this.uncompress(this.cacheIndex.data[file].data);
+        return this.uncompress(this.cacheIndex.data[file].data);
       }
     }
 
@@ -139,21 +147,21 @@ module.exports = class Cacher {
     this.cacheIndex.data[file] = {
       hash: await this.getFileHash(file),
       data: await this.compress(data),
-    }
+    };
   }
 
   async isCachedFile(file, outputFile) {
-    if (!await exists(file)) {
+    if (!(await exists(file))) {
       this.reporter.verbose(`"${file}" does not exist`);
       return false;
     }
 
-    if (!await exists(outputFile)) {
+    if (!(await exists(outputFile))) {
       this.reporter.verbose(`"${outputFile}" does not exist`);
       return false;
     }
 
-    const previousFileHash = await this.getCachedHash(file);
+    const previousFileHash = this.getCachedHash(file);
 
     if (!previousFileHash) {
       return false;
@@ -164,9 +172,10 @@ module.exports = class Cacher {
     return previousFileHash === fileHash;
   }
 
+  // TODO this method is sus
   async markCached(file) {
     const outputFileHash = await this.getFileHash(file);
 
     this.cacheIndex[file] = outputFileHash;
   }
-}
+};

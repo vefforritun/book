@@ -1,12 +1,20 @@
 const path = require('path');
 
 const Reporter = require('./lib/Reporter');
-const { isWriteable, isReadable, writeFile, exists, createDir, copyDirectory } = require('./lib/utils');
+const {
+  isWriteable,
+  isReadable,
+  writeFile,
+  exists,
+  createDir,
+  copyDirectory,
+} = require('./utils/fileHelpers');
 const FileProcessor = require('./lib/FileProcessor');
 const Cacher = require('./lib/Cacher');
-const { chapter, index, allInOne } = require('./assemble');
+const { chapter, index, allInOne } = require('./lib/assemble');
+const FileReader = require('./lib/FileReader');
 
-/*** Config ***/
+/** * Config ** */
 
 const silent = false;
 const verbose = false;
@@ -17,21 +25,33 @@ const allInOneFile = 'all.html';
 const cacheDir = './cache';
 const encoding = 'utf8';
 
-/*** /Config ***/
+/** * /Config ** */
 
+// TODO file read this
+// eslint-disable-next-line import/no-dynamic-require
 const book = require(bookFile);
 
 class NullCacher {
-  isCached() { }
-  markCached() { }
-  getCachedData() { }
-  cacheData() { }
-  isCachedFile() { }
+  isCached() {}
+
+  markCached() {}
+
+  getCachedData() {}
+
+  cacheData() {}
+
+  isCachedFile() {}
 }
 
 let cacher = new NullCacher();
 const reporter = new Reporter({ silent, verbose });
-const processor = new FileProcessor({ outputDir, reporter, encoding });
+const fileReader = new FileReader();
+const processor = new FileProcessor({
+  outputDir,
+  reporter,
+  encoding,
+  fileReader,
+});
 
 function getOutputFilename(file) {
   console.assert(typeof file === 'string', 'file should be string');
@@ -43,24 +63,28 @@ function getOutputFilename(file) {
 }
 
 async function main() {
-  reporter.info(`Starting generation!`);
+  reporter.info('Starting generation!');
   let cacheEnabled = false;
 
   if (cacheDir) {
-    if (!await exists(cacheDir)) {
+    if (!(await exists(cacheDir))) {
       try {
         await createDir(cacheDir);
-      } catch(e) {
-        reporter.error(`Cache directory "${cacheDir}" does not exist and unable to create: ${e}`);
+      } catch (e) {
+        reporter.error(
+          `Cache directory "${cacheDir}" does not exist and unable to create: ${e}`
+        );
         process.exit(1);
       }
     }
 
-    let cacheIsReadable = await isReadable(cacheDir);
-    let cacheIsWritable = await isWriteable(cacheDir);
+    const cacheIsReadable = await isReadable(cacheDir);
+    const cacheIsWritable = await isWriteable(cacheDir);
 
     if (!cacheIsReadable || !cacheIsWritable) {
-      reporter.error(`Cache directory "${cacheDir}" is not readable or writeable`);
+      reporter.error(
+        `Cache directory "${cacheDir}" is not readable or writeable`
+      );
       process.exit(1);
     }
 
@@ -77,16 +101,18 @@ async function main() {
     process.exit(1);
   }
 
-  if (!await exists(outputDir)) {
+  if (!(await exists(outputDir))) {
     try {
       await createDir(outputDir);
-    } catch(e) {
-      reporter.error(`Output directory "${outputDir}" does not exist and unable to create: ${e}`);
+    } catch (e) {
+      reporter.error(
+        `Output directory "${outputDir}" does not exist and unable to create: ${e}`
+      );
       process.exit(1);
     }
   }
 
-  if (!await isWriteable(outputDir)) {
+  if (!(await isWriteable(outputDir))) {
     reporter.error(`Output directory "${outputDir}" is not writeable`);
     process.exit(1);
   }
@@ -94,12 +120,14 @@ async function main() {
   const chapters = book.chapters.files;
 
   let allReadable = true;
-  await Promise.all(chapters.map(async (chapter) => {
-    if (!await isReadable(chapter)) {
-      reporter.error(`File "${chapter}" is not readable`);
-      allReadable = false;
-    }
-  }));
+  await Promise.all(
+    chapters.map(async (itemChapter) => {
+      if (!(await isReadable(itemChapter))) {
+        reporter.error(`File "${itemChapter}" is not readable`);
+        allReadable = false;
+      }
+    })
+  );
 
   if (!allReadable) {
     reporter.error('Not all files are readable, exiting');
@@ -108,8 +136,8 @@ async function main() {
 
   async function processFiles(files) {
     const processed = [];
-    console.log(files)
-    for (file of files) {
+
+    for await (const file of files) {
       reporter.group(`Processing "${file}"`);
       const outputFile = getOutputFilename(file);
       const outputFilebasename = path.basename(outputFile);
@@ -134,6 +162,7 @@ async function main() {
         reporter.info(`${outputFile} is not current, creating`);
         const assembled = await chapter(data, reporter);
         await writeFile(outputFile, assembled);
+        // TODO bugged
         await cacher.markCached(file, outputFile);
       }
 
@@ -158,11 +187,11 @@ async function main() {
 
   // TODO cache all-in-one based on *all* chapters
   try {
-    reporter.group(`Assembling all-in-one file`);
+    reporter.group('Assembling all-in-one file');
     const allInOneAssembled = await allInOne(data, processed, reporter);
     const acutalAllInOneFile = path.join(outputDir, allInOneFile);
     await writeFile(acutalAllInOneFile, allInOneAssembled);
-    reporter.groupEnd(`Done assembling all-in-one file`);
+    reporter.groupEnd('Done assembling all-in-one file');
   } catch (e) {
     reporter.warn(`Unable to create all-in-one file, ${e.message}`);
     // don't exit here, want to save the cache
@@ -170,11 +199,11 @@ async function main() {
 
   // TODO cache index based on *all* chapters
   try {
-    reporter.group(`Assembling index`);
+    reporter.group('Assembling index');
     const indexAssembled = await index(data, processed, reporter);
     const actualIndexFile = path.join(outputDir, indexFile);
     await writeFile(actualIndexFile, indexAssembled);
-    reporter.groupEnd(`Done assembling index`);
+    reporter.groupEnd('Done assembling index');
   } catch (e) {
     reporter.warn(`Unable to create index file, ${e.message}`);
     // don't exit here, want to save the cache
@@ -188,13 +217,17 @@ async function main() {
     }
   }
 
-  reporter.group(`Copying from template dir`);
+  reporter.group('Copying from template dir');
   await copyDirectory({ from: './template', to: outputDir, reporter });
-  reporter.groupEnd(`Done copying from template dir`);
+  reporter.groupEnd('Done copying from template dir');
 
-  reporter.group(`Copying from chapter image dir`);
-  await copyDirectory({ from: './chapters/img', to: path.join(outputDir, 'img'), reporter });
-  reporter.groupEnd(`Done copying from template dir`);
+  reporter.group('Copying from chapter image dir');
+  await copyDirectory({
+    from: './chapters/img',
+    to: path.join(outputDir, 'img'),
+    reporter,
+  });
+  reporter.groupEnd('Done copying from template dir');
 
   reporter.info('All done!');
   process.exit(0);

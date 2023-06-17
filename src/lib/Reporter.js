@@ -1,30 +1,34 @@
-function timerStart() {
-  return process.hrtime();
-}
-
-function timerEnd(since) {
-  const diff = process.hrtime(since);
-  const elapsed = diff[0] * 1e9 + diff[1];
-  const elapsedAsSeconds = elapsed / 1e9;
-  const fixed = elapsedAsSeconds.toFixed(2);
-
-  return `${fixed}${fixed.length < 4 ? ' '.repeat(4 - fixed.length) : ''}`;
-}
-
 module.exports = class Reporter {
-  constructor({ silent = false, verbose = false, datetime = false, elapsed = true } = {}) {
+  constructor({
+    silent = false,
+    verbose = false,
+    datetime = false,
+    elapsed = true,
+  } = {}) {
     this.silent = silent;
     this.isVerbose = verbose;
     this.elapsed = elapsed;
     this.datetime = datetime;
-    this.start = timerStart();
+    this.start = this.timerStart();
+  }
+
+  timerStart() {
+    return process.hrtime();
+  }
+
+  timerEnd(since) {
+    const diff = process.hrtime(since);
+    const elapsed = diff[0] * 1e9 + diff[1];
+    const elapsedAsSeconds = elapsed / 1e9;
+    const fixed = elapsedAsSeconds.toFixed(2);
+
+    return `${fixed}${fixed.length < 4 ? ' '.repeat(4 - fixed.length) : ''}`;
   }
 
   timing() {
-
     return [
       this.datetime ? new Date().toUTCString() : null,
-      this.elapsed ? timerEnd(this.start).toString() : null,
+      this.elapsed ? this.timerEnd(this.start).toString() : null,
       this.datetime || this.elapsed ? '—' : null,
     ].filter(Boolean);
   }
@@ -66,4 +70,4 @@ module.exports = class Reporter {
       console.info(...this.timing(), ...m);
     }
   }
-}
+};

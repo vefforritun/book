@@ -1,39 +1,45 @@
 const util = require('util');
 const fs = require('fs');
+const fsPromises = require('fs/promises');
 const path = require('path');
-const {marked} = require('marked');
 
-const accessAsync = util.promisify(fs.access);
-const readFileAsync = util.promisify(fs.readFile);
-const writeFileAsync = util.promisify(fs.writeFile);
-const mkdirAsync = util.promisify(fs.mkdir);
-const lstatAsync = util.promisify(fs.lstat);
 const copyFileAsync = util.promisify(fs.copyFile);
 const readdirAsync = util.promisify(fs.readdir);
 
 async function exists(file) {
   let ok = true;
   try {
-    await accessAsync(file, fs.constants.F_OK);
+    await fsPromises.access(file, fs.constants.F_OK);
   } catch (e) {
     ok = false;
   }
   return ok;
 }
 
+async function isReadable(dir) {
+  let readable = true;
+  try {
+    await fsPromises.access(dir, fs.constants.R_OK);
+  } catch (e) {
+    readable = false;
+  }
+
+  return readable;
+}
+
 async function readFile(file, { encoding = 'utf8' } = {}) {
-  if (!await isReadable(file)) {
+  if (!(await isReadable(file))) {
     return null;
   }
 
-  const content = await readFileAsync(file);
+  const content = await fsPromises.readFile(file);
 
   return content.toString(encoding);
 }
 
 async function createDir(dir) {
   try {
-    await mkdirAsync(dir, { recursive: true });
+    await fsPromises.mkdir(dir, { recursive: true });
   } catch (e) {
     return false;
   }
@@ -42,13 +48,13 @@ async function createDir(dir) {
 }
 
 async function writeFile(file, data, { encoding = 'utf8' } = {}) {
-  return writeFileAsync(file, data, { encoding });
+  return fsPromises.writeFile(file, data, { encoding });
 }
 
 async function isWriteable(dir) {
   let writeable = true;
   try {
-    await accessAsync(dir, fs.constants.W_OK);
+    await fsPromises.access(dir, fs.constants.W_OK);
   } catch (e) {
     writeable = false;
   }
@@ -56,54 +62,41 @@ async function isWriteable(dir) {
   return writeable;
 }
 
-async function isReadable(dir) {
-  let readable = true;
-  try {
-    await accessAsync(dir, fs.constants.R_OK);
-  } catch (e) {
-    readable = false;
-  }
-
-  return readable;
-}
-
 async function copyDirectory({ from, to, reporter } = {}) {
-  if (!await isReadable(from)) {
+  if (!(await isReadable(from))) {
     reporter.warn(`"${from}" is not readable`);
     return false;
   }
 
   if (await exists(to)) {
-    const toStats = await lstatAsync(to);
+    const toStats = await fsPromises.lstat(to);
 
     if (!toStats.isDirectory()) {
       reporter.warn(`"${to}" exists and is not a directory`);
       return false;
-    };
-  } else {
-    if (!await createDir(to)) {
-      reporter.warn(`Unable to create directory "${to}"`);
-      return false;
     }
+  } else if (!(await createDir(to))) {
+    reporter.warn(`Unable to create directory "${to}"`);
+    return false;
   }
 
-  const fromStats = await lstatAsync(from);
+  const fromStats = await fsPromises.lstat(from);
 
   if (!fromStats.isDirectory()) {
     reporter.warn(`"${from}" is not a directory`);
     return false;
-  };
+  }
 
   const dirContents = await readdirAsync(from);
 
-  for (const item of dirContents) {
+  for await (const item of dirContents) {
     const source = path.join(from, item);
     const target = path.join(to, path.basename(item));
 
-    const stats = await lstatAsync(source);
+    const stats = await fsPromises.lstat(source);
 
     if (stats.isDirectory()) {
-      if (!await exists(target)) {
+      if (!(await exists(target))) {
         await createDir(target);
       }
       await copyDirectory({ from: source, to: target, reporter });
@@ -117,23 +110,6 @@ async function copyDirectory({ from, to, reporter } = {}) {
   return true;
 }
 
-function autolink(s) {
-  const pattern = /(^|[\s\n]|<[A-Za-z]*\/?>)((?:https?|ftp):\/\/[\-A-Z0-9+\u0026\u2019@#\/%?=()~_|!:,.;]*[\-A-Z0-9+\u0026@#\/%=~()_|])/gi;
-
-  return (s || '').replace(pattern, "$1<a href='$2'>$2</a>");
-}
-
-function singleLineMarkdown(str, { skipPs = false } = {}) {
-  marked.use({
-    renderer: {
-      paragraph(text) {
-        return text;
-      }
-    }
-  });
-  return marked(str).replace('<div class="paragraphs">', '');
-}
-
 module.exports = {
   exists,
   isReadable,
@@ -142,6 +118,4 @@ module.exports = {
   writeFile,
   createDir,
   copyDirectory,
-  autolink,
-  singleLineMarkdown,
 };
