@@ -343,8 +343,10 @@ module.exports = class Renderer {
 
     const creditIndex = (title || '').toLowerCase().indexOf('credit:');
     if (creditIndex > 0) {
-      credit = `<footer>${autolink(
-        title.substring(creditIndex + 'credit:'.length, title.length).trim()
+      credit = `<footer>${this.marked(
+        autolink(
+          title.substring(creditIndex + 'credit:'.length, title.length).trim()
+        )
       )}</footer>`;
       title = title.substring(0, creditIndex).trim();
     }
