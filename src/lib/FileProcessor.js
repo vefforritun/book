@@ -41,6 +41,7 @@ module.exports = class FileProcessor {
     const {
       title = '',
       chapter: metaChapter = 0,
+      in_review = false,
       version = '',
       history = [],
       next = '',
@@ -67,6 +68,7 @@ module.exports = class FileProcessor {
     return {
       file,
       title,
+      in_review,
       chapter,
       version,
       history: historyLinked,
