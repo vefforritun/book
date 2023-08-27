@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="is">
+  <head>
+    <meta charset="utf-8" />
+    <title>Display</title>
+    <!--
+      Þetta dæmi skilgreinir CSS „inline“ til hægðarauka. Betra væri að vísa í
+      CSS skjal með <link rel="stylesheet" href="skjal.css">
+    -->
+    <style>
+      .box {
+        width: 10vh;
+        height: 10vh;
+
+        margin: 20px;
+        border: 2px solid #f00;
+        padding: 20px;
+
+        background-color: #eee;
+        color: #111;
+      }
+
+      .block {
+        display: block;
+      }
+      .inline {
+        display: inline;
+      }
+      .inline-block {
+        display: inline-block;
+      }
+      .none {
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="box block">block</div>
+    <div class="box inline">inline</div>
+    <div class="box inline">inline</div>
+    <div class="box none">none</div>
+    <div class="box block">block</div>
+    <div class="box inline-block">inline block</div>
+    <div class="box inline">inline</div>
+    <div class="box inline-block">inline block</div>
+  </body>
+</html>
