@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="is">
+
+<head>
+  <meta charset="utf-8">
+  <title>CSS Grid</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .container {
+      display: grid;
+      width: 100%;
+      min-height: 100vh;
+      grid-template-areas:
+        "header"
+        "nav"
+        "main"
+        "foot";
+      grid-template-rows:
+        minmax(10vh, auto) minmax(20vh, auto) minmax(60vh, auto) minmax(10vh, auto);
+    }
+
+    @media (min-width: 1000px) {
+      .container {
+        grid-template-areas:
+          "header header"
+          "nav    main"
+          "nav    foot";
+        grid-template-rows:
+          minmax(20vh, auto) minmax(60vh, auto) minmax(20vh, auto);
+        grid-template-columns: 2fr 8fr;
+      }
+    }
+
+
+    header {
+      grid-area: header;
+      background-color: #8ca0ff;
+    }
+
+    nav {
+      grid-area: nav;
+      background-color: #ffa08c;
+    }
+
+    main {
+      grid-area: main;
+      background-color: #ffff64;
+    }
+
+    footer {
+      grid-area: foot;
+      background-color: #8cffa0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header>Header</header>
+    <nav>Navigation</nav>
+    <main>Main area</main>
+    <footer>Footer</footer>
+  </div>
+</body>
+
+</html>

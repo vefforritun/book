@@ -1,6 +1,7 @@
 {
   "editor.formatOnSave": true,
   "[markdown]": {
-    "editor.formatOnSave": false,
-  }
+    "editor.formatOnSave": false
+  },
+  "liveServer.settings.port": 5504
 }
