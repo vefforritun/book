@@ -1,5 +1,5 @@
 const prettier = require('prettier');
-const { singleLineMarkdown } = require('../utils/markdown');
+const { singleLineMarkdown } = require('./markdown');
 
 function readingTimeReadable(time) {
   return `um ${time} mínútna lestími.`;
@@ -47,6 +47,7 @@ function chapter(data, reporter) {
   const {
     title,
     chapter: dataChapter,
+    in_review,
     version,
     history,
     nextContent,
@@ -83,6 +84,7 @@ function chapter(data, reporter) {
       <title>${title}—Vefforritun</title>
       <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet">
       <link rel="stylesheet" href="reset.css"/>
+      <link rel="stylesheet" href="xgrid.css"/>
       <link rel="stylesheet" href="styles.css"/>
       <script defer data-domain="bok.vefforritun.is" src="https://plausible.io/js/plausible.js"></script>
     </head>
@@ -91,6 +93,7 @@ function chapter(data, reporter) {
         <header>
           <h1>Kafli ${dataChapter}: ${title}</h1>
           ${readingTime}
+          ${in_review ? '<p class="in-review">Í yfirlestri</p>' : ''}
         </header>
 
         <article>
@@ -203,10 +206,12 @@ function index(
   const chaptersContent = processed
     .map((item) => {
       const url = item.outputFilebasename;
-      const { title: itemTitle } = item;
+      const { title: itemTitle, in_review } = item;
       const readingTime = readingTimeReadable(item.estimatedReadingTime);
 
-      return `<li><a href="${url}">${itemTitle}</a>, <span class="reading-time">${readingTime}</span></li>`;
+      return `<li><a href="${url}">${itemTitle}</a>, <span class="reading-time">${readingTime}</span>${
+        in_review ? ' <strong>Í yfirlestri</strong>' : ''
+      }</li>`;
     })
     .join('');
 
@@ -241,6 +246,8 @@ function index(
           <h2>${subtitle}</h2>
         </header>
         <article>
+
+          <p class="in-review">Merktir kaflar eru í yfirlestri og uppfærslu í ágúst 2023.</p>
 
           <h3>${chapters.title}</h3>
           <ol start="0">

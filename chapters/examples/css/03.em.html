@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="is">
+  <head>
+    <meta charset="utf-8" />
+    <title>em</title>
+    <!--
+      Þetta dæmi skilgreinir CSS „inline“ til hægðarauka. Betra væri að vísa í
+      CSS skjal með <link rel="stylesheet" href="skjal.css">
+    -->
+    <style>
+      /* texti innan html er núna 16px * 2 = 32px */
+      html {
+        font-size: 2em;
+      }
+
+      /* texti innan .text er nákvæmlega 16px */
+      .text {
+        font-size: 16px;
+      }
+
+      /* texti í p undir .text er 16px * 1,5 = 24px */
+      .text p {
+        font-size: 1.5em;
+      }
+
+      /* texti í em undir p undir .text er nákvæmlega 12px */
+      .text p em {
+        font-size: 12px;
+      }
+
+      /*
+        texti í strong undir p undir .text er:
+        16px * 1,5 * 2 = 48px
+        þar sem 12px komur frá .text
+        margföldum með 1,5 út af .text p
+        margföldum með 2 út af skilgreiningu sjálfri
+      */
+      .text p strong {
+        font-size: 2em;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="text">
+      Texti utan &lt;p&gt;, smár.
+      <p>Texti innan &lt;p&gt;, stærri.</p>
+      <p>
+        Texti innan &lt;p&gt; sem inniheldur <strong>enn stærri texta</strong>.
+      </p>
+    </div>
+  </body>
+</html>

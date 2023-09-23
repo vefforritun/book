@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="is">
+  <head>
+    <meta charset="utf-8" />
+    <title>Flexbox - items</title>
+    <!--
+      Þetta dæmi skilgreinir CSS „inline“ til hægðarauka. Betra væri að vísa í
+      CSS skjal með <link rel="stylesheet" href="skjal.css">
+    -->
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .cards {
+        margin: 0 auto;
+        width: 100%;
+        max-width: 1000px;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        grid-template-rows: auto;
+        gap: var(--gutter);
+
+        width: 100%;
+      }
+
+      .card {
+        grid-column: span 12;
+      }
+
+      /* þegar við fáum amk 500px breiðan glugga, 2 í röð */
+      @media (min-width: 500px) {
+        .card {
+          grid-column: span 6;
+        }
+      }
+
+      /* þegar við fáum amk 1000px breiðan glugga, 4 í röð */
+      @media (min-width: 1000px) {
+        .card {
+          grid-column: span 4;
+        }
+      }
+
+      /* fjarlægjum fyrir grid
+      .cards > .content {
+        margin-bottom: 2rem;
+
+        display: flex;
+        align-items: stretch;
+        flex-wrap: wrap;
+      }
+      */
+
+      .card {
+        /* annar flex container */
+        /* raðar efni niður í röð, leyfir okkur að eiga við flex-items */
+        display: flex;
+        flex-direction: column;
+
+        /*
+        næstu þrjár línur stýra hvernig card hegðar sér gagnvart öðrum .card
+        getum stýrt _óháð_ með því að láta container sjá um
+        layout VS component!
+        */
+        /* Fjarlægjum þetta því við erum að stýra með grid!
+        margin-right: 1rem;
+        margin-bottom: 1rem;
+        width: calc(25% - 1rem);
+        */
+
+        /* hér getum við skilgreint hvað .card raunverulega þarf mikið/lítið pláss */
+        min-width: 160px;
+
+        background-color: #cccccc;
+      }
+
+      .card > .content {
+        /* þriðji! */
+        /*
+        hér stýrum við hvernig textinn hagar sér, fyllir út í boxið og dreifir
+        plássi milli flex itema
+        */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        padding: 0.5rem;
+        border: 1px solid #999;
+        border-top: 0;
+
+        /* lætur þetta flex-item taka allt mögulegt auka pláss */
+        flex: 1;
+      }
+
+      .card > .content p {
+        flex: 1;
+        margin-bottom: 1rem;
+      }
+
+      .card .image {
+        background-color: #000;
+      }
+
+      .card .image img {
+        object-fit: cover;
+        width: 100%;
+        height: 200px;
+      }
+
+      .card h3 {
+        margin-bottom: 0.5rem;
+        font-size: 1.5rem;
+      }
+
+      .card .button {
+        /* fjórði! */
+        /* raðar texta + takka lárétt */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .card .button span {
+        /* ýtum mögulegum texta sem kæmi alveg upp að takka frá */
+        margin-right: 0.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="cards">
+      <h2>Efni</h2>
+
+      <div class="grid">
+        <section class="card">
+          <div class="image"><img src="test-card.png" alt="" /></div>
+          <div class="content">
+            <div class="heading">
+              <h3>Dolor ipsum lorem sit</h3>
+            </div>
+            <p>
+              Lorem ipsum dolot sit amet. Lorem ipsum dolot sit amet. Lorem
+              ipsum dolot sit amet.
+            </p>
+            <div class="button">
+              <span>Dolor sit amet. Lorem ipsum dolot sit amet.</span>
+              <button>Takki</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="image"><img src="test-card.png" alt="" /></div>
+          <div class="content">
+            <div class="heading">
+              <!-- setjum inn &shy; fyrir soft hyphen sem brýtur langt orð -->
+              <h3>Lorerererr&shy;ererererem ipsum</h3>
+            </div>
+            <p>
+              Dolor sit amet lorem ipsum dolot sit amet. Lorem ipsum dolot sit
+              amet. Lorem ipsum dolot sit amet.
+            </p>
+            <div class="button">
+              <span
+                >Dolor sit amet lorem lorem sit sit sit sit sit sit sit sit sit
+                sit sit sit sit sit sit sit.</span
+              >
+              <button>Takki</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="image"><img src="test-card.png" alt="" /></div>
+          <div class="content">
+            <div class="heading">
+              <h3>Lorem ipsum</h3>
+            </div>
+            <p>
+              Sit amet. Lorem ipsum dolot sit amet. Lorem ipsum dolot sit amet.
+            </p>
+            <div class="button">
+              <span>Dolor sit amet</span>
+              <button>Takki</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="image"><img src="test-card.png" alt="" /></div>
+          <div class="content">
+            <div class="heading">
+              <h3>Lorem ipsum</h3>
+            </div>
+            <p>
+              Lorem ipsum dolot sit amet. Lorem ipsum dolot sit amet. Lorem
+              ipsum dolot sit amet.
+            </p>
+            <div class="button">
+              <span>Dolor sit amet. Lorem ipsum dolot sit amet.</span>
+              <button>Takki</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="content">
+            <div class="heading">
+              <h3>Lorem ipsum</h3>
+            </div>
+            <p>
+              Sit amet. Lorem ipsum dolot sit amet. Lorem ipsum dolot sit amet.
+            </p>
+            <div class="button">
+              <span>Dolor sit amet</span>
+              <button>Takki</button>
+            </div>
+          </div>
+        </section>
+        <section class="card">
+          <div class="image"><img src="test-card.png" alt="" /></div>
+          <div class="content">
+            <div class="heading">
+              <h3>Lorem ipsum</h3>
+            </div>
+            <p>
+              Dolor sit amet lorem ipsum dolot sit amet. Lorem ipsum dolot sit
+              amet. Lorem ipsum dolot sit amet.
+            </p>
+            <div class="button">
+              <span
+                >Dolor sit amet lorem lorem sit sit sit sit sit sit sit sit sit
+                sit sit sit sit sit sit sit.</span
+              >
+              <button>Takki</button>
+            </div>
+          </div>
+        </section>
+        <section class="card">
+          <div class="image"><img src="test-card.png" alt="" /></div>
+          <div class="content">
+            <div class="heading">
+              <h3>Lorem ipsum</h3>
+            </div>
+            <p>
+              Sit amet. Lorem ipsum dolot sit amet. Lorem ipsum dolot sit amet.
+            </p>
+          </div>
+        </section>
+      </div>
+    </section>
+    <style>
+      :root {
+        --offset: 0;
+        --max_width: 1000px;
+        --columns: 12;
+        --gutter: 20px;
+        --color: hsla(204, 80%, 72%, 0.25);
+        --repeating-width: calc(100% / var(--columns));
+        --column-width: calc((100% / var(--columns)) - var(--gutter));
+        --background-width: calc(100% + var(--gutter));
+        --background-columns: repeating-linear-gradient(
+          to right,
+          var(--color),
+          var(--color) var(--column-width),
+          transparent var(--column-width),
+          transparent var(--repeating-width)
+        );
+      }
+
+      /* Styling */
+      html {
+        position: relative;
+      }
+
+      html::before {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin-right: auto;
+        margin-left: auto;
+        width: calc(100% - (2 * var(--offset)));
+        max-width: var(--max_width);
+        min-height: 100vh;
+        content: "";
+        background-image: var(--background-columns);
+        background-size: var(--background-width) 100%;
+        z-index: 1000;
+        pointer-events: none;
+      }
+    </style>
+  </body>
+</html>

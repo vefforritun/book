@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="is">
+  <head>
+    <meta charset="utf-8" />
+    <title>Selectors</title>
+    <!--
+      Þetta dæmi skilgreinir CSS „inline“ til hægðarauka. Betra væri að vísa í
+      CSS skjal með <link rel="stylesheet" href="skjal.css">
+    -->
+    <style>
+      /* Fjarlægjum allt margin og padding af öllum elementum */
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Setjum padding aðeins á body og stækkum letur */
+      body {
+        padding: 50px;
+        font-size: 20px;
+      }
+
+      /* svartur 1px breiður border á öll div og padding */
+      div {
+        padding: 5px;
+        border: 1px solid #000;
+      }
+
+      /* látum öll em vera með undirlínu, ekki skáletrun */
+      em {
+        text-decoration: underline;
+        font-style: none;
+      }
+
+      /* en ef þau eru beint undir div er textinn blár */
+      div > em {
+        color: #00f;
+      }
+
+      /* div sem er systkini div fær 20px margin fyrir ofan sig
+         og annan bakgrunnslit */
+      div + div {
+        margin-top: 20px;
+        background-color: lightcyan;
+      }
+
+      /* öll div á eftir div.text fá neon grænan bakgrunn */
+      div.text ~ div {
+        background-color: rgb(0, 255, 0);
+      }
+
+      /* fyrsti stafur undir div.text verður tvöfaldur að stærð */
+      div.text:first-letter {
+        font-size: 2rem;
+      }
+
+      /* Ef html er með attribute lang með gildið is, setja ljósgráan bakgrunn
+         hvað gerist fyrir bakgrunnslit fyrsta div? */
+      html[lang='is'] {
+        background-color: lightgray;
+      }
+
+      /* Ef *eitthvað* element sem er barn body er með attribute lang með
+        gildið is, gefa gulan bakgrunn */
+      html [lang='is'] {
+        background-color: yellow;
+      }
+
+      /* ef div.text er tómt, gefa því rauðan bakgrunn
+         en af hverju ekki neon grænan? af hverju er það svona lítið? */
+      div.text:empty {
+        background-color: red;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div>
+      <p>Halló <strong id="text">heimur</strong></p>
+    </div>
+
+    <div class="text">
+      <em>Lorem</em> <span lang="is">ipsum <em>dolor</em> sit amet</span>,
+      consectetur adipiscing elit.
+    </div>
+
+    <div class="text">
+      <em>Lorem</em> <span lang="is">ipsum <em>dolor</em> sit amet</span>,
+      consectetur adipiscing elit.
+    </div>
+
+    <div class="text"><!-- viljandi tómt --></div>
+  </body>
+</html>

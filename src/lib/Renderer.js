@@ -11,7 +11,7 @@ const {
   cleanUrl,
   parseCustomIdText,
   isBlockToken,
-} = require('../utils/markdown');
+} = require('../utils/markdownUtils');
 const {
   interpolateReferences,
   interpolateFootnotes,
@@ -343,8 +343,10 @@ module.exports = class Renderer {
 
     const creditIndex = (title || '').toLowerCase().indexOf('credit:');
     if (creditIndex > 0) {
-      credit = `<footer>${autolink(
-        title.substring(creditIndex + 'credit:'.length, title.length).trim()
+      credit = `<footer>${this.marked(
+        autolink(
+          title.substring(creditIndex + 'credit:'.length, title.length).trim()
+        )
       )}</footer>`;
       title = title.substring(0, creditIndex).trim();
     }
@@ -443,6 +445,10 @@ module.exports = class Renderer {
   }
 
   marked(text) {
-    return marked.parseInline(text).replace(/&amp;/g, '&'); // TODO why? not bothered chasing this down atm
+    const parsed = marked.parseInline(text);
+
+    const fixed = parsed.replace(/&amp;/g, '&');
+
+    return fixed;
   }
 };

@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="is">
+
+<head>
+  <meta charset="utf-8">
+  <title>CSS Grid</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --max-width: 1400px;
+      --columns: 12;
+      --gutter: 30px;
+      --offset: 20px;
+    }
+
+    main {
+      width: calc(100% - (2 * var(--offset)));
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(var(--columns), 1fr);
+      gap: var(--gutter);
+    }
+
+    .col-12 {
+      grid-column-end: span 12;
+    }
+
+    .col-6 {
+      grid-column-end: span 6;
+    }
+
+    .col-3 {
+      grid-column-end: span 3;
+    }
+
+    .offset-3 {
+      grid-column-start: 4;
+    }
+
+    .box {
+      padding: 1rem;
+      border: 1px solid #000;
+    }
+
+    /* https://css-tricks.com/building-css-grid-overlay/ */
+    :root {
+      --grid-color: hsla(204, 75%, 75%, 0.25);
+      --grid-repeating-width: calc(100% / var(--columns));
+      --grid-column-width: calc((100% / var(--columns)) - var(--gutter));
+      --grid-background-width: calc(100% + var(--gutter));
+      --grid-background-columns: repeating-linear-gradient(to right,
+          var(--grid-color),
+          var(--grid-color) var(--grid-column-width),
+          transparent var(--grid-column-width),
+          transparent var(--grid-repeating-width));
+    }
+
+    html {
+      position: relative;
+    }
+
+    html::before {
+      content: '';
+
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+
+      margin-right: auto;
+      margin-left: auto;
+
+      width: calc(100% - (2 * var(--offset)));
+      max-width: var(--max-width);
+      min-height: 100vh;
+      background-image: var(--grid-background-columns);
+      background-size: var(--grid-background-width) 100%;
+      z-index: 1000;
+      pointer-events: none;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <div class="grid-container">
+      <div class="col col-12">
+        <div class="box">100% dálkur</div>
+      </div>
+      <div class="col col-6">
+        <div class="box">50% dálkur</div>
+      </div>
+      <div class="col col-3">
+        <div class="box">25% dálkur</div>
+      </div>
+      <div class="col col-3">
+        <div class="box">25% dálkur</div>
+      </div>
+      <div class="offset-3 col col-3">
+        <div class="box">25% dálkur sem byrjar frá 25%</div>
+      </div>
+      <div class="col col-6">
+        <div class="box">50% dálkur</div>
+      </div>
+    </div>
+  </main>
+</body>
+
+</html>
