@@ -122,7 +122,7 @@ function allInOne({ title, version }, processed, reporter) {
 
   const totalEstimatedReadingTime = processed.reduce(
     (total, item) => item.estimatedReadingTime + total,
-    0
+    0,
   );
 
   processed.forEach((item) => {
@@ -140,7 +140,7 @@ function allInOne({ title, version }, processed, reporter) {
     const readingTime =
       estimatedReadingTime > 0
         ? `<p class="reading-time">${readingTimeReadable(
-            estimatedReadingTime
+            estimatedReadingTime,
           )}</p>`
         : '';
 
@@ -157,7 +157,7 @@ function allInOne({ title, version }, processed, reporter) {
   const totalReadingTime =
     totalEstimatedReadingTime > 0
       ? `<p class="reading-time">${readingTimeReadable(
-          totalEstimatedReadingTime
+          totalEstimatedReadingTime,
         )}</p>`
       : '';
 
@@ -201,7 +201,7 @@ function allInOne({ title, version }, processed, reporter) {
 function index(
   { title, subtitle, version, contact, chapters },
   processed,
-  reporter
+  reporter,
 ) {
   const chaptersContent = processed
     .map((item) => {
@@ -217,7 +217,7 @@ function index(
 
   const totalEstimatedReadingTime = processed.reduce(
     (total, item) => item.estimatedReadingTime + total,
-    0
+    0,
   );
 
   // eslint-disable-next-line no-unused-vars
@@ -246,8 +246,6 @@ function index(
           <h2>${subtitle}</h2>
         </header>
         <article>
-
-          <p class="in-review">Merktir kaflar eru í yfirlestri og uppfærslu í ágúst 2023.</p>
 
           <h3>${chapters.title}</h3>
           <ol start="0">
